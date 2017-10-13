@@ -1,0 +1,13 @@
+# Ignore IntelliJ files.
+.idea/
+*.iml
+*.ipr
+*.iws
+
+vendor/
+
+.sass-cache
+.jekyll-metadata
+.bundle/
+.testcontent/
+
