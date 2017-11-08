@@ -1,0 +1,336 @@
+html, body {
+	margin: 0;
+	min-height: 100%;
+	min-width: 330px;
+	width: 100%;
+	height: 100%;
+	border-collapse:collapse;
+	display : table;
+}
+
+nav {
+	text-align: left;
+	position: fixed;
+	width: 100%;
+	background: #2CB9EC;
+	background: linear-gradient(50deg, transparent 190px, #2CB9EC 0);
+	z-index: 1;
+	height: 70px;
+}
+
+nav img {
+	height: 70px;
+	margin-left: 10px;
+	display: inline-block;
+}
+
+nav ul {
+	float: right !important;
+	height: 100%;
+	line-height: 60px;
+	margin: 0;
+}
+
+#imgbackground {
+	width: 250px;
+	height: 70px;
+	position: fixed;
+	background: #FFFFFF;
+	background: linear-gradient(0deg, transparent 0, #FFFFFF 20px);
+}
+
+a {
+	text-decoration: none;
+	outline: none;
+}
+
+#mobmenu {
+	display: inline;
+	margin-top: 38px;
+}
+
+#dropmenu a{
+	border-radius: 8px;
+	color: #FFFFFF;
+}
+
+#dropmenu {
+	position: fixed;
+	display: inline;
+	margin-left: 50px;
+	line-height: 54px;
+	color: #FFFFFF;
+}
+
+.dropbutton {
+	padding: 8px 20px 8px 20px;
+	cursor: pointer;
+	border: none;
+	display: inline-block;
+}
+
+.mobbutton {
+	display: none;
+}
+
+.dropdown {
+	position: relative;
+	display: inline-block;
+}
+
+.triangle {
+	margin-left: 4px;
+	display: inline-block;
+	width: 0;
+	height: 0;
+	border-style: solid;
+	border-width: 6px 8px 6px 0;
+	border-color: transparent #FFFFFF transparent transparent;
+	transition: transform 0.5s;
+}
+
+.dropdown-content {
+	position: absolute;
+	background: #f9f9f9;
+	min-width: 160px;
+	border-radius: 0px 0px 8px 8px;
+	right: 0;
+	transform: scaleY(0);
+	transform-origin: top;
+	-webkit-transform: scaleY(0);
+	-webkit-transform-origin: top;
+	transition: transform 0.5s;
+	line-height: 30px;
+}
+
+.dropdown-content a {
+	padding: 12px 16px;
+	display: block;
+	color:black !important;
+}
+
+.dropdown-content a:hover, .dropdown:hover, .dropbutton:hover, #dropmenu a:hover{
+	background: #f1f1f1;
+	color:black;
+}
+
+.dropdown:hover .dropdown-content {
+	transform: scaleY(1);
+	-webkit-transform: scaleY(1);
+	z-index: 1;
+}
+
+.dropdown:hover .triangle {
+	transform: rotate(-90deg);
+	-webkit-transform: rotate(-90deg);
+	border-color: transparent #2CB9EC transparent transparent;
+}
+
+#mobmenu:hover #dropmenu {
+	transform: scaleX(1);
+	-webkit-transform: scaleX(1);
+	z-index: 1;
+}
+
+#mobmenu:hover .mobbutton .triangle {
+	transform: rotate(-90deg);
+	-webkit-transform: rotate(-90deg);
+}
+
+.container {
+	margin: 0 auto;
+	height: 100%;
+	min-height:100%;
+	text-align: center;
+}
+
+.logoAP {
+	position: fixed;
+	top: 4px;
+	right: 150px;
+	height: 64px;
+	z-index:2;
+}
+
+#APsmall{
+	display:none;
+}
+
+.GHImg {
+	z-index:2;
+	position: fixed;
+	top: 0;
+	right: 0;
+	transform: rotate(90deg);
+	-webkit-transform: rotate(90deg);
+}
+
+.GHImgSmall {
+	z-index:2;
+	position: fixed;
+	top: 0;
+	left: 0;
+	height: 30px;
+	display: none;
+}
+
+#banner {
+	max-width: 1100px;
+	margin: 0 auto;
+	overflow: auto;
+	padding-bottom: 10%;
+	align-items: center;
+}
+
+.bannertext {
+	text-align: left;
+	font-size: 18px;
+	padding: 15px;
+	padding-top: 40px;
+}
+
+.bannerImage {
+	width: 45%;
+	float:right;
+	padding: 30px;
+}
+
+.item {
+	display: inline-block;
+	width: 29%;
+	margin: 1%;
+	padding: 1%;
+	min-width: 320px;
+	background: #d8d8d8;
+	border-radius: 8px;
+	height: 200px;
+	vertical-align: top;
+	text-align: left;
+}
+
+.spacer {
+	padding-top: 70px;
+	padding-bottom: 5px;
+	height:100%;
+	overflow: hidden;
+}
+
+#foot {
+	text-align: center;
+	display : table-row;
+	vertical-align : bottom;
+	height : 1px;
+}
+
+#footText {
+	color: white;
+	font-size: 12px;
+	background: #2CB9EC;
+	padding: 4px;
+}
+
+.shadowed {
+	filter: "progid:DXImageTransform.Microsoft.Dropshadow(OffX=5, OffY=5, Color='#444')";
+	filter: url(#drop-shadow);
+	-webkit-filter: drop-shadow(2px 2px 1px rgba(0,0,0,0.5));
+	filter: drop-shadow(2px 2px 1px rgba(0,0,0,0.5));
+}
+
+@media screen and (max-width: 1015px) {
+	#APbig{display:none}
+	#APsmall{display:block}
+}
+
+@media screen and (max-width: 834px) {
+	body, #footer {
+		font-size: 12px;
+	}
+	
+	nav {
+		background: linear-gradient(300deg, transparent 185px, #2CB9EC 0);
+	}
+	
+	nav img {
+		float: right;
+	}
+	
+	.GHImg {
+		display: none;
+	}
+	
+	.GHImgSmall {
+		display: block;
+	}
+	
+	#APsmall{
+		right: 195px;
+	}
+	
+	.bannertext {
+		width: 80%;
+		padding-top: 0;
+		min-width: 320px;
+		float: none;
+		margin: auto;
+	}
+	
+	.bannerImage {
+		display: none;
+	}
+	
+	#mobmenu {
+		display: inline-block;
+		margin-left: 0;
+		border-radius: 0px 8px 8px 0px;
+		filter: "progid:DXImageTransform.Microsoft.Dropshadow(OffX=5, OffY=5, Color='#444')";
+		filter: url(#drop-shadow);
+		-webkit-filter: drop-shadow(2px 2px 1px rgba(0,0,0,0.5));
+		filter: drop-shadow(2px 2px 1px rgba(0,0,0,0.5));
+		background: white;
+		position: fixed;
+	}
+	
+	.triangle{
+		border-color: transparent #2CB9EC transparent transparent;
+	}
+	
+	.mobbutton {
+		display: inline-block;
+		background: white;
+	}
+	
+	#dropmenu {
+		transform-origin: left;
+		transform: scaleX(0);
+		-webkit-transform-origin: left;
+		-webkit-transform: scaleX(0);
+		transition: transform 0.5s;
+		position: fixed;
+		margin-left: 0;
+		border-radius: 0px 8px 0px 0px;
+		top: 32px;
+		left: 0;
+		background:white;
+		color:black;
+	}
+	
+	#dropmenu a {
+		display: block;
+		color:black;
+	}
+	
+	.dropdown {
+		display: block;
+	}
+	
+	.dropdown-content {
+		border-radius: 0px 8px 8px 8px;
+		top: 0;
+		left: 100%;
+		right: auto;
+	}
+}
+
+@media screen and (max-width: 400px) {
+	#APsmall {display:none}
+}
