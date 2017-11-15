@@ -18,7 +18,7 @@ This repository contains:
 cd path/to/build.py
 ./build.py
 ```
-A test-server will run on [https://localhost:8000/]
+A test-server will run on [localhost:8000](https://localhost:8000/)
 ### installing 
-install [python](https://www.python.org/)(tested versions: 2.7.10)
-install [markdown2](https://github.com/trentm/python-markdown2/blob/master/README.md#install)
+1. install [python](https://www.python.org/)(tested versions: 2.7.10)
+1. install [markdown2](https://github.com/trentm/python-markdown2/blob/master/README.md#install)
