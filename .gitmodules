@@ -1,0 +1,3 @@
+[submodule "celix"]
+	path = celix
+	url = git://git.apache.org/celix.git

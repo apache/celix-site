@@ -27,7 +27,7 @@ markdown = 'src/markdown'
 copy = 'src/noprocess'
 snippets = 'src'
 out = 'site'
-celixIndex = 'celix/documentation'
+celixIndex = 'celix/documents/intro/readme.md'
 ref = {}
 
 #combines two paths to files from a common root directory
@@ -57,7 +57,7 @@ for f in os.listdir(markdown):
 	ref[markdown + '/' + f] = f[:-3] + '.html'
 
 #read index document
-with open(celixIndex + '/index.md') as f:
+with open(celixIndex) as f:
 	for line in f:
 		if(line[0] is '#' and line[1] is '#'):
 			if(line[2] != '#'):
