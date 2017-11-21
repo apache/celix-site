@@ -1,3 +1,8 @@
+<!--
+Meta-Name:	Name
+-->
+<? instruction ?>
+
 # Contributing
 
 The Celix community is open for everyone to participate in. Discussions are done over the 
