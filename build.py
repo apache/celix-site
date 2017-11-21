@@ -55,16 +55,19 @@ if not os.path.exists(out):
 #register site markdown
 for f in os.listdir(markdown):
 	ref[markdown + '/' + f] = f[:-3] + '.html'
+ref[celixIndex + '/index.md'] = 'doc/index.html'
 
 #read index document
 with open(celixIndex + '/index.md') as f:
+	docT = '<div id=docTable><table>'
 	for line in f:
 		if(line[0] is '#' and line[1] is '#'):
 			if(line[2] != '#'):
 				# declares title
 				title = line[3:-1].replace(' ', '_')
+				docT += '\n\t<tr><th>' + title + '</th></tr>'
 			elif(line[3] != '#'):
-				# checks if directory exists
+				# checks if document declaration is valid
 				if 'title' not in globals():
 					sys.tracebacklimit = 0
 					raise NameError("A directory was declared before any title in the index.md file")
@@ -73,8 +76,26 @@ with open(celixIndex + '/index.md') as f:
 				# declares document
 				key = celixIndex + '/' + line[line.find('(') + 1:line.find(')')]
 				value = 'doc/' + title + '/' + line[line.find('[') + 1:line.find(']')]
-				value = value.replace(' ', '_')
-				ref[key] = value + '.html'
+				value = value.replace(' ', '_') + '.html'
+				# crash when declared document exists
+				if key in ref:
+					sys.tracebacklimit = 0
+					raise NameError('document "' + value + '" was defined multiple times')
+				# crash when files cant be reached
+				try:
+					with open(key) as n:
+						try:
+							with open(out + '/' + value, 'w') as n:
+								# add file to registry
+								ref[key] = value
+						except IOError:
+							sys.tracebacklimit = 0
+							raise IOError('coud not read to file "' + out + '/' + ref[key] + '"')
+				except IOError:
+					sys.tracebacklimit = 0
+					raise IOError('could not read file "' + key + '"')
+				docT += '\n\t<tr><td><a href=/' + value + '>' + value[5 + len(title):].replace('_', ' ')[:-5] + '</a></td></tr>'
+	docT += '\n</table></div>\n'
 
 # write documents
 for key in ref:
@@ -104,6 +125,8 @@ for key in ref:
 
 	# convert markdown to html, also add top and bottom html files
 	file = markdown2.markdown(file, extras=["markdown-in-html"])
+	if ref[key].startswith('doc/'):
+			file = docT + '<div id=docContent>\n' + file + '\n</div>'
 	with open(snippets + '/top.html') as top:
 		file = top.read() + file
 	with open(snippets + '/bottom.html') as bottom:

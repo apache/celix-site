@@ -204,6 +204,14 @@ a {
 	overflow: hidden;
 }
 
+#docTable {
+	float: left;
+}
+
+#docContent {
+	display: table-cell;
+}
+
 #foot {
 	text-align: center;
 	display : table-row;
