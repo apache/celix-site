@@ -20,15 +20,14 @@ __copyright__ = "Copyright 2011 The Apache Software Foundation"
 __license__ = "Apache-2.0"
 __version__ = "1.0.0"
 
-import os, inspect, markdown2, shutil, sys
+import os, inspect, markdown2, shutil, sys, xml.etree.ElementTree as ET
 
 #define urls
 markdown = 'src/markdown'
 copy = 'src/noprocess'
 snippets = 'src'
 out = 'site'
-celixIndex = 'celix/documents/intro/readme.md'
-ref = {}
+docIndex = 'docTableIndex.xml'
 
 #combines two paths to files from a common root directory
 #to a path from the parent directory of file one to file two
@@ -52,93 +51,64 @@ shutil.copytree(copy, out)
 if not os.path.exists(out):
 	os.makedirs(out)
 
-#register site markdown
-for f in os.listdir(markdown):
-	ref[markdown + '/' + f] = f[:-3] + '.html'
-ref[celixIndex + '/index.md'] = 'doc/index.html'
+# read index document
+root = ET.parse(docIndex).getroot()
+for title in root:
+	for fl in title:	
+		fl.append(ET.fromstring('<dest>' + out + '/doc/' + (title.attrib['name'] + '/' + fl.attrib['name']).replace(' ', '_') + '.html</dest>'))
 
-#read index document
-<<<<<<< HEAD
-with open(celixIndex + '/index.md') as f:
-	docT = '<div id=docTable><table>'
-=======
-with open(celixIndex) as f:
->>>>>>> upstream/asf-site
-	for line in f:
-		if(line[0] is '#' and line[1] is '#'):
-			if(line[2] != '#'):
-				# declares title
-				title = line[3:-1].replace(' ', '_')
-				docT += '\n\t<tr><th>' + title + '</th></tr>'
-			elif(line[3] != '#'):
-				# checks if document declaration is valid
-				if 'title' not in globals():
-					sys.tracebacklimit = 0
-					raise NameError("A directory was declared before any title in the index.md file")
-				if(not os.path.isdir(out + '/doc/' + title)):
-					os.makedirs(out + '/doc/' + title)
-				# declares document
-				key = celixIndex + '/' + line[line.find('(') + 1:line.find(')')]
-				value = 'doc/' + title + '/' + line[line.find('[') + 1:line.find(']')]
-				value = value.replace(' ', '_') + '.html'
-				# crash when declared document exists
-				if key in ref:
-					sys.tracebacklimit = 0
-					raise NameError('document "' + value + '" was defined multiple times')
-				# crash when files cant be reached
-				try:
-					with open(key) as n:
-						try:
-							with open(out + '/' + value, 'w') as n:
-								# add file to registry
-								ref[key] = value
-						except IOError:
-							sys.tracebacklimit = 0
-							raise IOError('coud not read to file "' + out + '/' + ref[key] + '"')
-				except IOError:
-					sys.tracebacklimit = 0
-					raise IOError('could not read file "' + key + '"')
-				docT += '\n\t<tr><td><a href=/' + value + '>' + value[5 + len(title):].replace('_', ' ')[:-5] + '</a></td></tr>'
-	docT += '\n</table></div>\n'
+# create doctable
+docT = '<div id=docTable><table>'
+for title in root:
+	docT += '\n\t<tr><th>' + title.attrib['name'] + '</th></tr>'
+	for fl in title:
+		docT += '\n\t<tr><td><a href=/' + fl.find('dest').text[len(out) + 1:] + '>' + fl.attrib['name'] + '</a></td></tr>'
+docT += '\n</table></div>\n'
+
+#register site markdown
+md = ''
+for f in os.listdir(markdown):
+	md += '<file name="' + f[:-3] +'"><path>' + markdown + '/' + f + '</path><dest>site/' + f[:-3].replace(' ', '_') + '.html</dest></file>'
+root.append(ET.fromstring('<markdown>' + md + '</markdown>'))
 
 # write documents
-for key in ref:
-	try:
-		f = open(key)
-		o = open(out + '/' + ref[key], 'w')
-	except IOError:
-		print("failed to convert document: \nsource: " + key + "\ndestination: " + out + '/' + ref[key] + "\ncheck if urls are valid, the source file is readable and the destination is creatable.")
-		continue
-	file = f.read()
-	
-	# import other files
-	i = 0
-	while True:
-		i = file.find("{{", i)
-		if(i == -1):break
-		i2 = file.find("}}", i)
-		if(i2 == -1):break
-		f2 = open(key[:key.rfind('/') + 1] + file[i + 2:i2])
-		file = file[:i] + f2.read() + file[i2 + 2:]
-		f2.close()
-		i = i2 + 2
+for title in root:
+	if(title.tag != 'markdown'):
+		os.makedirs(out + '/doc/' + title.attrib['name'])
+	for fl in title:
+		with open(fl.find('path').text) as f:
+			file = f.read()
+		o = open(fl.find('dest').text, 'w')
 
-	# correct markdown links
-	for key2 in ref:
-		file = file.replace(combinePaths(key, key2), combinePaths(ref[key], ref[key2]))
+		# import other files
+		if fl.find('url'):
+			i = 0
+			url = fl.find('url').text.split('url')
+			while True:
+				i = file.find(url[0], i)
+				if(i == -1):break
+				i2 = file.find(url[1], i)
+				if(i2 == -1):break
+				f2 = open(key[:key.rfind('/') + 1] + file[i + len(url[0]):i2])
+				file = file[:i] + f2.read() + file[i2 + len(url[1]):]
+				f2.close()
+				i = i2 + 2
 
-	# convert markdown to html, also add top and bottom html files
-	file = markdown2.markdown(file, extras=["markdown-in-html"])
-	if ref[key].startswith('doc/'):
-			file = docT + '<div id=docContent>\n' + file + '\n</div>'
-	with open(snippets + '/top.html') as top:
-		file = top.read() + file
-	with open(snippets + '/bottom.html') as bottom:
-		file = file.encode() + bottom.read()
-		
-	o.write(file)
-	f.close()
-	o.close()
+		# correct markdown links
+		for fl2 in root.findall('./title/file'):
+			file = file.replace(combinePaths(fl.find('path').text,fl2.find('path').text), combinePaths(fl.find('dest').text, fl2.find('dest').text))
+
+		# convert markdown to html, also add top and bottom html files
+		file = markdown2.markdown(file, extras=["markdown-in-html", "break-on-newline", "fenced-code-blocks"])
+		if(title.tag != 'markdown'):
+				file = docT + '<div id=docContent>\n' + file + '\n</div>'
+		with open(snippets + '/top.html') as top:
+			file = top.read() + file
+		with open(snippets + '/bottom.html') as bottom:
+			file = file.encode() + bottom.read()
+
+		o.write(file)
+		o.close()
 
 # run test-server
 print('attempting to start a test-server on "http://localhost:8000/"')

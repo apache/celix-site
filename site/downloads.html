@@ -98,19 +98,38 @@
 			<img id="APsmall" class="logoAP shadowed" src="/media/Apache_Feather.svg">
 </a>
 <div class="spacer">
-<p><!--<br />
-Meta-Name:  Name<br />
---><br />
-<? instruction ?></p>
+<h1>Download Celix</h1>
 
-<h1>Contributing</h1>
+<p>Celix is an implementation of the OSGi specification adapted to C.</p>
 
-<p>The Celix community is open for everyone to participate in. Discussions are done over the<br />
-<a href="/support/mailinglist.html">mailing lists</a>, and <a href="/support/issuetracking.html">issues</a> can be created and<br />
-seen by everyone.</p>
+<h2>Releases</h2>
 
-<p>If you would like to join the Celix community, a good start would be to follow the mailing list and participate in the<br />
-discussions, use Celix and report bugs you find, possibly with patches.</p>
+<p>Apache Celix only releases source distributions, information about building and running van be found inside the release tarball.</p>
+
+<h3>Mirrors</h3>
+
+<p>The currently selected mirror is <strong>[preferred]</strong>. If you encounter a problem with this mirror, please select another mirror. If all mirrors are failing, there are <em>backup</em><br />
+mirrors (at the end of the mirrors list) that should be available. </p>
+
+<form action="[location]" method="get" id="SelectMirror">Other mirrors:
+    <select name="Preferred">
+        [if-any http] [for http]<option value="[http]">[http]</option>[end] [end] 
+        [if-any ftp] [for ftp]<option value="[ftp]">[ftp]</option>[end] [end] 
+        [if-any backup] [for backup]<option value="[backup]">[backup] (backup)</option>[end] [end]
+    </select>
+    <input type="submit" value="Change"></input>
+</form>
+
+<p>You may also consult the <a href="http://www.apache.org/mirrors/">complete list of mirrors</a>.</p>
+
+<h3>Downloads</h3>
+
+<ul>
+<li>Source: <a href="[preferred]/celix/celix-2.0.0/celix-2.0.0.tar.gz">celix-2.0.0.tar.gz</a><br />
+<a href="http://www.apache.org/dist/celix/celix-2.0.0/celix-2.0.0.tar.gz.asc">PGP</a><br />
+<a href="http://www.apache.org/dist/celix/celix-2.0.0/celix-2.0.0.tar.gz.md5">MD5</a><br />
+<a href="http://www.apache.org/dist/celix/celix-2.0.0/celix-2.0.0.tar.gz.sha">SHA1</a></li>
+</ul>
 </div><div id="foot">
 <div id="footText">
 Copyright © 2011 The Apache Software Foundation, Licensed under the Apache License, Version 2.0.

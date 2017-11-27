@@ -233,6 +233,12 @@ a {
 	filter: drop-shadow(2px 2px 1px rgba(0,0,0,0.5));
 }
 
+.codehilite {
+	display: inline-block;
+	border-radius: 8px;
+	padding: 5px;
+}
+
 @media screen and (max-width: 1140px) {
 	#APbig{display:none}
 	#APsmall{display:block}

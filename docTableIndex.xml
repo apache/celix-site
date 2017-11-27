@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<!--
+possible arguments:
+path: the sourcepath for this file (required)
+dest: destination where the path is to be placed (defaults out/doc/titlename/filename.html)
+import: configure how a file to be imported is signified in a file. "url" is where the import url should be in the actual file.
+mdHtml: set true to parse the document from markdown to html (defaults true)
+-->
+<root>
+	<title name="one">
+		<file name="main">
+			<path>README.md</path>
+			<dest>site/doc/index.html</dest>
+		</file>
+		<file name="file one">
+			<path>celix/documents/intro/readme.md</path>
+			<import>{{url}}</import>
+		</file>
+	</title>
+	<title name="two">
+		<file name="file two">
+			<path>celix/documents/getting_started/creating_a_simple_bundle.md</path>
+		</file>
+		<file name="file three">
+			<path>celix/documents/getting_started/readme.md</path>
+		</file>
+	</title>
+</root>
