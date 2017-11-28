@@ -80,6 +80,24 @@ for title in root:
 			file = f.read()
 		o = open(fl.find('dest').text, 'w')
 
+		# import images
+		i = 0
+		while True:
+			i = file.find('\n![', i)
+			if(i == -1):break
+			i2 = file.find('(', i)
+			if(i2 == -1):break
+			i3 = file.find(')', i)
+			if(i3 == -1):break
+			if(i2 > i3 or i3 > file.find('\n', i + 3)):
+				i += 3
+				continue
+			print(file[i:i3] + "|" + file[i2 + 1:i3])
+			# copy images here
+			with open(fl.find('path').text[:fl.find('path').text.rfind('/') + 1] + file[i2 + 1:i3]) as src:
+				with open(fl.find('dest').text[:fl.find('dest').text.rfind('/') + 1] + file[i2 + 1:i3], 'w') as dest:dest.write(src.read())
+			i += 3
+
 		# import other files
 		if fl.find('url'):
 			i = 0
