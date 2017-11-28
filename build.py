@@ -63,7 +63,7 @@ for title in root:
 	docT += '\n\t<tr><th>' + title.attrib['name'] + '</th></tr>'
 	for fl in title:
 		docT += '\n\t<tr><td><a href=/' + fl.find('dest').text[len(out) + 1:] + '>' + fl.attrib['name'] + '</a></td></tr>'
-docT += '\n</table></div>\n'
+docT = docT.replace('/index.html', '/') + '\n</table></div>\n'
 
 #register site markdown
 md = ''
