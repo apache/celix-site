@@ -92,7 +92,6 @@ for title in root:
 			if(i2 > i3 or i3 > file.find('\n', i + 3)):
 				i += 3
 				continue
-			print(file[i:i3] + "|" + file[i2 + 1:i3])
 			# copy images here
 			with open(fl.find('path').text[:fl.find('path').text.rfind('/') + 1] + file[i2 + 1:i3]) as src:
 				with open(fl.find('dest').text[:fl.find('dest').text.rfind('/') + 1] + file[i2 + 1:i3], 'w') as dest:dest.write(src.read())

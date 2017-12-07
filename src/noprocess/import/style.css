@@ -239,6 +239,18 @@ a {
 	padding: 5px;
 }
 
+#docContent h2{
+	padding-top: 80px;
+	margin-top: -80px;
+}
+
+#footText {
+	color: white;
+	font-size: 12px;
+	background: #2CB9EC;
+	padding: 4px;
+}
+
 @media screen and (max-width: 1140px) {
 	#APbig{display:none}
 	#APsmall{display:block}
