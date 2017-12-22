@@ -206,10 +206,35 @@ a {
 
 #docTable {
 	float: left;
+	border-collapse: collapse;
+	margin-top: 10px;
+	position: fixed;
+	width: 180px;
+	text-overflow: ellipsis;	
+}
+
+#docTable tr {
+	color: #FFFFFF;
+	background-color: #2cb9ec;
+}
+
+#docTable tr:nth-child(even) {
+	background-color: #239dd0;
+}
+
+#docTable a {
+	color: #FFFFFF;
+	display: inline-block;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	overflow: hidden;
+	width: 175px;
 }
 
 #docContent {
 	display: table-cell;
+	padding-left: 195px;
+	padding-right: 10px;
 }
 
 #foot {
@@ -242,13 +267,6 @@ a {
 #docContent h2{
 	padding-top: 80px;
 	margin-top: -80px;
-}
-
-#footText {
-	color: white;
-	font-size: 12px;
-	background: #2CB9EC;
-	padding: 4px;
 }
 
 @media screen and (max-width: 1140px) {

@@ -58,12 +58,12 @@ for title in root:
 		fl.append(ET.fromstring('<dest>' + out + '/doc/' + (title.attrib['name'] + '/' + fl.attrib['name']).replace(' ', '_') + '.html</dest>'))
 
 # create doctable
-docT = '<div id=docTable><table>'
+docT = '<table id=docTable class=shadowed>'
 for title in root:
 	docT += '\n\t<tr><th>' + title.attrib['name'] + '</th></tr>'
 	for fl in title:
 		docT += '\n\t<tr><td><a href=/' + fl.find('dest').text[len(out) + 1:] + '>' + fl.attrib['name'] + '</a></td></tr>'
-docT = docT.replace('/index.html', '/') + '\n</table></div>\n'
+docT = docT.replace('/index.html', '/') + '\n</table>\n'
 
 #register site markdown
 md = ''
