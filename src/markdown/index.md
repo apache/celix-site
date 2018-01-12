@@ -13,6 +13,5 @@ Apache Celix is primarily developed in C and adds an additional abstraction, in 
 ### Tips
 </div><div class="item">
 ### Contributing
-</div><div class="item">
-### Example projects
-</div></div>
+</div><iframe style="padding:0;height:250px;min-width:440px;max-width:500px;" class="item" src="http://tylerlh.github.io/github-latest-commits-widget/?username=Apache&repo=Celix&branch=develop&limit=15" scrolling="no" frameborder="0" allowtransparency="true">
+</iframe></div>
