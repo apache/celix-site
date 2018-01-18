@@ -215,7 +215,6 @@ iframe {
 	border-collapse: collapse;
 	margin-top: 10px;
 	position: fixed;
-	width: 180px;
 	text-overflow: ellipsis;	
 }
 
@@ -235,6 +234,7 @@ iframe {
 	text-overflow: ellipsis;
 	overflow: hidden;
 	width: 175px;
+	padding-right: 2px;
 }
 
 #docContent {
@@ -275,12 +275,16 @@ iframe {
 	margin-top: -80px;
 }
 
-@media screen and (max-width: 1140px) {
+@media screen and (max-width: 1300px) {
 	#APbig{display:none}
 	#APsmall{display:block}
+	.dropbutton {
+		font-size:14px;
+		padding:8px;
+	}
 }
 
-@media screen and (max-width: 834px) {
+@media screen and (max-width: 965px) {
 	body, #footer {
 		font-size: 12px;
 	}
@@ -330,6 +334,7 @@ iframe {
 	}
 	
 	.mobbutton {
+		position: absolute;
 		display: inline-block;
 		background: white;
 	}
@@ -337,8 +342,29 @@ iframe {
 	#dropmenu {
 		display:none;
 	}
+
+	#docTable a {
+		width:120px;
+	}
+
+	#docContent {
+		padding-left: 130px;
+	}
 }
 
 @media screen and (max-width: 400px) {
-	#APsmall {display:none}
+	#docTable {
+		margin-left: auto;
+		margin-right: auto;
+		position: relative;
+		float: none;
+	}
+
+	#docTable a {
+		width:auto;
+	}
+
+	#docContent {
+		padding-left: 0;
+	}
 }
