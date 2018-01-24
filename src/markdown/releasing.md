@@ -36,7 +36,7 @@ for more information. This updated file needs to be uploaded to SVN, be sure to 
 ## Update release related files
 For every release the related files must be updated. The following files are relevant:
 
-  - CHANGES
+  - CHANGES.md
 
      Add a list of fixed issues which can be created using Jira.
 
@@ -66,26 +66,7 @@ Note: The DEFAULT_VERSION property is used as default version for new bundles an
 Before creating a branch, be sure that the source compiles and tests run successfully. If there are any known shortcomings, make sure they are listed in the 
 RELEASE_NOTES. Details for compiling and testing are available in the BUILDING file.
 
-    // Create a directory as sibling of the celix release directory
-    > mkdir celix-build
-    > cd celix-build
-    // Run CMake to generate the makefiles. Enable all BUILD options.
-    > ccmake ../celix
-    > make
-    > make deploy
-    > make test
-
-Also verify that the provides examples work as expected. If needed ask other committers to test parts, eg the GTK examples.
-
-    // Go to the deploy directory to see all examples
-    > cd deploy
-    // Test the different examples, eg
-    > cd hello_world
-    > sh run.sh
-    // Depending on the example the output might be different. Most examples provide a shell to inspect the framework.
-    // To list the commands use the "help" command.
-    -> help
-    ....
+Also verify that the provides examples work as expected. If needed ask other committers to test parts.
 
 After verifying the build, run Apache RAT to check for any licensing problems. If Apache RAT is configured in the CMake build the "rat" target can be used to run
 the check.
@@ -93,35 +74,23 @@ the check.
     // From the celix-build directory
     // Run CMake to set the APACHE_RAT library (path to the JAR file).
     > ccmake ../celix
-    // Run RAT
+    // Configure location of the apache-rat jar
     > make rat
 
 Apache RAT should not raise any concers, if there are, check the source files for 
 a license header. If it is a false positive update the rat-excludes.txt file in the root of the project. Be sure it is a false positive! If in doubt, ask the 
 mailing list! Third party licenses may need to be mentioned in the NOTICE file.
 
-## Create SVN tag
-After changing all files a tag for the new release must be made. Before doing so, make sure all changed files are committed.
+## Git commit ID
+After changing all files a git commit ID can be used for the new release must be made. Before doing so, make sure all changed files are committed.
 
-The tag should be named like this: celix-X.Y.Z
-
-To make a tag use the following command:
-
-    svn copy http://svn.apache.org/repos/asf/celix/trunk/ \
-        http://svn.apache.org/repos/asf/celix/tags/celix-X.Y.Z \
-        -m "X.Y.Z release of the Apache Celix project."
-
-Note: Make sure there are no new changes made on trunk while working on the release. Discuss: Use a branch for staging the release and the files? Or possibly use a revision nr?
+Note: Make sure there are no new changes made on release branch while working on the release.
 
 ## Create, sign and publish artefacts
 Since Celix only releases source artefacts, creating the artefact is simple and straightforward
 
-    // Create symbolic link so the archive has a directory with version information
-    > ln -s celix celix-X.Y.Z
-    // Create GZip archive
-    > tar -hczf celix-X.Y.Z.tar.gz celix-X.Y.Z
-    // The create symbolic link can be removed
-    > celix celix-X.Y.Z
+    // Create a release artefact using git archive
+    > git archive --format tar.gz --prefix celix-<release number>/ <commit ID> > celix-<release number>.tar.gz
 
 After creating the artefact, the file has to be signed. More information about signing can be found at (http://www.apache.org/dev/release-signing.html).
 
@@ -132,7 +101,7 @@ After creating the artefact, the file has to be signed. More information about s
     // Generate ASCII signature
     > gpg --armor --output celix-X.Y.Z.tar.gz.asc --detach-sig celix-X.Y.Z.tar.gz
 
-Copy the archive of the source to the [Apache Celix release development area](https://dist.apache.org/repos/dist/dev/incubator/celix/KEYS) (using SVN).
+Copy the archive of the source to the [Apache Celix release development area](https://dist.apache.org/repos/dist/dev/celix) (using SVN).
 
 See the [Apache Release Guide](http://www.apache.org/dev/release.html#host-rc) for more information.
 
@@ -147,14 +116,12 @@ The first vote has to be done on the public mailinglist of the project itself (d
 
 > This is the release vote for Apache Celix, version X.Y.Z.
 
-> It fixes the following issues:   
-> {Create Release Note link using https://issues.apache.org/jira/secure/ReleaseNote.jspa?version=12323511}
-
 > Source files:  
 > https://dist.apache.org/repos/dist/dev/celix/celix-X.Y.Z/
 
-> The tag to be voted upon:  
-> http://svn.apache.org/repos/asf/celix/tags/celix-X.Y.Z/
+> The commit ID to be voted upon:  
+> <commit ID>
+> https://github.com/apache/celix/tree/<commit ID>
 
 > Celix's keys can be found at:  
 > https://dist.apache.org/repos/dist/dev/incubator/celix/KEYS
@@ -238,9 +205,6 @@ The following template must be used:
 
 > The release is available here:  
 > http://celix.apache.org/download.cgi
-
-> The full change log is available here:  
-> {Create Release Note link using https://issues.apache.org/jira/secure/ReleaseNote.jspa?version=12323511}
 
 > We welcome your help and feedback. For more information on how to report problems, 
 > and to get involved, visit the project website at http://celix.apache.org/
