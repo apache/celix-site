@@ -44,6 +44,15 @@ def combinePaths(one, two):
 	for x in two[i:]: segment += x + '/'
 	return segment[:-1]
 
+# tries removing all the ../ in a path
+def normalizePath(path):
+	path = path.split('/')
+	answer = ""
+	for x in path:
+		if(x == '..'):answer = answer[0:answer.rfind('/')]
+		else:answer += '/' + x
+	return answer[1:len(answer)]
+
 #copy to out
 if os.path.exists(out):
 	shutil.rmtree(out)
@@ -68,34 +77,56 @@ docT = docT.replace('/index.html', '/') + '\n</table>\n'
 #register site markdown
 md = ''
 for f in os.listdir(markdown):
-	md += '<file name="' + f[:-3] +'"><path>' + markdown + '/' + f + '</path><dest>site/' + f[:-3].replace(' ', '_') + '.html</dest></file>'
+	md += '<file><path>' + markdown + '/' + f + '</path><dest>site/' + f[:-3].replace(' ', '_') + '.html</dest></file>'
 root.append(ET.fromstring('<markdown>' + md + '</markdown>'))
+root.append(ET.fromstring('<importurl></importurl>'))
+
+imported = []
+for title in root:
+	for fl in title:
+		imported.append(fl.find('path').text)
 
 # write documents
 for title in root:
-	if(title.tag != 'markdown'):
-		os.makedirs(out + '/doc/' + title.attrib['name'])
 	for fl in title:
-		with open(fl.find('path').text) as f:
-			file = f.read()
+		try:os.makedirs(fl.find('dest').text[0:fl.find('dest').text.rfind('/')])
+		except: IOError
+		with open(fl.find('path').text) as f:file = f.read()
 		o = open(fl.find('dest').text, 'w')
 
-		# import images
+		# import url
 		i = 0
-		while True:
-			i = file.find('\n![', i)
-			if(i == -1):break
-			i2 = file.find('(', i)
-			if(i2 == -1):break
-			i3 = file.find(')', i)
-			if(i3 == -1):break
-			if(i2 > i3 or i3 > file.find('\n', i + 3)):
-				i += 3
-				continue
-			# copy images here
-			with open(fl.find('path').text[:fl.find('path').text.rfind('/') + 1] + file[i2 + 1:i3]) as src:
-				with open(fl.find('dest').text[:fl.find('dest').text.rfind('/') + 1] + file[i2 + 1:i3], 'w') as dest:dest.write(src.read())
-			i += 3
+		if(fl.find('dest').text.startswith('site/doc/')):
+			while True:
+				i = file.find('[', i)
+				if(i == -1):break
+				i2 = file.find('(', i)
+				if(i2 == -1):break
+				i3 = file.find(')', i2)
+				if(i3 == -1):break
+				if(file.find('\n', i, i3) != -1 or file.startswith('(http', i2)):
+					i += 3
+					continue
+
+				url = normalizePath(fl.find('path').text[fl.find('path').text.find('/'):fl.find('path').text.rfind('/') + 1] + file[i2 + 1:i3])
+				if('celix' + url not in imported):
+					imported.append('celix' + url)
+					# found new url
+					try:
+						with open('celix' + url) as src:
+							# add url to markdown processing
+							if(url[-3:len(url)] == '.md'):
+								root.find('importurl').append(ET.fromstring('<file><path>celix' + url + '</path><dest>site/doc/noIndex' + url[0:-3] + '.html</dest></file>'))
+								file = file[0:i2 + 1] + '/doc/noIndex' + url[0:-3] + '.html' + file[i3:len(file)]
+							# add url to files
+							else:
+								try:os.makedirs('site/doc/noIndex' + url[0:url.rfind('/')])
+								except: IOError
+								with open('site/doc/noIndex' + url, 'w') as dest:dest.write(src.read())
+								file = file[0:i2 + 1] + '/doc/noIndex' + url + file[i3:len(file)]
+					except IOError:
+						print('ERROR: could not find file: "celix' + url + '" referenced in file: ' + fl.find('path').text)
+				i = i3
 
 		# import other files
 		if fl.find('url'):
@@ -111,8 +142,7 @@ for title in root:
 				f2.close()
 				i = i2 + 2
 
-		# correct markdown links
-		for fl2 in root.findall('./title/file'):
+			# correct markdown links
 			file = file.replace(combinePaths(fl.find('path').text,fl2.find('path').text), combinePaths(fl.find('dest').text, fl2.find('dest').text))
 
 		# convert markdown to html, also add top and bottom html files
@@ -122,7 +152,7 @@ for title in root:
 		with open(snippets + '/top.html') as top:
 			file = top.read() + file
 		with open(snippets + '/bottom.html') as bottom:
-			file = file.encode() + bottom.read()
+			file = file.encode('utf8') + bottom.read()
 
 		o.write(file)
 		o.close()
