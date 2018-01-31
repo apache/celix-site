@@ -284,7 +284,7 @@ iframe {
 	}
 }
 
-@media screen and (max-width: 965px) {
+@media screen and (max-width: 970px) {
 	body, #footer {
 		font-size: 12px;
 	}
@@ -352,10 +352,8 @@ iframe {
 	}
 }
 
-@media screen and (max-width: 400px) {
+@media screen and (max-width: 450px) {
 	#docTable {
-		margin-left: auto;
-		margin-right: auto;
 		position: relative;
 		float: none;
 	}
