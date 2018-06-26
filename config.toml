@@ -1,0 +1,5 @@
+baseURL = "http://celix.apache.org/"
+languageCode = "en-us"
+title = "Apache Celix"
+theme = "celix"
+
