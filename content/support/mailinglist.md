@@ -16,9 +16,6 @@
 # specific language governing permissions and limitations
 # under the License.
 title: "Mailing list"
-menu:
-  main:
-    parent: "support"
 ---
 # Mailing List
 

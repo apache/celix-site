@@ -16,9 +16,6 @@
 # specific language governing permissions and limitations
 # under the License.
 title: "Issues"
-menu:
-  main:
-    parent: "support"
 ---
 # Issue Tracking
 

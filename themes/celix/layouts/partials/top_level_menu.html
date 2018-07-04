@@ -20,18 +20,13 @@ limitations under the License.
 	<select class="mobbutton" onchange="if (this.value) window.location.href=this.value">
 		<option value="">navigate</option>
         <option value="/">Home</option>
-		<option value="/doc/">Documentation</option>
-        {{ range .Site.Menus.main }}
-            {{ if .HasChildren }}
+        {{ range .Sections }}
                 <optgroup label="{{ .Name }}">
                     <option value="{{ .URL }}">{{ .Name }}</option>
-                {{ range .Children }}
+                {{ range .Pages }}
                     <option value="{{ .URL }}">{{ .Name }}</option>
                 {{ end }}
                 </optgroup>
-            {{ else }}
-                <option value="{{ .URL }}">{{ .Name }}</option>
-            {{ end }}
         {{ end }}
         <!--
 		<option value="/downloads/">Downloads</option>
@@ -56,20 +51,16 @@ limitations under the License.
 	</select>
 	<div id="dropmenu" class="shadowed">
 		<a href="/"><div class="dropbutton">Home</div></a>
-        <a href="/doc/"><div class="dropbutton">Documentation</div></a>
-        {{ range .Site.Menus.main }}
-            {{ if .HasChildren }}
-                <div class="dropdown">
-                    <div class="dropbutton">{{ .Name }}<div class="triangle"></div></div>
-                    <div class="dropdown-content">
-                    {{ range .Children }}
-                        <a href="{{ .URL }}">{{ .Name }}</a>
-                    {{ end }}
-                    </div>
+
+        {{ range .Site.Sections }}
+            <div class="dropdown">
+                <div class="dropbutton">{{ .Name }}<div class="triangle"></div></div>
+                <div class="dropdown-content">
+                {{ range .Pages }}
+                    <a href="{{ .URL }}">{{.Title}}</a>
+                {{ end }}
                 </div>
-           {{ else }}  
-               <a href="{{ .URL }}"><div class="dropbutton">{{ .Name }}</div></a>
-           {{ end }}
+            </div>
         {{ end }}
         
         <div class="dropdown">

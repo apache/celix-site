@@ -26,14 +26,22 @@ This is the website for [Apache Celix](https://celix.apache.org/), hosted at:
 
 The Celix website uses the Hugo content management system. See [Hugo](https://gohugo.io) for more info and for details how to install hugo
 
-## Run the website locally
+## Generate the website
 
-On the root dir, run: `hugo server -D`. The -D is provided to also host draft pages.
+### Copy documentation dir from celix repo
 
-## Generate the status website
+ - Run `git submodule init` and `git submodule update` to retreive the Celix sources
+ - Run `./copy_docs_from_src_to_content.sh` to copy the documents director to the website content documentation section 
+
+### Create doxygen documentation
+
+TODO
+
+### Generate the static website
 
 To generate the static website run: `hugo`. The resulting public dir should contain a updated static website.
+Or to just host it locally run: `hugo server -D`. The -D is provided to also host draft pages.
 
-## Initialize celix git submodule
+## Publish the website
 
 TODO
