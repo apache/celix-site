@@ -10,3 +10,7 @@ target
 # Bundler generated
 .bundle
 vendor/
+
+# Sources
+celix-src/
+source/
