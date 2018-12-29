@@ -59,7 +59,15 @@ git commit -m "${message}" > /dev/null 2>&1
 # Delete the temporary folder
 rm -rf ${tmp_dir}
 
-# Push latest SITE to server
+# Push the SOURCE to the server
+git push -u origin ${SOURCE} > /dev/null 2>&1
+if [ $? = 0 ]; then
+ echo "Push ${SOURCE} successful"
+else
+ echo "Push ${SOURCE} failed"
+fi
+
+# Push the SITE to the server
 git push -u origin ${SITE} > /dev/null 2>&1
 if [ $? = 0 ]; then
   echo "Push ${SITE} successful"
@@ -69,11 +77,3 @@ fi
 
 # Switch back to SOURCE branch
 git checkout ${SOURCE} > /dev/null 2>&1
-
-# Push the SOURCE to the server
-git push -u origin ${SOURCE} > /dev/null 2>&1
-if [ $? = 0 ]; then
- echo "Push ${SOURCE} successful"
-else
- echo "Push ${SOURCE} failed"
-fi
