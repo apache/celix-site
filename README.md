@@ -16,32 +16,7 @@ limitations under the License.
 -->
 # Apache Celix website
 
-The update celix website is still under construction and not yet live.
+The `asf-site` branch is only used for storing the generated static website.
+From this branch, the Celix website is being served.
 
-This is the website for [Apache Celix](https://celix.apache.org/), hosted at:
-
-    https://celix.apache.org/
-
-## Content Management System
-
-The Celix website uses the Hugo content management system. See [Hugo](https://gohugo.io) for more info and for details how to install hugo
-
-## Generate the website
-
-### Copy documentation dir from celix repo
-
- - Run `git submodule init` and `git submodule update` to retreive the Celix sources
- - Run `./copy_docs_from_src_to_content.sh` to copy the documents director to the website content documentation section 
-
-### Create doxygen documentation
-
-TODO
-
-### Generate the static website
-
-To generate the static website run: `hugo`. The resulting public dir should contain a updated static website.
-Or to just host it locally run: `hugo server -D`. The -D is provided to also host draft pages.
-
-## Publish the website
-
-TODO
+When submitting patches, apply them to the `master` branch instead of the `asf-site` branch.

@@ -1,13 +1,12 @@
-# Ignore IntelliJ files.
-.idea/
-*.iml
-*.ipr
-*.iws
-
-vendor/
-
-.sass-cache
+# Jekyll generated
+target
 .jekyll-metadata
-.bundle/
-.testcontent/
-site/
+
+# IntelliJ generated
+*.iml
+.idea
+.java-version
+
+# Bundler generated
+.bundle
+vendor/
