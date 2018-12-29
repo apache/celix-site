@@ -88,11 +88,11 @@ and you are ready to start working on another feature/issue.
 
 Celix uses Git so you must install a git client locally and then you can clone the Celix repository:
 
-either using Apache GitBox (read/write)
+either using Apache GitBox
 
     git clone https://gitbox.apache.org/repos/asf/celix.git    
     
-or GitHub (read/write)
+or GitHub
    
     git clone https://github.com/apache/celix.git
 
@@ -103,8 +103,8 @@ and the most recent work is on the `develop` branch.
 
 ## Non-committers 
 
-If you are not a committer you can still the Apache repo but you won't be able push to any changes to it.
-At that moment, it's easier to use GitHub, as GitHub provides the functionality to open a Pull Request.
+If you are not a committer you can still clone the Gitbox repo but you won't be able push to any changes to it.
+At that moment, it's easier to use GitHub, as GitHub provides the functionality to handle Pull Requests.
 
     git clone https://github.com/apache/celix.git
 
