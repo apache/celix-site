@@ -1,0 +1,262 @@
+<!--
+Licensed to the Apache Software Foundation (ASF) under one or more
+contributor license agreements.  See the NOTICE file distributed with
+this work for additional information regarding copyright ownership.
+The ASF licenses this file to You under the Apache License, Version 2.0
+(the "License"); you may not use this file except in compliance with
+the License.  You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Submitting patches / Apache Celix</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="/assets/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom style -->
+    <link href="/assets/css/style.css" rel="stylesheet">
+</head>
+<body class="light-grey">
+
+<a href="https://github.com/apache/celix" class="github-ribbon">
+    <img src="/assets/img/forkme_right_red_aa0000.png" alt="Fork me on GitHub">
+</a>
+
+<!-- Navigation -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top">
+    <div class="container">
+        <a class="navbar-brand" href="/">
+            <img src="/assets/img/celix-white.svg" height="40" class="d-inline-block align-top" alt="Celix Logo">
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="/">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/download.cgi">Download</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/docs/">Docs</a>
+                </li>
+                <li class="nav-item dropdown active">
+                    <a class="nav-link dropdown-toggle" href="#" id="ddCommunity" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Community
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="ddCommunity">
+                        <a class="dropdown-item" href="/contributing/youatcelix.html">You at Celix</a>
+                        <a class="dropdown-item" href="/contributing/submitting-patches.html">Submitting patches</a>
+                        <a class="dropdown-item" href="/contributing/releasing.html">Releasing</a>
+                        <a class="dropdown-item" href="/contributing/volunteers.html">Volunteers</a>
+                        <a class="dropdown-item" href="https://whimsy.apache.org/board/minutes/Celix.html">Board Reports</a>
+                    </div>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="ddSupport" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Support
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="ddSupport">
+                        <a class="dropdown-item" href="/support/mailing-list.html">Mailing Lists</a>
+                        <a class="dropdown-item" href="/support/issue-tracking.html">Issue Tracking</a>
+                    </div>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="ddFoundation" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        ASF
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="ddFoundation">
+                        <a class="dropdown-item" href="https://www.apache.org/">ASF Home</a>
+                        <a class="dropdown-item" href="https://www.apache.org/foundation/how-it-works.html">How it works</a>
+                        <a class="dropdown-item" href="https://www.apache.org/licenses/">License</a>
+                        <a class="dropdown-item" href="https://www.apache.org/foundation/sponsorship.html">Sponsorship</a>
+                        <a class="dropdown-item" href="https://www.apache.org/foundation/thanks.html">Thanks</a>
+                        <a class="dropdown-item" href="https://www.apache.org/security/">Security</a>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+
+<div class="section">
+    <div class="container">
+        <div class="row py-4">
+            <div class="col-sm-12 card">
+                <div class="card-body pt-5">
+                    <a class="edit-on-gh" href="https://github.com/apache/celix-site/edit/master/source/contributing/submitting-patches.md" title="Edit this page on GitHub">Edit on GitHub</a>
+
+                    
+
+                    <h1 class="no_toc" id="submitting-patches">Submitting patches</h1>
+
+<ul id="markdown-toc">
+  <li><a href="#contributing-with-github" id="markdown-toc-contributing-with-github">Contributing with GitHub</a></li>
+  <li><a href="#committers" id="markdown-toc-committers">Committers</a></li>
+  <li><a href="#non-committers" id="markdown-toc-non-committers">Non-committers</a></li>
+  <li><a href="#further-reading" id="markdown-toc-further-reading">Further reading</a></li>
+</ul>
+
+<h2 id="contributing-with-github">Contributing with GitHub</h2>
+
+<p>Using the GitHub mirror is the simplest way to contribute to Apache Celix if you are not a member
+of the Celix Committers group.</p>
+
+<p>First you must have an account created at GitHub to be able perform the next step. If you don’t,
+go ahead and create one just right now! Please remember to setup
+<a href="https://help.github.com/articles/generating-ssh-keys">SSH keys</a> and test them! You don’t have to use SSH Keys 
+if you are using the HTTPS url. In this case git simply uses user/password authentication.</p>
+
+<p>When ready go to <a href="https://github.com/apache/celix">https://github.com/apache/celix</a> and click <code class="highlighter-rouge">Fork</code> button
+in top right corner. This will fork the Apache Celix’ repository and will create your private (but public) repository
+with the source code.</p>
+
+<p>Next step is to clone the original repo locally</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git clone https://github.com/apache/celix.git
+</code></pre></div></div>
+
+<p>This will be an <code class="highlighter-rouge">origin</code>, you cannot push changes to the <code class="highlighter-rouge">origin</code> but don’t worry, you will use your fork.</p>
+
+<p>Now is time to add your fork as a remote</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git remote add fork https://github.com/my-username/celix.git 
+</code></pre></div></div>
+
+<p>Right now you should have two remotes defined for the repo, <code class="highlighter-rouge">origin</code> and <code class="highlighter-rouge">fork</code>, use below command to confirm that</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git remote -v 
+</code></pre></div></div>
+
+<p>Now you are ready to work with the Apache Celix’ code base. Start with switching to <code class="highlighter-rouge">develop</code> branch</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git checkout develop
+</code></pre></div></div>
+
+<p>now is time to fetch any changes from remote repository</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git fetch
+git pull
+</code></pre></div></div>
+
+<p>you should create a branch to keep your changes and it must be done off the <code class="highlighter-rouge">develop</code> branch</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git checkout -b my-branch
+</code></pre></div></div>
+
+<p>Do your changes and commit them to <code class="highlighter-rouge">my-branch</code>, when you’re done you can push the changes to GitHub, to your fork.</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git push -u fork my-branch
+</code></pre></div></div>
+
+<p>If you still need to change something, please remember to commit and push changes, but this time you can use just</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git push
+</code></pre></div></div>
+
+<p>as <code class="highlighter-rouge">my-branch</code> was already connected with the remote branch.</p>
+
+<p>The final step is to open a Pull Request (short: PR) against the original Apache Celix repo. Go to the 
+<a href="https://github.com/apache/celix">Apache Celix mirror</a>, then to <a href="https://github.com/apache/celix/pulls">Pull request</a>
+and hit <a href="https://github.com/apache/celix/compare/">New Pull Request</a> button.</p>
+
+<p>If not already selected, click on <code class="highlighter-rouge">compare across forks.</code> Right now you must select from the dropdowns on right
+your fork and branch to compare the differences with the Apache Celix’ <code class="highlighter-rouge">develop</code> branch.</p>
+
+<p>Finally hit <code class="highlighter-rouge">Create Pull Request</code> button and you are done!</p>
+
+<p>After your PR got accepted and merged you must clean up your local repo, please switch your current branch to <code class="highlighter-rouge">develop</code></p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git checkout develop
+</code></pre></div></div>
+
+<p>and fetch updates from remote</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git fetch -p
+git pull
+</code></pre></div></div>
+
+<p>and now you can delete your local branch</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git branch -d my-branch
+</code></pre></div></div>
+
+<p>and you are ready to start working on another feature/issue.</p>
+
+<h2 id="committers">Committers</h2>
+
+<p>Celix uses Git so you must install a git client locally and then you can clone the Celix repository:</p>
+
+<p>either using Apache GitBox (read/write)</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git clone https://gitbox.apache.org/repos/asf/celix.git    
+</code></pre></div></div>
+
+<p>or GitHub (read/write)</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git clone https://github.com/apache/celix.git
+</code></pre></div></div>
+
+<p>and done!</p>
+
+<p>Please remember Apache Celix is following the <a href="https://www.atlassian.com/git/tutorials/comparing-workflows/gitflow-workflow">GitFlow Workflow</a>
+and the most recent work is on the <code class="highlighter-rouge">develop</code> branch.</p>
+
+<h2 id="non-committers">Non-committers</h2>
+
+<p>If you are not a committer you can still the Apache repo but you won’t be able push to any changes to it.
+At that moment, it’s easier to use GitHub, as GitHub provides the functionality to open a Pull Request.</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git clone https://github.com/apache/celix.git
+</code></pre></div></div>
+
+<p>For more info, read <a href="#contributing-with-github">Contributing with GitHub</a> on this page.</p>
+
+<h2 id="further-reading">Further reading</h2>
+
+<ul>
+  <li><a href="http://wiki.apache.org/general/GitAtApache">Git at Apache</a></li>
+</ul>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Footer -->
+<footer class="py-3 bg-secondary">
+    <div class="container">
+        <p class="m-0 text-center text-white">
+            Copyright &copy; 2018 The Apache Software Foundation, Licensed under
+            the <a href="http://www.apache.org/licenses/LICENSE-2.0">Apache License, Version 2.0</a>.
+            <br>
+            Apache Celix, Celix, Apache, the Apache feather logo and the Apache Celix logo are trademarks of The Apache Software Foundation.
+        </p>
+    </div>
+</footer>
+
+<!-- Bootstrap core JavaScript -->
+<script src="/assets/js/jquery.min.js"></script>
+<script src="/assets/js/bootstrap.bundle.min.js"></script>
+
+
+</body>
+</html>

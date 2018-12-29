@@ -1,0 +1,421 @@
+<!--
+Licensed to the Apache Software Foundation (ASF) under one or more
+contributor license agreements.  See the NOTICE file distributed with
+this work for additional information regarding copyright ownership.
+The ASF licenses this file to You under the Apache License, Version 2.0
+(the "License"); you may not use this file except in compliance with
+the License.  You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Releasing Process / Apache Celix</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="/assets/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom style -->
+    <link href="/assets/css/style.css" rel="stylesheet">
+</head>
+<body class="light-grey">
+
+<a href="https://github.com/apache/celix" class="github-ribbon">
+    <img src="/assets/img/forkme_right_red_aa0000.png" alt="Fork me on GitHub">
+</a>
+
+<!-- Navigation -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top">
+    <div class="container">
+        <a class="navbar-brand" href="/">
+            <img src="/assets/img/celix-white.svg" height="40" class="d-inline-block align-top" alt="Celix Logo">
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="/">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/download.cgi">Download</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/docs/">Docs</a>
+                </li>
+                <li class="nav-item dropdown active">
+                    <a class="nav-link dropdown-toggle" href="#" id="ddCommunity" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Community
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="ddCommunity">
+                        <a class="dropdown-item" href="/contributing/youatcelix.html">You at Celix</a>
+                        <a class="dropdown-item" href="/contributing/submitting-patches.html">Submitting patches</a>
+                        <a class="dropdown-item" href="/contributing/releasing.html">Releasing</a>
+                        <a class="dropdown-item" href="/contributing/volunteers.html">Volunteers</a>
+                        <a class="dropdown-item" href="https://whimsy.apache.org/board/minutes/Celix.html">Board Reports</a>
+                    </div>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="ddSupport" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Support
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="ddSupport">
+                        <a class="dropdown-item" href="/support/mailing-list.html">Mailing Lists</a>
+                        <a class="dropdown-item" href="/support/issue-tracking.html">Issue Tracking</a>
+                    </div>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="ddFoundation" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        ASF
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="ddFoundation">
+                        <a class="dropdown-item" href="https://www.apache.org/">ASF Home</a>
+                        <a class="dropdown-item" href="https://www.apache.org/foundation/how-it-works.html">How it works</a>
+                        <a class="dropdown-item" href="https://www.apache.org/licenses/">License</a>
+                        <a class="dropdown-item" href="https://www.apache.org/foundation/sponsorship.html">Sponsorship</a>
+                        <a class="dropdown-item" href="https://www.apache.org/foundation/thanks.html">Thanks</a>
+                        <a class="dropdown-item" href="https://www.apache.org/security/">Security</a>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+
+<div class="section">
+    <div class="container">
+        <div class="row py-4">
+            <div class="col-sm-12 card">
+                <div class="card-body pt-5">
+                    <a class="edit-on-gh" href="https://github.com/apache/celix-site/edit/master/source/contributing/releasing.md" title="Edit this page on GitHub">Edit on GitHub</a>
+
+                    
+
+                    <h1 class="no_toc" id="releasing-apache-celix">Releasing Apache Celix</h1>
+
+<p>Note: This information is only of use to Apache Celix Release Managers!</p>
+
+<p>Steps to follow:</p>
+
+<ul id="markdown-toc">
+  <li><a href="#create-signing-keys" id="markdown-toc-create-signing-keys">Create signing KEYS</a></li>
+  <li><a href="#update-release-related-files" id="markdown-toc-update-release-related-files">Update release related files</a></li>
+  <li><a href="#compile-and-test" id="markdown-toc-compile-and-test">Compile and test</a></li>
+  <li><a href="#create-git-tag" id="markdown-toc-create-git-tag">Create GIT tag</a></li>
+  <li><a href="#create-sign-and-publish-artifacts" id="markdown-toc-create-sign-and-publish-artifacts">Create, sign and publish artifacts</a></li>
+  <li><a href="#run-the-vote" id="markdown-toc-run-the-vote">Run the vote</a></li>
+  <li><a href="#post-the-vote-results" id="markdown-toc-post-the-vote-results">Post the vote results</a></li>
+  <li><a href="#roll-out-release-artifacts" id="markdown-toc-roll-out-release-artifacts">Roll out release artifacts</a></li>
+  <li><a href="#announce-the-release" id="markdown-toc-announce-the-release">Announce the release</a></li>
+</ul>
+
+<p>Interesting links:</p>
+
+<ul>
+  <li><a href="http://www.apache.org/dev/release.html">Apache Release Guide</a></li>
+  <li><a href="http://www.apache.org/dev/release-signing.html">Apache Release Signing</a></li>
+  <li><a href="http://creadur.apache.org/rat/apache-rat/index.html">Apache RAT</a></li>
+  <li><a href="http://www.apache.org/dev/openpgp.html">Apache OpenPGP HowTo</a></li>
+</ul>
+
+<h2 id="create-signing-keys">Create signing KEYS</h2>
+
+<p>Each Release Manager must have his own signing keys. Information about and instruction for the generation 
+of these keys can be found on the <a href="http://www.apache.org/dev/release-signing.html#generate">Signing Releases page</a> 
+and <a href="http://www.apache.org/dev/openpgp.html#generate-key">How To OpenPGP</a>. Be sure to follow the information 
+provided on that site and its references.</p>
+
+<p>The generated key can be uploaded to the <a href="http://pgp.mit.edu/">MIT PGP Public Key Server</a>.</p>
+
+<p>Next, the public key signature must be added to the KEYS file. Again, read the <a href="http://www.apache.org/dev/release-signing.html#keys-policy">Signing Releases page</a> 
+for more information. This updated file needs to be uploaded to GIT, be sure to upload it to:</p>
+
+<ul>
+  <li><a href="https://dist.apache.org/repos/dist/dev/celix/KEYS">Apache Celix release development area KEYS</a></li>
+  <li><a href="https://dist.apache.org/repos/dist/release/celix/KEYS">Apache Celix release distribution area KEYS</a></li>
+</ul>
+
+<h2 id="update-release-related-files">Update release related files</h2>
+
+<p>For every release the related files must be updated. The following files are relevant:</p>
+
+<ul>
+  <li>CHANGES
+    <ul>
+      <li>Add a list of fixed issues which can be created using JIRA.</li>
+    </ul>
+  </li>
+  <li>RELEASE_NOTES
+    <ul>
+      <li>Add additional notes regarding this release, eg known short comings.</li>
+    </ul>
+  </li>
+  <li>BUILDING
+    <ul>
+      <li>Even though the BUILDING file doesn’t have any specific release information, it should be verified before making a release.</li>
+    </ul>
+  </li>
+  <li>NOTICE
+    <ul>
+      <li>If needed, add any new license related information to this file.</li>
+    </ul>
+  </li>
+</ul>
+
+<p>Besides this information, the version needs to be bumped. Even though every bundle has its own version, a release is made with one 
+overall version. This version is defined in the top-level CMakeLists.txt file. Update the following pieces:</p>
+
+<pre><code class="language-C">set(CELIX_MAJOR "X")
+set(CELIX_MINOR "Y")
+set(CELIX_MICRO "Z")
+</code></pre>
+
+<p class="alert alert-block alert-error">Note: The DEFAULT_VERSION property is used as default version for new bundles and as such does not need to be updated when making a release.</p>
+
+<h2 id="compile-and-test">Compile and test</h2>
+
+<p>Before creating a branch, be sure that the source compiles and tests run successfully. If there are any known shortcomings, 
+make sure they are listed in the RELEASE_NOTES. Details for compiling and testing are available in the BUILDING file.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Create a directory as sibling of the celix release directory</span>
+<span class="nv">$ </span><span class="nb">mkdir </span>celix-build
+<span class="nv">$ </span><span class="nb">cd </span>celix-build
+
+<span class="c"># Run CMake to generate the makefiles. Enable all BUILD options.</span>
+<span class="nv">$ </span>ccmake ../celix
+<span class="nv">$ </span>make
+<span class="nv">$ </span>make deploy
+<span class="nv">$ </span>make <span class="nb">test</span>
+</code></pre></div></div>
+
+<p>Also verify that the provides examples work as expected. If needed ask other committers to test parts.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Go to the deploy directory to see all examples</span>
+<span class="nv">$ </span><span class="nb">cd </span>deploy
+
+<span class="c"># Test the different examples, eg</span>
+<span class="nv">$ </span><span class="nb">cd </span>hello_world
+<span class="nv">$ </span>sh run.sh
+
+<span class="c"># Depending on the example the output might be different. Most examples provide a shell to inspect the framework.</span>
+<span class="c"># To list the commands use the "help" command.</span>
+-&gt; <span class="nb">help</span>
+</code></pre></div></div>
+
+<p>After verifying the build, run Apache RAT to check for any licensing problems. If Apache RAT is configured in the CMake build the “rat” target can be used to run the check.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># From the celix-build directory</span>
+<span class="c"># Run CMake to set the APACHE_RAT library (path to the JAR file).</span>
+<span class="nv">$ </span>ccmake ../celix
+<span class="c"># Run RAT</span>
+<span class="nv">$ </span>make rat
+</code></pre></div></div>
+
+<p>Apache RAT should not raise any concers, if there are, check the source files for a license header. If it is a false positive update 
+the rat-excludes.txt file in the root of the project. Be sure it is a false positive! If in doubt, ask the mailing list! Third party 
+licenses may need to be mentioned in the NOTICE file.</p>
+
+<h2 id="create-git-tag">Create GIT tag</h2>
+
+<p>After changing all files a tag for the new release must be made. Before doing so, make sure all changed files are committed.</p>
+
+<p>The tag should be named like this: celix-X.Y.Z</p>
+
+<p>To make a tag use the following command:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># To sign a tag using your GPG key, it is necessary to configure git with the key you want to use</span>
+<span class="c"># Configure git by issuing the following command, where E43F742E needs to be replaced with your key id</span>
+<span class="nv">$ </span>git config <span class="nt">--global</span> user.signingkey E43F742E
+
+<span class="c"># Next thing to do is creating the tag</span>
+<span class="nv">$ </span>git tag <span class="nt">-s</span> rel/celix-X.Y.Z <span class="nt">-m</span> <span class="s1">'Celix release X.Y.Z'</span>
+
+<span class="c"># Next thing to do is pushing the tag to the remote</span>
+<span class="nv">$ </span>git push origin rel/celix-X.Y.Z
+</code></pre></div></div>
+
+<h2 id="create-sign-and-publish-artifacts">Create, sign and publish artifacts</h2>
+
+<p>Since Celix only releases source artifacts, creating the artifact is simple and straightforward</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Create symbolic link so the archive has a directory with version information</span>
+<span class="nv">$ </span><span class="nb">ln</span> <span class="nt">-s</span> celix celix-X.Y.Z
+
+<span class="c"># Create GZip archive</span>
+<span class="nv">$ </span><span class="nb">tar</span> <span class="nt">-hczf</span> celix-X.Y.Z.tar.gz celix-X.Y.Z
+
+<span class="c"># The create symbolic link can be removed</span>
+<span class="nv">$ </span>celix celix-X.Y.Z
+</code></pre></div></div>
+
+<p>After creating the artifact, the file has to be signed. More information about signing can be found at 
+<a href="http://www.apache.org/dev/release-signing.html">Release signing</a>.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Generate MD5 checksum</span>
+<span class="nv">$ </span>md5 celix-X.Y.Z.tar.gz <span class="o">&gt;</span> celix-X.Y.Z.tar.gz.md5
+
+<span class="c"># Generate SHA512 checksum</span>
+<span class="nv">$ </span>gpg <span class="nt">--print-md</span> SHA512 celix-X.Y.Z.tar.gz <span class="o">&gt;</span> celix-X.Y.Z.tar.gz.sha
+
+<span class="c"># Generate ASCII signature</span>
+<span class="nv">$ </span>gpg <span class="nt">--armor</span> <span class="nt">--output</span> celix-X.Y.Z.tar.gz.asc <span class="nt">--detach-sig</span> celix-X.Y.Z.tar.gz
+</code></pre></div></div>
+
+<p>Copy the archive of the source to the <a href="https://dist.apache.org/repos/dist/dev/celix/KEYS">Apache Celix release development area</a> (using SVN).</p>
+
+<p>See the <a href="http://www.apache.org/dev/release.html#host-rc">Apache Release Guide</a> for more information.</p>
+
+<h2 id="run-the-vote">Run the vote</h2>
+
+<p>Before a release is official a vote has to be held. More information on voting can be found on <a href="http://www.apache.org/foundation/voting.html">Apache Voting Process</a>.</p>
+
+<p>The first vote has to be done on the public <a href="/support/mailing-list.html">mailing list</a> of the project. The following template must be used for this vote:</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>To: dev@celix.apache.org
+Subject: [VOTE] Release Celix version X.Y.Z
+
+This is the release vote for Apache Celix, version X.Y.Z.
+
+It fixes the following issues:
+
+Source files:
+https://dist.apache.org/repos/dist/dev/celix/celix-X.Y.Z/
+
+The commit ID to be voted upon:
+COMMIT ID
+
+https://github.com/apache/celix/tree/COMMITID
+
+Celix's keys can be found at:
+https://dist.apache.org/repos/dist/dev/celix/KEYS
+
+Information for voting on a release can be found at:
+http://www.apache.org/dev/release.html#approving-a-release
+
+Please vote to approve this release:
+
+[ ] +1 Approve the release
+[ ] -1 Disapprove the release (please provide specific comments)
+
+Note that an Apache release needs to be a Majority Approval (requires
+at-least 3 binding +1 votes and more +1 votes than -1 votes).
+
+If this release is approved I will promote it to an official release
+(e.g. move from dist/dev to dist/release and tagging the release in git)
+
+This vote will be open for at least 72 hours.
+</code></pre></div></div>
+
+<p>After this first vote the results must be posted to the “dev” list, see below for more information.</p>
+
+<p class="alert alert-block alert-error">Note: Be sure to use the [VOTE] tag, this is used by the automated vote tracking system to keep track of outstanding vote threads.</p>
+
+<h2 id="post-the-vote-results">Post the vote results</h2>
+<p>As mentioned before, after each vote the results must be posted to the corresponding list. This “Result” vote contains the number 
+of votes made, including whether a vote is binding or not. For a successful vote the following template can be used.</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>To: dev@celix.apache.org
+Subject: [RESULT][VOTE] Release Celix version X.Y.Z
+
+The vote has passed with the following result:
+
++1 Name of Approvers (binding)
++1 Name of Approvers (not binding)
+...
+
+The released artifact will be moved to the release area for mirroring. The
+release branch will be merged with master and a 2.1.0 tag will be created.
+
+After the mirroring period the news &amp; downloads of the website will be
+updated and the release will be announced.
+
+Thanks for voting.
+</code></pre></div></div>
+
+<p class="alert alert-block alert-error">Note: Be sure to post the vote result with the same topic as the original message. Also prepend the subject 
+with [RESULT]. This is, again, needed to be able to keep track of vote threads.</p>
+
+<h2 id="roll-out-release-artifacts">Roll out release artifacts</h2>
+
+<p>If the vote is passed successfully the release can be moved from the “dev” area to “release”. The automated 
+svnpubsub will move the artifact to the correct server for mirroring. Mirroring typically can take up to 24 hours.</p>
+
+<p>Besides uploading the new release, the old release should be archived. Since archiving is already automated, 
+it is only needed to delete the previous version from the release area. See the 
+<a href="http://www.apache.org/dev/release.html#when-to-archive">Apache Release Guide</a> for more information.</p>
+
+<p>See the <a href="http://www.apache.org/dev/release.html#upload-ci">Apache Release Guide</a> for more information.</p>
+
+<p>After these 24 hours the release can be announced.</p>
+
+<h2 id="announce-the-release">Announce the release</h2>
+
+<p>Update website’s News and Download sections to include the new release.</p>
+
+<p>On the “Download” page, the old release can be replaced with the new one, there is no need to keep a link to archived versions. 
+The “News” section can simply be extended with an additional entry.</p>
+
+<p>Additionally it is a good idea to post a message to “announce@apache.org”.</p>
+
+<p>The following template must be used:</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>To: announce@apache.org, dev@celix.apache.org
+Subject: [ANNOUNCE] Apache Celix X.Y.Z released
+
+The Apache Celix team is pleased to announce the release of Celix X.Y.Z.
+
+Celix is an implementation of the OSGi specification adapted to C. It will follow the API as close as possible, but since the OSGi specification is written primarily for Java, there will be differences. An important aspect of the implementation is interoperability between Java and C. This interoperability is achieved by porting and implementing the Remote Services specification in Celix.
+
+This new release focuses on .... {add additional information for this release}
+
+The release is available here:
+http://celix.apache.org/download.cgi
+
+The full change log is available here:
+
+We welcome your help and feedback. For more information on how to report problems, and to get involved, visit the project website at http://celix.apache.org/
+
+The Apache Celix Team
+</code></pre></div></div>
+
+<p class="alert alert-block alert-error">Note: the email must be sent from an @apache.org address</p>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Footer -->
+<footer class="py-3 bg-secondary">
+    <div class="container">
+        <p class="m-0 text-center text-white">
+            Copyright &copy; 2018 The Apache Software Foundation, Licensed under
+            the <a href="http://www.apache.org/licenses/LICENSE-2.0">Apache License, Version 2.0</a>.
+            <br>
+            Apache Celix, Celix, Apache, the Apache feather logo and the Apache Celix logo are trademarks of The Apache Software Foundation.
+        </p>
+    </div>
+</footer>
+
+<!-- Bootstrap core JavaScript -->
+<script src="/assets/js/jquery.min.js"></script>
+<script src="/assets/js/bootstrap.bundle.min.js"></script>
+
+
+</body>
+</html>

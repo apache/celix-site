@@ -1,0 +1,280 @@
+<!--
+Licensed to the Apache Software Foundation (ASF) under one or more
+contributor license agreements.  See the NOTICE file distributed with
+this work for additional information regarding copyright ownership.
+The ASF licenses this file to You under the Apache License, Version 2.0
+(the "License"); you may not use this file except in compliance with
+the License.  You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>readme.md / Apache Celix</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="/assets/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom style -->
+    <link href="/assets/css/style.css" rel="stylesheet">
+</head>
+<body class="light-grey">
+
+<a href="https://github.com/apache/celix" class="github-ribbon">
+    <img src="/assets/img/forkme_right_red_aa0000.png" alt="Fork me on GitHub">
+</a>
+
+<!-- Navigation -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top">
+    <div class="container">
+        <a class="navbar-brand" href="/">
+            <img src="/assets/img/celix-white.svg" height="40" class="d-inline-block align-top" alt="Celix Logo">
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="/">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/download.cgi">Download</a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="/docs/">Docs</a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="ddCommunity" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Community
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="ddCommunity">
+                        <a class="dropdown-item" href="/contributing/youatcelix.html">You at Celix</a>
+                        <a class="dropdown-item" href="/contributing/submitting-patches.html">Submitting patches</a>
+                        <a class="dropdown-item" href="/contributing/releasing.html">Releasing</a>
+                        <a class="dropdown-item" href="/contributing/volunteers.html">Volunteers</a>
+                        <a class="dropdown-item" href="https://whimsy.apache.org/board/minutes/Celix.html">Board Reports</a>
+                    </div>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="ddSupport" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Support
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="ddSupport">
+                        <a class="dropdown-item" href="/support/mailing-list.html">Mailing Lists</a>
+                        <a class="dropdown-item" href="/support/issue-tracking.html">Issue Tracking</a>
+                    </div>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="ddFoundation" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        ASF
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="ddFoundation">
+                        <a class="dropdown-item" href="https://www.apache.org/">ASF Home</a>
+                        <a class="dropdown-item" href="https://www.apache.org/foundation/how-it-works.html">How it works</a>
+                        <a class="dropdown-item" href="https://www.apache.org/licenses/">License</a>
+                        <a class="dropdown-item" href="https://www.apache.org/foundation/sponsorship.html">Sponsorship</a>
+                        <a class="dropdown-item" href="https://www.apache.org/foundation/thanks.html">Thanks</a>
+                        <a class="dropdown-item" href="https://www.apache.org/security/">Security</a>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+
+<div class="section">
+    <div class="container">
+        <div class="row py-4">
+            <div class="col-sm-12 card">
+                <div class="card-body pt-5">
+                    <a class="edit-on-gh" href="https://github.com/apache/celix/edit/develop/docs/documents/building/readme.md" title="Edit this page on GitHub">Edit on GitHub</a>
+                    <a href="/docs/" title="back to documentation"><< back to documentation</a>
+
+                    <!--
+Licensed to the Apache Software Foundation (ASF) under one or more
+contributor license agreements.  See the NOTICE file distributed with
+this work for additional information regarding copyright ownership.
+The ASF licenses this file to You under the Apache License, Version 2.0
+(the "License"); you may not use this file except in compliance with
+the License.  You may obtain a copy of the License at
+   
+    http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+-->
+
+<h1 id="apache-celix---building-and-installing">Apache Celix - Building and Installing</h1>
+<p>Apache Celix aims to be support a broad range of UNIX platforms.</p>
+
+<p>Currently the <a href="https://travis-ci.org/apache/celix">continuous integration build server</a> builds and tests Apache Celix for:</p>
+
+<ul>
+  <li>Ubuntu Trusty Tahr (14.04)
+    <ul>
+      <li>GCC</li>
+      <li>CLang</li>
+    </ul>
+  </li>
+  <li>OSX
+    <ul>
+      <li>GCC</li>
+      <li>CLang</li>
+    </ul>
+  </li>
+  <li>Android (cross-compiled on Ubuntu Trusty Tahr)
+    <ul>
+      <li>GCC</li>
+    </ul>
+  </li>
+</ul>
+
+<h1 id="preparing">Preparing</h1>
+<p>The following packages (libraries + headers) should be installed on your system:</p>
+
+<ul>
+  <li>Development Environment
+    <ul>
+      <li>build-essentials (gcc/g++ or clang/clang++)</li>
+      <li>git</li>
+      <li>java (for packaging bundles)</li>
+      <li>cmake (3.2 or higher)</li>
+    </ul>
+  </li>
+  <li>Apache Celix Dependencies
+    <ul>
+      <li>curl</li>
+      <li>jansson</li>
+      <li>libffi</li>
+      <li>libxml2 (for remote services and bonjour shell)</li>
+    </ul>
+  </li>
+</ul>
+
+<p>For debian based systems (apt), the following command should work:</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>apt-get <span class="nb">install</span> <span class="nt">-yq</span> <span class="nt">--no-install-recommends</span> <span class="se">\</span>
+	build-essential <span class="se">\</span>
+  	curl <span class="se">\</span>
+  	git <span class="se">\</span>
+  	libjansson-dev <span class="se">\</span>
+  	libcurl4-openssl-dev <span class="se">\</span>
+    java <span class="se">\</span>
+  	cmake <span class="se">\</span>
+  	libffi-dev <span class="se">\</span>
+  	libxml2-dev
+</code></pre></div></div>
+
+<p>For Fedora based systems (dnf), the following command should work:</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>dnf group <span class="nb">install</span> <span class="nt">-y</span> <span class="s2">"C Development Tools and Libraries"</span>
+<span class="nb">sudo </span>dnf <span class="nb">install</span> <span class="se">\</span>
+    cmake <span class="se">\</span>
+    make <span class="se">\</span>
+    git <span class="se">\</span>
+    java <span class="se">\</span>
+    libcurl-devel <span class="se">\</span>
+    jansson-devel <span class="se">\</span>
+    libffi-devel <span class="se">\</span>
+    libxml2-devel <span class="se">\</span>
+    libuuid-devel
+</code></pre></div></div>
+
+<p>For OSX systems with brew installed, the following command should work:</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    brew update <span class="o">&amp;&amp;</span> <span class="se">\</span>
+    brew <span class="nb">install </span>lcov libffi cmake <span class="o">&amp;&amp;</span> <span class="se">\</span>
+    brew <span class="nb">link</span> <span class="nt">--force</span> libffi
+</code></pre></div></div>
+
+<h2 id="download-the-apache-celix-sources">Download the Apache Celix sources</h2>
+<p>To get started you first have to download the Apache Celix sources. This can be done by cloning the Apache Celix git repository:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">#Create a new workspace to work in, e.g:</span>
+<span class="nb">mkdir</span> <span class="k">${</span><span class="nv">HOME</span><span class="k">}</span>/workspace
+<span class="nb">export </span><span class="nv">WS</span><span class="o">=</span><span class="k">${</span><span class="nv">HOME</span><span class="k">}</span>/workspace
+<span class="nb">cd</span> <span class="k">${</span><span class="nv">WS</span><span class="k">}</span>
+
+<span class="c">#clone the repro</span>
+git clone <span class="nt">--single-branch</span> <span class="nt">--branch</span> master https://github.com/apache/celix.git
+</code></pre></div></div>
+
+<h2 id="building-apache-celix">Building Apache Celix</h2>
+<p>Apache Celix uses <a href="https://cmake.org">CMake</a> as build system. CMake can generate (among others) makefiles.</p>
+
+<h3 id="building-using-cmake-and-makefiles">Building using CMake and makefiles:</h3>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">cd</span> <span class="k">${</span><span class="nv">WS</span><span class="k">}</span>/celix
+<span class="nb">mkdir </span>build
+<span class="nb">cd </span>build
+cmake .. 
+make 
+</code></pre></div></div>
+
+<h2 id="editing-build-options">Editing Build options</h2>
+<p>With use of CMake, Apache Celix makes it possible to edit build options. This enabled users, among other options, to configure a install location and select additional bundles.
+To edit the options use ccmake or cmake-gui. For cmake-gui an additional package install can be necessary (Fedora: <code class="highlighter-rouge">dnf install cmake-gui</code>).</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">cd</span> <span class="k">${</span><span class="nv">WS</span><span class="k">}</span>/celix/build
+ccmake <span class="nb">.</span>
+<span class="c">#Edit options, e.g. enable BUILD_REMOTE_SHELL to build the remote (telnet) shell</span>
+<span class="c">#Edit the CMAKE_INSTALL_PREFIX config to set the install location</span>
+</code></pre></div></div>
+
+<p>For this guide we assume the CMAKE_INSTALL_PREFIX is <code class="highlighter-rouge">/usr/local</code>.</p>
+
+<h2 id="installing-apache-celix">Installing Apache Celix</h2>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">cd</span> <span class="k">${</span><span class="nv">WS</span><span class="k">}</span>/celix/build
+make
+<span class="nb">sudo </span>make <span class="nb">install</span>
+</code></pre></div></div>
+
+<h2 id="running-apache-celix">Running Apache Celix</h2>
+
+<p>If Apache Celix is succesfully installed running</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>celix
+</code></pre></div></div>
+<p>should give the following output:
+“Error: invalid or non-existing configuration file: ‘config.properties’.No such file or directory”.</p>
+
+<p>For more info how to build your own projects and/or running the Apache Celix examples see <a href="../getting_started/readme.html">Getting Started</a>.</p>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Footer -->
+<footer class="py-3 bg-secondary">
+    <div class="container">
+        <p class="m-0 text-center text-white">
+            Copyright &copy; 2018 The Apache Software Foundation, Licensed under
+            the <a href="http://www.apache.org/licenses/LICENSE-2.0">Apache License, Version 2.0</a>.
+            <br>
+            Apache Celix, Celix, Apache, the Apache feather logo and the Apache Celix logo are trademarks of The Apache Software Foundation.
+        </p>
+    </div>
+</footer>
+
+<!-- Bootstrap core JavaScript -->
+<script src="/assets/js/jquery.min.js"></script>
+<script src="/assets/js/bootstrap.bundle.min.js"></script>
+
+
+</body>
+</html>

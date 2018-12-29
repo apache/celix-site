@@ -1,0 +1,184 @@
+<!--
+Licensed to the Apache Software Foundation (ASF) under one or more
+contributor license agreements.  See the NOTICE file distributed with
+this work for additional information regarding copyright ownership.
+The ASF licenses this file to You under the Apache License, Version 2.0
+(the "License"); you may not use this file except in compliance with
+the License.  You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Design.md / Apache Celix</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="/assets/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom style -->
+    <link href="/assets/css/style.css" rel="stylesheet">
+</head>
+<body class="light-grey">
+
+<a href="https://github.com/apache/celix" class="github-ribbon">
+    <img src="/assets/img/forkme_right_red_aa0000.png" alt="Fork me on GitHub">
+</a>
+
+<!-- Navigation -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top">
+    <div class="container">
+        <a class="navbar-brand" href="/">
+            <img src="/assets/img/celix-white.svg" height="40" class="d-inline-block align-top" alt="Celix Logo">
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="/">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/download.cgi">Download</a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="/docs/">Docs</a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="ddCommunity" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Community
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="ddCommunity">
+                        <a class="dropdown-item" href="/contributing/youatcelix.html">You at Celix</a>
+                        <a class="dropdown-item" href="/contributing/submitting-patches.html">Submitting patches</a>
+                        <a class="dropdown-item" href="/contributing/releasing.html">Releasing</a>
+                        <a class="dropdown-item" href="/contributing/volunteers.html">Volunteers</a>
+                        <a class="dropdown-item" href="https://whimsy.apache.org/board/minutes/Celix.html">Board Reports</a>
+                    </div>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="ddSupport" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Support
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="ddSupport">
+                        <a class="dropdown-item" href="/support/mailing-list.html">Mailing Lists</a>
+                        <a class="dropdown-item" href="/support/issue-tracking.html">Issue Tracking</a>
+                    </div>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="ddFoundation" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        ASF
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="ddFoundation">
+                        <a class="dropdown-item" href="https://www.apache.org/">ASF Home</a>
+                        <a class="dropdown-item" href="https://www.apache.org/foundation/how-it-works.html">How it works</a>
+                        <a class="dropdown-item" href="https://www.apache.org/licenses/">License</a>
+                        <a class="dropdown-item" href="https://www.apache.org/foundation/sponsorship.html">Sponsorship</a>
+                        <a class="dropdown-item" href="https://www.apache.org/foundation/thanks.html">Thanks</a>
+                        <a class="dropdown-item" href="https://www.apache.org/security/">Security</a>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+
+<div class="section">
+    <div class="container">
+        <div class="row py-4">
+            <div class="col-sm-12 card">
+                <div class="card-body pt-5">
+                    <a class="edit-on-gh" href="https://github.com/apache/celix/edit/develop/docs/utils/docs/thpool/Design.md" title="Edit this page on GitHub">Edit on GitHub</a>
+                    <a href="/docs/" title="back to documentation"><< back to documentation</a>
+
+                    <h2 id="high-level">High level</h2>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Description: Library providing a threading pool where you can add work on the fly. The number
+             of threads in the pool is adjustable when creating the pool. In most cases
+             this should equal the number of threads supported by your cpu.
+         
+             For an example on how to use the threadpool, check the main.c file or just read
+             the documentation found in the README.md file.
+
+             In this header file a detailed overview of the functions and the threadpool's logical
+             scheme is presented in case you wish to tweak or alter something. 
+
+
+
+              _______________________________________________________        
+            /                                                       \
+            |   JOB QUEUE        | job1 | job2 | job3 | job4 | ..   |
+            |                                                       |
+            |   threadpool      | thread1 | thread2 | ..            |
+            \_______________________________________________________/
+
+
+   Description:       Jobs are added to the job queue. Once a thread in the pool
+                      is idle, it is assigned with the first job from the queue(and
+                      erased from the queue). It's each thread's job to read from 
+                      the queue serially(using lock) and executing each job
+                      until the queue is empty.
+
+
+   Scheme:
+
+   thpool______                jobqueue____                      ______ 
+   |           |               |           |       .-----------&gt;|_job0_| Newly added job
+   |           |               |  rear  ----------'             |_job1_|
+   | jobqueue-----------------&gt;|           |                    |_job2_|
+   |           |               |  front ----------.             |__..__| 
+   |___________|               |___________|       '-----------&gt;|_jobn_| Job for thread to take
+
+
+   job0________ 
+   |           |
+   | function----&gt;
+   |           |
+   |   arg-------&gt;
+   |           |         job1________ 
+   |  next--------------&gt;|           |
+   |___________|         |           |..
+</code></pre></div></div>
+
+<h2 id="synchronisation">Synchronisation</h2>
+
+<p><em>Mutexes</em> and <em>binary semaphores</em> are the main tools to achieve synchronisation between threads.</p>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Footer -->
+<footer class="py-3 bg-secondary">
+    <div class="container">
+        <p class="m-0 text-center text-white">
+            Copyright &copy; 2018 The Apache Software Foundation, Licensed under
+            the <a href="http://www.apache.org/licenses/LICENSE-2.0">Apache License, Version 2.0</a>.
+            <br>
+            Apache Celix, Celix, Apache, the Apache feather logo and the Apache Celix logo are trademarks of The Apache Software Foundation.
+        </p>
+    </div>
+</footer>
+
+<!-- Bootstrap core JavaScript -->
+<script src="/assets/js/jquery.min.js"></script>
+<script src="/assets/js/bootstrap.bundle.min.js"></script>
+
+
+</body>
+</html>
