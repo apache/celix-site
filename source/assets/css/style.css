@@ -1,0 +1,156 @@
+/*
+ * Licensed to the Apache Software Foundation (ASF) under one or more
+ * contributor license agreements.  See the NOTICE file distributed with
+ * this work for additional information regarding copyright ownership.
+ * The ASF licenses this file to You under the Apache License, Version 2.0
+ * (the "License"); you may not use this file except in compliance with
+ * the License.  You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+/*
+ * Styles for html elements
+ */
+body {
+  padding-top: 54px;
+}
+
+footer a {
+  color: #90CAF9;
+}
+
+footer a:hover {
+  color: #0056b3;
+  text-decoration: none;
+}
+
+code, kbd, pre, samp {
+  font-family: Menlo, Monaco, Consolas, "Courier New", monospace;
+}
+
+pre {
+  display: block;
+  padding: 9.5px;
+  margin: 0 0 10px;
+  font-size: 13px;
+  line-height: 1.428571429;
+  word-break: break-all;
+  word-wrap: break-word;
+  color: #333;
+  background-color: #f5f5f5;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+code {
+  padding: 2px 4px;
+  font-size: 90%;
+  color: #c7254e;
+  background-color: #f9f2f4;
+  border-radius: 4px;
+}
+
+pre code {
+  padding: 0;
+  font-size: inherit;
+  color: inherit;
+  white-space: pre-wrap;
+  background-color: transparent;
+  border-radius: 0;
+}
+
+table {
+  width: auto;
+  border-collapse: separate;
+  border-spacing: 1px;
+  border-bottom: 1px solid #ededed;
+  margin-bottom: 1em;
+  max-width: 100%;
+  overflow: auto;
+  background-color: transparent;
+}
+
+table > thead > tr:nth-child(2n+1), table > tbody > tr:nth-child(2n+1), table > tfoot > tr:nth-child(2n+1), table > thead > tr:nth-child(2n+1), table > tbody > tr:nth-child(2n+1), table > tfoot > tr:nth-child(2n+1) {
+  border-bottom: 1px solid #ededed;
+  border-top: 1px solid #ededed;
+}
+
+table > thead > tr, table > tbody > tr, table > tfoot > tr, table > thead > tr, table > tbody > tr, table > tfoot > tr {
+  background-color: #fff;
+}
+
+table > thead > tr:nth-child(2n+1) td, table > tbody > tr:nth-child(2n+1) td, table > tfoot > tr:nth-child(2n+1) td, table > thead > tr:nth-child(2n+1) td, table > tbody > tr:nth-child(2n+1) td, table > tfoot > tr:nth-child(2n+1) td {
+  background-color: #f6f6f6;
+  -webkit-transition: background-color 500ms;
+  -moz-transition: background-color 500ms;
+  -o-transition: background-color 500ms;
+  -ms-transition: background-color 500ms;
+  transition: background-color 500ms;
+}
+
+table > tbody > tr:nth-child(2n+1) > td, table > tbody > tr:nth-child(2n+1) > th {
+  background-color: #f6f6f6;
+}
+
+table > thead > tr > th, table > tbody > tr > th, table > tfoot > tr > th, table > thead > tr > td, table > tbody > tr > td, table > tfoot > tr > td {
+  padding: .75rem;
+  border-top: none;
+  text-align: left;
+  font-weight: 400;
+}
+
+td, th {
+  padding: 0;
+}
+
+/*
+ * Colors
+ */
+.light-grey {
+  background-color: #f3f5f9 !important;
+}
+
+.blue {
+  background-color: #2196F3 !important;
+}
+
+/*
+ * Specific classes
+ */
+a.github-ribbon img {
+  position: absolute;
+  top: 66px;
+  right: 0;
+  border: 0;
+  z-index: 998;
+}
+
+a.edit-on-gh {
+  position: absolute;
+  left: 0;
+  top: 0;
+  display: block;
+  padding: 4px 16px;
+  background-color: #AA0000;
+  color: #fff;
+}
+
+.card {
+  height: 100%;
+}
+
+/*
+ * Media Queries
+ */
+@media (min-width: 992px) {
+  body {
+    padding-top: 56px;
+  }
+}

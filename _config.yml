@@ -1,0 +1,17 @@
+name:           Apache Celix
+source:         source
+destination:    target/content
+encoding:       UTF-8
+highlighter:    rouge
+markdown:       kramdown
+markdown_ext:   md
+kramdown:
+  input:              GFM
+  syntax_highlighter: rouge
+
+# Allows directly edit pages on GitHub
+celix_repository_url: https://github.com/apache/celix
+celix_repository_source_branch: develop
+
+repository_url: https://github.com/apache/celix-site
+repository_source_branch: master
