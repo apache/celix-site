@@ -46,10 +46,10 @@ git checkout ${SITE} > /dev/null 2>&1
 
 # Remove the current contents of the SITE branch and replace them with the contents of the temp folder
 current_dir=${PWD}
-rm -rf ${current_dir}/*
+rm -rf ${current_dir}/content
 git rm -r --cached content/* > /dev/null 2>&1
 mkdir -p ${current_dir}/content
-cp -r ${tmp_dir}/* ${current_dir}/content
+cp -rT ${tmp_dir}/* ${current_dir}/content
 
 # Commit the changes to the SITE branch
 message="Updated site from ${SOURCE} (${last_SHA})"
