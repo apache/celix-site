@@ -15,30 +15,14 @@ A message sent to a public mailing list cannot be unpublished. Although we might
 the message is mirrored to a lot of other archiving systems which we do not have under control. Therefore almost 100% 
 of all delete requests are denied. Please make sure you **do not send any potential sensitive information to the mailing list**,
 including passwords, server names, ips and so on.
-{:.alert .alert-block .alert-error}
+{:.alert .alert-primary}
 
 ## Lists
 
-<table>
-    <tr>
-        <th>Name</th>
-        <th>Subscribe</th>
-        <th>Unsubscribe</th>
-        <th>Description</th>
-    </tr>
-    <tr>
-        <td><a href="https://lists.apache.org/list.html?dev@celix.apache.org">celix-dev</a></td>
-        <td><a href="mailto:dev-subscribe@celix.apache.org?subject=subscribe&amp;body=subscribe">subscribe</a></td>
-        <td><a href="mailto:dev-unsubscribe@celix.apache.org?subject=unsubscribe&amp;body=unsubscribe">unsubscribe</a></td>
-        <td>Contact other developers interested in expanding and improving Celix</td>
-    </tr>
-    <tr>
-        <td><a href="https://lists.apache.org/list.html?commits@celix.apache.org">celix-commits</a></td>
-        <td><a href="mailto:commits-subscribe@celix.apache.org?subject=subscribe&amp;body=subscribe">subscribe</a></td>
-        <td><a href="mailto:commits-unsubscribe@celix.apache.org?subject=unsubscribe&amp;body=unsubscribe">unsubscribe</a></td>
-        <td>Receive notifications of changes to the Celix source code repository.</td>
-    </tr>
-</table>
+| Name | Subscribe | Unsubscribe | Description |
+|----|---------|-----------|-----------|
+|[celix-dev](https://lists.apache.org/list.html?dev@celix.apache.org) | [subscribe](mailto:dev-subscribe@celix.apache.org?subject=subscribe&amp;body=subscribe) | [unsubscribe](mailto:dev-unsubscribe@celix.apache.org?subject=unsubscribe&amp;body=unsubscribe) | Contact other developers interested in expanding and improving Celix |
+|[celix-commits](https://lists.apache.org/list.html?commits@celix.apache.org) | [subscribe](mailto:commits-subscribe@celix.apache.org?subject=subscribe&amp;body=subscribe) | [unsubscribe](mailto:commits-unsubscribe@celix.apache.org?subject=unsubscribe&amp;body=unsubscribe) | Receive notifications of changes to the Celix source code repository |
 
 ## Archives
 
