@@ -16,7 +16,7 @@
                 {% if page.url == "/" %}<li class="nav-item active">{% else %}<li class="nav-item">{% endif %}
                     <a class="nav-link" href="/">Home</a>
                 </li>
-                {% if page.url == "/download.cgi" %}<li class="nav-item active">{% else %}<li class="nav-item">{% endif %}
+                {% if page.url == "/download.cgi" or page.url == "/download.html" %}<li class="nav-item active">{% else %}<li class="nav-item">{% endif %}
                     <a class="nav-link" href="/download.cgi">Download</a>
                 </li>
                 {% if page.url contains '/docs/' or page.url contains '/celix/' %}<li class="nav-item active">{% else %}<li class="nav-item">{% endif %}

@@ -40,7 +40,7 @@ You may also consult the [complete list of mirrors](https://www.apache.org/mirro
 
 ## Downloads
 
-- Source: [celix-2.1.0.tar.gz]([preferred]/celix/celix-2.1.0/celix-2.1.0.tar.gz)
+- Source: [celix-2.1.0.tar.gz]([preferred]celix/celix-2.1.0/celix-2.1.0.tar.gz)
 [ [PGP](https://www.apache.org/dist/celix/celix-2.1.0/celix-2.1.0.tar.gz.asc) ] [
 [MD5](https://www.apache.org/dist/celix/celix-2.1.0/celix-2.1.0.tar.gz.md5) ] [
 [SHA1](https://www.apache.org/dist/celix/celix-2.1.0/celix-2.1.0.tar.gz.sha) ]
