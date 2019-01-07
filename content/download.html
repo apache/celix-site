@@ -116,15 +116,20 @@ mirrors (at the end of the mirrors list) that should be available.</p>
 <form action="[location]" method="get" id="SelectMirror">
     Other mirrors:
     <select name="Preferred">
-        [if-any https] 
+        [if-any https]
         [for https]
         <option value="[https]">[https]</option>
         [end]
-        [end] 
+        [end]
+        [if-any http]
+        [for http]
+        <option value="[http]">[http]</option>
+        [end]
+        [end]
         [if-any ftp]
         [for ftp]<option value="[ftp]">[ftp]</option>
         [end]
-        [end] 
+        [end]
         [if-any backup]
         [for backup]<option value="[backup]">[backup] (backup)</option>
         [end]
