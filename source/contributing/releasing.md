@@ -58,7 +58,7 @@ set(CELIX_MICRO "Z")
 ```
 
 Note: The DEFAULT_VERSION property is used as default version for new bundles and as such does not need to be updated when making a release.
-{:.alert .alert-block .alert-error}
+{:.alert .alert-primary}
 
 ## Compile and test
 
@@ -204,7 +204,7 @@ This vote will be open for at least 72 hours.
 After this first vote the results must be posted to the "dev" list, see below for more information.
 
 Note: Be sure to use the \[VOTE\] tag, this is used by the automated vote tracking system to keep track of outstanding vote threads.
-{:.alert .alert-block .alert-error}
+{:.alert .alert-primary}
 
 ## Post the vote results
 As mentioned before, after each vote the results must be posted to the corresponding list. This "Result" vote contains the number 
@@ -231,7 +231,7 @@ Thanks for voting.
 
 Note: Be sure to post the vote result with the same topic as the original message. Also prepend the subject 
 with \[RESULT\]. This is, again, needed to be able to keep track of vote threads.
-{:.alert .alert-block .alert-error}
+{:.alert .alert-primary}
 
 ## Roll out release artifacts
 
@@ -278,4 +278,4 @@ The Apache Celix Team
 ```
 
 Note: the email must be sent from an @apache.org address
-{:.alert .alert-block .alert-error}
+{:.alert .alert-primary}
