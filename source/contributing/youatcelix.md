@@ -34,7 +34,7 @@ around Celix in public (except a few things, like discussions on persons).
 With reading the developers list you'll get a good idea what we are planning
 and maybe even how you can help.
 
-Another way is to simply look through the [Issue Tracker](https://issues.apache.org/jira/browse/CELIX)
+Another way is to simply look through the [Issue Tracker](/support/issue-tracking.html)
 and work on a patch. It's recommended to first try to understand and then discuss
 what you plan on the mailing list. This way we will find out if we are on
 the same page and of course will learn about you.
