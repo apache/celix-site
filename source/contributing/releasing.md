@@ -102,7 +102,7 @@ $ ccmake ../celix
 $ make rat
 ```
 
-Apache RAT should not raise any concers, if there are, check the source files for a license header. If it is a false positive update 
+Apache RAT should not raise any concerns, if there are, check the source files for a license header. If it is a false positive update 
 the rat-excludes.txt file in the root of the project. Be sure it is a false positive! If in doubt, ask the mailing list! Third party 
 licenses may need to be mentioned in the NOTICE file.
 
