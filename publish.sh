@@ -17,6 +17,17 @@
 
 # A script to build the Celix site (based on Hugo)
 
+# Input parameters
+GIT_REMOTE=$1
+if [[ -z "${GIT_REMOTE}" ]]; then
+    echo "Git remote is not specified!"
+    echo "Usage:"
+    echo "  ./publish.sh <remote>"
+    echo "   e.g."
+    echo "  ./publish.sh origin"
+    exit 1
+fi
+
 # specify source and site branches
 SOURCE="master"
 SITE="asf-site"
@@ -60,7 +71,7 @@ git commit -m "${message}" > /dev/null 2>&1
 rm -rf ${tmp_dir}
 
 # Push the SOURCE to the server
-git push -u origin ${SOURCE} > /dev/null 2>&1
+git push -u ${GIT_REMOTE} ${SOURCE} > /dev/null 2>&1
 if [ $? = 0 ]; then
  echo "Push ${SOURCE} successful"
 else
@@ -68,7 +79,7 @@ else
 fi
 
 # Push the SITE to the server
-git push -u origin ${SITE} > /dev/null 2>&1
+git push -u ${GIT_REMOTE} ${SITE} > /dev/null 2>&1
 if [ $? = 0 ]; then
   echo "Push ${SITE} successful"
 else
