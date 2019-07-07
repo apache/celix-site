@@ -33,9 +33,10 @@ for FILE_PATH in $(cd ${CELIX_SRC_DIR}; find . -name \*.md); do
     cp -v ${CELIX_SRC_DIR}/${FILE_PATH} ${CELIX_DOC_DIR}/${FILE_DIR}
 
     # Prepend markdown file with Hugo header
-    SECOND_LINE=$(head -n 2 ${FILE_PATH} | tail -n 1)
+    DEST_FILE=${CELIX_DOC_DIR}/${FILE_PATH}
+    SECOND_LINE=$(head -n 2 ${DEST_FILE} | tail -n 1)
 
     if [[ "${SECOND_LINE}" != *"type: celix-doc"* ]]; then
-        sed -i '1s;^;---\ntype: celix-doc\ntitle: ${FILE_NAME}\n---\n\n;' ${FILE_PATH}
+        sed -i "1s;^;---\ntype: celix-doc\ntitle: ${FILE_NAME}\n---\n\n;" ${DEST_FILE}
     fi
 done

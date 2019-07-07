@@ -4,7 +4,6 @@ title: FAQ.md
 ---
 
 
-
 ### Why isn't pthread_exit() used to exit a thread?
 `thread_do` used to use pthread_exit(). However that resulted in
 hard times of testing for memory leaks. The reason is that on pthread_exit()

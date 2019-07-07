@@ -3,7 +3,6 @@ type: celix-doc
 title: Design.md
 ---
 
-
 ## High level
 	
 	Description: Library providing a threading pool where you can add work on the fly. The number

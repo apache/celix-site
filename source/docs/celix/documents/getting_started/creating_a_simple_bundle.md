@@ -3,7 +3,6 @@ type: celix-doc
 title: creating_a_simple_bundle.md
 ---
 
-
 <!--
 Licensed to the Apache Software Foundation (ASF) under one or more
 contributor license agreements.  See the NOTICE file distributed with
