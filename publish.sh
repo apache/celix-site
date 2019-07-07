@@ -21,9 +21,10 @@
 GIT_REMOTE=$1
 if [[ -z "${GIT_REMOTE}" ]]; then
     echo "Git remote is not specified!"
+    echo ""
     echo "Usage:"
     echo "  ./publish.sh <remote>"
-    echo "   e.g."
+    echo "    e.g."
     echo "  ./publish.sh origin"
     exit 1
 fi
