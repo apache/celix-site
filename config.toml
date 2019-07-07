@@ -5,6 +5,7 @@ languageCode = "en"
 contentDir = "source"
 publishDir = "target/content"
 
+disablePathToLower = true
 uglyURLs = true
 enableRobotsTXT = true
 disableBrowserError = true
