@@ -1,4 +1,4 @@
 [submodule "celix-src"]
     path = celix-src
-    url = git@github.com:apache/celix.git
+    url = https://github.com/apache/celix.git
     ignore = all
