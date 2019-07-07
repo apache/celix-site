@@ -1,10 +1,8 @@
 ---
-layout: default
 title: Documentation
 ---
 
 # Documentation
-[Edit on GitHub]({{ site.repository_url }}/edit/master/source/{{ page.path }}){: .edit-on-gh title="Edit this page on GitHub"}
 
 Get started with Celix by going through the appropriate content.
 

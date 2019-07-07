@@ -1,5 +1,5 @@
 ---
-layout: celix-md
+type: celix-doc
 title: improvement_ideas.md
 ---
 

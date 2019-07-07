@@ -1,5 +1,5 @@
 ---
-layout: celix-md
+type: celix-doc
 title: using_services_with_c.md
 ---
 

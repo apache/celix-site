@@ -1,13 +1,10 @@
 ---
-layout: default
 title: Submitting patches
 ---
 
 # Submitting patches
-{:.no_toc}
 
-* Will be replaced with the ToC, excluding a header
-{:toc}
+{{% tableofcontents %}}
 
 ## Contributing with GitHub
 

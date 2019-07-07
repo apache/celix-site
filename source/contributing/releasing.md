@@ -1,17 +1,14 @@
 ---
-layout: default
 title: Releasing Process
 ---
 
 # Releasing Apache Celix
-{:.no_toc}
 
 Note: This information is only of use to Apache Celix Release Managers!
 
 Steps to follow:
 
-* Will be replaced with the ToC, excluding a header
-{:toc}
+{{% tableofcontents %}}
 
 Interesting links:
 
@@ -57,8 +54,8 @@ set(CELIX_MINOR "Y")
 set(CELIX_MICRO "Z")
 ```
 
-Note: The DEFAULT_VERSION property is used as default version for new bundles and as such does not need to be updated when making a release.
-{:.alert .alert-primary}
+<p class="alert alert-primary">Note: The DEFAULT_VERSION property is used as default version for new bundles and as 
+such does not need to be updated when making a release.</p>
 
 ## Compile and test
 
@@ -203,8 +200,8 @@ This vote will be open for at least 72 hours.
 
 After this first vote the results must be posted to the "dev" list, see below for more information.
 
-Note: Be sure to use the \[VOTE\] tag, this is used by the automated vote tracking system to keep track of outstanding vote threads.
-{:.alert .alert-primary}
+<p class="alert alert-primary">Note: Be sure to use the [VOTE] tag, this is used by the automated vote tracking 
+system to keep track of outstanding vote threads.</p>
 
 ## Post the vote results
 As mentioned before, after each vote the results must be posted to the corresponding list. This "Result" vote contains the number 
@@ -229,9 +226,8 @@ updated and the release will be announced.
 Thanks for voting.
 ```
 
-Note: Be sure to post the vote result with the same topic as the original message. Also prepend the subject 
-with \[RESULT\]. This is, again, needed to be able to keep track of vote threads.
-{:.alert .alert-primary}
+<p class="alert alert-primary">Note: Be sure to post the vote result with the same topic as the original message. Also 
+prepend the subject with [RESULT]. This is, again, needed to be able to keep track of vote threads.</p>
 
 ## Roll out release artifacts
 
@@ -277,5 +273,4 @@ We welcome your help and feedback. For more information on how to report problem
 The Apache Celix Team
 ```
 
-Note: the email must be sent from an @apache.org address
-{:.alert .alert-primary}
+<p class="alert alert-primary">Note: the email must be sent from an @apache.org address</p>

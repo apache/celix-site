@@ -22,7 +22,10 @@ limitations under the License.
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>{{ page.title }} / Apache Celix</title>
+    <title>404 Page Not Found / {{ site.Title }}</title>
+
+    {{ $favicon := "assets/img/favicon.ico" }}
+    <link rel="icon" href="{{ $favicon | relURL }}">
 
     <!-- Bootstrap core CSS -->
     <link href="/assets/css/bootstrap.min.css" rel="stylesheet">
@@ -32,24 +35,31 @@ limitations under the License.
 </head>
 <body class="light-grey">
 
-{% include header.html %}
+{{ partial "header.html" . }}
+{{ $configURL := printf "%s/blob/%s/config.toml" .Site.Params.siteRepositoryUrl .Site.Params.siteRepositorySourceBranch | safeURL }}
 
 <div class="section">
     <div class="container">
         <div class="row py-4">
             <div class="col-sm-12 card">
                 <div class="card-body pt-5">
-                    <a class="edit-on-gh" href="{{ site.celix_repository_url }}/edit/{{ site.celix_repository_source_branch }}/{{ page.path | replace_first:'docs/celix/','' }}" title="Edit this page on GitHub">Edit on GitHub</a>
-                    <a href="/docs/" title="back to documentation">&lt;&lt; back to documentation</a>
+                    <a class="edit-on-gh" href="{{ .Site.Params.siteRepositoryUrl }}/edit/{{ .Site.Params.siteRepositorySourceBranch }}/layouts/404.html" title="Edit this page on GitHub">Edit on GitHub</a>
 
-                    {{ content }}
+                    <h1>404 Page Not Found</h1>
+
+                    <p>
+                        The page was moved or never existed. Use the menu above to navigate or go to <a href="{{ .Site.Home.RelPermalink }}">home page</a>.
+                        If you noticed any site problem, typos, etc on any page, please correct
+                        using the "Edit on GitHub" button or check on <a href="{{ .Site.Params.siteRepositoryUrl }}">{{ .Site.Params.siteRepositoryUrl }}</a>.
+                        For example, the general site config is stored in the <a href="{{ $configURL }}"><code class="highlighter-rouge">config.toml</code></a>.
+                    </p>
                 </div>
             </div>
         </div>
     </div>
 </div>
 
-{% include footer.html %}
+{{ partial "footer.html" . }}
 
 </body>
 </html>

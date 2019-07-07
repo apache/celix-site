@@ -22,24 +22,38 @@ limitations under the License.
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>{{ page.title }}</title>
+    <title>{{ if .Title }}{{ .Title }} / {{ end }}{{ site.Title }}</title>
+
+    {{ $favicon := "assets/img/favicon.ico" }}
+    <link rel="icon" href="{{ $favicon | relURL }}">
 
     <!-- Bootstrap core CSS -->
     <link href="/assets/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Custom style -->
     <link href="/assets/css/style.css" rel="stylesheet">
-
-    <!-- Font awesome icon set -->
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
 </head>
-<body>
+<body class="light-grey">
 
-{% include header.html %}
+{{ partial "header.html" . }}
 
-{{ content }}
+<div class="section">
+    <div class="container">
+        <div class="row py-4">
+            <div class="col-sm-12 card">
+                <div class="card-body pt-5">
+                    {{ $page := replaceRE "TODO" "" .Page.File.Path }} <!-- TODO: .*(docs\/celix\/) -->
+                    <a class="edit-on-gh" href="{{ .Site.Params.repositoryUrl }}/edit/{{ .Site.Params.repositorySourceBranch }}/{{ $page }}" title="Edit this page on GitHub">Edit on GitHub</a>
+                    <a href="/docs/docs.html" title="back to documentation">&lt;&lt; back to documentation</a>
 
-{% include footer.html %}
+                    {{ block "main" . }}{{ end }}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{{ partial "footer.html" . }}
 
 </body>
 </html>

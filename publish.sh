@@ -15,7 +15,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-# A script to build the Celix site (based on jekyll)
+# A script to build the Celix site (based on Hugo)
 
 # specify source and site branches
 SOURCE="master"
@@ -27,17 +27,17 @@ git checkout ${SOURCE} > /dev/null 2>&1
 # Get the latest commit SHA in SOURCE branch
 last_SHA=( $(git log -n 1 --pretty=format:"%H") )
 
-# use last commit sha as temp folder name
+# Create a temporary folder
 tmp_dir=`mktemp -d`
 out_dir=${tmp_dir}/content
 mkdir -p ${out_dir}
 
-# Build the Jekyll site  to our temporary folder
-bundle exec jekyll build -d ${out_dir} > /dev/null 2>&1
+# Build the site to our temporary folder
+hugo --destination ${out_dir} > /dev/null 2>&1
 if [ $? = 0 ]; then
-  echo "Jekyll build successful"
+  echo "Hugo build successful"
 else
-  echo "Jekyll build failed"
+  echo "Hugo build failed"
   exit 1
 fi
 

@@ -1,12 +1,7 @@
-# Jekyll generated
+# Generated content
 target
-.jekyll-metadata
 
 # IntelliJ generated
 *.iml
 .idea
 .java-version
-
-# Bundler generated
-.bundle
-vendor/

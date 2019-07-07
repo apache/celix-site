@@ -1,5 +1,5 @@
 ---
-layout: celix-md
+type: celix-doc
 title: creating_a_simple_bundle.md
 ---
 

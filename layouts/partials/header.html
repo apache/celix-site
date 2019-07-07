@@ -1,4 +1,4 @@
-<a href="{{ site.celix_repository_url }}" class="github-ribbon">
+<a href="{{ .Site.Params.repositoryUrl }}" class="github-ribbon">
     <img src="/assets/img/forkme_right_red_aa0000.png" alt="Fork me on GitHub">
 </a>
 
@@ -13,16 +13,16 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarResponsive">
             <ul class="navbar-nav ml-auto">
-                {% if page.url == "/" %}<li class="nav-item active">{% else %}<li class="nav-item">{% endif %}
+                {{ if eq .Kind "home" }}<li class="nav-item active">{{ else }}<li class="nav-item">{{ end }}
                     <a class="nav-link" href="/">Home</a>
                 </li>
-                {% if page.url == "/download.cgi" or page.url == "/download.html" %}<li class="nav-item active">{% else %}<li class="nav-item">{% endif %}
+                {{ if hasPrefix .Page.File.Path "download" }}<li class="nav-item active">{{ else }}<li class="nav-item">{{ end }}
                     <a class="nav-link" href="/download.cgi">Download</a>
                 </li>
-                {% if page.url contains '/docs/' or page.url contains '/celix/' %}<li class="nav-item active">{% else %}<li class="nav-item">{% endif %}
-                    <a class="nav-link" href="/docs/">Docs</a>
+                {{ if hasPrefix .Page.File.Path "docs" }}<li class="nav-item active">{{ else }}<li class="nav-item">{{ end }}
+                    <a class="nav-link" href="/docs/docs.html">Docs</a>
                 </li>
-                {% if page.url contains '/contributing/' %}<li class="nav-item dropdown active">{% else %}<li class="nav-item dropdown">{% endif %}
+                {{ if hasPrefix .Page.File.Path "contributing" }}<li class="nav-item dropdown active">{{ else }}<li class="nav-item dropdown">{{ end }}
                     <a class="nav-link dropdown-toggle" href="#" id="ddCommunity" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         Community
                     </a>
@@ -34,7 +34,7 @@
                         <a class="dropdown-item" href="https://whimsy.apache.org/board/minutes/Celix.html">Board Reports</a>
                     </div>
                 </li>
-                {% if page.url contains '/support/' %}<li class="nav-item dropdown active">{% else %}<li class="nav-item dropdown">{% endif %}
+                {{ if hasPrefix .Page.File.Path "support" }}<li class="nav-item dropdown active">{{ else }}<li class="nav-item dropdown">{{ end }}
                     <a class="nav-link dropdown-toggle" href="#" id="ddSupport" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         Support
                     </a>

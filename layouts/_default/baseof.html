@@ -22,7 +22,10 @@ limitations under the License.
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>{{ page.title }} / Apache Celix</title>
+    <title>{{ if .Title }}{{ .Title }} / {{ end }}{{ site.Title }}</title>
+
+    {{ $favicon := "assets/img/favicon.ico" }}
+    <link rel="icon" href="{{ $favicon | relURL }}">
 
     <!-- Bootstrap core CSS -->
     <link href="/assets/css/bootstrap.min.css" rel="stylesheet">
@@ -32,27 +35,23 @@ limitations under the License.
 </head>
 <body class="light-grey">
 
-{% include header.html %}
+{{ partial "header.html" . }}
 
 <div class="section">
     <div class="container">
         <div class="row py-4">
             <div class="col-sm-12 card">
                 <div class="card-body pt-5">
-                    <a class="edit-on-gh" href="{{ site.repository_url }}/edit/{{ site.repository_source_branch }}/source/{{ page.path }}" title="Edit this page on GitHub">Edit on GitHub</a>
+                    <a class="edit-on-gh" href="{{ .Site.Params.siteRepositoryUrl }}/edit/{{ .Site.Params.siteRepositorySourceBranch }}/source/{{ .Page.File.Path }}" title="Edit this page on GitHub">Edit on GitHub</a>
 
-                    {% if page.parent %}
-                    <a href="{{ page.parent.url }}" title="back to {{ page.parent.title }}">&lt;&lt; back to {{ page.parent.title }}</a>
-                    {% endif %}
-
-                    {{ content }}
+                    {{ block "main" . }}{{ end }}
                 </div>
             </div>
         </div>
     </div>
 </div>
 
-{% include footer.html %}
+{{ partial "footer.html" . }}
 
 </body>
 </html>
