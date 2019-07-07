@@ -39,4 +39,7 @@ for FILE_PATH in $(cd ${CELIX_SRC_DIR}; find . -name \*.md); do
     if [[ "${SECOND_LINE}" != *"type: celix-doc"* ]]; then
         sed -i "1s;^;---\ntype: celix-doc\ntitle: ${FILE_NAME}\n---\n\n;" ${DEST_FILE}
     fi
+
+    # Replace markdown links with HTML links
+    sed -i "s/.md)/.html)/" ${DEST_FILE}
 done

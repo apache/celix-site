@@ -32,7 +32,7 @@ The C++ Dependency Manager uses fluent interface to make specifying DM component
 ## C++ and C Dependency Manager
 
 The C++ Dependency Manager is build on top of the C Dependency Manager.
-To get a good overview of the C++ Dependency Manager please read the [Dependency Manager documentation](../dependency_manager/README.md)
+To get a good overview of the C++ Dependency Manager please read the [Dependency Manager documentation](../dependency_manager/README.html)
 
 ## DM Parts
 
@@ -80,4 +80,4 @@ For more information examples please see
 
 - [The C++ Dependency Manager API](include/celix/dm): The c++ dependency manager header files
 - [Dm C++ example](../examples/dm_example_cxx): A DM C++ example.
-- [Getting Started: Using Services with C++](../documents/getting_started/using_services_with_cxx.md): A introduction how to work with services using the C++ dependency manager
+- [Getting Started: Using Services with C++](../documents/getting_started/using_services_with_cxx.html): A introduction how to work with services using the C++ dependency manager

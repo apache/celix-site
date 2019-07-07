@@ -3,7 +3,6 @@ type: celix-doc
 title: readme.md
 ---
 
-
 <!--
 Licensed to the Apache Software Foundation (ASF) under one or more
 contributor license agreements.  See the NOTICE file distributed with
@@ -26,24 +25,24 @@ limitations under the License.
 Apache Celix is organized into several subprojects. The following subproject are currently available:
 
 * [Framework](https://github.com/apache/celix/tree/rel/celix-2.1.0/framework) - The Apache Celix framework, an implementation of OSGi adapted to C.
-* [C Dependency Manager](../../dependency_manager/readme.md) - A C component/dependency model for use through an API provided as library.
-* [C++ Dependency Manager](../../dependency_manager_cxx/readme.md) - A C++ component/dependency model for use through an API provided as library.
-* [Device Access](../../device_access/README.md) - An implementation of the OSGi Device Access specification adapted to C.
-* [Etcd library](../../etcdlib/README.md) - A C library that interfaces with ETCD. 
+* [C Dependency Manager](../../dependency_manager/readme.html) - A C component/dependency model for use through an API provided as library.
+* [C++ Dependency Manager](../../dependency_manager_cxx/readme.html) - A C++ component/dependency model for use through an API provided as library.
+* [Device Access](../../device_access/README.html) - An implementation of the OSGi Device Access specification adapted to C.
+* [Etcd library](../../etcdlib/README.html) - A C library that interfaces with ETCD. 
 * [Examples](https://github.com/apache/celix/tree/rel/celix-2.1.0/examples) - A Selection of examples showing how the framework can be used.
-* [Log Service](../../log_service/README.md) - An implementation of the OSGi Log Service adapated to C.
-* [Log Writer](../../log_writer/README.md) - A simple log writer for use in combination with the Log Service.
-* [Remote Service Admin](../../remote_services/README.md) - An implementation of the OSGi Remote Service Admin Service - for several protocols - adapted to C.
+* [Log Service](../../log_service/README.html) - An implementation of the OSGi Log Service adapated to C.
+* [Log Writer](../../log_writer/README.html) - A simple log writer for use in combination with the Log Service.
+* [Remote Service Admin](../../remote_services/README.html) - An implementation of the OSGi Remote Service Admin Service - for several protocols - adapted to C.
     * [Remote Service Admin HTTP](https://github.com/apache/celix/tree/rel/celix-2.1.0/remote_services/remote_service_admin_http) - A HTTP implementation of the RSA.
     * [Remote Service Admin DFI](https://github.com/apache/celix/tree/rel/celix-2.1.0/remote_services/remote_service_admin_dfi) - A Dynamic Function Interface (DFI) implementation of the RSA.
     * [Remote Service Admin SHM](https://github.com/apache/celix/tree/rel/celix-2.1.0/remote_services/remote_service_admin_shm) - A shared memory implementation of the RSA.
-    * [Topology Manager](../../remote_services/topology_manager/README.md) - A (scoped) RSA Topology Manager implementation. 
+    * [Topology Manager](../../remote_services/topology_manager/README.html) - A (scoped) RSA Topology Manager implementation. 
     * [Discovery Configured](https://github.com/apache/celix/tree/rel/celix-2.1.0/remote_services/discovery_configured) - A RSA Discovery implementation using static configuration (xml).
-    * [Discovery Etcd](../../remote_services/discovery_etcd/README.md) - A RSA Discovery implementation using etcd.
+    * [Discovery Etcd](../../remote_services/discovery_etcd/README.html) - A RSA Discovery implementation using etcd.
     * [Discovery SHM](https://github.com/apache/celix/tree/rel/celix-2.1.0/remote_services/discovery_shm) - A RSA Discovery implementation using shared memory.
-* [Shell](../../shell/README.md) - A OSGi shell implementation.
-* [Shell TUI](../../shell_tui/README.md) - A textual UI for the Celix Shell.
-* [Remote Shell](../../remote_shell/README.md) - A remote (telnet) frontend for the Celix shell.
+* [Shell](../../shell/README.html) - A OSGi shell implementation.
+* [Shell TUI](../../shell_tui/README.html) - A textual UI for the Celix Shell.
+* [Remote Shell](../../remote_shell/README.html) - A remote (telnet) frontend for the Celix shell.
 * [Bonjour Shell](https://github.com/apache/celix/tree/rel/celix-2.1.0/shell_bonjour) - A remote (Bonjour / mDNS) frontend for the Celix shell.
-* [Deployment Admin](../../deployment_admin/README.md) - A deployment admin implementation.
-* [Pubsub](../../pubsub/README.md) - An implementation for a publish-subscribe remote services system, that use dfi library for message serialization.
+* [Deployment Admin](../../deployment_admin/README.html) - A deployment admin implementation.
+* [Pubsub](../../pubsub/README.html) - An implementation for a publish-subscribe remote services system, that use dfi library for message serialization.

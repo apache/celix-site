@@ -573,4 +573,4 @@ The suspend strategy has the advantage of reducing locks' usage: of course, susp
 
 ## See also
 
-See the [C++ Dependeny Manager](../../dependency_manager_cxx/readme.md) and [C++ Dependency Manager example](../../examples/dm_example_cxx) for more information and a more complex working example.
+See the [C++ Dependeny Manager](../../dependency_manager_cxx/readme.html) and [C++ Dependency Manager example](../../examples/dm_example_cxx) for more information and a more complex working example.
