@@ -324,7 +324,8 @@ To run a Celix container just select the target from CLion and press Run.
 ## Next
 
 The get a complete overview of the available Celix CMake commands see:
- - [Apache Celix - Celix CMake Commands](../cmake_commands/readme.html)
+
+- [Apache Celix - Celix CMake Commands](../cmake_commands/readme.html)
 
 The idea behind service oriented programming is that functionality is provided and used by abstract service, which hide implementation details.
 For a guide how to provide and use services see

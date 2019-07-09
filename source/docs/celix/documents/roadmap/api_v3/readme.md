@@ -137,6 +137,7 @@ can provide/require services to share/use functionality (bounded)
 and can import / export libraries so share types / routines (bounded)
 
 There are two types of modules
+
  - Library Modules
  - Bundled Modules (aka Bundles)
 

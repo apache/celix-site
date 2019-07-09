@@ -27,5 +27,6 @@ There are several guide to help you get started. The first guide is [Getting Sta
 and this should get you started for your first C and/or C++ bundle.
 
 After that you can extend the example by using services with the following guides:
+
  - [Getting Started: Using Services with C](using_services_with_c.html) 
  - [Getting Started: Using Services with C++](using_services_with_cxx.html). 

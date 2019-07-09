@@ -23,7 +23,7 @@ pygmentsStyle = "emacs"
 enableGitInfo = true
 
 [blackfriday]
-hrefTargetBlank = true
+# hrefTargetBlank = true # We don't want everything opened in a new window
 fractions = false
 
 [frontmatter]

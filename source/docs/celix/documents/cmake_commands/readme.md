@@ -28,6 +28,7 @@ For Apache Celix several cmake command are added to be able to work with Apache 
 
 ## add_celix_bundle
 Add a Celix bundle to the project.  There are three variants:
+
 - With SOURCES the bundle will be created using a list of sources files as input for the bundle activator library.
 - With ACTIVATOR the bundle will be created using the library target or absolute path to existing library as activator library.
 - With no SOURCES or ACTIVATOR a bundle without a activator will be created.
