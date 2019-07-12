@@ -1,10 +1,9 @@
 ---
-layout: celix-md
+type: celix-doc
 title: readme.md
 ---
 
-
-﻿<!--
+<!--
 Licensed to the Apache Software Foundation (ASF) under one or more
 contributor license agreements.  See the NOTICE file distributed with
 this work for additional information regarding copyright ownership.
@@ -138,6 +137,7 @@ can provide/require services to share/use functionality (bounded)
 and can import / export libraries so share types / routines (bounded)
 
 There are two types of modules
+
  - Library Modules
  - Bundled Modules (aka Bundles)
 

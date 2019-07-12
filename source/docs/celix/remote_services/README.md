@@ -1,8 +1,7 @@
 ---
-layout: celix-md
+type: celix-doc
 title: README.md
 ---
-
 
 <!--
 Licensed to the Apache Software Foundation (ASF) under one or more
@@ -91,7 +90,7 @@ Provides a service discovery with preconfigured discovery endpoints, allowing a 
 
 Note that for configured discovery, the "Endpoint Description Extender" XML format defined in the OSGi Remote Service Admin specification (section 122.8 of OSGi Enterprise 5.0.0) is used.
 
-See [etcd discovery](discovery_etcd/README.md)
+See [etcd discovery](discovery_etcd/README.html)
 
 #### etcd discovery 
 
@@ -99,7 +98,7 @@ See [etcd discovery](discovery_etcd/README.md)
 
 Provides a service discovery using etcd distributd key/value store. 
 
-See [etcd discovery](discovery_etcd/README.md)
+See [etcd discovery](discovery_etcd/README.html)
 
 ## Usage
 

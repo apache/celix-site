@@ -1,5 +1,4 @@
 ---
-layout: default
 title: Mailing Lists
 ---
 
@@ -11,11 +10,10 @@ lists are the primary means of communication for people working on Apache projec
 
 **HEADS UP!**
 
-A message sent to a public mailing list cannot be unpublished. Although we might be able to modify our own mail archives, 
+<p class="alert alert-primary">A message sent to a public mailing list cannot be unpublished. Although we might be able to modify our own mail archives, 
 the message is mirrored to a lot of other archiving systems which we do not have under control. Therefore almost 100% 
-of all delete requests are denied. Please make sure you **do not send any potential sensitive information to the mailing list**,
-including passwords, server names, ips and so on.
-{:.alert .alert-primary}
+of all delete requests are denied. Please make sure you <strong>do not send any potential sensitive information to the mailing list</strong>,
+including passwords, server names, ips and so on.</p>
 
 ## Lists
 

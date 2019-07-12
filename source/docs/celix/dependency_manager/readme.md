@@ -1,8 +1,7 @@
 ---
-layout: celix-md
+type: celix-doc
 title: readme.md
 ---
-
 
 <!--
 Licensed to the Apache Software Foundation (ASF) under one or more
@@ -55,6 +54,7 @@ The Dependency Manager consist out of four main parts: `DM (Dependency Manager) 
 ### DM Activator
 
 The `DM Activator` implements a "normal" Celix bundle activator and depends on four functions which needs to be implemented by the user of the Depedency Manager:
+
  - `dm_create` : Should be used to allocated and initialize a dm activator structure. If needed this structure can be used to store object during the lifecycle of the bundle.
  - `dm_init` : Should be used to interact with the `Dependency Manager`. Here a user can components, service dependencies and provided services. 
  - `dm_destroy` : Should be used to deinitialize and deallocate objects created in the `dm_create` function.
@@ -149,5 +149,5 @@ their state, provided interfaces and required interfaces.
 For more information examples please see
 
 - [The Dependency Manager API](public/include): The dependency manager header files
-- [Getting Started: Using Service with C](../documents/getting_started/using_services_with_c.md): A introduction how to work with services using the dependency manager
+- [Getting Started: Using Service with C](../documents/getting_started/using_services_with_c.html): A introduction how to work with services using the dependency manager
 - [Dm example](../examples/dm_example): A DM example.  

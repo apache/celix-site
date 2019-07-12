@@ -1,8 +1,7 @@
 ---
-layout: celix-md
+type: celix-doc
 title: using_services_with_c.md
 ---
-
 
 <!--
 Licensed to the Apache Software Foundation (ASF) under one or more
@@ -613,4 +612,4 @@ The suspend strategy has the advantage of reducing locks' usage: of course, susp
 
 ## See also
 
-See the [C Dependeny Manager](../../dependency_manager/readme.md) and [C Dependency Manager example](../../examples/dm_example) for more information and a more complex working example.
+See the [C Dependeny Manager](../../dependency_manager/readme.html) and [C Dependency Manager example](../../examples/dm_example) for more information and a more complex working example.

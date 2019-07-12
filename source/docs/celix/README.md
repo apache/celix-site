@@ -1,8 +1,7 @@
 ---
-layout: celix-md
+type: celix-doc
 title: README.md
 ---
-
 
 <!--
 Licensed to the Apache Software Foundation (ASF) under one or more
@@ -25,11 +24,11 @@ limitations under the License.
 Apache Celix is an implementation of the OSGi specification adapted to C and C++ (C++11). It is a provides a framework to develop (dynamic) modular software applications using component and/or service-oriented programming.
 
 ## Building
-For information how to build Apache Celix see [Building Apache Celix](documents/building/readme.md)
+For information how to build Apache Celix see [Building Apache Celix](documents/building/readme.html)
 
 ## Introduction to Apache Celix
-For an introduction into Apache Celix see [Apache Celix Intro](documents/intro/readme.md)
+For an introduction into Apache Celix see [Apache Celix Intro](documents/intro/readme.html)
 
 ## Getting Started with Apache Celix
-For a guide how to start writing your own bundles and services see [Getting Started Guide](documents/getting_started/readme.md)
+For a guide how to start writing your own bundles and services see [Getting Started Guide](documents/getting_started/readme.html)
 

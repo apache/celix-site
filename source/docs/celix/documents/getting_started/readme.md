@@ -1,8 +1,7 @@
 ---
-layout: celix-md
+type: celix-doc
 title: readme.md
 ---
-
 
 <!--
 Licensed to the Apache Software Foundation (ASF) under one or more
@@ -24,9 +23,10 @@ limitations under the License.
 # Apache Celix - Getting Started Guide
 
 ## Guides
-There are several guide to help you get started. The first guide is [Getting Started: Creating a simple bundle](creating_a_simple_bundle.md) 
+There are several guide to help you get started. The first guide is [Getting Started: Creating a simple bundle](creating_a_simple_bundle.html) 
 and this should get you started for your first C and/or C++ bundle.
 
 After that you can extend the example by using services with the following guides:
- - [Getting Started: Using Services with C](using_services_with_c.md) 
- - [Getting Started: Using Services with C++](using_services_with_cxx.md). 
+
+ - [Getting Started: Using Services with C](using_services_with_c.html) 
+ - [Getting Started: Using Services with C++](using_services_with_cxx.html). 

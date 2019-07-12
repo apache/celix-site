@@ -1,8 +1,7 @@
 ---
-layout: celix-md
+type: celix-doc
 title: readme.md
 ---
-
 
 <!--
 Licensed to the Apache Software Foundation (ASF) under one or more
@@ -129,7 +128,7 @@ Consumers can dynamically lookup the services providing a filter to specify what
 ## C services in Apache Celix
 As mentioned OSGi uses Java Interfaces to define a service. Since C does not have Interfaces as compilable unit, this is not possible for Celix.  To be able to define a service which hides implementation details, Celix uses structs with function pointers.
  
-See [Apache Celix - Getting Started Guide](https://github.com/apache/celix/blob/master/documents/getting_started/readme.md) for a more in depth look at services and service usage.
+See [Apache Celix - Getting Started Guide](https://github.com/apache/celix/blob/master/documents/getting_started/readme.html) for a more in depth look at services and service usage.
  
 ## Impact of dynamic services
 Services in Apache Celix are dynamic, meaning that they can come and go at any moment. 
@@ -143,20 +142,20 @@ Apache Celix offers different solutions how to cope with this dynamic behaviour:
 * Bundle Context & Service References  - This (low level) [API](../../framework/public/include/bundle_context.h) exists to be compatible with the OSGi standard. This should not be used in production code, because no locking/syncing mechanisms are available.   
 * Service Listener - This (log level) [API](../../framework/public/include/service_listener.h) can be used to retrieve event when services are being removed or are added. Combined with locking this can be used to safely monitor and use services. 
 * Service Tracker - This [API](../../framework/public/include/service_tracker.h) can be used to register callbacks function when services are being removed or are added. Combined with locking this can be used to safely use services.
-* [Dependency Manager](../../dependency_manager/readme.md) - This library can be used to add service dependency is a declarative way.  A locking or syncing mechanism can be selected to safely use services. Note that this is not part of the OSGi standard.
+* [Dependency Manager](../../dependency_manager/readme.html) - This library can be used to add service dependency is a declarative way.  A locking or syncing mechanism can be selected to safely use services. Note that this is not part of the OSGi standard.
 
 Even though the dependency manager is not part of the OSGi specification, this is the preferred way because it uses a higher abstraction and removes a lot boilerplate code. 
 
 ## C++ Support
 
 One of the reasons why C was chosen as implementation language is that C can act as a common denominator for (service oriented) interoperability between a range of languages.
-C++ support is added with the use of a [C++ Dependency Manager](../../dependency_manager_cxx/readme.md).
+C++ support is added with the use of a [C++ Dependency Manager](../../dependency_manager_cxx/readme.html).
 The Dependency Manager is arguably the most convenient way to interact with services, confers most uses cases and eliminates the necessity to port the rest of the (large) API to C++.
 
 ## Documentation
 
 For more information see:
 
-* [Apache Celix - Building and Installing] (../building/readme.md)
-* [Apache Celix - Getting Started Guide](../getting_started/readme.md)
-* [Apache Celix - CMake Commands](../cmake_commands/readme.md)
+* [Apache Celix - Building and Installing] (../building/readme.html)
+* [Apache Celix - Getting Started Guide](../getting_started/readme.html)
+* [Apache Celix - CMake Commands](../cmake_commands/readme.html)

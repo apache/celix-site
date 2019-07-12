@@ -1,8 +1,7 @@
 ---
-layout: celix-md
+type: celix-doc
 title: Design.md
 ---
-
 
 ## High level
 	

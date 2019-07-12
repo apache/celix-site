@@ -15,9 +15,7 @@ See the License for the specific language governing permissions and
 limitations under the License.
 -->
 # Apache Celix website
-The updated Celix website is still under construction and not live yet.
-
-This is source code for the website of [Apache Celix](https://celix.apache.org/), hosted at:
+This is the source code for the website of [Apache Celix](https://celix.apache.org/), hosted at:
 
     https://celix.apache.org/
 
@@ -30,8 +28,8 @@ When contributing patches, apply them to the `master` branch. Jenkins will then 
 and commit the changes to the `asf-site` branch.
 
 ## Content Management System
-The Celix website uses Jekyll as static website generator. 
-See [Jekyll](https://jekyllrb.com/) for more info and for details how to install Jekyll.
+The Celix website uses Hugo as static website generator. 
+See [Hugo](https://gohugo.io/) for more info and for details how to install Hugo.
 
 ## Generate the website
 
@@ -46,10 +44,10 @@ TODO
 
 ### Generate the static website
 
-To generate the static website, execute `run.sh` to generate and serve the website on `localhost:4000`.
+To generate the static website, execute `hugo` to generate and serve the website on `localhost:1313`.
 
-During development, it may be useful to run an incremental build. For this to work, execute `run_incremental.sh` to 
-continuously generate and serve the website on `localhost:4000`.
+During development, it may be useful to run an incremental build. For this to work, execute `hugo server -D` to 
+continuously generate and serve the website on `localhost:1313`.
 
 ## Publish the website
 

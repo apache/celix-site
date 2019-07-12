@@ -18,14 +18,28 @@
 # A script to extract all markdown files from the Celix main repository
 # and copies them to the path specified in ${site_doc_dir}
 
-celix_src_dir=celix-src
-site_doc_dir=source/docs/celix
+CELIX_SRC_DIR=celix-src
+CELIX_DOC_DIR=source/docs/celix
 
-rm -rf ${site_doc_dir}/*
+rm -rf ${CELIX_DOC_DIR}/*
 
-for file in `cd ${celix_src_dir}; find . -name \*.md`
-do
-    file_dir="`dirname ${file}`"
-    mkdir -p ${site_doc_dir}/${file_dir}
-    cp -v ${celix_src_dir}/${file} ${site_doc_dir}/${file_dir}
+for FILE_PATH in $(cd ${CELIX_SRC_DIR}; find . -name \*.md); do
+    # Retrieve file information
+    FILE_DIR="$(dirname ${FILE_PATH})"
+    FILE_NAME="$(basename ${FILE_PATH})"
+
+    # Copy markdown file to site destination
+    mkdir -p ${CELIX_DOC_DIR}/${FILE_DIR}
+    cp -v ${CELIX_SRC_DIR}/${FILE_PATH} ${CELIX_DOC_DIR}/${FILE_DIR}
+
+    # Prepend markdown file with Hugo header
+    DEST_FILE=${CELIX_DOC_DIR}/${FILE_PATH}
+    SECOND_LINE=$(head -n 2 ${DEST_FILE} | tail -n 1)
+
+    if [[ "${SECOND_LINE}" != *"type: celix-doc"* ]]; then
+        sed -i "1s;^;---\ntype: celix-doc\ntitle: ${FILE_NAME}\n---\n\n;" ${DEST_FILE}
+    fi
+
+    # Replace markdown links with HTML links
+    sed -i "s/.md)/.html)/" ${DEST_FILE}
 done

@@ -1,8 +1,7 @@
 ---
-layout: celix-md
+type: celix-doc
 title: FAQ.md
 ---
-
 
 
 ### Why isn't pthread_exit() used to exit a thread?
