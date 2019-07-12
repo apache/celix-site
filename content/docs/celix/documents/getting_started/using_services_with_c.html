@@ -1,19 +1,4 @@
-<!--
-Licensed to the Apache Software Foundation (ASF) under one or more
-contributor license agreements.  See the NOTICE file distributed with
-this work for additional information regarding copyright ownership.
-The ASF licenses this file to You under the Apache License, Version 2.0
-(the "License"); you may not use this file except in compliance with
-the License.  You may obtain a copy of the License at
 
-    http://www.apache.org/licenses/LICENSE-2.0
-
-Unless required by applicable law or agreed to in writing, software
-distributed under the License is distributed on an "AS IS" BASIS,
-WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-See the License for the specific language governing permissions and
-limitations under the License.
--->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -24,10 +9,13 @@ limitations under the License.
 
     <title>using_services_with_c.md / Apache Celix</title>
 
-    <!-- Bootstrap core CSS -->
+    
+    <link rel="icon" href="/assets/img/favicon.ico">
+
+    
     <link href="/assets/css/bootstrap.min.css" rel="stylesheet">
 
-    <!-- Custom style -->
+    
     <link href="/assets/css/style.css" rel="stylesheet">
 </head>
 <body class="light-grey">
@@ -36,7 +24,7 @@ limitations under the License.
     <img src="/assets/img/forkme_right_red_aa0000.png" alt="Fork me on GitHub">
 </a>
 
-<!-- Navigation -->
+
 <nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top">
     <div class="container">
         <a class="navbar-brand" href="/">
@@ -54,7 +42,7 @@ limitations under the License.
                     <a class="nav-link" href="/download.cgi">Download</a>
                 </li>
                 <li class="nav-item active">
-                    <a class="nav-link" href="/docs/">Docs</a>
+                    <a class="nav-link" href="/docs/docs.html">Docs</a>
                 </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="ddCommunity" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -101,10 +89,14 @@ limitations under the License.
         <div class="row py-4">
             <div class="col-sm-12 card">
                 <div class="card-body pt-5">
-                    <a class="edit-on-gh" href="https://github.com/apache/celix/edit/develop/documents/getting_started/using_services_with_c.md" title="Edit this page on GitHub">Edit on GitHub</a>
-                    <a href="/docs/" title="back to documentation">&lt;&lt; back to documentation</a>
+                     
+                    <a class="edit-on-gh" href="https://github.com/apache/celix/edit/develop/docs/celix/documents/getting_started/using_services_with_c.md" title="Edit this page on GitHub">Edit on GitHub</a>
+                    <a href="/docs/docs.html" title="back to documentation">&lt;&lt; back to documentation</a>
 
-                    <!--
+                    
+	
+
+<!--
 Licensed to the Apache Software Foundation (ASF) under one or more
 contributor license agreements.  See the NOTICE file distributed with
 this work for additional information regarding copyright ownership.
@@ -121,7 +113,7 @@ See the License for the specific language governing permissions and
 limitations under the License.
 -->
 
-<h1 id="apache-celix---using-services-with-c">Apache Celix - Using Services with C</h1>
+<h1 id="apache-celix-using-services-with-c">Apache Celix - Using Services with C</h1>
 
 <h2 id="intro">Intro</h2>
 
@@ -132,43 +124,39 @@ limitations under the License.
 <p>To start of, C services in Celix are just a pointer to a memory location registered in the service registry using a name and an optional set of key/value pairs.</p>
 
 <p>By convention use the following service layout:</p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-C" data-lang="C"><span style="color:#080;font-style:italic">//example.h
+</span><span style="color:#080;font-style:italic"></span><span style="color:#080">#ifndef EXAMPLE_H_
+</span><span style="color:#080">#define EXAMPLE_H_
+</span><span style="color:#080"></span>
+<span style="color:#080">#define EXAMPLE_NAME            &#34;org.example&#34;
+</span><span style="color:#080">#define EXAMPLE_VERSION         &#34;1.0.0&#34;
+</span><span style="color:#080">#define EXAMPLE_CONSUMER_RANGE  &#34;[1.0.0,2.0.0)&#34;
+</span><span style="color:#080"></span>
 
-<pre><code class="language-C">//example.h
-#ifndef EXAMPLE_H_
-#define EXAMPLE_H_
-
-#define EXAMPLE_NAME            "org.example"
-#define EXAMPLE_VERSION         "1.0.0"
-#define EXAMPLE_CONSUMER_RANGE  "[1.0.0,2.0.0)"
-
-
-struct example_struct {
-	void *handle;
-	int (*method)(void *handle, int arg1, double arg2, double *result);
+<span style="color:#a2f;font-weight:bold">struct</span> example_struct {
+	<span style="color:#0b0;font-weight:bold">void</span> <span style="color:#666">*</span>handle;
+	<span style="color:#0b0;font-weight:bold">int</span> (<span style="color:#666">*</span>method)(<span style="color:#0b0;font-weight:bold">void</span> <span style="color:#666">*</span>handle, <span style="color:#0b0;font-weight:bold">int</span> arg1, <span style="color:#0b0;font-weight:bold">double</span> arg2, <span style="color:#0b0;font-weight:bold">double</span> <span style="color:#666">*</span>result);
 } ;
 
-typedef struct example_struct example_t;
+<span style="color:#a2f;font-weight:bold">typedef</span> <span style="color:#a2f;font-weight:bold">struct</span> example_struct example_t;
 
-#endif /* EXAMPLE_H_ */
-
-</code></pre>
-
+<span style="color:#080">#endif </span><span style="color:#080;font-style:italic">/* EXAMPLE_H_ */</span></code></pre></div>
 <p>For a Celix service a service name, service provider version and service consumer range should be declared.
 This is explicitly done with macros to prevent symbols so to that no linking dependencies are introduced.</p>
 
 <p>Then the actual struct for the service needs to be declared.
 The first element of the service struct should be a handle which can be used to store the service context, as convention we keep this pointer a void pointer to explicitly make it opaque.
-Note that also an opaque struct could be used (e.g a declared but not defined struct), but this can become problematic concerning components registering multiple services. 
+Note that also an opaque struct could be used (e.g a declared but not defined struct), but this can become problematic concerning components registering multiple services.
 In that case explicit cast are needed to prevent warning and this can be confusing for the To prevent that issues void pointers are preferred.</p>
 
-<p>The rest of the element should be function pointers, which by convention should return an celix_status_t or int (which is technically the same). 
+<p>The rest of the element should be function pointers, which by convention should return an celix_status_t or int (which is technically the same).
 The return value is used as a way of handling errors and is also needed to be able to make remote services (e.g. to be able to handle remote exceptions).</p>
 
 <p>The first argument of a service function should be the service handle and if there is a result the last argument should be a output parameter (either pre allocated (e.g. double *) or not (e.g. double <strong>)).
-If the caller is not the owner of the output argument, a const pointer should be used (e.g. const char</strong>). 
+If the caller is not the owner of the output argument, a const pointer should be used (e.g. const char</strong>).
 It is also possible to create typedef of the pointer to the service struct (e.g. typedef struct example_struct example_t), but this is not needed.</p>
 
-<p>In the Celix code base there are still service which uses a typedef with a pointer (e.g. typedef struct example_struct* example_struct_pt). This should be avoided, 
+<p>In the Celix code base there are still service which uses a typedef with a pointer (e.g. typedef struct example_struct* example_struct_pt). This should be avoided,
 because it is not possible to create the const pointer of those typedefs and it is not possible to include those typedef inside a existing struct without the needed for an additional malloc.</p>
 
 <h3 id="semantic-versioning">Semantic Versioning</h3>
@@ -179,29 +167,29 @@ because it is not possible to create the const pointer of those typedefs and it 
 For a C Service versioning is used to express binary compatibility (for the same platform / compiler), change that are incompatible are:</p>
 
 <ul>
-  <li>Removing a function</li>
-  <li>Adding a function to before any other function</li>
-  <li>Moving a function to an other location in the service struct</li>
-  <li>Changing the signature of a function</li>
-  <li>Changing the semantics of a argument (e.g. changing range input from “range in kilometer” to “range in meters”)</li>
+<li>Removing a function</li>
+<li>Adding a function to before any other function</li>
+<li>Moving a function to an other location in the service struct</li>
+<li>Changing the signature of a function</li>
+<li>Changing the semantics of a argument (e.g. changing range input from &ldquo;range in kilometer&rdquo; to &ldquo;range in meters&rdquo;)</li>
 </ul>
 
 <p>A backwards binary compatible change which extend the functionality should lead to a minor version increase (e.g. 1.0.0 -&gt; 1.1.0).
 Changes considered backwards compatible which extend the functionality are:</p>
 
 <ul>
-  <li>Adding a function to the back of the service struct</li>
+<li>Adding a function to the back of the service struct</li>
 </ul>
 
 <p>A backwards binary compatible change which does not extend the functionality should lead to a micro version increase (e.g. 1.0.0 -&gt; 1.0.1).
 Changes considered backwards binary compatible which does not extend the functionality are:</p>
 
 <ul>
-  <li>Changes in the documentation</li>
-  <li>Renaming of arguments</li>
+<li>Changes in the documentation</li>
+<li>Renaming of arguments</li>
 </ul>
 
-<p>For C services generally platform specific calling convention are used therefore binary compatibility between service provider and consumers from different compilers is possible (e.g. gcc and clang), 
+<p>For C services generally platform specific calling convention are used therefore binary compatibility between service provider and consumers from different compilers is possible (e.g. gcc and clang),
  but not advisable</p>
 
 <h2 id="components">Components</h2>
@@ -209,11 +197,11 @@ Changes considered backwards binary compatible which does not extend the functio
 <p>Component should use the ADT principle (see <a href="http://inst.eecs.berkeley.edu/~selfpace/studyguide/9C.sg/Output/ADTs.in.C.html">ADT in C</a>).
 Note that is a convention.</p>
 
-<p>Components should have a <code class="highlighter-rouge">&lt;cmpName&gt;_create</code> and <code class="highlighter-rouge">&lt;cmpName&gt;_destroy</code> function.
-Components can have a <code class="highlighter-rouge">&lt;cmpName&gt;_start</code> and <code class="highlighter-rouge">&lt;cmpName&gt;_stop</code> function to start/stop threads or invoke functionality needed a fully created component. 
+<p>Components should have a <code>&lt;cmpName&gt;_create</code> and <code>&lt;cmpName&gt;_destroy</code> function.
+Components can have a <code>&lt;cmpName&gt;_start</code> and <code>&lt;cmpName&gt;_stop</code> function to start/stop threads or invoke functionality needed a fully created component.
 The start function will only be called if all required service are available and the stop function will be called when some required are going or if the component needs to be stopped.</p>
 
-<p>Components can also have a <code class="highlighter-rouge">&lt;cmpName&gt;_init</code> and <code class="highlighter-rouge">&lt;cmpName&gt;_deinit</code> function which will be called before and after respectively the start and stop function. 
+<p>Components can also have a <code>&lt;cmpName&gt;_init</code> and <code>&lt;cmpName&gt;_deinit</code> function which will be called before and after respectively the start and stop function.
 The init/deinit function can be used to include (de)initialization which is not needed/wanted every time when service dependencies are being removed/added.</p>
 
 <h2 id="code-examples">Code Examples</h2>
@@ -225,488 +213,460 @@ The complete example can be found <a href="../../examples/services_example_c">he
 
 <h3 id="bar-example">Bar example</h3>
 
-<p>The bar example is a simple component providing the <code class="highlighter-rouge">example</code> service.</p>
+<p>The bar example is a simple component providing the <code>example</code> service.</p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-C" data-lang="C"><span style="color:#080;font-style:italic">//bar.h
+</span><span style="color:#080;font-style:italic"></span><span style="color:#080">#ifndef BAR_H_
+</span><span style="color:#080">#define BAR_H_
+</span><span style="color:#080"></span>
+<span style="color:#080">#include</span> <span style="color:#080">&#34;example.h&#34;</span><span style="color:#080">
+</span><span style="color:#080"></span>
+<span style="color:#a2f;font-weight:bold">typedef</span> <span style="color:#a2f;font-weight:bold">struct</span> bar_struct bar_t;
 
-<pre><code class="language-C">//bar.h
-#ifndef BAR_H_
-#define BAR_H_
+bar_t<span style="color:#666">*</span> <span style="color:#00a000">bar_create</span>(<span style="color:#0b0;font-weight:bold">void</span>);
+<span style="color:#0b0;font-weight:bold">void</span> <span style="color:#00a000">bar_destroy</span>(bar_t <span style="color:#666">*</span>self);
 
-#include "example.h"
+<span style="color:#0b0;font-weight:bold">int</span> <span style="color:#00a000">bar_method</span>(bar_t <span style="color:#666">*</span>self, <span style="color:#0b0;font-weight:bold">int</span> arg1, <span style="color:#0b0;font-weight:bold">double</span> arg2, <span style="color:#0b0;font-weight:bold">double</span> <span style="color:#666">*</span>out);
 
-typedef struct bar_struct bar_t;
-
-bar_t* bar_create(void);
-void bar_destroy(bar_t *self);
-
-int bar_method(bar_t *self, int arg1, double arg2, double *out);
-
-#endif //BAR_H_
-</code></pre>
-
-<pre><code class="language-C">//bar.c
-#define OK 0
-#define ERROR 1
-
-struct bar_struct {
-    double prefValue;
+<span style="color:#080">#endif //BAR_H_</span></code></pre></div><div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-C" data-lang="C"><span style="color:#080;font-style:italic">//bar.c
+</span><span style="color:#080;font-style:italic"></span><span style="color:#080">#define OK 0
+</span><span style="color:#080">#define ERROR 1
+</span><span style="color:#080"></span>
+<span style="color:#a2f;font-weight:bold">struct</span> bar_struct {
+    <span style="color:#0b0;font-weight:bold">double</span> prefValue;
 };
 
-bar_t* bar_create(void) {
-    bar_t *self = calloc(1, sizeof(*self));
-    if (self != NULL) {
-        self-&gt;prefValue = 42;
-    } else {
-        //log error
-    }
-    return self;
+bar_t<span style="color:#666">*</span> <span style="color:#00a000">bar_create</span>(<span style="color:#0b0;font-weight:bold">void</span>) {
+    bar_t <span style="color:#666">*</span>self <span style="color:#666">=</span> calloc(<span style="color:#666">1</span>, <span style="color:#a2f;font-weight:bold">sizeof</span>(<span style="color:#666">*</span>self));
+    <span style="color:#a2f;font-weight:bold">if</span> (self <span style="color:#666">!=</span> <span style="color:#a2f">NULL</span>) {
+        self<span style="color:#666">-&gt;</span>prefValue <span style="color:#666">=</span> <span style="color:#666">42</span>;
+    } <span style="color:#a2f;font-weight:bold">else</span> {
+        <span style="color:#080;font-style:italic">//log error
+</span><span style="color:#080;font-style:italic"></span>    }
+    <span style="color:#a2f;font-weight:bold">return</span> self;
 };
 
-void bar_destroy(bar_t *self) {
+<span style="color:#0b0;font-weight:bold">void</span> <span style="color:#00a000">bar_destroy</span>(bar_t <span style="color:#666">*</span>self) {
     free(self);
 }
 
-int bar_method(bar_t *self, int arg1, double arg2, double *out) {
-    double update = (self-&gt;prefValue + arg1) * arg2;
-    self-&gt;prefValue = update;
-    *out = update;
-    return OK;
-}
-</code></pre>
-
-<pre><code class="language-C">//bar_activator.c
-#include "dm_activator.h"
-#include "bar.h"
-
-#include &lt;stdlib.h&gt;
-
-struct activator {
-	bar_t *bar;
+<span style="color:#0b0;font-weight:bold">int</span> <span style="color:#00a000">bar_method</span>(bar_t <span style="color:#666">*</span>self, <span style="color:#0b0;font-weight:bold">int</span> arg1, <span style="color:#0b0;font-weight:bold">double</span> arg2, <span style="color:#0b0;font-weight:bold">double</span> <span style="color:#666">*</span>out) {
+    <span style="color:#0b0;font-weight:bold">double</span> update <span style="color:#666">=</span> (self<span style="color:#666">-&gt;</span>prefValue <span style="color:#666">+</span> arg1) <span style="color:#666">*</span> arg2;
+    self<span style="color:#666">-&gt;</span>prefValue <span style="color:#666">=</span> update;
+    <span style="color:#666">*</span>out <span style="color:#666">=</span> update;
+    <span style="color:#a2f;font-weight:bold">return</span> OK;
+}</code></pre></div><div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-C" data-lang="C"><span style="color:#080;font-style:italic">//bar_activator.c
+</span><span style="color:#080;font-style:italic"></span><span style="color:#080">#include</span> <span style="color:#080">&#34;dm_activator.h&#34;</span><span style="color:#080">
+</span><span style="color:#080">#include</span> <span style="color:#080">&#34;bar.h&#34;</span><span style="color:#080">
+</span><span style="color:#080"></span>
+<span style="color:#080">#include</span> <span style="color:#080">&lt;stdlib.h&gt;</span><span style="color:#080">
+</span><span style="color:#080"></span>
+<span style="color:#a2f;font-weight:bold">struct</span> activator {
+	bar_t <span style="color:#666">*</span>bar;
 	example_t exampleService;
 };
 
-celix_status_t dm_create(bundle_context_pt context, void **userData) {
-    celix_status_t status = CELIX_SUCCESS;
-    struct activator *act = calloc(1, sizeof(*act));
-    if (act != NULL) {
+celix_status_t <span style="color:#00a000">dm_create</span>(bundle_context_pt context, <span style="color:#0b0;font-weight:bold">void</span> <span style="color:#666">**</span>userData) {
+    celix_status_t status <span style="color:#666">=</span> CELIX_SUCCESS;
+    <span style="color:#a2f;font-weight:bold">struct</span> activator <span style="color:#666">*</span>act <span style="color:#666">=</span> calloc(<span style="color:#666">1</span>, <span style="color:#a2f;font-weight:bold">sizeof</span>(<span style="color:#666">*</span>act));
+    <span style="color:#a2f;font-weight:bold">if</span> (act <span style="color:#666">!=</span> <span style="color:#a2f">NULL</span>) {
 
-        act-&gt;bar = bar_create();
-        act-&gt;exampleService.handle = act-&gt;bar;
-        act-&gt;exampleService.method = (void*) bar_method;
+        act<span style="color:#666">-&gt;</span>bar <span style="color:#666">=</span> bar_create();
+        act<span style="color:#666">-&gt;</span>exampleService.handle <span style="color:#666">=</span> act<span style="color:#666">-&gt;</span>bar;
+        act<span style="color:#666">-&gt;</span>exampleService.method <span style="color:#666">=</span> (<span style="color:#0b0;font-weight:bold">void</span><span style="color:#666">*</span>) bar_method;
 
-        if (act-&gt;bar != NULL) {
-            *userData = act;
-        } else {
+        <span style="color:#a2f;font-weight:bold">if</span> (act<span style="color:#666">-&gt;</span>bar <span style="color:#666">!=</span> <span style="color:#a2f">NULL</span>) {
+            <span style="color:#666">*</span>userData <span style="color:#666">=</span> act;
+        } <span style="color:#a2f;font-weight:bold">else</span> {
             free(act);
         }
-    } else {
-        status = CELIX_ENOMEM;
+    } <span style="color:#a2f;font-weight:bold">else</span> {
+        status <span style="color:#666">=</span> CELIX_ENOMEM;
 	}
-	return status;
+	<span style="color:#a2f;font-weight:bold">return</span> status;
 }
 
-celix_status_t dm_init(void *userData, bundle_context_pt context, dm_dependency_manager_pt manager) {
-    celix_status_t status = CELIX_SUCCESS;
-    struct activator *activator = userData;
+celix_status_t <span style="color:#00a000">dm_init</span>(<span style="color:#0b0;font-weight:bold">void</span> <span style="color:#666">*</span>userData, bundle_context_pt context, dm_dependency_manager_pt manager) {
+    celix_status_t status <span style="color:#666">=</span> CELIX_SUCCESS;
+    <span style="color:#a2f;font-weight:bold">struct</span> activator <span style="color:#666">*</span>activator <span style="color:#666">=</span> userData;
 
-    dm_component_pt cmp = NULL;
-    component_create(context, "BAR", &amp;cmp);
-    component_setImplementation(cmp, activator-&gt;bar);
-    component_addInterface(cmp, EXAMPLE_NAME, EXAMPLE_VERSION, &amp;activator-&gt;exampleService, NULL);
+    dm_component_pt cmp <span style="color:#666">=</span> <span style="color:#a2f">NULL</span>;
+    component_create(context, <span style="color:#b44">&#34;BAR&#34;</span>, <span style="color:#666">&amp;</span>cmp);
+    component_setImplementation(cmp, activator<span style="color:#666">-&gt;</span>bar);
+    component_addInterface(cmp, EXAMPLE_NAME, EXAMPLE_VERSION, <span style="color:#666">&amp;</span>activator<span style="color:#666">-&gt;</span>exampleService, <span style="color:#a2f">NULL</span>);
 
     dependencyManager_add(manager, cmp);
-    return status;
+    <span style="color:#a2f;font-weight:bold">return</span> status;
 }
 
-celix_status_t dm_destroy(void *userData, bundle_context_pt context, dm_dependency_manager_pt manager) {
-    celix_status_t status = CELIX_SUCCESS;
-    struct activator *activator = userData;
-    bar_destroy(activator-&gt;bar);
+celix_status_t <span style="color:#00a000">dm_destroy</span>(<span style="color:#0b0;font-weight:bold">void</span> <span style="color:#666">*</span>userData, bundle_context_pt context, dm_dependency_manager_pt manager) {
+    celix_status_t status <span style="color:#666">=</span> CELIX_SUCCESS;
+    <span style="color:#a2f;font-weight:bold">struct</span> activator <span style="color:#666">*</span>activator <span style="color:#666">=</span> userData;
+    bar_destroy(activator<span style="color:#666">-&gt;</span>bar);
     free(activator);
-    return status;
-};
-</code></pre>
-
+    <span style="color:#a2f;font-weight:bold">return</span> status;
+};</code></pre></div>
 <h3 id="foo1-example">Foo1 example</h3>
 
 <p>The Foo1 example shows how add a service dependency, implement the callback, invoke a service and how to protect the usage of service with use of a mutex.</p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-C" data-lang="C"><span style="color:#080;font-style:italic">//foo1.h
+</span><span style="color:#080;font-style:italic"></span><span style="color:#080">#ifndef FOO1_H_
+</span><span style="color:#080">#define FOO1_H_
+</span><span style="color:#080"></span>
+<span style="color:#080">#include</span> <span style="color:#080">&#34;example.h&#34;</span><span style="color:#080">
+</span><span style="color:#080"></span>
+<span style="color:#a2f;font-weight:bold">typedef</span> <span style="color:#a2f;font-weight:bold">struct</span> foo1_struct foo1_t;
 
-<pre><code class="language-C">//foo1.h
-#ifndef FOO1_H_
-#define FOO1_H_
+foo1_t<span style="color:#666">*</span> <span style="color:#00a000">foo1_create</span>(<span style="color:#0b0;font-weight:bold">void</span>);
+<span style="color:#0b0;font-weight:bold">void</span> <span style="color:#00a000">foo1_destroy</span>(foo1_t <span style="color:#666">*</span>self);
 
-#include "example.h"
+<span style="color:#0b0;font-weight:bold">int</span> <span style="color:#00a000">foo1_start</span>(foo1_t <span style="color:#666">*</span>self);
+<span style="color:#0b0;font-weight:bold">int</span> <span style="color:#00a000">foo1_stop</span>(foo1_t <span style="color:#666">*</span>self);
 
-typedef struct foo1_struct foo1_t;
-
-foo1_t* foo1_create(void);
-void foo1_destroy(foo1_t *self);
-
-int foo1_start(foo1_t *self);
-int foo1_stop(foo1_t *self);
-
-int foo1_setExample(foo1_t *self, const example_t *example);
-
-
-#endif //FOO1_H_
-</code></pre>
-
-<pre><code class="language-C">//foo1.c
-#include "foo1.h"
-
-#include &lt;stdio.h&gt;
-#include &lt;stdlib.h&gt;
-#include &lt;unistd.h&gt;
-#include &lt;string.h&gt;
-#include &lt;signal.h&gt;
-#include &lt;stdbool.h&gt;
-#include &lt;pthread.h&gt;
-#include &lt;assert.h&gt;
+<span style="color:#0b0;font-weight:bold">int</span> <span style="color:#00a000">foo1_setExample</span>(foo1_t <span style="color:#666">*</span>self, <span style="color:#a2f;font-weight:bold">const</span> example_t <span style="color:#666">*</span>example);
 
 
-#define OK 0
-#define ERROR 1
+<span style="color:#080">#endif //FOO1_H_</span></code></pre></div><div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-C" data-lang="C"><span style="color:#080;font-style:italic">//foo1.c
+</span><span style="color:#080;font-style:italic"></span><span style="color:#080">#include</span> <span style="color:#080">&#34;foo1.h&#34;</span><span style="color:#080">
+</span><span style="color:#080"></span>
+<span style="color:#080">#include</span> <span style="color:#080">&lt;stdio.h&gt;</span><span style="color:#080">
+</span><span style="color:#080">#include</span> <span style="color:#080">&lt;stdlib.h&gt;</span><span style="color:#080">
+</span><span style="color:#080">#include</span> <span style="color:#080">&lt;unistd.h&gt;</span><span style="color:#080">
+</span><span style="color:#080">#include</span> <span style="color:#080">&lt;string.h&gt;</span><span style="color:#080">
+</span><span style="color:#080">#include</span> <span style="color:#080">&lt;signal.h&gt;</span><span style="color:#080">
+</span><span style="color:#080">#include</span> <span style="color:#080">&lt;stdbool.h&gt;</span><span style="color:#080">
+</span><span style="color:#080">#include</span> <span style="color:#080">&lt;pthread.h&gt;</span><span style="color:#080">
+</span><span style="color:#080">#include</span> <span style="color:#080">&lt;assert.h&gt;</span><span style="color:#080">
+</span><span style="color:#080"></span>
 
-static void* foo1_thread(void*);
+<span style="color:#080">#define OK 0
+</span><span style="color:#080">#define ERROR 1
+</span><span style="color:#080"></span>
+<span style="color:#a2f;font-weight:bold">static</span> <span style="color:#0b0;font-weight:bold">void</span><span style="color:#666">*</span> <span style="color:#00a000">foo1_thread</span>(<span style="color:#0b0;font-weight:bold">void</span><span style="color:#666">*</span>);
 
-struct foo1_struct {
-    const example_t *example;
-    pthread_mutex_t mutex; //protecting example
-    pthread_t thread;
-    bool running;
+<span style="color:#a2f;font-weight:bold">struct</span> foo1_struct {
+    <span style="color:#a2f;font-weight:bold">const</span> example_t <span style="color:#666">*</span>example;
+    pthread_mutex_t mutex; <span style="color:#080;font-style:italic">//protecting example
+</span><span style="color:#080;font-style:italic"></span>    pthread_t <span style="color:#a2f;font-weight:bold">thread</span>;
+    <span style="color:#0b0;font-weight:bold">bool</span> running;
 };
 
-foo1_t* foo1_create(void) {
-    foo1_t *self = calloc(1, sizeof(*self));
-    if (self != NULL) {
-        pthread_mutex_init(&amp;self-&gt;mutex, NULL);
-        self-&gt;running = false;
-    } else {
-        //log error
-    }
-    return self;
+foo1_t<span style="color:#666">*</span> <span style="color:#00a000">foo1_create</span>(<span style="color:#0b0;font-weight:bold">void</span>) {
+    foo1_t <span style="color:#666">*</span>self <span style="color:#666">=</span> calloc(<span style="color:#666">1</span>, <span style="color:#a2f;font-weight:bold">sizeof</span>(<span style="color:#666">*</span>self));
+    <span style="color:#a2f;font-weight:bold">if</span> (self <span style="color:#666">!=</span> <span style="color:#a2f">NULL</span>) {
+        pthread_mutex_init(<span style="color:#666">&amp;</span>self<span style="color:#666">-&gt;</span>mutex, <span style="color:#a2f">NULL</span>);
+        self<span style="color:#666">-&gt;</span>running <span style="color:#666">=</span> <span style="color:#a2f">false</span>;
+    } <span style="color:#a2f;font-weight:bold">else</span> {
+        <span style="color:#080;font-style:italic">//log error
+</span><span style="color:#080;font-style:italic"></span>    }
+    <span style="color:#a2f;font-weight:bold">return</span> self;
 };
 
-void foo1_destroy(foo1_t *self) {
-    assert(!self-&gt;running);
-    pthread_mutex_destroy(&amp;self-&gt;mutex);
+<span style="color:#0b0;font-weight:bold">void</span> <span style="color:#00a000">foo1_destroy</span>(foo1_t <span style="color:#666">*</span>self) {
+    assert(<span style="color:#666">!</span>self<span style="color:#666">-&gt;</span>running);
+    pthread_mutex_destroy(<span style="color:#666">&amp;</span>self<span style="color:#666">-&gt;</span>mutex);
     free(self);
 }
 
-int foo1_start(foo1_t *self) {
-    self-&gt;running = true;
-    pthread_create(&amp;self-&gt;thread, NULL, foo1_thread, self);
-    return OK;
+<span style="color:#0b0;font-weight:bold">int</span> <span style="color:#00a000">foo1_start</span>(foo1_t <span style="color:#666">*</span>self) {
+    self<span style="color:#666">-&gt;</span>running <span style="color:#666">=</span> <span style="color:#a2f">true</span>;
+    pthread_create(<span style="color:#666">&amp;</span>self<span style="color:#666">-&gt;</span><span style="color:#a2f;font-weight:bold">thread</span>, <span style="color:#a2f">NULL</span>, foo1_thread, self);
+    <span style="color:#a2f;font-weight:bold">return</span> OK;
 }
 
-int foo1_stop(foo1_t *self) {
-    self-&gt;running = false;
-    pthread_kill(self-&gt;thread, SIGUSR1);
-    pthread_join(self-&gt;thread, NULL);
-    return OK;
+<span style="color:#0b0;font-weight:bold">int</span> <span style="color:#00a000">foo1_stop</span>(foo1_t <span style="color:#666">*</span>self) {
+    self<span style="color:#666">-&gt;</span>running <span style="color:#666">=</span> <span style="color:#a2f">false</span>;
+    pthread_kill(self<span style="color:#666">-&gt;</span><span style="color:#a2f;font-weight:bold">thread</span>, SIGUSR1);
+    pthread_join(self<span style="color:#666">-&gt;</span><span style="color:#a2f;font-weight:bold">thread</span>, <span style="color:#a2f">NULL</span>);
+    <span style="color:#a2f;font-weight:bold">return</span> OK;
 }
 
-int foo1_setExample(foo1_t *self, const example_t *example) {
-    pthread_mutex_lock(&amp;self-&gt;mutex);
-    self-&gt;example = example; //NOTE could be NULL if req is not mandatory
-    pthread_mutex_unlock(&amp;self-&gt;mutex);
-    return OK;
+<span style="color:#0b0;font-weight:bold">int</span> <span style="color:#00a000">foo1_setExample</span>(foo1_t <span style="color:#666">*</span>self, <span style="color:#a2f;font-weight:bold">const</span> example_t <span style="color:#666">*</span>example) {
+    pthread_mutex_lock(<span style="color:#666">&amp;</span>self<span style="color:#666">-&gt;</span>mutex);
+    self<span style="color:#666">-&gt;</span>example <span style="color:#666">=</span> example; <span style="color:#080;font-style:italic">//NOTE could be NULL if req is not mandatory
+</span><span style="color:#080;font-style:italic"></span>    pthread_mutex_unlock(<span style="color:#666">&amp;</span>self<span style="color:#666">-&gt;</span>mutex);
+    <span style="color:#a2f;font-weight:bold">return</span> OK;
 }
 
-static void* foo1_thread(void *userdata) {
-    foo1_t *self = userdata;
-    double result;
-    int rc;
-    while (self-&gt;running) {
-        pthread_mutex_lock(&amp;self-&gt;mutex);
-        if (self-&gt;example != NULL) {
-            rc = self-&gt;example-&gt;method(self-&gt;example-&gt;handle, 1, 2.0, &amp;result);
-            if (rc == 0) {
-                printf("Result is %f\n", result);
-            } else {
-                printf("Error invoking method for example\n");
+<span style="color:#a2f;font-weight:bold">static</span> <span style="color:#0b0;font-weight:bold">void</span><span style="color:#666">*</span> <span style="color:#00a000">foo1_thread</span>(<span style="color:#0b0;font-weight:bold">void</span> <span style="color:#666">*</span>userdata) {
+    foo1_t <span style="color:#666">*</span>self <span style="color:#666">=</span> userdata;
+    <span style="color:#0b0;font-weight:bold">double</span> result;
+    <span style="color:#0b0;font-weight:bold">int</span> rc;
+    <span style="color:#a2f;font-weight:bold">while</span> (self<span style="color:#666">-&gt;</span>running) {
+        pthread_mutex_lock(<span style="color:#666">&amp;</span>self<span style="color:#666">-&gt;</span>mutex);
+        <span style="color:#a2f;font-weight:bold">if</span> (self<span style="color:#666">-&gt;</span>example <span style="color:#666">!=</span> <span style="color:#a2f">NULL</span>) {
+            rc <span style="color:#666">=</span> self<span style="color:#666">-&gt;</span>example<span style="color:#666">-&gt;</span>method(self<span style="color:#666">-&gt;</span>example<span style="color:#666">-&gt;</span>handle, <span style="color:#666">1</span>, <span style="color:#666">2.0</span>, <span style="color:#666">&amp;</span>result);
+            <span style="color:#a2f;font-weight:bold">if</span> (rc <span style="color:#666">==</span> <span style="color:#666">0</span>) {
+                printf(<span style="color:#b44">&#34;Result is %f</span><span style="color:#b62;font-weight:bold">\n</span><span style="color:#b44">&#34;</span>, result);
+            } <span style="color:#a2f;font-weight:bold">else</span> {
+                printf(<span style="color:#b44">&#34;Error invoking method for example</span><span style="color:#b62;font-weight:bold">\n</span><span style="color:#b44">&#34;</span>);
             }
         }
-        pthread_mutex_unlock(&amp;self-&gt;mutex);
-        usleep(10000000);
+        pthread_mutex_unlock(<span style="color:#666">&amp;</span>self<span style="color:#666">-&gt;</span>mutex);
+        usleep(<span style="color:#666">10000000</span>);
     }
-    return NULL;
-}
-</code></pre>
-
-<pre><code class="language-C">//foo1_activator.c
-#include "dm_activator.h"
-#include "foo1.h"
-
-#include &lt;stdlib.h&gt;
-
-struct activator {
-	foo1_t *foo;
+    <span style="color:#a2f;font-weight:bold">return</span> <span style="color:#a2f">NULL</span>;
+}</code></pre></div><div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-C" data-lang="C"><span style="color:#080;font-style:italic">//foo1_activator.c
+</span><span style="color:#080;font-style:italic"></span><span style="color:#080">#include</span> <span style="color:#080">&#34;dm_activator.h&#34;</span><span style="color:#080">
+</span><span style="color:#080">#include</span> <span style="color:#080">&#34;foo1.h&#34;</span><span style="color:#080">
+</span><span style="color:#080"></span>
+<span style="color:#080">#include</span> <span style="color:#080">&lt;stdlib.h&gt;</span><span style="color:#080">
+</span><span style="color:#080"></span>
+<span style="color:#a2f;font-weight:bold">struct</span> activator {
+	foo1_t <span style="color:#666">*</span>foo;
 };
 
-celix_status_t dm_create(bundle_context_pt context, void **userData) {
-    celix_status_t status = CELIX_SUCCESS;
-    struct activator *act = calloc(1, sizeof(*act));
-    if (act != NULL) {
-        act-&gt;foo = foo1_create();
-        if (act-&gt;foo != NULL) {
-            *userData = act;
-        } else {
+celix_status_t <span style="color:#00a000">dm_create</span>(bundle_context_pt context, <span style="color:#0b0;font-weight:bold">void</span> <span style="color:#666">**</span>userData) {
+    celix_status_t status <span style="color:#666">=</span> CELIX_SUCCESS;
+    <span style="color:#a2f;font-weight:bold">struct</span> activator <span style="color:#666">*</span>act <span style="color:#666">=</span> calloc(<span style="color:#666">1</span>, <span style="color:#a2f;font-weight:bold">sizeof</span>(<span style="color:#666">*</span>act));
+    <span style="color:#a2f;font-weight:bold">if</span> (act <span style="color:#666">!=</span> <span style="color:#a2f">NULL</span>) {
+        act<span style="color:#666">-&gt;</span>foo <span style="color:#666">=</span> foo1_create();
+        <span style="color:#a2f;font-weight:bold">if</span> (act<span style="color:#666">-&gt;</span>foo <span style="color:#666">!=</span> <span style="color:#a2f">NULL</span>) {
+            <span style="color:#666">*</span>userData <span style="color:#666">=</span> act;
+        } <span style="color:#a2f;font-weight:bold">else</span> {
             free(act);
         }
-    } else {
-        status = CELIX_ENOMEM;
+    } <span style="color:#a2f;font-weight:bold">else</span> {
+        status <span style="color:#666">=</span> CELIX_ENOMEM;
     }
-    return status;
+    <span style="color:#a2f;font-weight:bold">return</span> status;
 }
 
-celix_status_t dm_init(void *userData, bundle_context_pt context, dm_dependency_manager_pt manager) {
-    celix_status_t status = CELIX_SUCCESS;
-    struct activator *activator = userData;
+celix_status_t <span style="color:#00a000">dm_init</span>(<span style="color:#0b0;font-weight:bold">void</span> <span style="color:#666">*</span>userData, bundle_context_pt context, dm_dependency_manager_pt manager) {
+    celix_status_t status <span style="color:#666">=</span> CELIX_SUCCESS;
+    <span style="color:#a2f;font-weight:bold">struct</span> activator <span style="color:#666">*</span>activator <span style="color:#666">=</span> userData;
 
-    dm_component_pt cmp = NULL;
-    component_create(context, "FOO1", &amp;cmp);
-    component_setImplementation(cmp, activator-&gt;foo);
+    dm_component_pt cmp <span style="color:#666">=</span> <span style="color:#a2f">NULL</span>;
+    component_create(context, <span style="color:#b44">&#34;FOO1&#34;</span>, <span style="color:#666">&amp;</span>cmp);
+    component_setImplementation(cmp, activator<span style="color:#666">-&gt;</span>foo);
 
-    /*
-    With the component_setCallbacksSafe we register callbacks when a component is started / stopped using a component
-     with type foo1_t*
-    */
-    component_setCallbacksSafe(cmp, foo1_t*, NULL, foo1_start, foo1_stop, NULL);
+    <span style="color:#080;font-style:italic">/*
+</span><span style="color:#080;font-style:italic">    With the component_setCallbacksSafe we register callbacks when a component is started / stopped using a component
+</span><span style="color:#080;font-style:italic">     with type foo1_t*
+</span><span style="color:#080;font-style:italic">    */</span>
+    component_setCallbacksSafe(cmp, foo1_t<span style="color:#666">*</span>, <span style="color:#a2f">NULL</span>, foo1_start, foo1_stop, <span style="color:#a2f">NULL</span>);
 
-    dm_service_dependency_pt dep = NULL;
-    serviceDependency_create(&amp;dep);
-    serviceDependency_setRequired(dep, true);
-    serviceDependency_setService(dep, EXAMPLE_NAME, EXAMPLE_CONSUMER_RANGE, NULL);
+    dm_service_dependency_pt dep <span style="color:#666">=</span> <span style="color:#a2f">NULL</span>;
+    serviceDependency_create(<span style="color:#666">&amp;</span>dep);
+    serviceDependency_setRequired(dep, <span style="color:#a2f">true</span>);
+    serviceDependency_setService(dep, EXAMPLE_NAME, EXAMPLE_CONSUMER_RANGE, <span style="color:#a2f">NULL</span>);
     serviceDependency_setStrategy(dep, DM_SERVICE_DEPENDENCY_STRATEGY_LOCKING);
 
-    /*
-    With the serviceDependency_setCallbacksSafe we register callbacks when a service
-    is added and about to be removed for the component type foo1_t* and service type example_t*.
-
-    We should protect the usage of the
-    service because after removal of the service the memory location of that service
-    could be freed
-    */
-    serviceDependency_setCallbacksSafe(dep, foo1_t*, const example_t*, foo1_setExample, NULL, NULL, NULL, NULL);
+    <span style="color:#080;font-style:italic">/*
+</span><span style="color:#080;font-style:italic">    With the serviceDependency_setCallbacksSafe we register callbacks when a service
+</span><span style="color:#080;font-style:italic">    is added and about to be removed for the component type foo1_t* and service type example_t*.
+</span><span style="color:#080;font-style:italic">
+</span><span style="color:#080;font-style:italic">    We should protect the usage of the
+</span><span style="color:#080;font-style:italic">    service because after removal of the service the memory location of that service
+</span><span style="color:#080;font-style:italic">    could be freed
+</span><span style="color:#080;font-style:italic">    */</span>
+    serviceDependency_setCallbacksSafe(dep, foo1_t<span style="color:#666">*</span>, <span style="color:#a2f;font-weight:bold">const</span> example_t<span style="color:#666">*</span>, foo1_setExample, <span style="color:#a2f">NULL</span>, <span style="color:#a2f">NULL</span>, <span style="color:#a2f">NULL</span>, <span style="color:#a2f">NULL</span>);
     component_addServiceDependency(cmp, dep);
 
     dependencyManager_add(manager, cmp);
 
-    return status;
+    <span style="color:#a2f;font-weight:bold">return</span> status;
 }
 
-celix_status_t dm_destroy(void *userData, bundle_context_pt context, dm_dependency_manager_pt manager) {
-	celix_status_t status = CELIX_SUCCESS;
-	struct activator *activator = userData;
-	foo1_destroy(activator-&gt;foo);
+celix_status_t <span style="color:#00a000">dm_destroy</span>(<span style="color:#0b0;font-weight:bold">void</span> <span style="color:#666">*</span>userData, bundle_context_pt context, dm_dependency_manager_pt manager) {
+	celix_status_t status <span style="color:#666">=</span> CELIX_SUCCESS;
+	<span style="color:#a2f;font-weight:bold">struct</span> activator <span style="color:#666">*</span>activator <span style="color:#666">=</span> userData;
+	foo1_destroy(activator<span style="color:#666">-&gt;</span>foo);
 	free(activator);
-	return status;
-};
-
-</code></pre>
-
+	<span style="color:#a2f;font-weight:bold">return</span> status;
+};</code></pre></div>
 <h3 id="foo2-example">Foo2 example</h3>
 
 <p>The Foo2 example shows how to cope with multiple services and how to remove the need for locking by ensuring only access to the services and the services container by a single thread.</p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-C" data-lang="C"><span style="color:#080;font-style:italic">//foo2.h
+</span><span style="color:#080;font-style:italic"></span><span style="color:#080">#ifndef FOO2_H_
+</span><span style="color:#080">#define FOO2_H_
+</span><span style="color:#080"></span>
+<span style="color:#080">#include</span> <span style="color:#080">&#34;example.h&#34;</span><span style="color:#080">
+</span><span style="color:#080"></span>
+<span style="color:#a2f;font-weight:bold">typedef</span> <span style="color:#a2f;font-weight:bold">struct</span> foo2_struct foo2_t;
 
-<pre><code class="language-C">//foo2.h
-#ifndef FOO2_H_
-#define FOO2_H_
+foo2_t<span style="color:#666">*</span> <span style="color:#00a000">foo2_create</span>(<span style="color:#0b0;font-weight:bold">void</span>);
+<span style="color:#0b0;font-weight:bold">void</span> <span style="color:#00a000">foo2_destroy</span>(foo2_t <span style="color:#666">*</span>self);
 
-#include "example.h"
+<span style="color:#0b0;font-weight:bold">int</span> <span style="color:#00a000">foo2_start</span>(foo2_t <span style="color:#666">*</span>self);
+<span style="color:#0b0;font-weight:bold">int</span> <span style="color:#00a000">foo2_stop</span>(foo2_t <span style="color:#666">*</span>self);
 
-typedef struct foo2_struct foo2_t;
+<span style="color:#0b0;font-weight:bold">int</span> <span style="color:#00a000">foo2_addExample</span>(foo2_t <span style="color:#666">*</span>self, <span style="color:#a2f;font-weight:bold">const</span> example_t <span style="color:#666">*</span>example);
+<span style="color:#0b0;font-weight:bold">int</span> <span style="color:#00a000">foo2_removeExample</span>(foo2_t <span style="color:#666">*</span>self, <span style="color:#a2f;font-weight:bold">const</span> example_t <span style="color:#666">*</span>example);
 
-foo2_t* foo2_create(void);
-void foo2_destroy(foo2_t *self);
+<span style="color:#080">#endif //FOO2_H_</span></code></pre></div><div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-C" data-lang="C"><span style="color:#080;font-style:italic">//foo2.c
+</span><span style="color:#080;font-style:italic"></span><span style="color:#080">#include</span> <span style="color:#080">&#34;foo2.h&#34;</span><span style="color:#080">
+</span><span style="color:#080"></span>
+<span style="color:#080">#include</span> <span style="color:#080">&#34;array_list.h&#34;</span><span style="color:#080">
+</span><span style="color:#080"></span>
+<span style="color:#080">#include</span> <span style="color:#080">&lt;stdio.h&gt;</span><span style="color:#080">
+</span><span style="color:#080">#include</span> <span style="color:#080">&lt;stdlib.h&gt;</span><span style="color:#080">
+</span><span style="color:#080">#include</span> <span style="color:#080">&lt;unistd.h&gt;</span><span style="color:#080">
+</span><span style="color:#080">#include</span> <span style="color:#080">&lt;string.h&gt;</span><span style="color:#080">
+</span><span style="color:#080">#include</span> <span style="color:#080">&lt;signal.h&gt;</span><span style="color:#080">
+</span><span style="color:#080">#include</span> <span style="color:#080">&lt;stdbool.h&gt;</span><span style="color:#080">
+</span><span style="color:#080">#include</span> <span style="color:#080">&lt;pthread.h&gt;</span><span style="color:#080">
+</span><span style="color:#080">#include</span> <span style="color:#080">&lt;assert.h&gt;</span><span style="color:#080">
+</span><span style="color:#080"></span>
 
-int foo2_start(foo2_t *self);
-int foo2_stop(foo2_t *self);
+<span style="color:#080">#define OK 0
+</span><span style="color:#080">#define ERROR 1
+</span><span style="color:#080"></span>
+<span style="color:#a2f;font-weight:bold">static</span> <span style="color:#0b0;font-weight:bold">void</span><span style="color:#666">*</span> <span style="color:#00a000">foo2_thread</span>(<span style="color:#0b0;font-weight:bold">void</span><span style="color:#666">*</span>);
 
-int foo2_addExample(foo2_t *self, const example_t *example);
-int foo2_removeExample(foo2_t *self, const example_t *example);
-
-#endif //FOO2_H_
-</code></pre>
-
-<pre><code class="language-C">//foo2.c
-#include "foo2.h"
-
-#include "array_list.h"
-
-#include &lt;stdio.h&gt;
-#include &lt;stdlib.h&gt;
-#include &lt;unistd.h&gt;
-#include &lt;string.h&gt;
-#include &lt;signal.h&gt;
-#include &lt;stdbool.h&gt;
-#include &lt;pthread.h&gt;
-#include &lt;assert.h&gt;
-
-
-#define OK 0
-#define ERROR 1
-
-static void* foo2_thread(void*);
-
-struct foo2_struct {
+<span style="color:#a2f;font-weight:bold">struct</span> foo2_struct {
     array_list_pt examples;
-    pthread_t thread;
-    bool running;
+    pthread_t <span style="color:#a2f;font-weight:bold">thread</span>;
+    <span style="color:#0b0;font-weight:bold">bool</span> running;
 };
 
-foo2_t* foo2_create(void) {
-    foo2_t *self = calloc(1, sizeof(*self));
-    if (self != NULL) {
-        self-&gt;examples = NULL;
-        arrayList_create(&amp;self-&gt;examples);
-        self-&gt;running = false;
-    } else {
-        //log error
-    }
-    return self;
+foo2_t<span style="color:#666">*</span> <span style="color:#00a000">foo2_create</span>(<span style="color:#0b0;font-weight:bold">void</span>) {
+    foo2_t <span style="color:#666">*</span>self <span style="color:#666">=</span> calloc(<span style="color:#666">1</span>, <span style="color:#a2f;font-weight:bold">sizeof</span>(<span style="color:#666">*</span>self));
+    <span style="color:#a2f;font-weight:bold">if</span> (self <span style="color:#666">!=</span> <span style="color:#a2f">NULL</span>) {
+        self<span style="color:#666">-&gt;</span>examples <span style="color:#666">=</span> <span style="color:#a2f">NULL</span>;
+        arrayList_create(<span style="color:#666">&amp;</span>self<span style="color:#666">-&gt;</span>examples);
+        self<span style="color:#666">-&gt;</span>running <span style="color:#666">=</span> <span style="color:#a2f">false</span>;
+    } <span style="color:#a2f;font-weight:bold">else</span> {
+        <span style="color:#080;font-style:italic">//log error
+</span><span style="color:#080;font-style:italic"></span>    }
+    <span style="color:#a2f;font-weight:bold">return</span> self;
 };
 
-void foo2_destroy(foo2_t *self) {
-    assert(!self-&gt;running);
-    arrayList_destroy(self-&gt;examples);
+<span style="color:#0b0;font-weight:bold">void</span> <span style="color:#00a000">foo2_destroy</span>(foo2_t <span style="color:#666">*</span>self) {
+    assert(<span style="color:#666">!</span>self<span style="color:#666">-&gt;</span>running);
+    arrayList_destroy(self<span style="color:#666">-&gt;</span>examples);
     free(self);
 }
 
-int foo2_start(foo2_t *self) {
-    self-&gt;running = true;
-    pthread_create(&amp;self-&gt;thread, NULL, foo2_thread, self);
-    return OK;
+<span style="color:#0b0;font-weight:bold">int</span> <span style="color:#00a000">foo2_start</span>(foo2_t <span style="color:#666">*</span>self) {
+    self<span style="color:#666">-&gt;</span>running <span style="color:#666">=</span> <span style="color:#a2f">true</span>;
+    pthread_create(<span style="color:#666">&amp;</span>self<span style="color:#666">-&gt;</span><span style="color:#a2f;font-weight:bold">thread</span>, <span style="color:#a2f">NULL</span>, foo2_thread, self);
+    <span style="color:#a2f;font-weight:bold">return</span> OK;
 }
 
-int foo2_stop(foo2_t *self) {
-    self-&gt;running = false;
-    pthread_kill(self-&gt;thread, SIGUSR1);
-    pthread_join(self-&gt;thread, NULL);
-    return OK;
+<span style="color:#0b0;font-weight:bold">int</span> <span style="color:#00a000">foo2_stop</span>(foo2_t <span style="color:#666">*</span>self) {
+    self<span style="color:#666">-&gt;</span>running <span style="color:#666">=</span> <span style="color:#a2f">false</span>;
+    pthread_kill(self<span style="color:#666">-&gt;</span><span style="color:#a2f;font-weight:bold">thread</span>, SIGUSR1);
+    pthread_join(self<span style="color:#666">-&gt;</span><span style="color:#a2f;font-weight:bold">thread</span>, <span style="color:#a2f">NULL</span>);
+    <span style="color:#a2f;font-weight:bold">return</span> OK;
 }
 
-int foo2_addExample(foo2_t *self, const example_t *example) {
-    //NOTE foo2 is suspended -&gt; thread is not running  -&gt; safe to update
-    int status = OK;
-    status = arrayList_add(self-&gt;examples, (void *)example);
-    return status;
+<span style="color:#0b0;font-weight:bold">int</span> <span style="color:#00a000">foo2_addExample</span>(foo2_t <span style="color:#666">*</span>self, <span style="color:#a2f;font-weight:bold">const</span> example_t <span style="color:#666">*</span>example) {
+    <span style="color:#080;font-style:italic">//NOTE foo2 is suspended -&gt; thread is not running  -&gt; safe to update
+</span><span style="color:#080;font-style:italic"></span>    <span style="color:#0b0;font-weight:bold">int</span> status <span style="color:#666">=</span> OK;
+    status <span style="color:#666">=</span> arrayList_add(self<span style="color:#666">-&gt;</span>examples, (<span style="color:#0b0;font-weight:bold">void</span> <span style="color:#666">*</span>)example);
+    <span style="color:#a2f;font-weight:bold">return</span> status;
 }
 
-int foo2_removeExample(foo2_t *self, const example_t *example) {
-    //NOTE foo2 is suspended -&gt; thread is not running  -&gt; safe to update
-    int status = OK;
-    status = arrayList_removeElement(self-&gt;examples, (void*)example);
-    return status;
+<span style="color:#0b0;font-weight:bold">int</span> <span style="color:#00a000">foo2_removeExample</span>(foo2_t <span style="color:#666">*</span>self, <span style="color:#a2f;font-weight:bold">const</span> example_t <span style="color:#666">*</span>example) {
+    <span style="color:#080;font-style:italic">//NOTE foo2 is suspended -&gt; thread is not running  -&gt; safe to update
+</span><span style="color:#080;font-style:italic"></span>    <span style="color:#0b0;font-weight:bold">int</span> status <span style="color:#666">=</span> OK;
+    status <span style="color:#666">=</span> arrayList_removeElement(self<span style="color:#666">-&gt;</span>examples, (<span style="color:#0b0;font-weight:bold">void</span><span style="color:#666">*</span>)example);
+    <span style="color:#a2f;font-weight:bold">return</span> status;
 }
 
-static void* foo2_thread(void *userdata) {
-    foo2_t *self = userdata;
-    double result;
-    int rc;
-    while (self-&gt;running) {
-        unsigned int size = arrayList_size(self-&gt;examples);
-        int i;
-        for (i = 0; i &lt; size; i += 1) {
-            const example_t* example = arrayList_get(self-&gt;examples, i);
-            rc = example-&gt;method(example-&gt;handle, 1, 2.0, &amp;result);
-            if (rc == 0) {
-                printf("Result is %f\n", result);
-            } else {
-                printf("Error invoking method for example\n");
+<span style="color:#a2f;font-weight:bold">static</span> <span style="color:#0b0;font-weight:bold">void</span><span style="color:#666">*</span> <span style="color:#00a000">foo2_thread</span>(<span style="color:#0b0;font-weight:bold">void</span> <span style="color:#666">*</span>userdata) {
+    foo2_t <span style="color:#666">*</span>self <span style="color:#666">=</span> userdata;
+    <span style="color:#0b0;font-weight:bold">double</span> result;
+    <span style="color:#0b0;font-weight:bold">int</span> rc;
+    <span style="color:#a2f;font-weight:bold">while</span> (self<span style="color:#666">-&gt;</span>running) {
+        <span style="color:#0b0;font-weight:bold">unsigned</span> <span style="color:#0b0;font-weight:bold">int</span> size <span style="color:#666">=</span> arrayList_size(self<span style="color:#666">-&gt;</span>examples);
+        <span style="color:#0b0;font-weight:bold">int</span> i;
+        <span style="color:#a2f;font-weight:bold">for</span> (i <span style="color:#666">=</span> <span style="color:#666">0</span>; i <span style="color:#666">&lt;</span> size; i <span style="color:#666">+=</span> <span style="color:#666">1</span>) {
+            <span style="color:#a2f;font-weight:bold">const</span> example_t<span style="color:#666">*</span> example <span style="color:#666">=</span> arrayList_get(self<span style="color:#666">-&gt;</span>examples, i);
+            rc <span style="color:#666">=</span> example<span style="color:#666">-&gt;</span>method(example<span style="color:#666">-&gt;</span>handle, <span style="color:#666">1</span>, <span style="color:#666">2.0</span>, <span style="color:#666">&amp;</span>result);
+            <span style="color:#a2f;font-weight:bold">if</span> (rc <span style="color:#666">==</span> <span style="color:#666">0</span>) {
+                printf(<span style="color:#b44">&#34;Result is %f</span><span style="color:#b62;font-weight:bold">\n</span><span style="color:#b44">&#34;</span>, result);
+            } <span style="color:#a2f;font-weight:bold">else</span> {
+                printf(<span style="color:#b44">&#34;Error invoking method for example</span><span style="color:#b62;font-weight:bold">\n</span><span style="color:#b44">&#34;</span>);
             }
         }
-        usleep(10000000);
+        usleep(<span style="color:#666">10000000</span>);
     }
-    return NULL;
-
-</code></pre>
-
-<pre><code class="language-C">//foo2_activator.c
-#include "dm_activator.h"
-#include "foo2.h"
-
-#include &lt;stdlib.h&gt;
-
-struct activator {
-	foo2_t *foo;
+    <span style="color:#a2f;font-weight:bold">return</span> <span style="color:#a2f">NULL</span>;</code></pre></div><div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-C" data-lang="C"><span style="color:#080;font-style:italic">//foo2_activator.c
+</span><span style="color:#080;font-style:italic"></span><span style="color:#080">#include</span> <span style="color:#080">&#34;dm_activator.h&#34;</span><span style="color:#080">
+</span><span style="color:#080">#include</span> <span style="color:#080">&#34;foo2.h&#34;</span><span style="color:#080">
+</span><span style="color:#080"></span>
+<span style="color:#080">#include</span> <span style="color:#080">&lt;stdlib.h&gt;</span><span style="color:#080">
+</span><span style="color:#080"></span>
+<span style="color:#a2f;font-weight:bold">struct</span> activator {
+	foo2_t <span style="color:#666">*</span>foo;
 };
 
-celix_status_t dm_create(bundle_context_pt context, void **userData) {
-	celix_status_t status = CELIX_SUCCESS;
-	struct activator *act = calloc(1, sizeof(*act));
-	if (act != NULL) {
-		act-&gt;foo = foo2_create();
-        if (act-&gt;foo != NULL) {
-            *userData = act;
-        } else {
+celix_status_t <span style="color:#00a000">dm_create</span>(bundle_context_pt context, <span style="color:#0b0;font-weight:bold">void</span> <span style="color:#666">**</span>userData) {
+	celix_status_t status <span style="color:#666">=</span> CELIX_SUCCESS;
+	<span style="color:#a2f;font-weight:bold">struct</span> activator <span style="color:#666">*</span>act <span style="color:#666">=</span> calloc(<span style="color:#666">1</span>, <span style="color:#a2f;font-weight:bold">sizeof</span>(<span style="color:#666">*</span>act));
+	<span style="color:#a2f;font-weight:bold">if</span> (act <span style="color:#666">!=</span> <span style="color:#a2f">NULL</span>) {
+		act<span style="color:#666">-&gt;</span>foo <span style="color:#666">=</span> foo2_create();
+        <span style="color:#a2f;font-weight:bold">if</span> (act<span style="color:#666">-&gt;</span>foo <span style="color:#666">!=</span> <span style="color:#a2f">NULL</span>) {
+            <span style="color:#666">*</span>userData <span style="color:#666">=</span> act;
+        } <span style="color:#a2f;font-weight:bold">else</span> {
             free(act);
         }
-	} else {
-		status = CELIX_ENOMEM;
+	} <span style="color:#a2f;font-weight:bold">else</span> {
+		status <span style="color:#666">=</span> CELIX_ENOMEM;
 	}
-	return status;
+	<span style="color:#a2f;font-weight:bold">return</span> status;
 }
 
-celix_status_t dm_init(void *userData, bundle_context_pt context, dm_dependency_manager_pt manager) {
-    celix_status_t status = CELIX_SUCCESS;
-	struct activator *activator = userData;
+celix_status_t <span style="color:#00a000">dm_init</span>(<span style="color:#0b0;font-weight:bold">void</span> <span style="color:#666">*</span>userData, bundle_context_pt context, dm_dependency_manager_pt manager) {
+    celix_status_t status <span style="color:#666">=</span> CELIX_SUCCESS;
+	<span style="color:#a2f;font-weight:bold">struct</span> activator <span style="color:#666">*</span>activator <span style="color:#666">=</span> userData;
 
-	dm_component_pt cmp = NULL;
-	component_create(context, "FOO2", &amp;cmp);
-	component_setImplementation(cmp, activator-&gt;foo);
+	dm_component_pt cmp <span style="color:#666">=</span> <span style="color:#a2f">NULL</span>;
+	component_create(context, <span style="color:#b44">&#34;FOO2&#34;</span>, <span style="color:#666">&amp;</span>cmp);
+	component_setImplementation(cmp, activator<span style="color:#666">-&gt;</span>foo);
 
-	/*
-	With the component_setCallbacksSafe we register callbacks when a component is started / stopped using a component
-	 with type foo1_t*
-	*/
-    component_setCallbacksSafe(cmp, foo2_t*, NULL, foo2_start, foo2_stop, NULL);
+	<span style="color:#080;font-style:italic">/*
+</span><span style="color:#080;font-style:italic">	With the component_setCallbacksSafe we register callbacks when a component is started / stopped using a component
+</span><span style="color:#080;font-style:italic">	 with type foo1_t*
+</span><span style="color:#080;font-style:italic">	*/</span>
+    component_setCallbacksSafe(cmp, foo2_t<span style="color:#666">*</span>, <span style="color:#a2f">NULL</span>, foo2_start, foo2_stop, <span style="color:#a2f">NULL</span>);
 
-	dm_service_dependency_pt dep = NULL;
-	serviceDependency_create(&amp;dep);
-	serviceDependency_setRequired(dep, false);
-	serviceDependency_setService(dep, EXAMPLE_NAME, EXAMPLE_CONSUMER_RANGE, NULL);
+	dm_service_dependency_pt dep <span style="color:#666">=</span> <span style="color:#a2f">NULL</span>;
+	serviceDependency_create(<span style="color:#666">&amp;</span>dep);
+	serviceDependency_setRequired(dep, <span style="color:#a2f">false</span>);
+	serviceDependency_setService(dep, EXAMPLE_NAME, EXAMPLE_CONSUMER_RANGE, <span style="color:#a2f">NULL</span>);
 	serviceDependency_setStrategy(dep, DM_SERVICE_DEPENDENCY_STRATEGY_SUSPEND);
 
-	/*
-	With the serviceDependency_setCallbacksSafe we register callbacks when a service
-	is added and about to be removed for the component type foo1_t* and service type example_t*.
-
-	We should protect the usage of the
- 	service because after removal of the service the memory location of that service
-	could be freed
-	*/
-    serviceDependency_setCallbacksSafe(dep, foo2_t*, const example_t*, NULL, foo2_addExample, NULL, foo2_removeExample, NULL);
+	<span style="color:#080;font-style:italic">/*
+</span><span style="color:#080;font-style:italic">	With the serviceDependency_setCallbacksSafe we register callbacks when a service
+</span><span style="color:#080;font-style:italic">	is added and about to be removed for the component type foo1_t* and service type example_t*.
+</span><span style="color:#080;font-style:italic">
+</span><span style="color:#080;font-style:italic">	We should protect the usage of the
+</span><span style="color:#080;font-style:italic"> 	service because after removal of the service the memory location of that service
+</span><span style="color:#080;font-style:italic">	could be freed
+</span><span style="color:#080;font-style:italic">	*/</span>
+    serviceDependency_setCallbacksSafe(dep, foo2_t<span style="color:#666">*</span>, <span style="color:#a2f;font-weight:bold">const</span> example_t<span style="color:#666">*</span>, <span style="color:#a2f">NULL</span>, foo2_addExample, <span style="color:#a2f">NULL</span>, foo2_removeExample, <span style="color:#a2f">NULL</span>);
 	component_addServiceDependency(cmp, dep);
 
 	dependencyManager_add(manager, cmp);
 
-    return status;
+    <span style="color:#a2f;font-weight:bold">return</span> status;
 }
 
-celix_status_t dm_destroy(void *userData, bundle_context_pt context, dm_dependency_manager_pt manager) {
-	celix_status_t status = CELIX_SUCCESS;
-	struct activator *activator = userData;
-	foo2_destroy(activator-&gt;foo);
+celix_status_t <span style="color:#00a000">dm_destroy</span>(<span style="color:#0b0;font-weight:bold">void</span> <span style="color:#666">*</span>userData, bundle_context_pt context, dm_dependency_manager_pt manager) {
+	celix_status_t status <span style="color:#666">=</span> CELIX_SUCCESS;
+	<span style="color:#a2f;font-weight:bold">struct</span> activator <span style="color:#666">*</span>activator <span style="color:#666">=</span> userData;
+	foo2_destroy(activator<span style="color:#666">-&gt;</span>foo);
 	free(activator);
-	return status;
-};
-</code></pre>
-
+	<span style="color:#a2f;font-weight:bold">return</span> status;
+};</code></pre></div>
 <h2 id="locking-and-suspending">Locking and Suspending</h2>
 
-<p>As you may notice, the Foo1 example uses locks. 
-In principle, locking is necessary in order to ensure coherence in case service dependencies are removed/added/changed; on the other hands, locking increases latency and, when misused, can lead to poor performance. 
+<p>As you may notice, the Foo1 example uses locks.
+In principle, locking is necessary in order to ensure coherence in case service dependencies are removed/added/changed; on the other hands, locking increases latency and, when misused, can lead to poor performance.
 For this reason, the serviceDependency interface gives the possibility to choose between a locking and suspend (a non-locking) strategy through the serviceDependency_setStrategy function, as is used in the Foo2 example.</p>
 
-<p>The locking strategy <code class="highlighter-rouge">DM_SERVICE_DEPENDENCY_STRATEGY_LOCKING</code> notifies the component in case the dependencies’ set changes (e.g. a dependency is added/removed): the component is responsible for protecting via locks the dependencies’ list and check (always under lock) if the service he’s depending on is still available.
-The suspend or non-locking strategy <code class="highlighter-rouge">DM_SERVICE_DEPENDENCY_STRATEGY_SUSPEND</code> (default when no strategy is explicitly set) reliefs the programmer from dealing with service dependencies’ consistency issues: in case this strategy is adopted, the component is stopped and restarted (i.e. temporarily suspended) upon service dependencies’ changes.</p>
+<p>The locking strategy <code>DM_SERVICE_DEPENDENCY_STRATEGY_LOCKING</code> notifies the component in case the dependencies&rsquo; set changes (e.g. a dependency is added/removed): the component is responsible for protecting via locks the dependencies&rsquo; list and check (always under lock) if the service he&rsquo;s depending on is still available.
+The suspend or non-locking strategy <code>DM_SERVICE_DEPENDENCY_STRATEGY_SUSPEND</code> (default when no strategy is explicitly set) reliefs the programmer from dealing with service dependencies&rsquo; consistency issues: in case this strategy is adopted, the component is stopped and restarted (i.e. temporarily suspended) upon service dependencies&rsquo; changes.</p>
 
-<p>The suspend strategy has the advantage of reducing locks’ usage: of course, suspending the component has its own overhead (e.g. stopping and restarting threads), but this overhead is “paid” only in case of changes in service dependencies, while the locking overhead is always paid.</p>
+<p>The suspend strategy has the advantage of reducing locks&rsquo; usage: of course, suspending the component has its own overhead (e.g. stopping and restarting threads), but this overhead is &ldquo;paid&rdquo; only in case of changes in service dependencies, while the locking overhead is always paid.</p>
 
 <h2 id="see-also">See also</h2>
 
 <p>See the <a href="../../dependency_manager/readme.html">C Dependeny Manager</a> and <a href="../../examples/dm_example">C Dependency Manager example</a> for more information and a more complex working example.</p>
+
 
                 </div>
             </div>
@@ -714,7 +674,7 @@ The suspend or non-locking strategy <code class="highlighter-rouge">DM_SERVICE_D
     </div>
 </div>
 
-<!-- Footer -->
+
 <footer class="py-3 bg-secondary">
     <div class="container">
         <div class="row">
@@ -735,7 +695,7 @@ The suspend or non-locking strategy <code class="highlighter-rouge">DM_SERVICE_D
     </div>
 </footer>
 
-<!-- Bootstrap core JavaScript -->
+
 <script src="/assets/js/jquery.min.js"></script>
 <script src="/assets/js/bootstrap.bundle.min.js"></script>
 

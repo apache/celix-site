@@ -1,19 +1,4 @@
-<!--
-Licensed to the Apache Software Foundation (ASF) under one or more
-contributor license agreements.  See the NOTICE file distributed with
-this work for additional information regarding copyright ownership.
-The ASF licenses this file to You under the Apache License, Version 2.0
-(the "License"); you may not use this file except in compliance with
-the License.  You may obtain a copy of the License at
 
-    http://www.apache.org/licenses/LICENSE-2.0
-
-Unless required by applicable law or agreed to in writing, software
-distributed under the License is distributed on an "AS IS" BASIS,
-WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-See the License for the specific language governing permissions and
-limitations under the License.
--->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -24,10 +9,13 @@ limitations under the License.
 
     <title>roadmap.md / Apache Celix</title>
 
-    <!-- Bootstrap core CSS -->
+    
+    <link rel="icon" href="/assets/img/favicon.ico">
+
+    
     <link href="/assets/css/bootstrap.min.css" rel="stylesheet">
 
-    <!-- Custom style -->
+    
     <link href="/assets/css/style.css" rel="stylesheet">
 </head>
 <body class="light-grey">
@@ -36,7 +24,7 @@ limitations under the License.
     <img src="/assets/img/forkme_right_red_aa0000.png" alt="Fork me on GitHub">
 </a>
 
-<!-- Navigation -->
+
 <nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top">
     <div class="container">
         <a class="navbar-brand" href="/">
@@ -54,7 +42,7 @@ limitations under the License.
                     <a class="nav-link" href="/download.cgi">Download</a>
                 </li>
                 <li class="nav-item active">
-                    <a class="nav-link" href="/docs/">Docs</a>
+                    <a class="nav-link" href="/docs/docs.html">Docs</a>
                 </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="ddCommunity" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -101,10 +89,14 @@ limitations under the License.
         <div class="row py-4">
             <div class="col-sm-12 card">
                 <div class="card-body pt-5">
-                    <a class="edit-on-gh" href="https://github.com/apache/celix/edit/develop/documents/roadmap/roadmap.md" title="Edit this page on GitHub">Edit on GitHub</a>
-                    <a href="/docs/" title="back to documentation">&lt;&lt; back to documentation</a>
+                     
+                    <a class="edit-on-gh" href="https://github.com/apache/celix/edit/develop/docs/celix/documents/roadmap/roadmap.md" title="Edit this page on GitHub">Edit on GitHub</a>
+                    <a href="/docs/docs.html" title="back to documentation">&lt;&lt; back to documentation</a>
 
-                    <!--
+                    
+	
+
+<!--
 Licensed to the Apache Software Foundation (ASF) under one or more
 contributor license agreements.  See the NOTICE file distributed with
 this work for additional information regarding copyright ownership.
@@ -125,113 +117,119 @@ limitations under the License.
 
 <p>Note this roadmap is still a draft.</p>
 
-<h1 id="apache-celix-201">Apache Celix 2.0.1</h1>
+<h1 id="apache-celix-2-0-1">Apache Celix 2.0.1</h1>
 
 <p>Date: TBD (juli/aug 2017?)</p>
 
 <h2 id="improve-pubsub-celix-407">Improve PubSub (CELIX-407)</h2>
 
 <ol>
-  <li>Finalize introduction serializer services</li>
-  <li>Ensure code coverage of ~ 70%</li>
+<li>Finalize introduction serializer services<br /></li>
+<li>Ensure code coverage of ~ 70%</li>
 </ol>
 
 <h2 id="finalize-runtime-creation-celix-408">Finalize Runtime Creation (CELIX-408)</h2>
 
 <ol>
-  <li>Ensure that the runtime command are used for testing some distributed test (e.g. pubsub)</li>
+<li>Ensure that the runtime command are used for testing some distributed test (e.g. pubsub)</li>
 </ol>
 
 <h2 id="add-support-for-running-celix-as-a-single-executable-todo-issue">Add Support for running Celix as a single executable (TODO issue)</h2>
+
 <p>For different reasons it could be interesting to support running bundles from a single executable.
 Primarily security, but also startup performance.</p>
 
-<p>To start this can be achieved by creating static version of the celix provided bundles. These static 
-bundles should have unique symbols, e.g  shell_bundleActivator_create instead of a 
-“normal” bundleActivator_create. The normal  activator functions should then 
+<p>To start this can be achieved by creating static version of the celix provided bundles. These static
+bundles should have unique symbols, e.g  shell_bundleActivator_create instead of a
+&ldquo;normal&rdquo; bundleActivator_create. The normal  activator functions should then
 only be used (using a define or separated source file) when building a shared library bundle.
-A additional property (e.g. “cosgi.auto.static.start=shell, shell_tui”) can be used to specify which 
+A additional property (e.g. &ldquo;cosgi.auto.static.start=shell, shell_tui&rdquo;) can be used to specify which
 symbol prefixes to use.</p>
 
 <p>Note that if this is implemented it would also be a good moment to add a compile option / launcher option
-to disable dynamic loading of libraries. This way shared library based bundles can be used during 
-development, but for production a static executable with no capability to add bundles runtime 
+to disable dynamic loading of libraries. This way shared library based bundles can be used during
+development, but for production a static executable with no capability to add bundles runtime
 could be used if preferable.</p>
 
-<h1 id="apache-celix-210">Apache Celix 2.1.0</h1>
+<h1 id="apache-celix-2-1-0">Apache Celix 2.1.0</h1>
 
 <p>Date: TBD (Jan 2018)</p>
 
 <p>Note a short comming is that there is still no good support for export and import libraries between
-bundles. For Linux dlmopen is a solution, but for a more broader UNIX support a more “creative” 
+bundles. For Linux dlmopen is a solution, but for a more broader UNIX support a more &ldquo;creative&rdquo;
 solution is needed (e.g. Just in time replacing the SONAME and NEEDED values in the respective shared libraries)</p>
 
-<h2 id="extend-dependency-manager-cc-celix-409">Extend Dependency Manager C/C++ (CELIX-409)</h2>
+<h2 id="extend-dependency-manager-c-c-celix-409">Extend Dependency Manager C/C++ (CELIX-409)</h2>
 
-<p>The dependency manager offers declarative API for working with services and is arguable more easier 
-to use than the official OSGi Api. Extend the DM so that in can be used for virtually any bundle 
+<p>The dependency manager offers declarative API for working with services and is arguable more easier
+to use than the official OSGi Api. Extend the DM so that in can be used for virtually any bundle
 without directly using the bundle context, bundle, module, service ref, service registration, etc API.
 This provided a much smaller API providing almost the same functionality.</p>
 
-<p>This means:</p>
-<ol>
-  <li>Add support for service factory</li>
-  <li>Add support for providing listener hooks. Note that this is already supported by registering 
-a <code class="highlighter-rouge">listener_hook_service</code> service, but maybe a more abstracted way.</li>
-  <li>Add support looking up and opening resources in the bundle.</li>
-  <li>Replace add,remove, etc callbacks which uses the service reference, with callbacks using properties</li>
-  <li>Test if the dm correctly works when adding / removing provided services and service dependencies after a component is started.</li>
-  <li>Getting framework properties (e.g. bundleContext_getProperty)</li>
-  <li>Support for getting basic info from bundle (version, symbolic name, manifest)</li>
-</ol>
+<p>This means:
+1. Add support for service factory
+1. Add support for providing listener hooks. Note that this is already supported by registering
+   a <code>listener_hook_service</code> service, but maybe a more abstracted way.
+1. Add support looking up and opening resources in the bundle.
+1. Replace add,remove, etc callbacks which uses the service reference, with callbacks using properties
+1. Test if the dm correctly works when adding / removing provided services and service dependencies after a component is started.
+1. Getting framework properties (e.g. bundleContext_getProperty)
+1. Support for getting basic info from bundle (version, symbolic name, manifest)</p>
 
 <h2 id="add-framework-services-todo-issue">Add framework services (TODO issue)</h2>
-<p>Apache Celix is a framework for service oriented programming, this should also include for interacting with the 
+
+<p>Apache Celix is a framework for service oriented programming, this should also include for interacting with the
 framework itself. Create framework services for:</p>
 
 <ol>
-  <li>bundle management: installing, Starting, Stopping, deinstalling, listing, etc bundles.</li>
-  <li>service registry info: nr of service registered, nr of service listeners, etc.</li>
-  <li>framework listenerL start, stop, error events (whiteboard)</li>
-  <li>bundle listener: installed, start, stop, deinstalled events (whiteboard)</li>
+<li>bundle management: installing, Starting, Stopping, deinstalling, listing, etc bundles.</li>
+<li>service registry info: nr of service registered, nr of service listeners, etc.</li>
+<li>framework listenerL start, stop, error events (whiteboard)</li>
+<li>bundle listener: installed, start, stop, deinstalled events (whiteboard)</li>
 </ol>
 
 <h2 id="support-dependency-manager-from-framework-todo-issue">Support dependency manager from framework (TODO issue)</h2>
+
 <p>Because the dependency manager is actual the preferred way to write bundles, this should be support
-like “normal” activators” directly from the framework without using a static library.</p>
+like &ldquo;normal&rdquo; activators&rdquo; directly from the framework without using a static library.</p>
 
 <h2 id="refactor-celix-provided-bundles-to-use-dependency-manager-and-framework-services-todo-issue">Refactor Celix provided bundles to use dependency manager and framework services (TODO issue)</h2>
-<p>Refactor Celix bundles (shell, shell_tuu, RSA, etc) to use the dependency manager instead of a “vanilla” 
-bundle activator. The dependency manager should be the preferred way to handle services. 
+
+<p>Refactor Celix bundles (shell, shell_tuu, RSA, etc) to use the dependency manager instead of a &ldquo;vanilla&rdquo;
+bundle activator. The dependency manager should be the preferred way to handle services.
 Also instead of directly using the API from bundle_context, bundle, module, etc the framework services
 should be used.</p>
 
 <h2 id="create-dfi-descriptor-generator-todo-issue">Create dfi descriptor generator (TODO issue)</h2>
-<p>Create a descriptor generator which can parse type and service headers. 
-This can be relatively easy  achieved by (e.g.) using the libclang library. 
+
+<p>Create a descriptor generator which can parse type and service headers.
+This can be relatively easy  achieved by (e.g.) using the libclang library.
 Also extend the CMake add_bundle command and create a CMake bundle_add_descriptors command to be able
 to add the descriptors to the bundle</p>
 
-<h2 id="use-dfi-descriptor-in-service-registrationsreferences-todo-issue">Use dfi descriptor in service registrations/references (TODO issue)</h2>
+<h2 id="use-dfi-descriptor-in-service-registrations-references-todo-issue">Use dfi descriptor in service registrations/references (TODO issue)</h2>
+
 <p>When available dfi descriptors can be used in Celix to validate if service are compatible and
-in case of the provided service having more functions than the consumer needs, create a (cast to) 
+in case of the provided service having more functions than the consumer needs, create a (cast to)
 a compatible consumer version.</p>
 
-<h1 id="apache-celix-300">Apache Celix 3.0.0</h1>
+<h1 id="apache-celix-3-0-0">Apache Celix 3.0.0</h1>
 
 <p>Date: TBD (aug 2018)</p>
 
-<h2 id="remove-support-for-vanilla-bundle-activators-todo-issue">Remove support for “vanilla” bundle activators (TODO issue)</h2>
+<h2 id="remove-support-for-vanilla-bundle-activators-todo-issue">Remove support for &ldquo;vanilla&rdquo; bundle activators (TODO issue)</h2>
+
 <p>When all Celix provided bundles are using the dependency manager and framework services support for
-the “vanilla”  bundle activator can be dropped. Also a lot internals can be refactored because the public
+the &ldquo;vanilla&rdquo;  bundle activator can be dropped. Also a lot internals can be refactored because the public
 API should have shrunk quite a bit; This should lead to smaller code base -&gt; less complex, easier to maintain
 and a smaller footprint.</p>
 
 <h2 id="refactor-service-registry-to-a-single-threaded-design-todo-issue">Refactor service registry to a single threaded design (TODO issue)</h2>
-<p>Celix currently has some nested lock. It would be preferable to remove these, but this is difficult 
-because they are used to sync events which react on registering/unregistering services. Specially when 
-a unregister/register event leads to other services being registered/unregisterd. One way to deal with 
-this sync problem is to remove it by adding a single thread which handle al interaction between bundles 
+
+<p>Celix currently has some nested lock. It would be preferable to remove these, but this is difficult
+because they are used to sync events which react on registering/unregistering services. Specially when
+a unregister/register event leads to other services being registered/unregisterd. One way to deal with
+this sync problem is to remove it by adding a single thread which handle al interaction between bundles
 and the service registry.</p>
 
 
@@ -241,7 +239,7 @@ and the service registry.</p>
     </div>
 </div>
 
-<!-- Footer -->
+
 <footer class="py-3 bg-secondary">
     <div class="container">
         <div class="row">
@@ -262,7 +260,7 @@ and the service registry.</p>
     </div>
 </footer>
 
-<!-- Bootstrap core JavaScript -->
+
 <script src="/assets/js/jquery.min.js"></script>
 <script src="/assets/js/bootstrap.bundle.min.js"></script>
 

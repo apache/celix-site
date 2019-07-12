@@ -1,22 +1,8 @@
-<!--
-Licensed to the Apache Software Foundation (ASF) under one or more
-contributor license agreements.  See the NOTICE file distributed with
-this work for additional information regarding copyright ownership.
-The ASF licenses this file to You under the Apache License, Version 2.0
-(the "License"); you may not use this file except in compliance with
-the License.  You may obtain a copy of the License at
 
-    http://www.apache.org/licenses/LICENSE-2.0
-
-Unless required by applicable law or agreed to in writing, software
-distributed under the License is distributed on an "AS IS" BASIS,
-WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-See the License for the specific language governing permissions and
-limitations under the License.
--->
 <!DOCTYPE html>
 <html lang="en">
 <head>
+	<meta name="generator" content="Hugo 0.55.6" />
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
@@ -24,13 +10,16 @@ limitations under the License.
 
     <title>Welcome to Apache Celix</title>
 
-    <!-- Bootstrap core CSS -->
+    
+    <link rel="icon" href="/assets/img/favicon.ico">
+
+    
     <link href="/assets/css/bootstrap.min.css" rel="stylesheet">
 
-    <!-- Custom style -->
+    
     <link href="/assets/css/style.css" rel="stylesheet">
 
-    <!-- Font awesome icon set -->
+    
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
 </head>
 <body>
@@ -39,7 +28,7 @@ limitations under the License.
     <img src="/assets/img/forkme_right_red_aa0000.png" alt="Fork me on GitHub">
 </a>
 
-<!-- Navigation -->
+
 <nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top">
     <div class="container">
         <a class="navbar-brand" href="/">
@@ -57,7 +46,7 @@ limitations under the License.
                     <a class="nav-link" href="/download.cgi">Download</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/docs/">Docs</a>
+                    <a class="nav-link" href="/docs/docs.html">Docs</a>
                 </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="ddCommunity" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -99,83 +88,82 @@ limitations under the License.
 </nav>
 
 
-<!-- Page Intro -->
+
 <div class="section">
-  <div class="container my-5">
-    <div class="section no-pad-bot" id="index-banner">
-      <div class="col-sm-12">
-        <h1 class="text-center">Welcome to Apache Celix</h1>
-      </div>
+    <div class="container my-5">
+        <div class="section no-pad-bot" id="index-banner">
+            <div class="col-sm-12">
+                <h1 class="text-center">Welcome to Apache Celix</h1>
+            </div>
 
-      <div class="row my-4">
-        <img class="text-center mx-auto img-home" src="/assets/img/celix.svg" alt="Celix Logo">
-      </div>
+            <div class="row my-4">
+                <img class="text-center mx-auto img-home" src="/assets/img/celix.svg" alt="Celix Logo">
+            </div>
 
-      <div class="col-sm-12 mb-4">
-        <h2 class="text-center">An implementation of the OSGi specification adapted to C and C++</h2>
-      </div>
+            <div class="col-sm-12 mb-4">
+                <h2 class="text-center">An implementation of the OSGi specification adapted to C and C++</h2>
+            </div>
 
-      <div class="col-sm-12 text-center mx-auto">
-        <a href="/download.cgi" class="btn btn-primary btn-lg mb-1">
-          <i class="fas fa-download"></i> DOWNLOAD
-        </a>
-        &nbsp;
-        <a href="/docs/" class="btn btn-primary btn-lg mb-1">
-          <i class="fas fa-book-open"></i> GETTING STARTED
-        </a>
-      </div>
+            <div class="col-sm-12 text-center mx-auto">
+                <a href="/download.cgi" class="btn btn-primary btn-lg mb-1">
+                    <i class="fas fa-download"></i> DOWNLOAD
+                </a>
+                &nbsp;
+                <a href="/docs/docs.html" class="btn btn-primary btn-lg mb-1">
+                    <i class="fas fa-book-open"></i> GETTING STARTED
+                </a>
+            </div>
+        </div>
     </div>
-  </div>
 </div>
 
 <div class="section light-grey">
-  <div class="container py-3">
+    <div class="container py-3">
 
-    <div class="row my-4">
-      <div class="col-sm-12 card">
-        <div class="card-body">
-          <h4 class="card-title">Welcome to Apache Celix</h4>
-          <p class="card-text">
-            Apache Celix is an implementation of the OSGi specification adapted to C and C++. It is a framework to 
-            develop (dynamic) modular software applications using component and/or service-oriented programming.
-          </p>
+        <div class="row my-4">
+            <div class="col-sm-12 card">
+                <div class="card-body">
+                    <h4 class="card-title">Welcome to Apache Celix</h4>
+                    <p class="card-text">
+                        Apache Celix is an implementation of the OSGi specification adapted to C and C++. It is a framework to
+                        develop (dynamic) modular software applications using component and/or service-oriented programming.
+                    </p>
 
-          <p class="card-text">
-            Apache Celix is primarily developed in C and adds an additional abstraction, in the form of a library, to
-            support for C++.
-          </p>
+                    <p class="card-text">
+                        Apache Celix is primarily developed in C and adds an additional abstraction, in the form of a library, to
+                        support for C++.
+                    </p>
 
-          <p class="card-text">
-            Modularity in Apache Celix is achieved by supporting - run-time installed - bundles. <code>Bundles</code>
-            are zip files and can contain software modules in the form of shared libraries. <code>Modules</code> can
-            provide and request dynamic services, for and from other modules, by interacting with a provided bundle
-            context. <code>Services</code> in Apache Celix are "plain old" structs with function pointers or "plain
-            old C++ Objects" (POCO).
-          </p>
+                    <p class="card-text">
+                        Modularity in Apache Celix is achieved by supporting - run-time installed - bundles. <code>Bundles</code>
+                        are zip files and can contain software modules in the form of shared libraries. <code>Modules</code> can
+                        provide and request dynamic services, for and from other modules, by interacting with a provided bundle
+                        context. <code>Services</code> in Apache Celix are "plain old" structs with function pointers or "plain
+                        old C++ Objects" (POCO).
+                    </p>
+                </div>
+            </div>
         </div>
-      </div>
-    </div>
 
-    <div class="row my-4">
-      <div class="col-sm-12 card">
-        <div class="card-body">
-          <h4 class="card-title">News</h4>
-          <p class="card-text">
-            <strong>30-Jan-2018</strong> - After a successful vote Celix 2.1.0 is released.<br>
-            <strong>26-Oct-2016</strong> - After a successful vote Celix 2.0.0 is released.<br>
-            <strong>16-Jul-2014</strong> - After a successful graduation vote Apache Celix has graduated to a top-level project.<br>
-            <strong>25-Feb-2014</strong> - After a successful vote Celix 1.0.0.incubating is released. The release is now available via the <a href="/download.cgi">download</a> section.<br>
-            <strong>16-Dec-2012</strong> - After a successful vote Celix 0.0.1-incubating is released.<br>
-          </p>
+        <div class="row my-4">
+            <div class="col-sm-12 card">
+                <div class="card-body">
+                    <h4 class="card-title">News</h4>
+                    <p class="card-text">
+                        <strong>30-Jan-2018</strong> - After a successful vote Celix 2.1.0 is released.<br>
+                        <strong>26-Oct-2016</strong> - After a successful vote Celix 2.0.0 is released.<br>
+                        <strong>16-Jul-2014</strong> - After a successful graduation vote Apache Celix has graduated to a top-level project.<br>
+                        <strong>25-Feb-2014</strong> - After a successful vote Celix 1.0.0.incubating is released. The release is now available via the <a href="/download.cgi">download</a> section.<br>
+                        <strong>16-Dec-2012</strong> - After a successful vote Celix 0.0.1-incubating is released.<br>
+                    </p>
+                </div>
+            </div>
         </div>
-      </div>
-    </div>
 
-  </div>
+    </div>
 </div>
 
 
-<!-- Footer -->
 <footer class="py-3 bg-secondary">
     <div class="container">
         <div class="row">
@@ -196,7 +184,7 @@ limitations under the License.
     </div>
 </footer>
 
-<!-- Bootstrap core JavaScript -->
+
 <script src="/assets/js/jquery.min.js"></script>
 <script src="/assets/js/bootstrap.bundle.min.js"></script>
 

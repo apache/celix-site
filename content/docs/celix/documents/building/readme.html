@@ -1,19 +1,4 @@
-<!--
-Licensed to the Apache Software Foundation (ASF) under one or more
-contributor license agreements.  See the NOTICE file distributed with
-this work for additional information regarding copyright ownership.
-The ASF licenses this file to You under the Apache License, Version 2.0
-(the "License"); you may not use this file except in compliance with
-the License.  You may obtain a copy of the License at
 
-    http://www.apache.org/licenses/LICENSE-2.0
-
-Unless required by applicable law or agreed to in writing, software
-distributed under the License is distributed on an "AS IS" BASIS,
-WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-See the License for the specific language governing permissions and
-limitations under the License.
--->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -24,10 +9,13 @@ limitations under the License.
 
     <title>readme.md / Apache Celix</title>
 
-    <!-- Bootstrap core CSS -->
+    
+    <link rel="icon" href="/assets/img/favicon.ico">
+
+    
     <link href="/assets/css/bootstrap.min.css" rel="stylesheet">
 
-    <!-- Custom style -->
+    
     <link href="/assets/css/style.css" rel="stylesheet">
 </head>
 <body class="light-grey">
@@ -36,7 +24,7 @@ limitations under the License.
     <img src="/assets/img/forkme_right_red_aa0000.png" alt="Fork me on GitHub">
 </a>
 
-<!-- Navigation -->
+
 <nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top">
     <div class="container">
         <a class="navbar-brand" href="/">
@@ -54,7 +42,7 @@ limitations under the License.
                     <a class="nav-link" href="/download.cgi">Download</a>
                 </li>
                 <li class="nav-item active">
-                    <a class="nav-link" href="/docs/">Docs</a>
+                    <a class="nav-link" href="/docs/docs.html">Docs</a>
                 </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="ddCommunity" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -101,10 +89,14 @@ limitations under the License.
         <div class="row py-4">
             <div class="col-sm-12 card">
                 <div class="card-body pt-5">
-                    <a class="edit-on-gh" href="https://github.com/apache/celix/edit/develop/documents/building/readme.md" title="Edit this page on GitHub">Edit on GitHub</a>
-                    <a href="/docs/" title="back to documentation">&lt;&lt; back to documentation</a>
+                     
+                    <a class="edit-on-gh" href="https://github.com/apache/celix/edit/develop/docs/celix/documents/building/readme.md" title="Edit this page on GitHub">Edit on GitHub</a>
+                    <a href="/docs/docs.html" title="back to documentation">&lt;&lt; back to documentation</a>
 
-                    <!--
+                    
+	
+
+<!--
 Licensed to the Apache Software Foundation (ASF) under one or more
 contributor license agreements.  See the NOTICE file distributed with
 this work for additional information regarding copyright ownership.
@@ -121,137 +113,126 @@ See the License for the specific language governing permissions and
 limitations under the License.
 -->
 
-<h1 id="apache-celix---building-and-installing">Apache Celix - Building and Installing</h1>
+<h1 id="apache-celix-building-and-installing">Apache Celix - Building and Installing</h1>
+
 <p>Apache Celix aims to be support a broad range of UNIX platforms.</p>
 
 <p>Currently the <a href="https://travis-ci.org/apache/celix">continuous integration build server</a> builds and tests Apache Celix for:</p>
 
 <ul>
-  <li>Ubuntu Trusty Tahr (14.04)
-    <ul>
-      <li>GCC</li>
-      <li>CLang</li>
-    </ul>
-  </li>
-  <li>OSX
-    <ul>
-      <li>GCC</li>
-      <li>CLang</li>
-    </ul>
-  </li>
-  <li>Android (cross-compiled on Ubuntu Trusty Tahr)
-    <ul>
-      <li>GCC</li>
-    </ul>
-  </li>
+<li>Ubuntu Trusty Tahr (14.04)
+
+<ul>
+<li>GCC</li>
+<li>CLang</li>
+</ul></li>
+<li>OSX
+
+<ul>
+<li>GCC</li>
+<li>CLang</li>
+</ul></li>
+<li>Android (cross-compiled on Ubuntu Trusty Tahr)
+
+<ul>
+<li>GCC</li>
+</ul></li>
 </ul>
 
 <h1 id="preparing">Preparing</h1>
+
 <p>The following packages (libraries + headers) should be installed on your system:</p>
 
 <ul>
-  <li>Development Environment
-    <ul>
-      <li>build-essentials (gcc/g++ or clang/clang++)</li>
-      <li>git</li>
-      <li>java (for packaging bundles)</li>
-      <li>cmake (3.2 or higher)</li>
-    </ul>
-  </li>
-  <li>Apache Celix Dependencies
-    <ul>
-      <li>curl</li>
-      <li>jansson</li>
-      <li>libffi</li>
-      <li>libxml2 (for remote services and bonjour shell)</li>
-    </ul>
-  </li>
+<li>Development Environment
+
+<ul>
+<li>build-essentials (gcc/g++ or clang/clang++)</li>
+<li>git</li>
+<li>java (for packaging bundles)</li>
+<li>cmake (3.2 or higher)</li>
+</ul></li>
+<li>Apache Celix Dependencies
+
+<ul>
+<li>curl</li>
+<li>jansson</li>
+<li>libffi</li>
+<li>libxml2 (for remote services and bonjour shell)
+<br /></li>
+</ul></li>
 </ul>
 
 <p>For debian based systems (apt), the following command should work:</p>
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>apt-get <span class="nb">install</span> <span class="nt">-yq</span> <span class="nt">--no-install-recommends</span> <span class="se">\</span>
-	build-essential <span class="se">\</span>
-  	curl <span class="se">\</span>
-  	git <span class="se">\</span>
-  	libjansson-dev <span class="se">\</span>
-  	libcurl4-openssl-dev <span class="se">\</span>
-    java <span class="se">\</span>
-  	cmake <span class="se">\</span>
-  	libffi-dev <span class="se">\</span>
-  	libxml2-dev
-</code></pre></div></div>
-
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">sudo apt-get install -yq --no-install-recommends <span style="color:#b62;font-weight:bold">\
+</span><span style="color:#b62;font-weight:bold"></span>	build-essential <span style="color:#b62;font-weight:bold">\
+</span><span style="color:#b62;font-weight:bold"></span>  	curl <span style="color:#b62;font-weight:bold">\
+</span><span style="color:#b62;font-weight:bold"></span>  	git <span style="color:#b62;font-weight:bold">\
+</span><span style="color:#b62;font-weight:bold"></span>  	libjansson-dev <span style="color:#b62;font-weight:bold">\
+</span><span style="color:#b62;font-weight:bold"></span>  	libcurl4-openssl-dev <span style="color:#b62;font-weight:bold">\
+</span><span style="color:#b62;font-weight:bold"></span>    java <span style="color:#b62;font-weight:bold">\
+</span><span style="color:#b62;font-weight:bold"></span>  	cmake <span style="color:#b62;font-weight:bold">\
+</span><span style="color:#b62;font-weight:bold"></span>  	libffi-dev <span style="color:#b62;font-weight:bold">\
+</span><span style="color:#b62;font-weight:bold"></span>  	libxml2-dev</code></pre></div>
 <p>For Fedora based systems (dnf), the following command should work:</p>
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>dnf group <span class="nb">install</span> <span class="nt">-y</span> <span class="s2">"C Development Tools and Libraries"</span>
-<span class="nb">sudo </span>dnf <span class="nb">install</span> <span class="se">\</span>
-    cmake <span class="se">\</span>
-    make <span class="se">\</span>
-    git <span class="se">\</span>
-    java <span class="se">\</span>
-    libcurl-devel <span class="se">\</span>
-    jansson-devel <span class="se">\</span>
-    libffi-devel <span class="se">\</span>
-    libxml2-devel <span class="se">\</span>
-    libuuid-devel
-</code></pre></div></div>
-
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">sudo dnf group install -y <span style="color:#b44">&#34;C Development Tools and Libraries&#34;</span>
+sudo dnf install <span style="color:#b62;font-weight:bold">\
+</span><span style="color:#b62;font-weight:bold"></span>    cmake <span style="color:#b62;font-weight:bold">\
+</span><span style="color:#b62;font-weight:bold"></span>    make <span style="color:#b62;font-weight:bold">\
+</span><span style="color:#b62;font-weight:bold"></span>    git <span style="color:#b62;font-weight:bold">\
+</span><span style="color:#b62;font-weight:bold"></span>    java <span style="color:#b62;font-weight:bold">\
+</span><span style="color:#b62;font-weight:bold"></span>    libcurl-devel <span style="color:#b62;font-weight:bold">\
+</span><span style="color:#b62;font-weight:bold"></span>    jansson-devel <span style="color:#b62;font-weight:bold">\
+</span><span style="color:#b62;font-weight:bold"></span>    libffi-devel <span style="color:#b62;font-weight:bold">\
+</span><span style="color:#b62;font-weight:bold"></span>    libxml2-devel <span style="color:#b62;font-weight:bold">\
+</span><span style="color:#b62;font-weight:bold"></span>    libuuid-devel</code></pre></div>
 <p>For OSX systems with brew installed, the following command should work:</p>
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    brew update <span class="o">&amp;&amp;</span> <span class="se">\</span>
-    brew <span class="nb">install </span>lcov libffi cmake <span class="o">&amp;&amp;</span> <span class="se">\</span>
-    brew <span class="nb">link</span> <span class="nt">--force</span> libffi
-</code></pre></div></div>
-
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">    brew update <span style="color:#666">&amp;&amp;</span> <span style="color:#b62;font-weight:bold">\
+</span><span style="color:#b62;font-weight:bold"></span>    brew install lcov libffi cmake <span style="color:#666">&amp;&amp;</span> <span style="color:#b62;font-weight:bold">\
+</span><span style="color:#b62;font-weight:bold"></span>    brew link --force libffi</code></pre></div>
 <h2 id="download-the-apache-celix-sources">Download the Apache Celix sources</h2>
+
 <p>To get started you first have to download the Apache Celix sources. This can be done by cloning the Apache Celix git repository:</p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#080;font-style:italic">#Create a new workspace to work in, e.g:</span>
+mkdir <span style="color:#b68;font-weight:bold">${</span><span style="color:#b8860b">HOME</span><span style="color:#b68;font-weight:bold">}</span>/workspace
+<span style="color:#a2f">export</span> <span style="color:#b8860b">WS</span><span style="color:#666">=</span><span style="color:#b68;font-weight:bold">${</span><span style="color:#b8860b">HOME</span><span style="color:#b68;font-weight:bold">}</span>/workspace
+<span style="color:#a2f">cd</span> <span style="color:#b68;font-weight:bold">${</span><span style="color:#b8860b">WS</span><span style="color:#b68;font-weight:bold">}</span>
 
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">#Create a new workspace to work in, e.g:</span>
-<span class="nb">mkdir</span> <span class="k">${</span><span class="nv">HOME</span><span class="k">}</span>/workspace
-<span class="nb">export </span><span class="nv">WS</span><span class="o">=</span><span class="k">${</span><span class="nv">HOME</span><span class="k">}</span>/workspace
-<span class="nb">cd</span> <span class="k">${</span><span class="nv">WS</span><span class="k">}</span>
-
-<span class="c">#clone the repro</span>
-git clone <span class="nt">--single-branch</span> <span class="nt">--branch</span> master https://github.com/apache/celix.git
-</code></pre></div></div>
-
+<span style="color:#080;font-style:italic">#clone the repro</span>
+git clone --single-branch --branch master https://github.com/apache/celix.git</code></pre></div>
 <h2 id="building-apache-celix">Building Apache Celix</h2>
+
 <p>Apache Celix uses <a href="https://cmake.org">CMake</a> as build system. CMake can generate (among others) makefiles.</p>
 
 <h3 id="building-using-cmake-and-makefiles">Building using CMake and makefiles:</h3>
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">cd</span> <span class="k">${</span><span class="nv">WS</span><span class="k">}</span>/celix
-<span class="nb">mkdir </span>build
-<span class="nb">cd </span>build
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#a2f">cd</span> <span style="color:#b68;font-weight:bold">${</span><span style="color:#b8860b">WS</span><span style="color:#b68;font-weight:bold">}</span>/celix
+mkdir build
+<span style="color:#a2f">cd</span> build
 cmake .. 
-make 
-</code></pre></div></div>
-
+make </code></pre></div>
 <h2 id="editing-build-options">Editing Build options</h2>
+
 <p>With use of CMake, Apache Celix makes it possible to edit build options. This enabled users, among other options, to configure a install location and select additional bundles.
-To edit the options use ccmake or cmake-gui. For cmake-gui an additional package install can be necessary (Fedora: <code class="highlighter-rouge">dnf install cmake-gui</code>).</p>
-
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">cd</span> <span class="k">${</span><span class="nv">WS</span><span class="k">}</span>/celix/build
-ccmake <span class="nb">.</span>
-<span class="c">#Edit options, e.g. enable BUILD_REMOTE_SHELL to build the remote (telnet) shell</span>
-<span class="c">#Edit the CMAKE_INSTALL_PREFIX config to set the install location</span>
-</code></pre></div></div>
-
-<p>For this guide we assume the CMAKE_INSTALL_PREFIX is <code class="highlighter-rouge">/usr/local</code>.</p>
+To edit the options use ccmake or cmake-gui. For cmake-gui an additional package install can be necessary (Fedora: <code>dnf install cmake-gui</code>).</p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#a2f">cd</span> <span style="color:#b68;font-weight:bold">${</span><span style="color:#b8860b">WS</span><span style="color:#b68;font-weight:bold">}</span>/celix/build
+ccmake .
+<span style="color:#080;font-style:italic">#Edit options, e.g. enable BUILD_REMOTE_SHELL to build the remote (telnet) shell</span>
+<span style="color:#080;font-style:italic">#Edit the CMAKE_INSTALL_PREFIX config to set the install location</span></code></pre></div>
+<p>For this guide we assume the CMAKE_INSTALL_PREFIX is <code>/usr/local</code>.</p>
 
 <h2 id="installing-apache-celix">Installing Apache Celix</h2>
-
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">cd</span> <span class="k">${</span><span class="nv">WS</span><span class="k">}</span>/celix/build
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#a2f">cd</span> <span style="color:#b68;font-weight:bold">${</span><span style="color:#b8860b">WS</span><span style="color:#b68;font-weight:bold">}</span>/celix/build
 make
-<span class="nb">sudo </span>make <span class="nb">install</span>
-</code></pre></div></div>
-
+sudo make install</code></pre></div>
 <h2 id="running-apache-celix">Running Apache Celix</h2>
 
 <p>If Apache Celix is succesfully installed running</p>
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>celix
-</code></pre></div></div>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">celix</code></pre></div>
 <p>should give the following output:
-“Error: invalid or non-existing configuration file: ‘config.properties’.No such file or directory”.</p>
+&ldquo;Error: invalid or non-existing configuration file: &lsquo;config.properties&rsquo;.No such file or directory&rdquo;.</p>
 
 <p>For more info how to build your own projects and/or running the Apache Celix examples see <a href="../getting_started/readme.html">Getting Started</a>.</p>
+
 
                 </div>
             </div>
@@ -259,7 +240,7 @@ make
     </div>
 </div>
 
-<!-- Footer -->
+
 <footer class="py-3 bg-secondary">
     <div class="container">
         <div class="row">
@@ -280,7 +261,7 @@ make
     </div>
 </footer>
 
-<!-- Bootstrap core JavaScript -->
+
 <script src="/assets/js/jquery.min.js"></script>
 <script src="/assets/js/bootstrap.bundle.min.js"></script>
 

@@ -1,19 +1,4 @@
-<!--
-Licensed to the Apache Software Foundation (ASF) under one or more
-contributor license agreements.  See the NOTICE file distributed with
-this work for additional information regarding copyright ownership.
-The ASF licenses this file to You under the Apache License, Version 2.0
-(the "License"); you may not use this file except in compliance with
-the License.  You may obtain a copy of the License at
 
-    http://www.apache.org/licenses/LICENSE-2.0
-
-Unless required by applicable law or agreed to in writing, software
-distributed under the License is distributed on an "AS IS" BASIS,
-WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-See the License for the specific language governing permissions and
-limitations under the License.
--->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -24,10 +9,13 @@ limitations under the License.
 
     <title>creating_a_simple_bundle.md / Apache Celix</title>
 
-    <!-- Bootstrap core CSS -->
+    
+    <link rel="icon" href="/assets/img/favicon.ico">
+
+    
     <link href="/assets/css/bootstrap.min.css" rel="stylesheet">
 
-    <!-- Custom style -->
+    
     <link href="/assets/css/style.css" rel="stylesheet">
 </head>
 <body class="light-grey">
@@ -36,7 +24,7 @@ limitations under the License.
     <img src="/assets/img/forkme_right_red_aa0000.png" alt="Fork me on GitHub">
 </a>
 
-<!-- Navigation -->
+
 <nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top">
     <div class="container">
         <a class="navbar-brand" href="/">
@@ -54,7 +42,7 @@ limitations under the License.
                     <a class="nav-link" href="/download.cgi">Download</a>
                 </li>
                 <li class="nav-item active">
-                    <a class="nav-link" href="/docs/">Docs</a>
+                    <a class="nav-link" href="/docs/docs.html">Docs</a>
                 </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="ddCommunity" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -101,10 +89,14 @@ limitations under the License.
         <div class="row py-4">
             <div class="col-sm-12 card">
                 <div class="card-body pt-5">
-                    <a class="edit-on-gh" href="https://github.com/apache/celix/edit/develop/documents/getting_started/creating_a_simple_bundle.md" title="Edit this page on GitHub">Edit on GitHub</a>
-                    <a href="/docs/" title="back to documentation">&lt;&lt; back to documentation</a>
+                     
+                    <a class="edit-on-gh" href="https://github.com/apache/celix/edit/develop/docs/celix/documents/getting_started/creating_a_simple_bundle.md" title="Edit this page on GitHub">Edit on GitHub</a>
+                    <a href="/docs/docs.html" title="back to documentation">&lt;&lt; back to documentation</a>
 
-                    <!--
+                    
+	
+
+<!--
 Licensed to the Apache Software Foundation (ASF) under one or more
 contributor license agreements.  See the NOTICE file distributed with
 this work for additional information regarding copyright ownership.
@@ -121,286 +113,267 @@ See the License for the specific language governing permissions and
 limitations under the License.
 -->
 
-<h1 id="apache-celix---getting-started-guide-creating-a-simple-bundle">Apache Celix - Getting Started Guide: Creating a Simple Bundle</h1>
+<h1 id="apache-celix-getting-started-guide-creating-a-simple-bundle">Apache Celix - Getting Started Guide: Creating a Simple Bundle</h1>
 
 <h2 id="intro">Intro</h2>
+
 <p>This page is intended for first time users of Apache Celix. It should guide you through building &amp; installing Apache Celix, setting up a new project, creating your first bundle, setting up the project for use with Eclipse project and finally running and debugging your bundle directly from eclipse workspace.</p>
 
-<p>If there are any uncertainties or question, don’t hesitate to ask your questions in the <a href="https://celix.apache.org/support/mailinglist.html">Apache Celix mailing</a>.</p>
+<p>If there are any uncertainties or question, don&rsquo;t hesitate to ask your questions in the <a href="https://celix.apache.org/support/mailinglist.html">Apache Celix mailing</a>.</p>
 
 <h2 id="prerequisite">Prerequisite</h2>
+
 <p>Some experience with a command line interface (xterm) is expected to be able to follow this guide.</p>
 
 <h2 id="building-and-installing">Building and Installing</h2>
+
 <p>For Apache Celix see <a href="../building/readme.html">Building And Installing</a></p>
 
 <h2 id="installing-eclipse-cdt">Installing Eclipse CDT</h2>
+
 <p>Download the latest eclipse CDT at <a href="http://www.eclipse.org">http://www.eclipse.org</a> and install it on your system. For more information on how the install eclipse on your system consult the eclipse documentation. For this getting started guide the luna version of eclipse was used (<a href="http://www.eclipse.org/downloads/download.php?file=/technology/epp/downloads/release/luna/R/eclipse-cpp-luna-R-linux-gtk-x86_64.tar.gz">linux</a> <a href="http://www.eclipse.org/downloads/download.php?file=/technology/epp/downloads/release/luna/R/eclipse-cpp-luna-R-macosx-cocoa-x86_64.tar.gz">mac</a>).</p>
 
 <h2 id="apache-celix-bundle-project">Apache Celix Bundle project</h2>
+
 <p>Now that Apache Celix and Eclipse is installed, we are ready to create a new Apache Celix Bundle project.
 CMake is used as build tool for Apache Celix projects.</p>
 
 <p>To setup of the project, first create a new project dir to work in:</p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#080;font-style:italic">#Create a new workspace to work in, e.g:</span>
+mkdir <span style="color:#b68;font-weight:bold">${</span><span style="color:#b8860b">HOME</span><span style="color:#b68;font-weight:bold">}</span>/workspace
+<span style="color:#a2f">export</span> <span style="color:#b8860b">WS</span><span style="color:#666">=</span><span style="color:#b68;font-weight:bold">${</span><span style="color:#b8860b">HOME</span><span style="color:#b68;font-weight:bold">}</span>/workspace
 
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">#Create a new workspace to work in, e.g:</span>
-<span class="nb">mkdir</span> <span class="k">${</span><span class="nv">HOME</span><span class="k">}</span>/workspace
-<span class="nb">export </span><span class="nv">WS</span><span class="o">=</span><span class="k">${</span><span class="nv">HOME</span><span class="k">}</span>/workspace
-
-<span class="nb">mkdir</span> <span class="k">${</span><span class="nv">WS</span><span class="k">}</span>/myproject
-<span class="nb">cd</span> <span class="k">${</span><span class="nv">WS</span><span class="k">}</span>/myproject
-</code></pre></div></div>
-
+mkdir <span style="color:#b68;font-weight:bold">${</span><span style="color:#b8860b">WS</span><span style="color:#b68;font-weight:bold">}</span>/myproject
+<span style="color:#a2f">cd</span> <span style="color:#b68;font-weight:bold">${</span><span style="color:#b8860b">WS</span><span style="color:#b68;font-weight:bold">}</span>/myproject</code></pre></div>
 <p>Then create a CMakeLists.txt file - the makefile variant of CMake -in project root directory:</p>
-
-<div class="language-cmake highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">#${WS}/myproject/CMakeLists.txt</span>
-	
-<span class="c1">#Part 1. setup project</span>
-<span class="nb">cmake_minimum_required</span><span class="p">(</span>VERSION 3.4<span class="p">)</span>
-<span class="nb">project</span><span class="p">(</span>myproject C CXX<span class="p">)</span>
-
-<span class="c1">#Part 2. setup compilers</span>
-<span class="nf">SET</span><span class="p">(</span>CMAKE_C_FLAGS <span class="s2">"-D_GNU_SOURCE -std=gnu99 -Wall -Werror -fPIC </span><span class="si">${</span><span class="nv">CMAKE_C_FLAGS</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
-<span class="nf">SET</span><span class="p">(</span>CMAKE_C_FLAGS_DEBUG <span class="s2">"-g -DDEBUG"</span><span class="p">)</span>
-<span class="nf">SET</span><span class="p">(</span>CMAKE_CXX_FLAGS <span class="s2">"-std=c++11 </span><span class="si">${</span><span class="nv">CMAKE_CXX_FLAGS</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
-<span class="nf">SET</span><span class="p">(</span>CMAKE_CXX_FLAGS_DEBUG <span class="s2">"-g -DDEBUG"</span><span class="p">)</span>
-
-<span class="c1">#Part 3. Setup Celix cmake files, include paths, libraries and library paths</span>
-<span class="c1">#Note. If celix is not installed in /usr/local dir, change the location accordingly.</span>
-<span class="nb">set</span><span class="p">(</span>CMAKE_MODULE_PATH  <span class="si">${</span><span class="nv">CMAKE_MODULE_PATH</span><span class="si">}</span> <span class="s2">"/usr/local/share/celix/cmake/modules"</span><span class="p">)</span>
-<span class="nb">find_package</span><span class="p">(</span>CELIX REQUIRED<span class="p">)</span>
-<span class="nb">include_directories</span><span class="p">(</span><span class="si">${</span><span class="nv">CELIX_INCLUDE_DIRS</span><span class="si">}</span><span class="p">)</span>
-
-<span class="c1">#Part 4. Choose C, C++ or both</span>
-<span class="nb">add_subdirectory</span><span class="p">(</span>bundles/HelloWorld_c<span class="p">)</span> <span class="c1">#C</span>
-<span class="nb">add_subdirectory</span><span class="p">(</span>bundles/HelloWorld_cxx<span class="p">)</span> <span class="c1">#C++</span>
-</code></pre></div></div>
-
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cmake" data-lang="cmake"><span style="color:#080;font-style:italic">#${WS}/myproject/CMakeLists.txt
+</span><span style="color:#080;font-style:italic"></span>	<span style="">
+</span><span style=""></span><span style="color:#080;font-style:italic">#Part 1. setup project
+</span><span style="color:#080;font-style:italic"></span><span style="color:#a2f">cmake_minimum_required</span>(<span style="color:#b44">VERSION</span> <span style="color:#b44">3.4</span>)<span style="">
+</span><span style=""></span><span style="color:#a2f">project</span>(<span style="color:#b44">myproject</span> <span style="color:#b44">C</span> <span style="color:#b44">CXX</span>)<span style="">
+</span><span style="">
+</span><span style=""></span><span style="color:#080;font-style:italic">#Part 2. setup compilers
+</span><span style="color:#080;font-style:italic"></span><span style="color:#a2f">SET</span>(<span style="color:#b44">CMAKE_C_FLAGS</span> <span style="color:#b44">&#34;-D_GNU_SOURCE -std=gnu99 -Wall -Werror -fPIC ${CMAKE_C_FLAGS}&#34;</span>)<span style="">
+</span><span style=""></span><span style="color:#a2f">SET</span>(<span style="color:#b44">CMAKE_C_FLAGS_DEBUG</span> <span style="color:#b44">&#34;-g -DDEBUG&#34;</span>)<span style="">
+</span><span style=""></span><span style="color:#a2f">SET</span>(<span style="color:#b44">CMAKE_CXX_FLAGS</span> <span style="color:#b44">&#34;-std=c++11 ${CMAKE_CXX_FLAGS}&#34;</span>)<span style="">
+</span><span style=""></span><span style="color:#a2f">SET</span>(<span style="color:#b44">CMAKE_CXX_FLAGS_DEBUG</span> <span style="color:#b44">&#34;-g -DDEBUG&#34;</span>)<span style="">
+</span><span style="">
+</span><span style=""></span><span style="color:#080;font-style:italic">#Part 3. Setup Celix cmake files, include paths, libraries and library paths
+</span><span style="color:#080;font-style:italic">#Note. If celix is not installed in /usr/local dir, change the location accordingly.
+</span><span style="color:#080;font-style:italic"></span><span style="color:#a2f">set</span>(<span style="color:#b44">CMAKE_MODULE_PATH</span>  <span style="color:#666">${</span><span style="color:#b8860b">CMAKE_MODULE_PATH</span><span style="color:#666">}</span> <span style="color:#b44">&#34;/usr/local/share/celix/cmake/modules&#34;</span>)<span style="">
+</span><span style=""></span><span style="color:#a2f">find_package</span>(<span style="color:#b44">CELIX</span> <span style="color:#b44">REQUIRED</span>)<span style="">
+</span><span style=""></span><span style="color:#a2f">include_directories</span>(<span style="color:#666">${</span><span style="color:#b8860b">CELIX_INCLUDE_DIRS</span><span style="color:#666">}</span>)<span style="">
+</span><span style="">
+</span><span style=""></span><span style="color:#080;font-style:italic">#Part 4. Choose C, C++ or both
+</span><span style="color:#080;font-style:italic"></span><span style="color:#a2f">add_subdirectory</span>(<span style="color:#b44">bundles/HelloWorld_c</span>) <span style="color:#080;font-style:italic">#C
+</span><span style="color:#080;font-style:italic"></span><span style="color:#a2f">add_subdirectory</span>(<span style="color:#b44">bundles/HelloWorld_cxx</span>) <span style="">#C++</span></code></pre></div>
 <p>This CMakeLists.txt file, sets up the following:</p>
 
 <ul>
-  <li>Part 1
-    <ul>
-      <li>The minimum cmake version required.</li>
-      <li>The project name</li>
-      <li>The type of source files to expect, in this case C and C++.</li>
-    </ul>
-  </li>
-  <li>Part 2
-    <ul>
-      <li>Setup the compilers. c99 for C and C++11 for C++</li>
-    </ul>
-  </li>
-  <li>Part 3
-    <ul>
-      <li>The Celix package should be searched, configured and that the Celix package is required.</li>
-      <li>For all build targets in this CMakeLists.txt file or any sub directory CMakeLists.txt files the Apache Celix headers directory should be included.</li>
-    </ul>
-  </li>
-  <li>Part 4
-    <ul>
-      <li>The CMakelists.txt file in the subdirectory bundles/hello_world and/or bundles/HelloWorld should also be processed.</li>
-    </ul>
-  </li>
+<li>Part 1
+
+<ul>
+<li>The minimum cmake version required.</li>
+<li>The project name</li>
+<li>The type of source files to expect, in this case C and C++.</li>
+</ul></li>
+<li>Part 2
+
+<ul>
+<li>Setup the compilers. c99 for C and C++11 for C++</li>
+</ul></li>
+<li>Part 3
+
+<ul>
+<li>The Celix package should be searched, configured and that the Celix package is required.</li>
+<li>For all build targets in this CMakeLists.txt file or any sub directory CMakeLists.txt files the Apache Celix headers directory should be included.</li>
+</ul></li>
+<li>Part 4
+
+<ul>
+<li>The CMakelists.txt file in the subdirectory bundles/hello_world and/or bundles/HelloWorld should also be processed.
+<br /></li>
+</ul></li>
 </ul>
 
 <p>It is a good practice to create a separate CMakeLists.txt file for every bundle you want to build. For the hello_world bundle a CMakeLists.txt file should be created in the bundles/hello_world sub directory.</p>
 
 <p>Create the sub directory:</p>
-
-<pre><code class="language-CMake">#Create directory structure for the hello_world bundles
-cd ${WS}/myproject
-mkdir -p bundles/HelloWorld_c/src
-mkdir -p bundles/HelloWorld_cxx/src
-mkdir -p bundles/HelloWorld_cxx/include
-</code></pre>
-
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-CMake" data-lang="CMake"><span style="color:#080;font-style:italic">#Create directory structure for the hello_world bundles
+</span><span style="color:#080;font-style:italic"></span><span style="">cd</span> <span style="">${WS}/myproject
+</span><span style="">mkdir</span> <span style="">-p</span> <span style="">bundles/HelloWorld_c/src
+</span><span style="">mkdir</span> <span style="">-p</span> <span style="">bundles/HelloWorld_cxx/src
+</span><span style="">mkdir</span> <span style="">-p</span> <span style="">bundles/HelloWorld_cxx/include</span></code></pre></div>
 <p>And add the following CMakeLists.txt file for the C Bundle:</p>
-
-<pre><code class="language-CMake">#${WS}/myproject/bundles/HelloWorld_c/CMakeLists.txt
-
-add_celix_bundle(HelloWorld_c
-    VERSION 1.0.0
-	SOURCES
-        src/HelloWorld_activator.c
-)	
-
-if(APPLE)
-    target_link_libraries(HelloWorld_c ${CELIX_LIBRARIES} -Wl,-all_load ${CELIX_DM_STATIC_LIB})
-else()  
-    target_link_libraries(HelloWorld_c -Wl,--no-undefined -Wl,--whole-archive ${CELIX_DM_STATIC_LIB} -Wl,--no-whole-archive ${CELIX_LIBRARIES})
-endif()
-</code></pre>
-
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-CMake" data-lang="CMake"><span style="color:#080;font-style:italic">#${WS}/myproject/bundles/HelloWorld_c/CMakeLists.txt
+</span><span style="color:#080;font-style:italic"></span><span style="">
+</span><span style=""></span><span style="color:#a2f">add_celix_bundle</span>(<span style="color:#b44">HelloWorld_c</span>
+    <span style="color:#b44">VERSION</span> <span style="color:#b44">1.0.0</span>
+	<span style="color:#b44">SOURCES</span>
+        <span style="color:#b44">src/HelloWorld_activator.c</span>
+)	<span style="">
+</span><span style="">
+</span><span style=""></span><span style="color:#a2f">if</span>(<span style="color:#b44">APPLE</span>)<span style="">
+</span><span style=""></span>    <span style="color:#a2f">target_link_libraries</span>(<span style="color:#b44">HelloWorld_c</span> <span style="color:#666">${</span><span style="color:#b8860b">CELIX_LIBRARIES</span><span style="color:#666">}</span> <span style="color:#b44">-Wl,-all_load</span> <span style="color:#666">${</span><span style="color:#b8860b">CELIX_DM_STATIC_LIB</span><span style="color:#666">}</span>)<span style="">
+</span><span style=""></span><span style="color:#a2f">else</span>()  <span style="">
+</span><span style=""></span>    <span style="color:#a2f">target_link_libraries</span>(<span style="color:#b44">HelloWorld_c</span> <span style="color:#b44">-Wl,--no-undefined</span> <span style="color:#b44">-Wl,--whole-archive</span> <span style="color:#666">${</span><span style="color:#b8860b">CELIX_DM_STATIC_LIB</span><span style="color:#666">}</span> <span style="color:#b44">-Wl,--no-whole-archive</span> <span style="color:#666">${</span><span style="color:#b8860b">CELIX_LIBRARIES</span><span style="color:#666">}</span>)<span style="">
+</span><span style=""></span><span style="color:#a2f">endif</span>()</code></pre></div>
 <p>And/or the following CMakeLists.txt for the C++ bundle:</p>
-
-<pre><code class="language-CMake">#${WS}/myproject/bundles/HelloWorld_cxx/CMakeLists.txt
-
-add_celix_bundle(HelloWorld_cxx
-    VERSION 1.0.0
-	SOURCES
-        src/HelloWorldActivator.cc
-)
-target_include_directories(HelloWorld_cxx PRIVATE include)
-
-IF(APPLE)
-    target_link_libraries(HelloWorld_cxx ${CELIX_LIBRARIES} -Wl,-all_load ${CELIX_DM_STATIC_CXX_LIB})
-else()
-    target_link_libraries(HelloWorld_cxx -Wl,--no-undefined -Wl,--whole-archive ${CELIX_DM_STATIC_CXX_LIB} -Wl,--no-whole-archive ${CELIX_LIBRARIES})
-endif()
-</code></pre>
-
-<p>These CMakeLists.txt files declare that the bundles should be build based on the build result (shared library) of the declared sources (in this case the <code class="highlighter-rouge">private/src/hello_world_activator.c</code> or <code class="highlighter-rouge">private/src/HelloWorldActivator.cc</code> source). 
-The <code class="highlighter-rouge">add_celix_bundle</code> CMake function is an Apache Celix specific CMake extension. 
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-CMake" data-lang="CMake"><span style="color:#080;font-style:italic">#${WS}/myproject/bundles/HelloWorld_cxx/CMakeLists.txt
+</span><span style="color:#080;font-style:italic"></span><span style="">
+</span><span style=""></span><span style="color:#a2f">add_celix_bundle</span>(<span style="color:#b44">HelloWorld_cxx</span>
+    <span style="color:#b44">VERSION</span> <span style="color:#b44">1.0.0</span>
+	<span style="color:#b44">SOURCES</span>
+        <span style="color:#b44">src/HelloWorldActivator.cc</span>
+)<span style="">
+</span><span style=""></span><span style="color:#a2f">target_include_directories</span>(<span style="color:#b44">HelloWorld_cxx</span> <span style="color:#b44">PRIVATE</span> <span style="color:#b44">include</span>)<span style="">
+</span><span style="">
+</span><span style=""></span><span style="color:#a2f">IF</span>(<span style="color:#b44">APPLE</span>)<span style="">
+</span><span style=""></span>    <span style="color:#a2f">target_link_libraries</span>(<span style="color:#b44">HelloWorld_cxx</span> <span style="color:#666">${</span><span style="color:#b8860b">CELIX_LIBRARIES</span><span style="color:#666">}</span> <span style="color:#b44">-Wl,-all_load</span> <span style="color:#666">${</span><span style="color:#b8860b">CELIX_DM_STATIC_CXX_LIB</span><span style="color:#666">}</span>)<span style="">
+</span><span style=""></span><span style="color:#a2f">else</span>()<span style="">
+</span><span style=""></span>    <span style="color:#a2f">target_link_libraries</span>(<span style="color:#b44">HelloWorld_cxx</span> <span style="color:#b44">-Wl,--no-undefined</span> <span style="color:#b44">-Wl,--whole-archive</span> <span style="color:#666">${</span><span style="color:#b8860b">CELIX_DM_STATIC_CXX_LIB</span><span style="color:#666">}</span> <span style="color:#b44">-Wl,--no-whole-archive</span> <span style="color:#666">${</span><span style="color:#b8860b">CELIX_LIBRARIES</span><span style="color:#666">}</span>)<span style="">
+</span><span style=""></span><span style="color:#a2f">endif</span>()</code></pre></div>
+<p>These CMakeLists.txt files declare that the bundles should be build based on the build result (shared library) of the declared sources (in this case the <code>private/src/hello_world_activator.c</code> or <code>private/src/HelloWorldActivator.cc</code> source).
+The <code>add_celix_bundle</code> CMake function is an Apache Celix specific CMake extension.
 The library used for the bundle will also be linked against the dependency manager static library.</p>
 
-<p>The Celix framework will install the bundle, load the bundle shared library and call the bundle activator entry symbols. These entries need to be programmed by the user. 
-Note that in these examples we use the dependency manager libraries (C and C++ version) instead of developing a “vanilla” bundle activator; 
+<p>The Celix framework will install the bundle, load the bundle shared library and call the bundle activator entry symbols. These entries need to be programmed by the user.
+Note that in these examples we use the dependency manager libraries (C and C++ version) instead of developing a &ldquo;vanilla&rdquo; bundle activator;
 The dependency manager uses a higher abstraction and is more simple to understand and maintain, but not part of the OSGi standard.</p>
 
 <p>The C Bundle Activator:</p>
-<pre><code class="language-C">//${WS}/myproject/bundles/hello_world/src/HelloWorld_activator.c
-#include &lt;stdlib.h&gt;
-#include &lt;stdio.h&gt;
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-C" data-lang="C"><span style="color:#080;font-style:italic">//${WS}/myproject/bundles/hello_world/src/HelloWorld_activator.c
+</span><span style="color:#080;font-style:italic"></span><span style="color:#080">#include</span> <span style="color:#080">&lt;stdlib.h&gt;</span><span style="color:#080">
+</span><span style="color:#080">#include</span> <span style="color:#080">&lt;stdio.h&gt;</span><span style="color:#080">
+</span><span style="color:#080"></span>
+<span style="color:#080">#include</span> <span style="color:#080">&#34;dm_activator.h&#34;</span><span style="color:#080">
+</span><span style="color:#080"></span>
 
-#include "dm_activator.h"
-
-
-struct userData {
-	    char * word;
+<span style="color:#a2f;font-weight:bold">struct</span> userData {
+	    <span style="color:#0b0;font-weight:bold">char</span> <span style="color:#666">*</span> word;
 };
 
-celix_status_t dm_create(bundle_context_pt context, void **out) {
-	celix_status_t status = CELIX_SUCCESS;
-    struct userData* result = calloc(1, sizeof(*result));
-	if (result != NULL) {
-            result-&gt;word = "C World";
-            *out = result;
-    } else {
-            status = CELIX_START_ERROR;
+celix_status_t <span style="color:#00a000">dm_create</span>(bundle_context_pt context, <span style="color:#0b0;font-weight:bold">void</span> <span style="color:#666">**</span>out) {
+	celix_status_t status <span style="color:#666">=</span> CELIX_SUCCESS;
+    <span style="color:#a2f;font-weight:bold">struct</span> userData<span style="color:#666">*</span> result <span style="color:#666">=</span> calloc(<span style="color:#666">1</span>, <span style="color:#a2f;font-weight:bold">sizeof</span>(<span style="color:#666">*</span>result));
+	<span style="color:#a2f;font-weight:bold">if</span> (result <span style="color:#666">!=</span> <span style="color:#a2f">NULL</span>) {
+            result<span style="color:#666">-&gt;</span>word <span style="color:#666">=</span> <span style="color:#b44">&#34;C World&#34;</span>;
+            <span style="color:#666">*</span>out <span style="color:#666">=</span> result;
+    } <span style="color:#a2f;font-weight:bold">else</span> {
+            status <span style="color:#666">=</span> CELIX_START_ERROR;
     }
-    return status;
+    <span style="color:#a2f;font-weight:bold">return</span> status;
 }
 
-celix_status_t dm_init(void* userData, bundle_context_pt context, dm_dependency_manager_pt manager) {
-    struct userData* data = (struct userData *) userData;
-    printf("Hello %s\n", data-&gt;word);
-    return CELIX_SUCCESS;
+celix_status_t <span style="color:#00a000">dm_init</span>(<span style="color:#0b0;font-weight:bold">void</span><span style="color:#666">*</span> userData, bundle_context_pt context, dm_dependency_manager_pt manager) {
+    <span style="color:#a2f;font-weight:bold">struct</span> userData<span style="color:#666">*</span> data <span style="color:#666">=</span> (<span style="color:#a2f;font-weight:bold">struct</span> userData <span style="color:#666">*</span>) userData;
+    printf(<span style="color:#b44">&#34;Hello %s</span><span style="color:#b62;font-weight:bold">\n</span><span style="color:#b44">&#34;</span>, data<span style="color:#666">-&gt;</span>word);
+    <span style="color:#a2f;font-weight:bold">return</span> CELIX_SUCCESS;
 }
 
-celix_status_t dm_destroy(void* userData, bundle_context_pt context, dm_dependency_manager_pt manager) {
+celix_status_t <span style="color:#00a000">dm_destroy</span>(<span style="color:#0b0;font-weight:bold">void</span><span style="color:#666">*</span> userData, bundle_context_pt context, dm_dependency_manager_pt manager) {
     free(userData);
-    return CELIX_SUCCESS;
-}
-</code></pre>
-
+    <span style="color:#a2f;font-weight:bold">return</span> CELIX_SUCCESS;
+}</code></pre></div>
 <p>The C++ Bundle Activator (header + source):</p>
-<pre><code class="language-C++">//${WS}/myproject/bundles/HelloWorld/include/HelloWorldActivator.h
-#ifndef HELLOWORLDACTIVATOR_H_
-#define HELLOWORLDACTIVATOR_H_
-
-#include "celix/dm/DmActivator.h"
-
-class HelloWorldActivator : public celix::dm::DmActivator {
-private:
-    const std::string word {"C++ World"};
-public:
-    HelloWorldActivator(celix::dm::DependencyManager&amp; mng) : DmActivator {mng} {}
-    virtual void init();
-    virtual void deinit();
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-C++" data-lang="C++"><span style="color:#080;font-style:italic">//${WS}/myproject/bundles/HelloWorld/include/HelloWorldActivator.h
+</span><span style="color:#080;font-style:italic"></span><span style="color:#080">#ifndef HELLOWORLDACTIVATOR_H_
+</span><span style="color:#080">#define HELLOWORLDACTIVATOR_H_
+</span><span style="color:#080"></span>
+<span style="color:#080">#include</span> <span style="color:#080">&#34;celix/dm/DmActivator.h&#34;</span><span style="color:#080">
+</span><span style="color:#080"></span>
+<span style="color:#a2f;font-weight:bold">class</span><span style=""> </span><span style="color:#00f">HelloWorldActivator</span> <span style="color:#666">:</span> <span style="color:#a2f;font-weight:bold">public</span> celix<span style="color:#666">::</span>dm<span style="color:#666">::</span>DmActivator {
+<span style="color:#a2f;font-weight:bold">private</span><span style="color:#666">:</span>
+    <span style="color:#a2f;font-weight:bold">const</span> std<span style="color:#666">::</span>string word {<span style="color:#b44">&#34;C++ World&#34;</span>};
+<span style="color:#a2f;font-weight:bold">public</span><span style="color:#666">:</span>
+    HelloWorldActivator(celix<span style="color:#666">::</span>dm<span style="color:#666">::</span>DependencyManager<span style="color:#666">&amp;</span> mng) <span style="color:#666">:</span> DmActivator {mng} {}
+    <span style="color:#a2f;font-weight:bold">virtual</span> <span style="color:#0b0;font-weight:bold">void</span> init();
+    <span style="color:#a2f;font-weight:bold">virtual</span> <span style="color:#0b0;font-weight:bold">void</span> <span style="color:#00a000">deinit</span>();
 };
 
-#endif //HELLOWORLDACTIVATOR_H_
-</code></pre>
-
-<pre><code class="language-C++">//${WS}/myproject/bundles/HelloWorld/private/src/HelloWorldActivator.cc
-#include "HelloWorldActivator.h"
-#include &lt;iostream&gt;
-
-DmActivator* DmActivator::create(celix::dm::DependencyManager&amp; mng) {
-    return new HelloWorldActivator(mng);
+<span style="color:#080">#endif </span><span style="color:#080;font-style:italic">//HELLOWORLDACTIVATOR_H_
+</span></code></pre></div><div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-C++" data-lang="C++"><span style="color:#080;font-style:italic">//${WS}/myproject/bundles/HelloWorld/private/src/HelloWorldActivator.cc
+</span><span style="color:#080;font-style:italic"></span><span style="color:#080">#include</span> <span style="color:#080">&#34;HelloWorldActivator.h&#34;</span><span style="color:#080">
+</span><span style="color:#080">#include</span> <span style="color:#080">&lt;iostream&gt;</span><span style="color:#080">
+</span><span style="color:#080"></span>
+DmActivator<span style="color:#666">*</span> DmActivator<span style="color:#666">::</span>create(celix<span style="color:#666">::</span>dm<span style="color:#666">::</span>DependencyManager<span style="color:#666">&amp;</span> mng) {
+    <span style="color:#a2f;font-weight:bold">return</span> <span style="color:#a2f;font-weight:bold">new</span> HelloWorldActivator(mng);
 }
 
-void HelloWorldActivator::init() {
-    std::cout &lt;&lt; "Hello " &lt;&lt; this-&gt;word &lt;&lt; "\n";
+<span style="color:#0b0;font-weight:bold">void</span> HelloWorldActivator<span style="color:#666">::</span>init() {
+    std<span style="color:#666">::</span>cout <span style="color:#666">&lt;&lt;</span> <span style="color:#b44">&#34;Hello &#34;</span> <span style="color:#666">&lt;&lt;</span> <span style="color:#a2f;font-weight:bold">this</span><span style="color:#666">-&gt;</span>word <span style="color:#666">&lt;&lt;</span> <span style="color:#b44">&#34;</span><span style="color:#b62;font-weight:bold">\n</span><span style="color:#b44">&#34;</span>;
 }
 
-void HelloWorldActivator::deinit() {
-    //nothing to do
-}
-</code></pre>
-
+<span style="color:#0b0;font-weight:bold">void</span> HelloWorldActivator<span style="color:#666">::</span>deinit() {
+    <span style="color:#080;font-style:italic">//nothing to do
+</span><span style="color:#080;font-style:italic"></span>}
+</code></pre></div>
 <h3 id="building">Building</h3>
-<p>One of the highly recommended features of CMake is the ability to do out of source builds, the benefit is that all of the build results will go in a separate directory without cluttering the (source) project.
-CMake also needs to able to find the cmake files Celix provides. This can be achieved by providing a CMAKE_MODULE_PATH variable (or setting the CMAKE_MODULE_PATH in the top level CMakeLists.txt). 
-For this example it is assumed that Celix in installed in <code class="highlighter-rouge">/usr/local</code>.
-To create the build directory and build the project execute the following commands:</p>
 
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">cd</span> <span class="k">${</span><span class="nv">WS</span><span class="k">}</span>
-<span class="nb">mkdir </span>myproject-build
-<span class="nb">cd </span>myproject-build
+<p>One of the highly recommended features of CMake is the ability to do out of source builds, the benefit is that all of the build results will go in a separate directory without cluttering the (source) project.
+CMake also needs to able to find the cmake files Celix provides. This can be achieved by providing a CMAKE_MODULE_PATH variable (or setting the CMAKE_MODULE_PATH in the top level CMakeLists.txt).
+For this example it is assumed that Celix in installed in <code>/usr/local</code>.
+To create the build directory and build the project execute the following commands:</p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#a2f">cd</span> <span style="color:#b68;font-weight:bold">${</span><span style="color:#b8860b">WS</span><span style="color:#b68;font-weight:bold">}</span>
+mkdir myproject-build
+<span style="color:#a2f">cd</span> myproject-build
 cmake ../myproject
 make all  
-</code></pre></div></div>
+<span style="color:#b44">```</span>	
 
-<p>Hopefully you will some some build results scrolling over the screen and actual build results in the build directory.
+Hopefully you will some some build results scrolling over the screen and actual build results in the build directory.
 There should be a HelloWorld_c.zip in the bundles/HelloWorld_c directory and a HelloWorld_cxx.zip in the bundles/HelloWorld_cxx directory,
 these are the actual bundles.
-A bundle on its own has no real value, so lets setup a Celix container and run Celix with these bundles.</p>
+A bundle on its own has no real value, so lets setup a Celix container and run Celix with these bundles.
 
-<h3 id="running">Running</h3>
+<span style="color:#080;font-style:italic">### Running</span>
 
-<p>To create a deployment for the hello world bundles two things are needed:</p>
+To create a deployment <span style="color:#a2f;font-weight:bold">for</span> the hello world bundles two things are needed: 
+	
+<span style="color:#666">1</span>. Add a <span style="color:#b44">`</span>add_celix_container<span style="color:#b44">`</span> statement in the <span style="color:#666">(</span>top level<span style="color:#666">)</span> <span style="color:#b44">`</span>CMakeLists.txt<span style="color:#b44">`</span> file declaring what to deploy and under which name.
 
-<ol>
-  <li>Add a <code class="highlighter-rouge">add_celix_container</code> statement in the (top level) <code class="highlighter-rouge">CMakeLists.txt</code> file declaring what to deploy and under which name.</li>
-</ol>
-
-<pre><code class="language-CMake">#${WS}/myproject/CMakeLists.txt
-add_celix_container(myproject
+<span style="color:#b44">```</span>CMake
+<span style="color:#080;font-style:italic">#${WS}/myproject/CMakeLists.txt</span>
+add_celix_container<span style="color:#666">(</span>myproject
     CXX 
     BUNDLES 
-	    ${CELIX_BUNDLES_DIR}/shell.zip 
-	    ${CELIX_BUNDLES_DIR}/shell_tui.zip
-	    ${CELIX_BUNDLES_DIR}/dm_shell.zip 
-	    HelloWorld_c #C bundle
-	    HelloWorld_cxx #C++ bundle
-)		
-</code></pre>
-
-<p>With the <code class="highlighter-rouge">add_celix_container</code> CMake function a Celix container will be configured, which bundles to use can be specified with absolute paths to
+	    <span style="color:#b68;font-weight:bold">${</span><span style="color:#b8860b">CELIX_BUNDLES_DIR</span><span style="color:#b68;font-weight:bold">}</span>/shell.zip 
+	    <span style="color:#b68;font-weight:bold">${</span><span style="color:#b8860b">CELIX_BUNDLES_DIR</span><span style="color:#b68;font-weight:bold">}</span>/shell_tui.zip
+	    <span style="color:#b68;font-weight:bold">${</span><span style="color:#b8860b">CELIX_BUNDLES_DIR</span><span style="color:#b68;font-weight:bold">}</span>/dm_shell.zip 
+	    HelloWorld_c <span style="color:#080;font-style:italic">#C bundle</span>
+	    HelloWorld_cxx <span style="color:#080;font-style:italic">#C++ bundle</span>
+<span style="color:#666">)</span>		</code></pre></div>
+<p>With the <code>add_celix_container</code> CMake function a Celix container will be configured, which bundles to use can be specified with absolute paths to
 bundle files (e.g. the shell.zip bundle) or Celix bundle CMake target (e.g. the HelloWorld_c bundle).</p>
 
 <p>Rerun make again form the build project. the make files generated by CMake will ensure cmake is run it again to update the actual make files.</p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#a2f">cd</span> <span style="color:#b68;font-weight:bold">${</span><span style="color:#b8860b">WS</span><span style="color:#b68;font-weight:bold">}</span>/myproject-build
+make -j
+<span style="color:#b44">```</span>	
 
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">cd</span> <span class="k">${</span><span class="nv">WS</span><span class="k">}</span>/myproject-build
-make <span class="nt">-j</span>
-</code></pre></div></div>
+Now a deploy directory myproject should be available in the deploy directory. This directory contains - among other files - a release.sh script. This can be used to setup the required environment variables <span style="color:#666">(</span>like LD_LIBRARY_PATH<span style="color:#666">)</span>.
 
-<p>Now a deploy directory myproject should be available in the deploy directory. This directory contains - among other files - a release.sh script. This can be used to setup the required environment variables (like LD_LIBRARY_PATH).</p>
+<span style="color:#b44">```</span>bash
+<span style="color:#a2f">cd</span> <span style="color:#b68;font-weight:bold">${</span><span style="color:#b8860b">WS</span><span style="color:#b68;font-weight:bold">}</span>/myproject-build/deploy/myproject
+./myproject</code></pre></div>
+<p>The HelloWorld_c and HelloWorld_cxx bundles should be started with their own famous &ldquo;Hello World&rdquo; text variant printed. One for the C and one for the C++ bundle.
+The shell and shell_tui bundle are also deployed and these can be used to query and control the running framework. Below some commands are shown for querying the installed bundles, listing all known shell command, showing the help of a specific command and stopping a specific bundle (note that bundle 0 is the framework &ldquo;bundle&rdquo;):</p>
 
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">cd</span> <span class="k">${</span><span class="nv">WS</span><span class="k">}</span>/myproject-build/deploy/myproject
-./myproject
-</code></pre></div></div>
-
-<p>The HelloWorld_c and HelloWorld_cxx bundles should be started with their own famous “Hello World” text variant printed. One for the C and one for the C++ bundle.
-The shell and shell_tui bundle are also deployed and these can be used to query and control the running framework. Below some commands are shown for querying the installed bundles, listing all known shell command, showing the help of a specific command and stopping a specific bundle (note that bundle 0 is the framework “bundle”):</p>
-
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>lb 
+<pre><code>lb 
 help
 stop 0
-</code></pre></div></div>
+</code></pre>
 
 <h2 id="apache-celix-projects-in-eclipse">Apache Celix Projects in Eclipse</h2>
 
-<p>A nice feature of CMake is the ability to generate Eclipse project files, with this feature bundles can also be developed with use of Eclipse. This should help speed up the development process. 
+<p>A nice feature of CMake is the ability to generate Eclipse project files, with this feature bundles can also be developed with use of Eclipse. This should help speed up the development process.
 To get started change directory to the build directory and generate a eclipse project file.</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>cd ${WS}/myproject-build 
-cmake -G "Eclipse CDT4 - Unix Makefiles" .
-</code></pre></div></div>
+<pre><code>cd ${WS}/myproject-build 
+cmake -G &quot;Eclipse CDT4 - Unix Makefiles&quot; .
+</code></pre>
 
-<p>Startup the Eclipse EDI and a chose the <code class="highlighter-rouge">${WS}</code></p>
+<p>Startup the Eclipse EDI and a chose the <code>${WS}</code></p>
 
 <p><img src="getting_started_img1.png" alt="select workspace" /></p>
 
@@ -410,12 +383,12 @@ cmake -G "Eclipse CDT4 - Unix Makefiles" .
 
 <p>To build the project, use Project-&gt;Build All.
 To run or debug from Eclipse navigate to the myproject deploy directory and right click on
-the ‘myproject’ executable and as “Local C/C++ Application”</p>
+the &lsquo;myproject&rsquo; executable and as &ldquo;Local C/C++ Application&rdquo;</p>
 
 <h2 id="apache-celix-projects-in-clion">Apache Celix Projects in CLion</h2>
 
 <p>Using Apache Celix projects in CLion quite easy.
-Just use <code class="highlighter-rouge">File -&gt; Open ...</code> and select a Apache Celix project.
+Just use <code>File -&gt; Open ...</code> and select a Apache Celix project.
 Because CLion is a IDE for CMake projects and Apache Celix projects are CMake projects this works out of the box.</p>
 
 <p>To run a Celix container just select the target from CLion and press Run.</p>
@@ -423,16 +396,22 @@ Because CLion is a IDE for CMake projects and Apache Celix projects are CMake pr
 <h2 id="next">Next</h2>
 
 <p>The get a complete overview of the available Celix CMake commands see:</p>
+
 <ul>
-  <li><a href="../cmake_commands/readme.html">Apache Celix - Celix CMake Commands</a></li>
+<li><a href="../cmake_commands/readme.html">Apache Celix - Celix CMake Commands</a></li>
 </ul>
 
 <p>The idea behind service oriented programming is that functionality is provided and used by abstract service, which hide implementation details.
 For a guide how to provide and use services see</p>
 
 <ul>
-  <li><a href="using_services_with_c.html">Apache Celix - Getting Started Guide: Using Services with C</a></li>
-  <li><a href="using_services_with_cxx.html">Apache Celix - Getting Started Guide: Using Services with C++</a></li>
+<li><a href="using_services_with_c.html">Apache Celix - Getting Started Guide: Using Services with C</a></li>
+<li><a href="using_services_with_cxx.html">Apache Celix - Getting Started Guide: Using Services with C++</a>
+
+
+
+<br />
+<br /></li>
 </ul>
 
 
@@ -442,7 +421,7 @@ For a guide how to provide and use services see</p>
     </div>
 </div>
 
-<!-- Footer -->
+
 <footer class="py-3 bg-secondary">
     <div class="container">
         <div class="row">
@@ -463,7 +442,7 @@ For a guide how to provide and use services see</p>
     </div>
 </footer>
 
-<!-- Bootstrap core JavaScript -->
+
 <script src="/assets/js/jquery.min.js"></script>
 <script src="/assets/js/bootstrap.bundle.min.js"></script>
 

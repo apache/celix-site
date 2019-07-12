@@ -1,19 +1,4 @@
-<!--
-Licensed to the Apache Software Foundation (ASF) under one or more
-contributor license agreements.  See the NOTICE file distributed with
-this work for additional information regarding copyright ownership.
-The ASF licenses this file to You under the Apache License, Version 2.0
-(the "License"); you may not use this file except in compliance with
-the License.  You may obtain a copy of the License at
 
-    http://www.apache.org/licenses/LICENSE-2.0
-
-Unless required by applicable law or agreed to in writing, software
-distributed under the License is distributed on an "AS IS" BASIS,
-WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-See the License for the specific language governing permissions and
-limitations under the License.
--->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -24,10 +9,13 @@ limitations under the License.
 
     <title>readme.md / Apache Celix</title>
 
-    <!-- Bootstrap core CSS -->
+    
+    <link rel="icon" href="/assets/img/favicon.ico">
+
+    
     <link href="/assets/css/bootstrap.min.css" rel="stylesheet">
 
-    <!-- Custom style -->
+    
     <link href="/assets/css/style.css" rel="stylesheet">
 </head>
 <body class="light-grey">
@@ -36,7 +24,7 @@ limitations under the License.
     <img src="/assets/img/forkme_right_red_aa0000.png" alt="Fork me on GitHub">
 </a>
 
-<!-- Navigation -->
+
 <nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top">
     <div class="container">
         <a class="navbar-brand" href="/">
@@ -54,7 +42,7 @@ limitations under the License.
                     <a class="nav-link" href="/download.cgi">Download</a>
                 </li>
                 <li class="nav-item active">
-                    <a class="nav-link" href="/docs/">Docs</a>
+                    <a class="nav-link" href="/docs/docs.html">Docs</a>
                 </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="ddCommunity" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -101,10 +89,14 @@ limitations under the License.
         <div class="row py-4">
             <div class="col-sm-12 card">
                 <div class="card-body pt-5">
-                    <a class="edit-on-gh" href="https://github.com/apache/celix/edit/develop/config_admin/readme.md" title="Edit this page on GitHub">Edit on GitHub</a>
-                    <a href="/docs/" title="back to documentation">&lt;&lt; back to documentation</a>
+                     
+                    <a class="edit-on-gh" href="https://github.com/apache/celix/edit/develop/docs/celix/config_admin/readme.md" title="Edit this page on GitHub">Edit on GitHub</a>
+                    <a href="/docs/docs.html" title="back to documentation">&lt;&lt; back to documentation</a>
 
-                    <!--
+                    
+	
+
+<!--
 Licensed to the Apache Software Foundation (ASF) under one or more
 contributor license agreements.  See the NOTICE file distributed with
 this work for additional information regarding copyright ownership.
@@ -126,6 +118,7 @@ limitations under the License.
 <hr />
 
 <h2 id="introduction">Introduction</h2>
+
 <p>The configuration Admin service allows defining and deploying configuration data to bundles.
 When compared to config.properties it adds the option to update configuration data by providing a persisten storage. It also allows changing configuration data at run-time.</p>
 
@@ -134,7 +127,7 @@ When compared to config.properties it adds the option to update configuration da
 <h2 id="design">Design</h2>
 
 <p>The config_admin bundle implements the configuration_admin service, the interface to configuration objects and the interface of a managed service. At the moment, the implementation uses a config_admin_factory to generate config_admin services for each bundle that wants to use this service. This is an inheritance of the original design and not needed.
-The configuration data is stored persistently in a subdirectory store of the current bundle directory. 
+The configuration data is stored persistently in a subdirectory store of the current bundle directory.
 The filenames have the name of the PID and have an extension pid, e.g. base.device1.pid
 The files contains a list of key/value pairs. At least the following keys need to be present:
 service.bundleLocation
@@ -145,9 +138,9 @@ service.pid</p>
 <h2 id="todo">TODO</h2>
 
 <ol>
-  <li>Test the configuration of a service_factory</li>
-  <li>Think about the option to allow remote update of the managed_services</li>
-  <li>Support configuration of multiple managed services with the same PID. At the moment, only one service is bound to a configuration object.
+<li>Test the configuration of a service_factory</li>
+<li>Think about the option to allow remote update of the managed_services</li>
+<li>Support configuration of multiple managed services with the same PID. At the moment, only one service is bound to a configuration object.
 To support this the getConfiguration2 function needs to be called with a location NULL according to the spec.</li>
 </ol>
 
@@ -156,12 +149,13 @@ To support this the getConfiguration2 function needs to be called with a locatio
 <h2 id="usage">Usage</h2>
 
 <ol>
-  <li>Bundle that needs configuration data
-This bundle has to register next to its normal service a managed service that has an update method. This managed service needs to be registered with a properties object that contains the key/value pair service.pid=<PID NAME="">.
- Use config_admin_tst/example_test as an example (it is better than example_test2)</PID></li>
-  <li>Bundle/application that wants to update the configuration data of the system
+<li>Bundle that needs configuration data
+This bundle has to register next to its normal service a managed service that has an update method. This managed service needs to be registered with a properties object that contains the key/value pair service.pid=<PID NAME>.
+Use config_admin_tst/example_test as an example (it is better than example_test2)</li>
+<li>Bundle/application that wants to update the configuration data of the system
 This bundle needs to retrieve the running config_admin service. With this service it can retrieve all configuration objects for all known Persistent Identifiers (PIDs). For each PID, get all properites that need to be updated. See config_admin_test for an example.</li>
 </ol>
+
 
                 </div>
             </div>
@@ -169,7 +163,7 @@ This bundle needs to retrieve the running config_admin service. With this servic
     </div>
 </div>
 
-<!-- Footer -->
+
 <footer class="py-3 bg-secondary">
     <div class="container">
         <div class="row">
@@ -190,7 +184,7 @@ This bundle needs to retrieve the running config_admin service. With this servic
     </div>
 </footer>
 
-<!-- Bootstrap core JavaScript -->
+
 <script src="/assets/js/jquery.min.js"></script>
 <script src="/assets/js/bootstrap.bundle.min.js"></script>
 

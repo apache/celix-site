@@ -1,19 +1,4 @@
-<!--
-Licensed to the Apache Software Foundation (ASF) under one or more
-contributor license agreements.  See the NOTICE file distributed with
-this work for additional information regarding copyright ownership.
-The ASF licenses this file to You under the Apache License, Version 2.0
-(the "License"); you may not use this file except in compliance with
-the License.  You may obtain a copy of the License at
 
-    http://www.apache.org/licenses/LICENSE-2.0
-
-Unless required by applicable law or agreed to in writing, software
-distributed under the License is distributed on an "AS IS" BASIS,
-WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-See the License for the specific language governing permissions and
-limitations under the License.
--->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -24,10 +9,13 @@ limitations under the License.
 
     <title>README.md / Apache Celix</title>
 
-    <!-- Bootstrap core CSS -->
+    
+    <link rel="icon" href="/assets/img/favicon.ico">
+
+    
     <link href="/assets/css/bootstrap.min.css" rel="stylesheet">
 
-    <!-- Custom style -->
+    
     <link href="/assets/css/style.css" rel="stylesheet">
 </head>
 <body class="light-grey">
@@ -36,7 +24,7 @@ limitations under the License.
     <img src="/assets/img/forkme_right_red_aa0000.png" alt="Fork me on GitHub">
 </a>
 
-<!-- Navigation -->
+
 <nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top">
     <div class="container">
         <a class="navbar-brand" href="/">
@@ -54,7 +42,7 @@ limitations under the License.
                     <a class="nav-link" href="/download.cgi">Download</a>
                 </li>
                 <li class="nav-item active">
-                    <a class="nav-link" href="/docs/">Docs</a>
+                    <a class="nav-link" href="/docs/docs.html">Docs</a>
                 </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="ddCommunity" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -101,10 +89,14 @@ limitations under the License.
         <div class="row py-4">
             <div class="col-sm-12 card">
                 <div class="card-body pt-5">
-                    <a class="edit-on-gh" href="https://github.com/apache/celix/edit/develop/shell/README.md" title="Edit this page on GitHub">Edit on GitHub</a>
-                    <a href="/docs/" title="back to documentation">&lt;&lt; back to documentation</a>
+                     
+                    <a class="edit-on-gh" href="https://github.com/apache/celix/edit/develop/docs/celix/shell/README.md" title="Edit this page on GitHub">Edit on GitHub</a>
+                    <a href="/docs/docs.html" title="back to documentation">&lt;&lt; back to documentation</a>
 
-                    <!--
+                    
+	
+
+<!--
 Licensed to the Apache Software Foundation (ASF) under one or more
 contributor license agreements.  See the NOTICE file distributed with
 this work for additional information regarding copyright ownership.
@@ -127,7 +119,7 @@ limitations under the License.
 
 <p>While the shell can be extended with additional commands by other bundles, it already offers some built in commands:</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>lb            list bundles
+<pre><code>lb            list bundles
 install       install additional bundle
 uninstall     uninstall bundles
 update        update bundles
@@ -139,20 +131,22 @@ help          displays available commands
 inspect       inspect service and components
 
 log           print log
-</code></pre></div></div>
+</code></pre>
 
-<p>Further information about a command can be retrieved by using <code class="highlighter-rouge">help</code> combined with the command.</p>
+<p>Further information about a command can be retrieved by using <code>help</code> combined with the command.</p>
 
 <h2 id="shell-config-options">Shell Config Options</h2>
 
 <ul>
-  <li>SHELL_USE_ANSI_COLORS - Wether shell command are allowed to use
+<li>SHELL_USE_ANSI_COLORS - Wether shell command are allowed to use
 ANSI colors when printing info. default is true.</li>
 </ul>
 
 <h2 id="cmake-options">CMake options</h2>
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>BUILD_SHELL=ON
-</code></pre></div></div>
+
+<pre><code>BUILD_SHELL=ON
+</code></pre>
+
 
                 </div>
             </div>
@@ -160,7 +154,7 @@ ANSI colors when printing info. default is true.</li>
     </div>
 </div>
 
-<!-- Footer -->
+
 <footer class="py-3 bg-secondary">
     <div class="container">
         <div class="row">
@@ -181,7 +175,7 @@ ANSI colors when printing info. default is true.</li>
     </div>
 </footer>
 
-<!-- Bootstrap core JavaScript -->
+
 <script src="/assets/js/jquery.min.js"></script>
 <script src="/assets/js/bootstrap.bundle.min.js"></script>
 

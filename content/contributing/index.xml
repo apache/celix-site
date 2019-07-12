@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Contributings on Apache Celix</title>
+    <link>http://celix.apache.org/contributing.html</link>
+    <description>Recent content in Contributings on Apache Celix</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    
+	<atom:link href="http://celix.apache.org/contributing/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Releasing Process</title>
+      <link>http://celix.apache.org/contributing/releasing.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://celix.apache.org/contributing/releasing.html</guid>
+      <description>Releasing Apache Celix Note: This information is only of use to Apache Celix Release Managers!
+Steps to follow:
+HAHAHUGOSHORTCODE-TOC0-HBHB
+Interesting links:
+ Apache Release Guide Apache Release Signing Apache RAT Apache OpenPGP HowTo  Create signing KEYS Each Release Manager must have his own signing keys. Information about and instruction for the generation of these keys can be found on the Signing Releases page and How To OpenPGP. Be sure to follow the information provided on that site and its references.</description>
+    </item>
+    
+    <item>
+      <title>Submitting patches</title>
+      <link>http://celix.apache.org/contributing/submitting-patches.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://celix.apache.org/contributing/submitting-patches.html</guid>
+      <description>Submitting patches HAHAHUGOSHORTCODE-TOC0-HBHB
+Contributing with GitHub Using the GitHub mirror is the simplest way to contribute to Apache Celix if you are not a member of the Celix Committers group.
+First you must have an account created at GitHub to be able perform the next step. If you don&amp;rsquo;t, go ahead and create one just right now! Please remember to setup SSH keys and test them! You don&amp;rsquo;t have to use SSH Keys if you are using the HTTPS url.</description>
+    </item>
+    
+    <item>
+      <title>Volunteers</title>
+      <link>http://celix.apache.org/contributing/volunteers.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://celix.apache.org/contributing/volunteers.html</guid>
+      <description>Volunteers HAHAHUGOSHORTCODE-TOC0-HBHB
+The project consists of a diverse group of volunteers who share common values regarding collaborative, community-based open source development.
+Project Management Committee Members Committee members are listed in the chronological order, according to the date each person become a committer or committee member.
+ Alexander Broekhuis (abroekhuis at apache.org) Marcel Offermans (marss at apache.org) Konstantin I Boudnik (cos at apache.org) Pepijn Noltes, Chairman (pnoltes at apache.org) Roman Shaposhnik (rvs at apache.</description>
+    </item>
+    
+    <item>
+      <title>You at Celix</title>
+      <link>http://celix.apache.org/contributing/youatcelix.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://celix.apache.org/contributing/youatcelix.html</guid>
+      <description>You at Apache Celix We are happy you are considering to contribute to Apache Celix and we are definitely looking forward to your work.
+We all are a happy group of volunteers and much often work on Celix in our free time. We are not getting any money for our work from the Apache Software Foundation (nor does any other project receive money) and most of us are not paid by a company for working on Celix.</description>
+    </item>
+    
+  </channel>
+</rss>

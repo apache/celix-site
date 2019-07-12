@@ -1,19 +1,4 @@
-<!--
-Licensed to the Apache Software Foundation (ASF) under one or more
-contributor license agreements.  See the NOTICE file distributed with
-this work for additional information regarding copyright ownership.
-The ASF licenses this file to You under the Apache License, Version 2.0
-(the "License"); you may not use this file except in compliance with
-the License.  You may obtain a copy of the License at
 
-    http://www.apache.org/licenses/LICENSE-2.0
-
-Unless required by applicable law or agreed to in writing, software
-distributed under the License is distributed on an "AS IS" BASIS,
-WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-See the License for the specific language governing permissions and
-limitations under the License.
--->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -24,10 +9,13 @@ limitations under the License.
 
     <title>readme.md / Apache Celix</title>
 
-    <!-- Bootstrap core CSS -->
+    
+    <link rel="icon" href="/assets/img/favicon.ico">
+
+    
     <link href="/assets/css/bootstrap.min.css" rel="stylesheet">
 
-    <!-- Custom style -->
+    
     <link href="/assets/css/style.css" rel="stylesheet">
 </head>
 <body class="light-grey">
@@ -36,7 +24,7 @@ limitations under the License.
     <img src="/assets/img/forkme_right_red_aa0000.png" alt="Fork me on GitHub">
 </a>
 
-<!-- Navigation -->
+
 <nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top">
     <div class="container">
         <a class="navbar-brand" href="/">
@@ -54,7 +42,7 @@ limitations under the License.
                     <a class="nav-link" href="/download.cgi">Download</a>
                 </li>
                 <li class="nav-item active">
-                    <a class="nav-link" href="/docs/">Docs</a>
+                    <a class="nav-link" href="/docs/docs.html">Docs</a>
                 </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="ddCommunity" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -101,10 +89,14 @@ limitations under the License.
         <div class="row py-4">
             <div class="col-sm-12 card">
                 <div class="card-body pt-5">
-                    <a class="edit-on-gh" href="https://github.com/apache/celix/edit/develop/documents/subprojects/readme.md" title="Edit this page on GitHub">Edit on GitHub</a>
-                    <a href="/docs/" title="back to documentation">&lt;&lt; back to documentation</a>
+                     
+                    <a class="edit-on-gh" href="https://github.com/apache/celix/edit/develop/docs/celix/documents/subprojects/readme.md" title="Edit this page on GitHub">Edit on GitHub</a>
+                    <a href="/docs/docs.html" title="back to documentation">&lt;&lt; back to documentation</a>
 
-                    <!--
+                    
+	
+
+<!--
 Licensed to the Apache Software Foundation (ASF) under one or more
 contributor license agreements.  See the NOTICE file distributed with
 this work for additional information regarding copyright ownership.
@@ -121,37 +113,38 @@ See the License for the specific language governing permissions and
 limitations under the License.
 -->
 
-<h1 id="apache-celix---subprojects">Apache Celix - Subprojects</h1>
+<h1 id="apache-celix-subprojects">Apache Celix - Subprojects</h1>
 
 <p>Apache Celix is organized into several subprojects. The following subproject are currently available:</p>
 
 <ul>
-  <li><a href="https://github.com/apache/celix/tree/rel/celix-2.1.0/framework">Framework</a> - The Apache Celix framework, an implementation of OSGi adapted to C.</li>
-  <li><a href="../../dependency_manager/readme.html">C Dependency Manager</a> - A C component/dependency model for use through an API provided as library.</li>
-  <li><a href="../../dependency_manager_cxx/readme.html">C++ Dependency Manager</a> - A C++ component/dependency model for use through an API provided as library.</li>
-  <li><a href="../../device_access/README.html">Device Access</a> - An implementation of the OSGi Device Access specification adapted to C.</li>
-  <li><a href="../../etcdlib/README.html">Etcd library</a> - A C library that interfaces with ETCD.</li>
-  <li><a href="https://github.com/apache/celix/tree/rel/celix-2.1.0/examples">Examples</a> - A Selection of examples showing how the framework can be used.</li>
-  <li><a href="../../log_service/README.html">Log Service</a> - An implementation of the OSGi Log Service adapated to C.</li>
-  <li><a href="../../log_writer/README.html">Log Writer</a> - A simple log writer for use in combination with the Log Service.</li>
-  <li><a href="../../remote_services/README.html">Remote Service Admin</a> - An implementation of the OSGi Remote Service Admin Service - for several protocols - adapted to C.
-    <ul>
-      <li><a href="https://github.com/apache/celix/tree/rel/celix-2.1.0/remote_services/remote_service_admin_http">Remote Service Admin HTTP</a> - A HTTP implementation of the RSA.</li>
-      <li><a href="https://github.com/apache/celix/tree/rel/celix-2.1.0/remote_services/remote_service_admin_dfi">Remote Service Admin DFI</a> - A Dynamic Function Interface (DFI) implementation of the RSA.</li>
-      <li><a href="https://github.com/apache/celix/tree/rel/celix-2.1.0/remote_services/remote_service_admin_shm">Remote Service Admin SHM</a> - A shared memory implementation of the RSA.</li>
-      <li><a href="../../remote_services/topology_manager/README.html">Topology Manager</a> - A (scoped) RSA Topology Manager implementation.</li>
-      <li><a href="https://github.com/apache/celix/tree/rel/celix-2.1.0/remote_services/discovery_configured">Discovery Configured</a> - A RSA Discovery implementation using static configuration (xml).</li>
-      <li><a href="../../remote_services/discovery_etcd/README.html">Discovery Etcd</a> - A RSA Discovery implementation using etcd.</li>
-      <li><a href="https://github.com/apache/celix/tree/rel/celix-2.1.0/remote_services/discovery_shm">Discovery SHM</a> - A RSA Discovery implementation using shared memory.</li>
-    </ul>
-  </li>
-  <li><a href="../../shell/README.html">Shell</a> - A OSGi shell implementation.</li>
-  <li><a href="../../shell_tui/README.html">Shell TUI</a> - A textual UI for the Celix Shell.</li>
-  <li><a href="../../remote_shell/README.html">Remote Shell</a> - A remote (telnet) frontend for the Celix shell.</li>
-  <li><a href="https://github.com/apache/celix/tree/rel/celix-2.1.0/shell_bonjour">Bonjour Shell</a> - A remote (Bonjour / mDNS) frontend for the Celix shell.</li>
-  <li><a href="../../deployment_admin/README.html">Deployment Admin</a> - A deployment admin implementation.</li>
-  <li><a href="../../pubsub/README.html">Pubsub</a> - An implementation for a publish-subscribe remote services system, that use dfi library for message serialization.</li>
+<li><a href="https://github.com/apache/celix/tree/rel/celix-2.1.0/framework">Framework</a> - The Apache Celix framework, an implementation of OSGi adapted to C.</li>
+<li><a href="../../dependency_manager/readme.html">C Dependency Manager</a> - A C component/dependency model for use through an API provided as library.</li>
+<li><a href="../../dependency_manager_cxx/readme.html">C++ Dependency Manager</a> - A C++ component/dependency model for use through an API provided as library.</li>
+<li><a href="../../device_access/README.html">Device Access</a> - An implementation of the OSGi Device Access specification adapted to C.</li>
+<li><a href="../../etcdlib/README.html">Etcd library</a> - A C library that interfaces with ETCD.</li>
+<li><a href="https://github.com/apache/celix/tree/rel/celix-2.1.0/examples">Examples</a> - A Selection of examples showing how the framework can be used.</li>
+<li><a href="../../log_service/README.html">Log Service</a> - An implementation of the OSGi Log Service adapated to C.</li>
+<li><a href="../../log_writer/README.html">Log Writer</a> - A simple log writer for use in combination with the Log Service.</li>
+<li><a href="../../remote_services/README.html">Remote Service Admin</a> - An implementation of the OSGi Remote Service Admin Service - for several protocols - adapted to C.
+
+<ul>
+<li><a href="https://github.com/apache/celix/tree/rel/celix-2.1.0/remote_services/remote_service_admin_http">Remote Service Admin HTTP</a> - A HTTP implementation of the RSA.</li>
+<li><a href="https://github.com/apache/celix/tree/rel/celix-2.1.0/remote_services/remote_service_admin_dfi">Remote Service Admin DFI</a> - A Dynamic Function Interface (DFI) implementation of the RSA.</li>
+<li><a href="https://github.com/apache/celix/tree/rel/celix-2.1.0/remote_services/remote_service_admin_shm">Remote Service Admin SHM</a> - A shared memory implementation of the RSA.</li>
+<li><a href="../../remote_services/topology_manager/README.html">Topology Manager</a> - A (scoped) RSA Topology Manager implementation.</li>
+<li><a href="https://github.com/apache/celix/tree/rel/celix-2.1.0/remote_services/discovery_configured">Discovery Configured</a> - A RSA Discovery implementation using static configuration (xml).</li>
+<li><a href="../../remote_services/discovery_etcd/README.html">Discovery Etcd</a> - A RSA Discovery implementation using etcd.</li>
+<li><a href="https://github.com/apache/celix/tree/rel/celix-2.1.0/remote_services/discovery_shm">Discovery SHM</a> - A RSA Discovery implementation using shared memory.</li>
+</ul></li>
+<li><a href="../../shell/README.html">Shell</a> - A OSGi shell implementation.</li>
+<li><a href="../../shell_tui/README.html">Shell TUI</a> - A textual UI for the Celix Shell.</li>
+<li><a href="../../remote_shell/README.html">Remote Shell</a> - A remote (telnet) frontend for the Celix shell.</li>
+<li><a href="https://github.com/apache/celix/tree/rel/celix-2.1.0/shell_bonjour">Bonjour Shell</a> - A remote (Bonjour / mDNS) frontend for the Celix shell.</li>
+<li><a href="../../deployment_admin/README.html">Deployment Admin</a> - A deployment admin implementation.</li>
+<li><a href="../../pubsub/README.html">Pubsub</a> - An implementation for a publish-subscribe remote services system, that use dfi library for message serialization.</li>
 </ul>
+
 
                 </div>
             </div>
@@ -159,7 +152,7 @@ limitations under the License.
     </div>
 </div>
 
-<!-- Footer -->
+
 <footer class="py-3 bg-secondary">
     <div class="container">
         <div class="row">
@@ -180,7 +173,7 @@ limitations under the License.
     </div>
 </footer>
 
-<!-- Bootstrap core JavaScript -->
+
 <script src="/assets/js/jquery.min.js"></script>
 <script src="/assets/js/bootstrap.bundle.min.js"></script>
 

@@ -1,19 +1,4 @@
-<!--
-Licensed to the Apache Software Foundation (ASF) under one or more
-contributor license agreements.  See the NOTICE file distributed with
-this work for additional information regarding copyright ownership.
-The ASF licenses this file to You under the Apache License, Version 2.0
-(the "License"); you may not use this file except in compliance with
-the License.  You may obtain a copy of the License at
 
-    http://www.apache.org/licenses/LICENSE-2.0
-
-Unless required by applicable law or agreed to in writing, software
-distributed under the License is distributed on an "AS IS" BASIS,
-WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-See the License for the specific language governing permissions and
-limitations under the License.
--->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -24,10 +9,13 @@ limitations under the License.
 
     <title>README.md / Apache Celix</title>
 
-    <!-- Bootstrap core CSS -->
+    
+    <link rel="icon" href="/assets/img/favicon.ico">
+
+    
     <link href="/assets/css/bootstrap.min.css" rel="stylesheet">
 
-    <!-- Custom style -->
+    
     <link href="/assets/css/style.css" rel="stylesheet">
 </head>
 <body class="light-grey">
@@ -36,7 +24,7 @@ limitations under the License.
     <img src="/assets/img/forkme_right_red_aa0000.png" alt="Fork me on GitHub">
 </a>
 
-<!-- Navigation -->
+
 <nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top">
     <div class="container">
         <a class="navbar-brand" href="/">
@@ -54,7 +42,7 @@ limitations under the License.
                     <a class="nav-link" href="/download.cgi">Download</a>
                 </li>
                 <li class="nav-item active">
-                    <a class="nav-link" href="/docs/">Docs</a>
+                    <a class="nav-link" href="/docs/docs.html">Docs</a>
                 </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="ddCommunity" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -101,34 +89,38 @@ limitations under the License.
         <div class="row py-4">
             <div class="col-sm-12 card">
                 <div class="card-body pt-5">
-                    <a class="edit-on-gh" href="https://github.com/apache/celix/edit/develop/utils/public/include/memstream/README.md" title="Edit this page on GitHub">Edit on GitHub</a>
-                    <a href="/docs/" title="back to documentation">&lt;&lt; back to documentation</a>
+                     
+                    <a class="edit-on-gh" href="https://github.com/apache/celix/edit/develop/docs/celix/utils/public/include/memstream/README.md" title="Edit this page on GitHub">Edit on GitHub</a>
+                    <a href="/docs/docs.html" title="back to documentation">&lt;&lt; back to documentation</a>
 
-                    <h1 id="fmemopen-for-mac-os-and-ios">fmemopen for Mac OS and iOS</h1>
+                    
+	
+
+<h1 id="fmemopen-for-mac-os-and-ios">fmemopen for Mac OS and iOS</h1>
 
 <p>Originally ported from <a href="https://github.com/ingenuitas/python-tesseract/blob/master/fmemopen.c">ingenuitas python-tesseract</a>. Ported by Jeff Verkoeyen under the Apache 2.0 License.</p>
 
 <p>From the fmemopen man page:</p>
 
 <blockquote>
-  <p>FILE *fmemopen(void *buf, size_t size, const char *mode);</p>
+<p>FILE *fmemopen(void *buf, size_t size, const char *mode);</p>
 
-  <p>The fmemopen() function opens a stream that permits the access specified by mode. The stream
+<p>The fmemopen() function opens a stream that permits the access specified by mode. The stream
 allows I/O to be performed on the string or memory buffer pointed to by buf. This buffer must be
 at least size bytes long.</p>
 </blockquote>
 
 <p>Alas, this method does not exist on BSD operating systems (specifically Mac OS X and iOS). It is
-possible to recreate this functionality using a BSD-specific method called <code class="highlighter-rouge">funopen</code>.</p>
+possible to recreate this functionality using a BSD-specific method called <code>funopen</code>.</p>
 
 <p>From the funopen man page:</p>
 
 <blockquote>
-  <p>FILE * funopen(const void <em>cookie, int (</em>readfn)(void <em>, char *, int),
-               int (</em>writefn)(void <em>, const char *, int), fpos_t (</em>seekfn)(void <em>, fpos_t, int),
-               int (</em>closefn)(void *));</p>
+<p>FILE * funopen(const void *cookie, int (*readfn)(void *, char *, int),
+               int (*writefn)(void *, const char *, int), fpos_t (*seekfn)(void *, fpos_t, int),
+               int (*closefn)(void *));</p>
 
-  <p>The funopen() function associates a stream with up to four ``I/O functions’’.  Either readfn or
+<p>The funopen() function associates a stream with up to four ``I/O functions&rdquo;.  Either readfn or
 writefn must be specified; the others can be given as an appropriately-typed NULL pointer.  These
 I/O functions will be used to read, write, seek and close the new stream.</p>
 </blockquote>
@@ -138,21 +130,19 @@ pointers to blocks of memory.</p>
 
 <h1 id="adding-it-to-your-project">Adding it to your Project</h1>
 
-<p>Drag fmemopen.h and fmemopen.c to your project and add them to your target. <code class="highlighter-rouge">#include "fmemopen.h"</code>
-wherever you need to use <code class="highlighter-rouge">fmemopen</code>.</p>
+<p>Drag fmemopen.h and fmemopen.c to your project and add them to your target. <code>#include &quot;fmemopen.h&quot;</code>
+wherever you need to use <code>fmemopen</code>.</p>
 
 <h1 id="examples">Examples</h1>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-obj-c" data-lang="obj-c"><span style="color:#080">#import &#34;fmemopen.h&#34;
+</span><span style="color:#080"></span>
+NSString<span style="color:#666">*</span> string <span style="color:#666">=</span> <span style="color:#b44">@&#34;fmemopen in Objective-C&#34;</span>;
+<span style="color:#a2f;font-weight:bold">const</span> <span style="color:#0b0;font-weight:bold">char</span><span style="color:#666">*</span> cstr <span style="color:#666">=</span> [string UTF8String];
+FILE<span style="color:#666">*</span> file <span style="color:#666">=</span> fmemopen((<span style="color:#0b0;font-weight:bold">void</span> <span style="color:#666">*</span>)cstr, <span style="color:#a2f;font-weight:bold">sizeof</span>(<span style="color:#0b0;font-weight:bold">char</span>) <span style="color:#666">*</span> (string.length <span style="color:#666">+</span> <span style="color:#666">1</span>), <span style="color:#b44">&#34;r&#34;</span>);
 
-<div class="language-obj-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#import "fmemopen.h"
-</span>
-<span class="n">NSString</span><span class="o">*</span> <span class="n">string</span> <span class="o">=</span> <span class="s">@"fmemopen in Objective-C"</span><span class="p">;</span>
-<span class="k">const</span> <span class="kt">char</span><span class="o">*</span> <span class="n">cstr</span> <span class="o">=</span> <span class="p">[</span><span class="n">string</span> <span class="nf">UTF8String</span><span class="p">];</span>
-<span class="kt">FILE</span><span class="o">*</span> <span class="n">file</span> <span class="o">=</span> <span class="n">fmemopen</span><span class="p">((</span><span class="kt">void</span> <span class="o">*</span><span class="p">)</span><span class="n">cstr</span><span class="p">,</span> <span class="k">sizeof</span><span class="p">(</span><span class="kt">char</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="n">string</span><span class="p">.</span><span class="n">length</span> <span class="o">+</span> <span class="mi">1</span><span class="p">),</span> <span class="s">"r"</span><span class="p">);</span>
-
-<span class="c1">// fread on file will now read the contents of the NSString</span>
-
-<span class="n">fclose</span><span class="p">(</span><span class="n">file</span><span class="p">);</span>
-</code></pre></div></div>
+<span style="color:#080;font-style:italic">// fread on file will now read the contents of the NSString
+</span><span style="color:#080;font-style:italic"></span>
+fclose(file);</code></pre></div>
 
                 </div>
             </div>
@@ -160,7 +150,7 @@ wherever you need to use <code class="highlighter-rouge">fmemopen</code>.</p>
     </div>
 </div>
 
-<!-- Footer -->
+
 <footer class="py-3 bg-secondary">
     <div class="container">
         <div class="row">
@@ -181,7 +171,7 @@ wherever you need to use <code class="highlighter-rouge">fmemopen</code>.</p>
     </div>
 </footer>
 
-<!-- Bootstrap core JavaScript -->
+
 <script src="/assets/js/jquery.min.js"></script>
 <script src="/assets/js/bootstrap.bundle.min.js"></script>
 

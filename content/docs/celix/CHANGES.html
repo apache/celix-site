@@ -1,19 +1,4 @@
-<!--
-Licensed to the Apache Software Foundation (ASF) under one or more
-contributor license agreements.  See the NOTICE file distributed with
-this work for additional information regarding copyright ownership.
-The ASF licenses this file to You under the Apache License, Version 2.0
-(the "License"); you may not use this file except in compliance with
-the License.  You may obtain a copy of the License at
 
-    http://www.apache.org/licenses/LICENSE-2.0
-
-Unless required by applicable law or agreed to in writing, software
-distributed under the License is distributed on an "AS IS" BASIS,
-WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-See the License for the specific language governing permissions and
-limitations under the License.
--->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -24,10 +9,13 @@ limitations under the License.
 
     <title>CHANGES.md / Apache Celix</title>
 
-    <!-- Bootstrap core CSS -->
+    
+    <link rel="icon" href="/assets/img/favicon.ico">
+
+    
     <link href="/assets/css/bootstrap.min.css" rel="stylesheet">
 
-    <!-- Custom style -->
+    
     <link href="/assets/css/style.css" rel="stylesheet">
 </head>
 <body class="light-grey">
@@ -36,7 +24,7 @@ limitations under the License.
     <img src="/assets/img/forkme_right_red_aa0000.png" alt="Fork me on GitHub">
 </a>
 
-<!-- Navigation -->
+
 <nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top">
     <div class="container">
         <a class="navbar-brand" href="/">
@@ -54,7 +42,7 @@ limitations under the License.
                     <a class="nav-link" href="/download.cgi">Download</a>
                 </li>
                 <li class="nav-item active">
-                    <a class="nav-link" href="/docs/">Docs</a>
+                    <a class="nav-link" href="/docs/docs.html">Docs</a>
                 </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="ddCommunity" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -101,10 +89,14 @@ limitations under the License.
         <div class="row py-4">
             <div class="col-sm-12 card">
                 <div class="card-body pt-5">
-                    <a class="edit-on-gh" href="https://github.com/apache/celix/edit/develop/CHANGES.md" title="Edit this page on GitHub">Edit on GitHub</a>
-                    <a href="/docs/" title="back to documentation">&lt;&lt; back to documentation</a>
+                     
+                    <a class="edit-on-gh" href="https://github.com/apache/celix/edit/develop/docs/celix/CHANGES.md" title="Edit this page on GitHub">Edit on GitHub</a>
+                    <a href="/docs/docs.html" title="back to documentation">&lt;&lt; back to documentation</a>
 
-                    <!--
+                    
+	
+
+<!--
 Licensed to the Apache Software Foundation (ASF) under one or more
 contributor license agreements.  See the NOTICE file distributed with
 this work for additional information regarding copyright ownership.
@@ -121,10 +113,11 @@ See the License for the specific language governing permissions and
 limitations under the License.
 -->
 
-<h1 id="changes-for-210">Changes for 2.1.0</h1>
+<h1 id="changes-for-2-1-0">Changes for 2.1.0</h1>
 
 <h2 id="new-features">New Features:</h2>
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>CELIX-408: Adds support for generating runtime shell scripts so that multiple Celix containers and other executable can be run with a single command.
+
+<pre><code>CELIX-408: Adds support for generating runtime shell scripts so that multiple Celix containers and other executable can be run with a single command.
 CELIX-418: Adds support for generating properties in the Celix container launcher.
 CELIX-407: Adds support for serializers as a service for PubSub. This way PubSubAdmin are purely focused on transport techniques.
 CELIX-401: Adds support for creating Celix docker images using a CMake function.
@@ -132,20 +125,22 @@ CELIX-397: Adds support for PubSub selection based on a match function. This way
 CELIX-389: Adds the PubSub implementation. A set of bundles which together operates as a service based publish subscribe technology agnostic abstraction.
 CELIX-385: Adds etcdlib as library. This libray can be used to communicate with etcd using a C abstraction.
 CELIX-370: Adds C++11 support by adding a C++ Dependency Manager library. This is moslty a header based library.
-</code></pre></div></div>
+</code></pre>
 
 <h2 id="improvements">Improvements:</h2>
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>CELIX-415: Improves handling of ANSI control sequences to better support running in IDE's.
+
+<pre><code>CELIX-415: Improves handling of ANSI control sequences to better support running in IDE's.
 CELIX-414: Improves support for running Celix container inside IDE's by basicly handling Celix containers as add_executable CMake target.
 CELIX-406: Improves handling of descriptor files, by allowing different directories for Remote Services and PubSub.
 CELIX-399: Improves PubSub to use etcdlib instead of local copy of etcd.c file.
 CELIX-396: Improves the ZMQ PubSub security so that enabling/disable of security can be done per topic.
 CELIX-395: Improves Remote Service to use the etcdlib instead of a local etcd.c file.
 CELIX-392: Removes the use of the deprecated readdir_r function. 
-</code></pre></div></div>
+</code></pre>
 
 <h2 id="bugs">Bugs:</h2>
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>CELIX-416: Fixes an issue for the Android build.
+
+<pre><code>CELIX-416: Fixes an issue for the Android build.
 CELIX-410: Fixes an issue where spaces and tabs are duplicated when loading properties.
 CELIX-405: Fixes an issue with crashes because of invalid DFI descriptors.
 CELIX-404: Fixes an issue with crashes using the inspect shell command.
@@ -157,18 +152,24 @@ CELIX-391: Fixes an issue with the utils_stringHash not genering unique (enough)
 CELIX-390: Fixes an issue with cycle dependency between the Celix framework and Celix utils libraries.
 CELIX-387: Fixes an issue with the travis build and OSX
 CELIX-386: Fixes an issue with the C++ dependency manager and register multiple C++ services.
-</code></pre></div></div>
+</code></pre>
 
-<h1 id="changes-for-200">Changes for 2.0.0</h1>
+<h1 id="changes-for-2-0-0">Changes for 2.0.0</h1>
+
 <h2 id="new-features-1">New Features</h2>
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[CELIX-77] Configuration Admin Implementation
+
+<pre><code>[CELIX-77] Configuration Admin Implementation
 [CELIX-116] Event admin
 [CELIX-119] Remove apr usage from framework
 [CELIX-172] Bonjour Shell
 [CELIX-237] RSA with libffi
 [CELIX-269] New Dependency Manager
-[CELIX-370] Add C++ support ## Improvements
-[CELIX-63] make cmake directory useable for custom bundle projects
+[CELIX-370] Add C++ support
+</code></pre>
+
+<h2 id="improvements-1">Improvements</h2>
+
+<pre><code>[CELIX-63] make cmake directory useable for custom bundle projects
 [CELIX-66] Refactor shell service struct
 [CELIX-90] add additional build options for RSA components
 [CELIX-111] Support multiple libraries
@@ -224,8 +225,12 @@ CELIX-386: Fixes an issue with the C++ dependency manager and register multiple 
 [CELIX-348] The utils_stringHash does not generate unique hashes.
 [CELIX-352] RSA_DFI and embedded celix
 [CELIX-353] Make bundle context retrievable form dm component
-[CELIX-365] Refactor some usage of void* to const void* ## Bugs
-[CELIX-104] deployment_admin bundle won't start when missing properties
+[CELIX-365] Refactor some usage of void* to const void*
+</code></pre>
+
+<h2 id="bugs-1">Bugs</h2>
+
+<pre><code>[CELIX-104] deployment_admin bundle won't start when missing properties
 [CELIX-105] Fixed array_list_test
 [CELIX-114] Potential deadlock in log_service bundle during stop
 [CELIX-122] missing dependency uuid
@@ -312,9 +317,9 @@ CELIX-386: Fixes an issue with the C++ dependency manager and register multiple 
 [CELIX-304] Memory leaks in manifest parser, requirement, capability; out-of-date tests
 [CELIX-305] Memory leaks in RSA_SHM, RSA_DFI, RSA_HTTP
 [CELIX-306] Memory leaks in remote_proxy_factory, unit tests issues
-[CELIX-307] "service registration set properties" deadlocks
+[CELIX-307] &quot;service registration set properties&quot; deadlocks
 [CELIX-308] Dependency Manager memory leaks
-[CELIX-310] "serviceRegistry_getRegisteredServices" deadlocks
+[CELIX-310] &quot;serviceRegistry_getRegisteredServices&quot; deadlocks
 [CELIX-311] Framework Tests Build broken
 [CELIX-312] ServiceReference usage counter inconsistent state
 [CELIX-313] out of date/defunct tests
@@ -322,7 +327,7 @@ CELIX-386: Fixes an issue with the C++ dependency manager and register multiple 
 [CELIX-322] Memory leaks in resolver and framework tests
 [CELIX-324] Version support in dfi library
 [CELIX-325] Bundle test sporadicly fails
-[CELIX-329] framework "service_" tests are outdates, some small bugs in the sources
+[CELIX-329] framework &quot;service_&quot; tests are outdates, some small bugs in the sources
 [CELIX-331] test configuraiton needs update for newer CMake
 [CELIX-332] filter tests absent, small bugs in the source
 [CELIX-334] Race Condition in Topology Manager causes spurious segfaults
@@ -357,7 +362,8 @@ CELIX-386: Fixes an issue with the C++ dependency manager and register multiple 
 [CELIX-376] serviceRegistration sometimes paired to invalidated serviceReference
 [CELIX-380] PROPERTIES_FOR_EACH macro does not iterate over all keys
 [CELIX-381] Invoke set for dependency manager called before suspending the component
-</code></pre></div></div>
+</code></pre>
+
 
                 </div>
             </div>
@@ -365,7 +371,7 @@ CELIX-386: Fixes an issue with the C++ dependency manager and register multiple 
     </div>
 </div>
 
-<!-- Footer -->
+
 <footer class="py-3 bg-secondary">
     <div class="container">
         <div class="row">
@@ -386,7 +392,7 @@ CELIX-386: Fixes an issue with the C++ dependency manager and register multiple 
     </div>
 </footer>
 
-<!-- Bootstrap core JavaScript -->
+
 <script src="/assets/js/jquery.min.js"></script>
 <script src="/assets/js/bootstrap.bundle.min.js"></script>
 

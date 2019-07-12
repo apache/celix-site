@@ -1,19 +1,4 @@
-<!--
-Licensed to the Apache Software Foundation (ASF) under one or more
-contributor license agreements.  See the NOTICE file distributed with
-this work for additional information regarding copyright ownership.
-The ASF licenses this file to You under the Apache License, Version 2.0
-(the "License"); you may not use this file except in compliance with
-the License.  You may obtain a copy of the License at
 
-    http://www.apache.org/licenses/LICENSE-2.0
-
-Unless required by applicable law or agreed to in writing, software
-distributed under the License is distributed on an "AS IS" BASIS,
-WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-See the License for the specific language governing permissions and
-limitations under the License.
--->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -24,10 +9,13 @@ limitations under the License.
 
     <title>Download / Apache Celix</title>
 
-    <!-- Bootstrap core CSS -->
+    
+    <link rel="icon" href="/assets/img/favicon.ico">
+
+    
     <link href="/assets/css/bootstrap.min.css" rel="stylesheet">
 
-    <!-- Custom style -->
+    
     <link href="/assets/css/style.css" rel="stylesheet">
 </head>
 <body class="light-grey">
@@ -36,7 +24,7 @@ limitations under the License.
     <img src="/assets/img/forkme_right_red_aa0000.png" alt="Fork me on GitHub">
 </a>
 
-<!-- Navigation -->
+
 <nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top">
     <div class="container">
         <a class="navbar-brand" href="/">
@@ -54,7 +42,7 @@ limitations under the License.
                     <a class="nav-link" href="/download.cgi">Download</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/docs/">Docs</a>
+                    <a class="nav-link" href="/docs/docs.html">Docs</a>
                 </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="ddCommunity" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -104,15 +92,16 @@ limitations under the License.
                     <a class="edit-on-gh" href="https://github.com/apache/celix-site/edit/master/source/download.md" title="Edit this page on GitHub">Edit on GitHub</a>
 
                     
+	
 
-                    <h1 id="download-a-release-of-apache-celix">Download a Release of Apache Celix</h1>
+<h1 id="download-a-release-of-apache-celix">Download a Release of Apache Celix</h1>
 
 <p>Apache Celix only releases source distributions, information about building and running van be found inside the release tarball.</p>
 
 <h2 id="mirrors">Mirrors</h2>
 
-<p>The currently selected mirror is <strong>[preferred]</strong>. If you encounter a problem with this mirror, please select another mirror. If all mirrors are failing, there are <em>backup</em> 
-mirrors (at the end of the mirrors list) that should be available.</p>
+<p>The currently selected mirror is <strong>[preferred]</strong>. If you encounter a problem with this mirror, please select another mirror. If all mirrors are failing, there are <em>backup</em>
+mirrors (at the end of the mirrors list) that should be available.
 <form action="[location]" method="get" id="SelectMirror">
     Other mirrors:
     <select name="Preferred">
@@ -131,23 +120,24 @@ mirrors (at the end of the mirrors list) that should be available.</p>
         [end]
         [end]
         [if-any backup]
-        [for backup]<option value="[backup]">[backup] (backup)</option>
+        [for backup]<option value="[backup]"><a href="backup">backup</a></option>
         [end]
         [end]
     </select>
     <input type="submit" value="Change" />
-</form>
+</form></p>
 
 <p>You may also consult the <a href="https://www.apache.org/mirrors/">complete list of mirrors</a>.</p>
 
 <h2 id="downloads">Downloads</h2>
 
 <ul>
-  <li>Source: <a href="[preferred]celix/celix-2.1.0/celix-2.1.0.tar.gz">celix-2.1.0.tar.gz</a>
+<li>Source: <a href="[preferred]celix/celix-2.1.0/celix-2.1.0.tar.gz">celix-2.1.0.tar.gz</a>
 [ <a href="https://www.apache.org/dist/celix/celix-2.1.0/celix-2.1.0.tar.gz.asc">PGP</a> ] [
 <a href="https://www.apache.org/dist/celix/celix-2.1.0/celix-2.1.0.tar.gz.md5">MD5</a> ] [
 <a href="https://www.apache.org/dist/celix/celix-2.1.0/celix-2.1.0.tar.gz.sha">SHA1</a> ]</li>
 </ul>
+
 
                 </div>
             </div>
@@ -155,7 +145,7 @@ mirrors (at the end of the mirrors list) that should be available.</p>
     </div>
 </div>
 
-<!-- Footer -->
+
 <footer class="py-3 bg-secondary">
     <div class="container">
         <div class="row">
@@ -176,7 +166,7 @@ mirrors (at the end of the mirrors list) that should be available.</p>
     </div>
 </footer>
 
-<!-- Bootstrap core JavaScript -->
+
 <script src="/assets/js/jquery.min.js"></script>
 <script src="/assets/js/bootstrap.bundle.min.js"></script>
 

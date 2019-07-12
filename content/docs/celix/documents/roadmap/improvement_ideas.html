@@ -1,19 +1,4 @@
-<!--
-Licensed to the Apache Software Foundation (ASF) under one or more
-contributor license agreements.  See the NOTICE file distributed with
-this work for additional information regarding copyright ownership.
-The ASF licenses this file to You under the Apache License, Version 2.0
-(the "License"); you may not use this file except in compliance with
-the License.  You may obtain a copy of the License at
 
-    http://www.apache.org/licenses/LICENSE-2.0
-
-Unless required by applicable law or agreed to in writing, software
-distributed under the License is distributed on an "AS IS" BASIS,
-WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-See the License for the specific language governing permissions and
-limitations under the License.
--->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -24,10 +9,13 @@ limitations under the License.
 
     <title>improvement_ideas.md / Apache Celix</title>
 
-    <!-- Bootstrap core CSS -->
+    
+    <link rel="icon" href="/assets/img/favicon.ico">
+
+    
     <link href="/assets/css/bootstrap.min.css" rel="stylesheet">
 
-    <!-- Custom style -->
+    
     <link href="/assets/css/style.css" rel="stylesheet">
 </head>
 <body class="light-grey">
@@ -36,7 +24,7 @@ limitations under the License.
     <img src="/assets/img/forkme_right_red_aa0000.png" alt="Fork me on GitHub">
 </a>
 
-<!-- Navigation -->
+
 <nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top">
     <div class="container">
         <a class="navbar-brand" href="/">
@@ -54,7 +42,7 @@ limitations under the License.
                     <a class="nav-link" href="/download.cgi">Download</a>
                 </li>
                 <li class="nav-item active">
-                    <a class="nav-link" href="/docs/">Docs</a>
+                    <a class="nav-link" href="/docs/docs.html">Docs</a>
                 </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="ddCommunity" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -101,10 +89,14 @@ limitations under the License.
         <div class="row py-4">
             <div class="col-sm-12 card">
                 <div class="card-body pt-5">
-                    <a class="edit-on-gh" href="https://github.com/apache/celix/edit/develop/documents/roadmap/improvement_ideas.md" title="Edit this page on GitHub">Edit on GitHub</a>
-                    <a href="/docs/" title="back to documentation">&lt;&lt; back to documentation</a>
+                     
+                    <a class="edit-on-gh" href="https://github.com/apache/celix/edit/develop/docs/celix/documents/roadmap/improvement_ideas.md" title="Edit this page on GitHub">Edit on GitHub</a>
+                    <a href="/docs/docs.html" title="back to documentation">&lt;&lt; back to documentation</a>
 
-                    <!--
+                    
+	
+
+<!--
 Licensed to the Apache Software Foundation (ASF) under one or more
 contributor license agreements.  See the NOTICE file distributed with
 this work for additional information regarding copyright ownership.
@@ -124,39 +116,44 @@ limitations under the License.
 <h1 id="improvement-ideas">Improvement Ideas</h1>
 
 <h1 id="introduce-dlmopen-for-library-imports">Introduce dlmopen for library imports.</h1>
-<p>Currently library are loaded LOCAL for bundles. This works alright, but makes it hard to add a concept 
+
+<p>Currently library are loaded LOCAL for bundles. This works alright, but makes it hard to add a concept
 of exporting and importing libraries.</p>
 
-<p>The trick is that the NEEDED header in the importing libraries 
-should match the target exported library SONAME header and no other exported libraries SONAME headers. 
+<p>The trick is that the NEEDED header in the importing libraries
+should match the target exported library SONAME header and no other exported libraries SONAME headers.
 One solution to make this work is to alter the NEEDED &amp; SONAME runtime.</p>
 
-<p>For glibc there is now an other alternative, namely using dlmopen. dlmopen makes it possible to load 
-libraries in a given namespace. For bundle this can be used to create a library namespace per bundle 
-and load exported libraries int importing bundle namespace. A clean solution, but this currently 
+<p>For glibc there is now an other alternative, namely using dlmopen. dlmopen makes it possible to load
+libraries in a given namespace. For bundle this can be used to create a library namespace per bundle
+and load exported libraries int importing bundle namespace. A clean solution, but this currently
 only works for glibc (linux).</p>
 
 <h1 id="fix-the-performance-use-case-and-add-c-support">Fix the performance use case and add C++ support</h1>
+
 <p>There was a locking example which also functioned as a performance test to measure the impact of
-using services instead of direct function calls. 
+using services instead of direct function calls.
 During the removal of APR this example stopped working. Add it back, fix it and add a C++ use case
 as example.
 See <a href="https://github.com/apache/celix/tree/216032cae956379d4a740f37ae5caee7e957bd98/examples/locking">locking example tree</a></p>
 
 <h1 id="cleanup-celix-project-structure">Cleanup Celix project structure</h1>
-<p>Celix is growing and getting more sub project, this is fine but maybe the structure needs a cleanup to 
+
+<p>Celix is growing and getting more sub project, this is fine but maybe the structure needs a cleanup to
 create a more clear root directory structure.</p>
 
 <h1 id="extend-the-test-environment">Extend the test environment</h1>
 
 <h1 id="improve-documentation">Improve documentation</h1>
 
-<h1 id="create-one-or-more-real-life-applications-based-on-celix-to-show-the-potential-of-celix">Create one or more “real life” applications based on Celix to show the potential of Celix</h1>
+<h1 id="create-one-or-more-real-life-applications-based-on-celix-to-show-the-potential-of-celix">Create one or more &ldquo;real life&rdquo; applications based on Celix to show the potential of Celix</h1>
 
 <h1 id="add-pub-sub-admins">Add pub sub admins.</h1>
+
 <p>The current implementation uses JSON over multicast UDP or over ZMQ.<br />
 One or more could be added. i.e. serialization based on Apache-Avro, communication over TCP / Kafka / Shared Memory<br />
-Add interfaces for other languages (Python / Rust / Go / …)</p>
+Add interfaces for other languages (Python / Rust / Go / &hellip;)</p>
+
 
                 </div>
             </div>
@@ -164,7 +161,7 @@ Add interfaces for other languages (Python / Rust / Go / …)</p>
     </div>
 </div>
 
-<!-- Footer -->
+
 <footer class="py-3 bg-secondary">
     <div class="container">
         <div class="row">
@@ -185,7 +182,7 @@ Add interfaces for other languages (Python / Rust / Go / …)</p>
     </div>
 </footer>
 
-<!-- Bootstrap core JavaScript -->
+
 <script src="/assets/js/jquery.min.js"></script>
 <script src="/assets/js/bootstrap.bundle.min.js"></script>
 

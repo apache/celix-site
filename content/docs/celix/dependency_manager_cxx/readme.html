@@ -1,19 +1,4 @@
-<!--
-Licensed to the Apache Software Foundation (ASF) under one or more
-contributor license agreements.  See the NOTICE file distributed with
-this work for additional information regarding copyright ownership.
-The ASF licenses this file to You under the Apache License, Version 2.0
-(the "License"); you may not use this file except in compliance with
-the License.  You may obtain a copy of the License at
 
-    http://www.apache.org/licenses/LICENSE-2.0
-
-Unless required by applicable law or agreed to in writing, software
-distributed under the License is distributed on an "AS IS" BASIS,
-WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-See the License for the specific language governing permissions and
-limitations under the License.
--->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -24,10 +9,13 @@ limitations under the License.
 
     <title>readme.md / Apache Celix</title>
 
-    <!-- Bootstrap core CSS -->
+    
+    <link rel="icon" href="/assets/img/favicon.ico">
+
+    
     <link href="/assets/css/bootstrap.min.css" rel="stylesheet">
 
-    <!-- Custom style -->
+    
     <link href="/assets/css/style.css" rel="stylesheet">
 </head>
 <body class="light-grey">
@@ -36,7 +24,7 @@ limitations under the License.
     <img src="/assets/img/forkme_right_red_aa0000.png" alt="Fork me on GitHub">
 </a>
 
-<!-- Navigation -->
+
 <nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top">
     <div class="container">
         <a class="navbar-brand" href="/">
@@ -54,7 +42,7 @@ limitations under the License.
                     <a class="nav-link" href="/download.cgi">Download</a>
                 </li>
                 <li class="nav-item active">
-                    <a class="nav-link" href="/docs/">Docs</a>
+                    <a class="nav-link" href="/docs/docs.html">Docs</a>
                 </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="ddCommunity" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -101,10 +89,14 @@ limitations under the License.
         <div class="row py-4">
             <div class="col-sm-12 card">
                 <div class="card-body pt-5">
-                    <a class="edit-on-gh" href="https://github.com/apache/celix/edit/develop/dependency_manager_cxx/readme.md" title="Edit this page on GitHub">Edit on GitHub</a>
-                    <a href="/docs/" title="back to documentation">&lt;&lt; back to documentation</a>
+                     
+                    <a class="edit-on-gh" href="https://github.com/apache/celix/edit/develop/docs/celix/dependency_manager_cxx/readme.md" title="Edit this page on GitHub">Edit on GitHub</a>
+                    <a href="/docs/docs.html" title="back to documentation">&lt;&lt; back to documentation</a>
 
-                    <!--
+                    
+	
+
+<!--
 Licensed to the Apache Software Foundation (ASF) under one or more
 contributor license agreements.  See the NOTICE file distributed with
 this work for additional information regarding copyright ownership.
@@ -125,7 +117,7 @@ limitations under the License.
 
 <h2 id="introduction">Introduction</h2>
 
-<p>The C++ Dependency Manager contains a static library which can be used to manage (dynamic) services on a higher abstraction level in a declarative style. 
+<p>The C++ Dependency Manager contains a static library which can be used to manage (dynamic) services on a higher abstraction level in a declarative style.
 The Apache Celix C++ Dependency Manager is inspired by the <a href="http://felix.apache.org/documentation/subprojects/apache-felix-dependency-manager.html">Apache Felix Dependency Manager</a>.</p>
 
 <p>The C++ Dependency Manager uses fluent interface to make specifying DM components and service dependencies very concise and relies on features introduced in C++11.</p>
@@ -137,48 +129,48 @@ To get a good overview of the C++ Dependency Manager please read the <a href="..
 
 <h2 id="dm-parts">DM Parts</h2>
 
-<p>The C++ Dependency Manager consist out of four main parts: <code class="highlighter-rouge">celix::dm::DmActivator</code>, <code class="highlighter-rouge">celix::dm::DependencyManager</code>, <code class="highlighter-rouge">celix::dm::Component</code> and <code class="highlighter-rouge">celix::dm::ServiceDependency</code>.</p>
+<p>The C++ Dependency Manager consist out of four main parts: <code>celix::dm::DmActivator</code>, <code>celix::dm::DependencyManager</code>, <code>celix::dm::Component</code> and <code>celix::dm::ServiceDependency</code>.</p>
 
 <h3 id="dmactivator">DmActivator</h3>
 
-<p>The <code class="highlighter-rouge">DmActivator</code> class should be inherited by a bundle specific Activator.</p>
+<p>The <code>DmActivator</code> class should be inherited by a bundle specific Activator.</p>
 
 <ul>
-  <li>The static <code class="highlighter-rouge">DmActivator::create</code> method needs to be implemented and should return a bundle specific subclass instance of the DmActivator.</li>
-  <li>The <code class="highlighter-rouge">DmActivator::init</code> method should be overridden and can be used to specify which components to use in the bundle.</li>
-  <li>The <code class="highlighter-rouge">DmActivator::deinit</code> method can be overridden if some cleanup is needed when a bundle is stopped.</li>
+<li>The static <code>DmActivator::create</code> method needs to be implemented and should return a bundle specific subclass instance of the DmActivator.</li>
+<li>The <code>DmActivator::init</code> method should be overridden and can be used to specify which components to use in the bundle.</li>
+<li>The <code>DmActivator::deinit</code> method can be overridden if some cleanup is needed when a bundle is stopped.</li>
 </ul>
 
 <h3 id="dependency-manager">Dependency Manager</h3>
 
-<p>The <code class="highlighter-rouge">DependencyManager</code> act as an entry point to create (DM) Components.</p>
+<p>The <code>DependencyManager</code> act as an entry point to create (DM) Components.</p>
 
 <h3 id="component">Component</h3>
 
-<p>The (DM) <code class="highlighter-rouge">Component</code> manages the life cycle of a component (of the template type T). For example, when all required service dependencies are available the <code class="highlighter-rouge">Component</code> will call the <code class="highlighter-rouge">start</code> specified callback function of the component.</p>
+<p>The (DM) <code>Component</code> manages the life cycle of a component (of the template type T). For example, when all required service dependencies are available the <code>Component</code> will call the <code>start</code> specified callback function of the component.</p>
 
 <ul>
-  <li>The <code class="highlighter-rouge">Component::setInstance</code> method can be used to set the component instance to used. If no instance is set the (DM) <code class="highlighter-rouge">Component</code> will (lazy) create a component instance using the default constructor.</li>
-  <li>The <code class="highlighter-rouge">Component::addInterface</code> method can be used to specify one additional C++ service provided by the component.</li>
-  <li>The <code class="highlighter-rouge">Component::addCInterface</code> method can be used to specify one additional C service provided by the component.</li>
-  <li>The <code class="highlighter-rouge">Component::createServiceDependency</code> method can be used to specify one additional typed C++ service dependency.</li>
-  <li>The <code class="highlighter-rouge">Component::createCServiceDependency</code> method can be used to specify one additional typed C service dependency.</li>
+<li>The <code>Component::setInstance</code> method can be used to set the component instance to used. If no instance is set the (DM) <code>Component</code> will (lazy) create a component instance using the default constructor.</li>
+<li>The <code>Component::addInterface</code> method can be used to specify one additional C++ service provided by the component.</li>
+<li>The <code>Component::addCInterface</code> method can be used to specify one additional C service provided by the component.</li>
+<li>The <code>Component::createServiceDependency</code> method can be used to specify one additional typed C++ service dependency.</li>
+<li>The <code>Component::createCServiceDependency</code> method can be used to specify one additional typed C service dependency.</li>
 </ul>
 
 <h3 id="servicedependency-and-cservicedependency">ServiceDependency and CServiceDependency</h3>
 
-<p>The (DM) <code class="highlighter-rouge">ServiceDependency</code> can be used to specify C++ service dependencies for a component and the (DM) <code class="highlighter-rouge">CServiceDependency</code> can be used to specify C service dependencies for a component.</p>
+<p>The (DM) <code>ServiceDependency</code> can be used to specify C++ service dependencies for a component and the (DM) <code>CServiceDependency</code> can be used to specify C service dependencies for a component.</p>
 
-<p>When these dependencies are set to required the <code class="highlighter-rouge">Component</code> will ensure that components will only be started when all required dependencies are available and stop the component if any of the required dependencies are removed.
+<p>When these dependencies are set to required the <code>Component</code> will ensure that components will only be started when all required dependencies are available and stop the component if any of the required dependencies are removed.
 This feature should prevent a lot of boiler plating code compared to using a service tracker or services references directly.</p>
 
-<p>A service dependency update strategy can also be specified (suspend or locking. Default this strategy is set to <code class="highlighter-rouge">DependencyUpdateStrategy::suspend</code> this strategy will stop and start (suspend) a component when any of the specified service dependencies changes (are removed, added or modified).
+<p>A service dependency update strategy can also be specified (suspend or locking. Default this strategy is set to <code>DependencyUpdateStrategy::suspend</code> this strategy will stop and start (suspend) a component when any of the specified service dependencies changes (are removed, added or modified).
 When correctly used this strategy removes the need for locking services during updates/invocation. See the dependency manager_cxx example for more details.</p>
 
 <ul>
-  <li>The <code class="highlighter-rouge">(C)ServiceDependency::setCallbacks</code> methods can be used to specify the function callback used when services are added, set, removed or modified.</li>
-  <li>The <code class="highlighter-rouge">(C)ServiceDependency::setRequired</code> methods can be used to specify if a service dependency is required.</li>
-  <li>The <code class="highlighter-rouge">(C)ServiceDependency::setStrategy</code> methods can be used to specify the service dependency update strategy (suspend or locking).</li>
+<li>The <code>(C)ServiceDependency::setCallbacks</code> methods can be used to specify the function callback used when services are added, set, removed or modified.</li>
+<li>The <code>(C)ServiceDependency::setRequired</code> methods can be used to specify if a service dependency is required.</li>
+<li>The <code>(C)ServiceDependency::setStrategy</code> methods can be used to specify the service dependency update strategy (suspend or locking).</li>
 </ul>
 
 <h3 id="references">References</h3>
@@ -186,10 +178,11 @@ When correctly used this strategy removes the need for locking services during u
 <p>For more information examples please see</p>
 
 <ul>
-  <li><a href="include/celix/dm">The C++ Dependency Manager API</a>: The c++ dependency manager header files</li>
-  <li><a href="../examples/dm_example_cxx">Dm C++ example</a>: A DM C++ example.</li>
-  <li><a href="../documents/getting_started/using_services_with_cxx.html">Getting Started: Using Services with C++</a>: A introduction how to work with services using the C++ dependency manager</li>
+<li><a href="include/celix/dm">The C++ Dependency Manager API</a>: The c++ dependency manager header files</li>
+<li><a href="../examples/dm_example_cxx">Dm C++ example</a>: A DM C++ example.</li>
+<li><a href="../documents/getting_started/using_services_with_cxx.html">Getting Started: Using Services with C++</a>: A introduction how to work with services using the C++ dependency manager</li>
 </ul>
+
 
                 </div>
             </div>
@@ -197,7 +190,7 @@ When correctly used this strategy removes the need for locking services during u
     </div>
 </div>
 
-<!-- Footer -->
+
 <footer class="py-3 bg-secondary">
     <div class="container">
         <div class="row">
@@ -218,7 +211,7 @@ When correctly used this strategy removes the need for locking services during u
     </div>
 </footer>
 
-<!-- Bootstrap core JavaScript -->
+
 <script src="/assets/js/jquery.min.js"></script>
 <script src="/assets/js/bootstrap.bundle.min.js"></script>
 
