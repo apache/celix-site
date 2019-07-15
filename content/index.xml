@@ -47,7 +47,7 @@ Please follow the links below to find appropriate content:
       
       <guid>http://celix.apache.org/download.html</guid>
       <description>Download a Release of Apache Celix Apache Celix only releases source distributions, information about building and running van be found inside the release tarball.
-Mirrors The currently selected mirror is [preferred]. If you encounter a problem with this mirror, please select another mirror. If all mirrors are failing, there are backup mirrors (at the end of the mirrors list) that should be available. Other mirrors: [if-any https] [for https] [https] [end] [end] [if-any http] [for http] [http] [end] [end] [if-any ftp] [for ftp][ftp] [end] [end] [if-any backup] [for backup]backup [end] [end]</description>
+Mirrors The currently selected mirror is [preferred]. If you encounter a problem with this mirror, please select another mirror. If all mirrors are failing, there are backup mirrors (at the end of the mirrors list) that should be available. Other mirrors: [if-any https] [for https] [https] [end] [end] [if-any http] [for http] [http] [end] [end] [if-any ftp] [for ftp][ftp] [end] [end] [if-any backup] [for backup][backup] (backup) [end] [end]</description>
     </item>
     
     <item>
