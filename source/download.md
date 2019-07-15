@@ -28,7 +28,7 @@ mirrors (at the end of the mirrors list) that should be available.
         [end]
         [end]
         [if-any backup]
-        [for backup]<option value="[backup]">[backup] (backup)</option>
+        [for backup]<option value="[backup]">\[backup\] \(backup\)</option>
         [end]
         [end]
     </select>
