@@ -235,7 +235,7 @@ $ git push origin rel/celix-X.Y.Z</code></pre></div>
 $ ln -s celix celix-X.Y.Z
 
 <span style="color:#080;font-style:italic"># Create GZip archive</span>
-$ tar -hczf celix-X.Y.Z.tar.gz celix-X.Y.Z
+$ tar --exclude<span style="color:#666">=</span><span style="color:#b44">&#34;.*&#34;</span> -hczf celix-X.Y.Z.tar.gz celix-X.Y.Z
 
 <span style="color:#080;font-style:italic"># The create symbolic link can be removed</span>
 $ celix celix-X.Y.Z</code></pre></div>
@@ -249,7 +249,7 @@ $ gpg --print-md SHA512 celix-X.Y.Z.tar.gz &gt; celix-X.Y.Z.tar.gz.sha
 
 <span style="color:#080;font-style:italic"># Generate ASCII signature</span>
 $ gpg --armor --output celix-X.Y.Z.tar.gz.asc --detach-sig celix-X.Y.Z.tar.gz</code></pre></div>
-<p>Copy the archive of the source to the <a href="https://dist.apache.org/repos/dist/dev/celix/KEYS">Apache Celix release development area</a> (using SVN).</p>
+<p>Copy the archive of the source to the <a href="https://dist.apache.org/repos/dist/dev/celix">Apache Celix release development area</a> (using SVN).</p>
 
 <p>See the <a href="http://www.apache.org/dev/release.html#host-rc">Apache Release Guide</a> for more information.</p>
 
@@ -374,7 +374,7 @@ The Apache Celix Team</code></pre></div>
         <div class="row">
             <div class="col-md-8 text-center">
                 <p class="m-0 text-white">
-                    Copyright &copy; 2019 The Apache Software Foundation, Licensed under
+                    Copyright &copy; 2020 The Apache Software Foundation, Licensed under
                     the <a href="http://www.apache.org/licenses/LICENSE-2.0">Apache License, Version 2.0</a>.
                     <br>
                     Apache Celix, Celix, Apache, the Apache feather logo and the Apache Celix logo are trademarks of The Apache Software Foundation.
