@@ -132,7 +132,7 @@ Since Celix only releases source artifacts, creating the artifact is simple and 
 $ ln -s celix celix-X.Y.Z
 
 # Create GZip archive
-$ tar -hczf celix-X.Y.Z.tar.gz celix-X.Y.Z
+$ tar --exclude=".*" -hczf celix-X.Y.Z.tar.gz celix-X.Y.Z
 
 # The create symbolic link can be removed
 $ celix celix-X.Y.Z
@@ -152,7 +152,7 @@ $ gpg --print-md SHA512 celix-X.Y.Z.tar.gz > celix-X.Y.Z.tar.gz.sha
 $ gpg --armor --output celix-X.Y.Z.tar.gz.asc --detach-sig celix-X.Y.Z.tar.gz
 ```
 
-Copy the archive of the source to the [Apache Celix release development area](https://dist.apache.org/repos/dist/dev/celix/KEYS) (using SVN).
+Copy the archive of the source to the [Apache Celix release development area](https://dist.apache.org/repos/dist/dev/celix) (using SVN).
 
 See the [Apache Release Guide](http://www.apache.org/dev/release.html#host-rc) for more information.
 
