@@ -32,6 +32,16 @@ for more information. This updated file needs to be uploaded to GIT, be sure to 
 * [Apache Celix release development area KEYS](https://dist.apache.org/repos/dist/dev/celix/KEYS)
 * [Apache Celix release distribution area KEYS](https://dist.apache.org/repos/dist/release/celix/KEYS)
 
+## Create release branch
+
+A release will be prepared in a release branch. Normally this is branch created from the develop.
+
+```bash
+git checkout develop
+git checkout -b release/celix-X.Y.Z
+git push origin release/celix-X.Y.Z
+```
+
 ## Update release related files
 
 For every release the related files must be updated. The following files are relevant:
@@ -103,29 +113,10 @@ Apache RAT should not raise any concerns, if there are, check the source files f
 the rat-excludes.txt file in the root of the project. Be sure it is a false positive! If in doubt, ask the mailing list! Third party 
 licenses may need to be mentioned in the NOTICE file.
 
-## Create GIT tag
-
-After changing all files a tag for the new release must be made. Before doing so, make sure all changed files are committed.
-
-The tag should be named like this: celix-X.Y.Z
-
-To make a tag use the following command:
-
-```bash
-# To sign a tag using your GPG key, it is necessary to configure git with the key you want to use
-# Configure git by issuing the following command, where E43F742E needs to be replaced with your key id
-$ git config --global user.signingkey E43F742E
-
-# Next thing to do is creating the tag
-$ git tag -s rel/celix-X.Y.Z -m 'Celix release X.Y.Z'
-
-# Next thing to do is pushing the tag to the remote
-$ git push origin rel/celix-X.Y.Z
-```
-
 ## Create, sign and publish artifacts
 
 Since Celix only releases source artifacts, creating the artifact is simple and straightforward
+First verify that all changes are committed to the release branch and the branch is pushed to github
 
 ```bash
 # Create symbolic link so the archive has a directory with version information
@@ -229,9 +220,38 @@ Thanks for voting.
 <p class="alert alert-primary">Note: Be sure to post the vote result with the same topic as the original message. Also 
 prepend the subject with [RESULT]. This is, again, needed to be able to keep track of vote threads.</p>
 
-## Roll out release artifacts
+## Vote Passed
 
-If the vote is passed successfully the release can be moved from the "dev" area to "release". The automated 
+If the vote is passed sucessfully the release branch can be merged to master, a release tag needs to be created, the release must be moved from the "dev" area to the "release" area 
+and the release can be announced.
+
+### Merge to master and create GIT tag
+
+After changing all files a tag for the new release must be made. Before doing so, make sure all changed files are committed.
+The release branch needs to be merged into master, a tag - named like rel/celix-X.Y.Z - needs to created and all the changes needs to merged with develop.
+
+```bash
+$ git checkout master
+$ git merge release/celix-X.Y.Z
+$ git push origin master
+
+# To sign a tag using your GPG key, it is necessary to configure git with the key you want to use
+# Configure git by issuing the following command, where E43F742E needs to be replaced with your key id
+$ git config --global user.signingkey E43F742E
+
+# Next thing to do is creating the tag
+$ git tag -s rel/celix-X.Y.Z -m 'Celix release X.Y.Z'
+
+# Next thing to do is pushing the tag to the remote
+$ git push origin rel/celix-X.Y.Z
+
+$ git checkout develop
+$ git merge master
+```
+
+### Roll out release artifacts
+
+When a release is moved from the "dev" area to "release" area. The automated 
 svnpubsub will move the artifact to the correct server for mirroring. Mirroring typically can take up to 24 hours.
 
 Besides uploading the new release, the old release should be archived. Since archiving is already automated, 
@@ -242,7 +262,7 @@ See the [Apache Release Guide](http://www.apache.org/dev/release.html#upload-ci)
 
 After these 24 hours the release can be announced.
 
-## Announce the release
+### Announce the release
 
 Update website's News and Download sections to include the new release.
 
