@@ -105,14 +105,18 @@
 <li><a href="#releasing-apache-celix">Releasing Apache Celix</a>
 <ul>
 <li><a href="#create-signing-keys">Create signing KEYS</a></li>
+<li><a href="#create-release-branch">Create release branch</a></li>
 <li><a href="#update-release-related-files">Update release related files</a></li>
 <li><a href="#compile-and-test">Compile and test</a></li>
-<li><a href="#create-git-tag">Create GIT tag</a></li>
 <li><a href="#create-sign-and-publish-artifacts">Create, sign and publish artifacts</a></li>
 <li><a href="#run-the-vote">Run the vote</a></li>
 <li><a href="#post-the-vote-results">Post the vote results</a></li>
+<li><a href="#vote-passed">Vote Passed</a>
+<ul>
+<li><a href="#merge-to-master-and-create-git-tag">Merge to master and create GIT tag</a></li>
 <li><a href="#roll-out-release-artifacts">Roll out release artifacts</a></li>
 <li><a href="#announce-the-release">Announce the release</a></li>
+</ul></li>
 </ul></li>
 </ul>
 </nav>
@@ -143,6 +147,12 @@ for more information. This updated file needs to be uploaded to GIT, be sure to 
 <li><a href="https://dist.apache.org/repos/dist/release/celix/KEYS">Apache Celix release distribution area KEYS</a></li>
 </ul>
 
+<h2 id="create-release-branch">Create release branch</h2>
+
+<p>A release will be prepared in a release branch. Normally this is branch created from the develop.</p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">git checkout develop
+git checkout -b release/celix-X.Y.Z
+git push origin release/celix-X.Y.Z</code></pre></div>
 <h2 id="update-release-related-files">Update release related files</h2>
 
 <p>For every release the related files must be updated. The following files are relevant:</p>
@@ -212,25 +222,10 @@ $ make rat</code></pre></div>
 the rat-excludes.txt file in the root of the project. Be sure it is a false positive! If in doubt, ask the mailing list! Third party
 licenses may need to be mentioned in the NOTICE file.</p>
 
-<h2 id="create-git-tag">Create GIT tag</h2>
-
-<p>After changing all files a tag for the new release must be made. Before doing so, make sure all changed files are committed.</p>
-
-<p>The tag should be named like this: celix-X.Y.Z</p>
-
-<p>To make a tag use the following command:</p>
-<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#080;font-style:italic"># To sign a tag using your GPG key, it is necessary to configure git with the key you want to use</span>
-<span style="color:#080;font-style:italic"># Configure git by issuing the following command, where E43F742E needs to be replaced with your key id</span>
-$ git config --global user.signingkey E43F742E
-
-<span style="color:#080;font-style:italic"># Next thing to do is creating the tag</span>
-$ git tag -s rel/celix-X.Y.Z -m <span style="color:#b44">&#39;Celix release X.Y.Z&#39;</span>
-
-<span style="color:#080;font-style:italic"># Next thing to do is pushing the tag to the remote</span>
-$ git push origin rel/celix-X.Y.Z</code></pre></div>
 <h2 id="create-sign-and-publish-artifacts">Create, sign and publish artifacts</h2>
 
-<p>Since Celix only releases source artifacts, creating the artifact is simple and straightforward</p>
+<p>Since Celix only releases source artifacts, creating the artifact is simple and straightforward
+First verify that all changes are committed to the release branch and the branch is pushed to github</p>
 <div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#080;font-style:italic"># Create symbolic link so the archive has a directory with version information</span>
 $ ln -s celix celix-X.Y.Z
 
@@ -319,9 +314,34 @@ Thanks for voting.</code></pre></div>
 <p class="alert alert-primary">Note: Be sure to post the vote result with the same topic as the original message. Also 
 prepend the subject with [RESULT]. This is, again, needed to be able to keep track of vote threads.</p>
 
-<h2 id="roll-out-release-artifacts">Roll out release artifacts</h2>
+<h2 id="vote-passed">Vote Passed</h2>
 
-<p>If the vote is passed successfully the release can be moved from the &ldquo;dev&rdquo; area to &ldquo;release&rdquo;. The automated
+<p>If the vote is passed sucessfully the release branch can be merged to master, a release tag needs to be created, the release must be moved from the &ldquo;dev&rdquo; area to the &ldquo;release&rdquo; area
+and the release can be announced.</p>
+
+<h3 id="merge-to-master-and-create-git-tag">Merge to master and create GIT tag</h3>
+
+<p>After changing all files a tag for the new release must be made. Before doing so, make sure all changed files are committed.
+The release branch needs to be merged into master, a tag - named like rel/celix-X.Y.Z - needs to created and all the changes needs to merged with develop.</p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ git checkout master
+$ git merge release/celix-X.Y.Z
+$ git push origin master
+
+<span style="color:#080;font-style:italic"># To sign a tag using your GPG key, it is necessary to configure git with the key you want to use</span>
+<span style="color:#080;font-style:italic"># Configure git by issuing the following command, where E43F742E needs to be replaced with your key id</span>
+$ git config --global user.signingkey E43F742E
+
+<span style="color:#080;font-style:italic"># Next thing to do is creating the tag</span>
+$ git tag -s rel/celix-X.Y.Z -m <span style="color:#b44">&#39;Celix release X.Y.Z&#39;</span>
+
+<span style="color:#080;font-style:italic"># Next thing to do is pushing the tag to the remote</span>
+$ git push origin rel/celix-X.Y.Z
+
+$ git checkout develop
+$ git merge master</code></pre></div>
+<h3 id="roll-out-release-artifacts">Roll out release artifacts</h3>
+
+<p>When a release is moved from the &ldquo;dev&rdquo; area to &ldquo;release&rdquo; area. The automated
 svnpubsub will move the artifact to the correct server for mirroring. Mirroring typically can take up to 24 hours.</p>
 
 <p>Besides uploading the new release, the old release should be archived. Since archiving is already automated,
@@ -332,7 +352,7 @@ it is only needed to delete the previous version from the release area. See the
 
 <p>After these 24 hours the release can be announced.</p>
 
-<h2 id="announce-the-release">Announce the release</h2>
+<h3 id="announce-the-release">Announce the release</h3>
 
 <p>Update website&rsquo;s News and Download sections to include the new release.</p>
 
