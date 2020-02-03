@@ -1,0 +1,210 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>C&#43;&#43; Dependency Manager / Apache Celix</title>
+
+    
+    <link rel="icon" href="/assets/img/favicon.ico">
+
+    
+    <link href="/assets/css/bootstrap.min.css" rel="stylesheet">
+
+    
+    <link href="/assets/css/style.css" rel="stylesheet">
+</head>
+<body class="light-grey">
+
+<a href="https://github.com/apache/celix" class="github-ribbon">
+    <img src="/assets/img/forkme_right_red_aa0000.png" alt="Fork me on GitHub">
+</a>
+
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top">
+    <div class="container">
+        <a class="navbar-brand" href="/">
+            <img src="/assets/img/celix-white.svg" height="40" class="d-inline-block align-top" alt="Celix Logo">
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="/">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/download.cgi">Download</a>
+                </li>
+                <li class="nav-item dropdown active">
+                    <a class="nav-link dropdown-toggle" href="#" id="ddDocs" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Docs
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="ddDocs">
+                        <a class="dropdown-item" href="/docs/2.2.0/docs.html">2.2.0 (latest)</a>
+                        <a class="dropdown-item" href="/docs/2.1.0/docs.html">2.1.0</a>
+                    </div>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="ddContributing" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Contributing
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="ddContributing">
+                        <a class="dropdown-item" href="/contributing/youatcelix.html">You at Celix</a>
+                        <a class="dropdown-item" href="/contributing/submitting-patches.html">Submitting patches</a>
+                        <a class="dropdown-item" href="/contributing/source-and-builds.html">Source code and builds</a>
+                        <hr>
+                        <a class="dropdown-item" href="/contributing/releasing.html">Releasing</a>
+                        <a class="dropdown-item" href="/contributing/volunteers.html">Volunteers</a>
+                        <a class="dropdown-item" href="https://whimsy.apache.org/board/minutes/Celix.html">Board Reports</a>
+                    </div>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="ddSupport" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Support
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="ddSupport">
+                        <a class="dropdown-item" href="/support/mailing-list.html">Mailing Lists</a>
+                        <a class="dropdown-item" href="/support/issue-tracking.html">Issue Tracking</a>
+                    </div>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="ddFoundation" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        ASF
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="ddFoundation">
+                        <a class="dropdown-item" href="https://www.apache.org/">ASF Home</a>
+                        <a class="dropdown-item" href="https://www.apache.org/foundation/how-it-works.html">How it works</a>
+                        <a class="dropdown-item" href="https://www.apache.org/licenses/">License</a>
+                        <a class="dropdown-item" href="https://www.apache.org/foundation/sponsorship.html">Sponsorship</a>
+                        <a class="dropdown-item" href="https://www.apache.org/foundation/thanks.html">Thanks</a>
+                        <a class="dropdown-item" href="https://www.apache.org/security/">Security</a>
+                        <a class="dropdown-item" href="https://www.apache.org/foundation/policies/conduct">Code of Conduct</a>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+
+<div class="section">
+    <div class="container">
+        <div class="row py-4">
+            <div class="col-sm-12 card">
+                <div class="card-body pt-5">
+                    
+                    
+                        
+                        
+                    
+
+                    
+                        
+                        <a href="/docs/2.1.0/docs.html" title="back to documentation">&lt;&lt; back to documentation</a>
+                    
+
+                    
+	<!--
+Licensed to the Apache Software Foundation (ASF) under one or more
+contributor license agreements.  See the NOTICE file distributed with
+this work for additional information regarding copyright ownership.
+The ASF licenses this file to You under the Apache License, Version 2.0
+(the "License"); you may not use this file except in compliance with
+the License.  You may obtain a copy of the License at
+   
+    http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+-->
+<h1 id="apache-celix-c-dependency-manager">Apache Celix C++ Dependency Manager</h1>
+<h2 id="introduction">Introduction</h2>
+<p>The C++ Dependency Manager contains a static library which can be used to manage (dynamic) services on a higher abstraction level in a declarative style.
+The Apache Celix C++ Dependency Manager is inspired by the <a href="http://felix.apache.org/documentation/subprojects/apache-felix-dependency-manager.html">Apache Felix Dependency Manager</a>.</p>
+<p>The C++ Dependency Manager uses fluent interface to make specifying DM components and service dependencies very concise and relies on features introduced in C++11.</p>
+<h2 id="c-and-c-dependency-manager">C++ and C Dependency Manager</h2>
+<p>The C++ Dependency Manager is build on top of the C Dependency Manager.
+To get a good overview of the C++ Dependency Manager please read the <a href="../dependency_manager/README.html">Dependency Manager documentation</a></p>
+<h2 id="dm-parts">DM Parts</h2>
+<p>The C++ Dependency Manager consist out of four main parts: <code>celix::dm::DmActivator</code>, <code>celix::dm::DependencyManager</code>, <code>celix::dm::Component</code> and <code>celix::dm::ServiceDependency</code>.</p>
+<h3 id="dmactivator">DmActivator</h3>
+<p>The <code>DmActivator</code> class should be inherited by a bundle specific Activator.</p>
+<ul>
+<li>The static <code>DmActivator::create</code> method needs to be implemented and should return a bundle specific subclass instance of the DmActivator.</li>
+<li>The <code>DmActivator::init</code> method should be overridden and can be used to specify which components to use in the bundle.</li>
+<li>The <code>DmActivator::deinit</code> method can be overridden if some cleanup is needed when a bundle is stopped.</li>
+</ul>
+<h3 id="dependency-manager">Dependency Manager</h3>
+<p>The <code>DependencyManager</code> act as an entry point to create (DM) Components.</p>
+<h3 id="component">Component</h3>
+<p>The (DM) <code>Component</code> manages the life cycle of a component (of the template type T). For example, when all required service dependencies are available the <code>Component</code> will call the <code>start</code> specified callback function of the component.</p>
+<ul>
+<li>The <code>Component::setInstance</code> method can be used to set the component instance to used. If no instance is set the (DM) <code>Component</code> will (lazy) create a component instance using the default constructor.</li>
+<li>The <code>Component::addInterface</code> method can be used to specify one additional C++ service provided by the component.</li>
+<li>The <code>Component::addCInterface</code> method can be used to specify one additional C service provided by the component.</li>
+<li>The <code>Component::createServiceDependency</code> method can be used to specify one additional typed C++ service dependency.</li>
+<li>The <code>Component::createCServiceDependency</code> method can be used to specify one additional typed C service dependency.</li>
+</ul>
+<h3 id="servicedependency-and-cservicedependency">ServiceDependency and CServiceDependency</h3>
+<p>The (DM) <code>ServiceDependency</code> can be used to specify C++ service dependencies for a component and the (DM) <code>CServiceDependency</code> can be used to specify C service dependencies for a component.</p>
+<p>When these dependencies are set to required the <code>Component</code> will ensure that components will only be started when all required dependencies are available and stop the component if any of the required dependencies are removed.
+This feature should prevent a lot of boiler plating code compared to using a service tracker or services references directly.</p>
+<p>A service dependency update strategy can also be specified (suspend or locking. Default this strategy is set to <code>DependencyUpdateStrategy::suspend</code> this strategy will stop and start (suspend) a component when any of the specified service dependencies changes (are removed, added or modified).
+When correctly used this strategy removes the need for locking services during updates/invocation. See the dependency manager_cxx example for more details.</p>
+<ul>
+<li>The <code>(C)ServiceDependency::setCallbacks</code> methods can be used to specify the function callback used when services are added, set, removed or modified.</li>
+<li>The <code>(C)ServiceDependency::setRequired</code> methods can be used to specify if a service dependency is required.</li>
+<li>The <code>(C)ServiceDependency::setStrategy</code> methods can be used to specify the service dependency update strategy (suspend or locking).</li>
+</ul>
+<h3 id="references">References</h3>
+<p>For more information examples please see</p>
+<ul>
+<li><a href="include/celix/dm">The C++ Dependency Manager API</a>: The c++ dependency manager header files</li>
+<li><a href="../examples/dm_example_cxx">Dm C++ example</a>: A DM C++ example.</li>
+<li><a href="../documents/getting_started/using_services_with_cxx.html">Getting Started: Using Services with C++</a>: A introduction how to work with services using the C++ dependency manager</li>
+</ul>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<footer class="py-3 bg-secondary">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8 text-center">
+                <p class="m-0 text-white">
+                    Copyright &copy; 2020 The Apache Software Foundation, Licensed under
+                    the <a href="http://www.apache.org/licenses/LICENSE-2.0">Apache License, Version 2.0</a>.
+                    <br>
+                    Apache Celix, Celix, Apache, the Apache feather logo and the Apache Celix logo are trademarks of The Apache Software Foundation.
+                </p>
+            </div>
+            <div class="col-md-4 text-center">
+                <a href="https://www.apache.org/events/current-event.html" target="_blank">
+                    <img src="https://www.apache.org/events/current-event-234x60.png" title="Apache Event" width="234" height="60" border="0">
+                </a>
+            </div>
+        </div>
+    </div>
+</footer>
+
+
+<script src="/assets/js/jquery.min.js"></script>
+<script src="/assets/js/bootstrap.bundle.min.js"></script>
+
+
+</body>
+</html>

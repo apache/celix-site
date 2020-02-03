@@ -1,62 +1,624 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Docs on Apache Celix</title>
-    <link>http://celix.apache.org/docs.html</link>
+    <link>https://celix.apache.org/docs.html</link>
     <description>Recent content in Docs on Apache Celix</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     
-	<atom:link href="http://celix.apache.org/docs/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://celix.apache.org/docs/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
-      <title>CHANGES.md</title>
-      <link>http://celix.apache.org/docs/celix/CHANGES.html</link>
+      <title>Base driver</title>
+      <link>https://celix.apache.org/docs/2.2.0/celix/bundles/device_access/example/base_driver/README.html</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://celix.apache.org/docs/celix/CHANGES.html</guid>
-      <description>Changes for 2.1.0 New Features: CELIX-408: Adds support for generating runtime shell scripts so that multiple Celix containers and other executable can be run with a single command. CELIX-418: Adds support for generating properties in the Celix container launcher. CELIX-407: Adds support for serializers as a service for PubSub. This way PubSubAdmin are purely focused on transport techniques. CELIX-401: Adds support for creating Celix docker images using a CMake function.</description>
+      <guid>https://celix.apache.org/docs/2.2.0/celix/bundles/device_access/example/base_driver/README.html</guid>
+      <description>Base driver The base driver is a &amp;ldquo;special&amp;rdquo; driver that will not be loaded by the device manager. Normally the device manager will load drivers if it find device which are idle&amp;hellip; But before that can happen at least one device should exists. This is the role of a base driver and it should function like a &amp;ldquo;normal&amp;rdquo; OSGi bundle which registers a device service.
+In this example the base driver will provide two device service with a DEVICE_CATEGORY of &amp;ldquo;char&amp;rdquo;.</description>
     </item>
     
     <item>
-      <title>Design.md</title>
-      <link>http://celix.apache.org/docs/celix/utils/docs/thpool/Design.html</link>
+      <title>Building and Installing</title>
+      <link>https://celix.apache.org/docs/2.1.0/celix/documents/building/readme.html</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://celix.apache.org/docs/celix/utils/docs/thpool/Design.html</guid>
+      <guid>https://celix.apache.org/docs/2.1.0/celix/documents/building/readme.html</guid>
+      <description>Apache Celix - Building and Installing Apache Celix aims to be support a broad range of UNIX platforms.
+Currently the continuous integration build server builds and tests Apache Celix for:
+ Ubuntu Trusty Tahr (14.04)  GCC CLang   OSX  GCC CLang   Android (cross-compiled on Ubuntu Trusty Tahr)  GCC    Preparing The following packages (libraries + headers) should be installed on your system:</description>
+    </item>
+    
+    <item>
+      <title>Building and Installing</title>
+      <link>https://celix.apache.org/docs/2.2.0/celix/documents/building/README.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://celix.apache.org/docs/2.2.0/celix/documents/building/README.html</guid>
+      <description>Apache Celix - Building and Installing Apache Celix aims to be support a broad range of UNIX platforms.
+Currently the continuous integration build server builds and tests Apache Celix for:
+ Ubuntu Trusty Tahr (14.04)  GCC CLang   OSX  GCC CLang   Android (cross-compiled on Ubuntu Trusty Tahr)  GCC    Preparing The following packages (libraries + headers) should be installed on your system:</description>
+    </item>
+    
+    <item>
+      <title>C Thread Pool</title>
+      <link>https://celix.apache.org/docs/2.1.0/celix/utils/docs/thpool/README.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://celix.apache.org/docs/2.1.0/celix/utils/docs/thpool/README.html</guid>
+      <description>C Thread Pool This is a minimal but fully functional threadpool implementation.
+ ANCI C and POSIX compliant Number of threads can be chosen on initialization Minimal but powerful interface Full documentation  The threadpool is under MIT license. Notice that this project took a considerable amount of work and sacrifice of my free time and the reason I give it for free (even for commercial use) is so when you become rich and wealthy you don&amp;rsquo;t forget about us open-source creatures of the night.</description>
+    </item>
+    
+    <item>
+      <title>C Thread Pool</title>
+      <link>https://celix.apache.org/docs/2.2.0/celix/libs/utils/docs/thpool/README.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://celix.apache.org/docs/2.2.0/celix/libs/utils/docs/thpool/README.html</guid>
+      <description>C Thread Pool This is a minimal but fully functional threadpool implementation.
+ ANCI C and POSIX compliant Number of threads can be chosen on initialization Minimal but powerful interface Full documentation  The threadpool is under MIT license. Notice that this project took a considerable amount of work and sacrifice of my free time and the reason I give it for free (even for commercial use) is so when you become rich and wealthy you don&amp;rsquo;t forget about us open-source creatures of the night.</description>
+    </item>
+    
+    <item>
+      <title>C Thread Pool Design</title>
+      <link>https://celix.apache.org/docs/2.1.0/celix/utils/docs/thpool/Design.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://celix.apache.org/docs/2.1.0/celix/utils/docs/thpool/Design.html</guid>
       <description>High level Description: Library providing a threading pool where you can add work on the fly. The number of threads in the pool is adjustable when creating the pool. In most cases this should equal the number of threads supported by your cpu. For an example on how to use the threadpool, check the main.c file or just read the documentation found in the README.md file. In this header file a detailed overview of the functions and the threadpool&#39;s logical scheme is presented in case you wish to tweak or alter something.</description>
     </item>
     
     <item>
-      <title>Documentation</title>
-      <link>http://celix.apache.org/docs/docs.html</link>
+      <title>C Thread Pool design</title>
+      <link>https://celix.apache.org/docs/2.2.0/celix/libs/utils/docs/thpool/Design.html</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://celix.apache.org/docs/docs.html</guid>
-      <description>Documentation Get started with Celix by going through the appropriate content.
-Please follow the links below to find appropriate content:
- Introduction Getting Started CMake Commands Building Subprojects  View our roadmap to view future plans for Celix
- Roadmap   The Celix mailing list is an excellent place to reach out for help. If you don&amp;rsquo;t find an answer to your problem in the mailing list archives, post a new question on the mailing list.</description>
+      <guid>https://celix.apache.org/docs/2.2.0/celix/libs/utils/docs/thpool/Design.html</guid>
+      <description>High level Description: Library providing a threading pool where you can add work on the fly. The number of threads in the pool is adjustable when creating the pool. In most cases this should equal the number of threads supported by your cpu. For an example on how to use the threadpool, check the main.c file or just read the documentation found in the README.md file. In this header file a detailed overview of the functions and the threadpool&#39;s logical scheme is presented in case you wish to tweak or alter something.</description>
     </item>
     
     <item>
-      <title>FAQ.md</title>
-      <link>http://celix.apache.org/docs/celix/utils/docs/thpool/FAQ.html</link>
+      <title>C Thread Pool FAQ</title>
+      <link>https://celix.apache.org/docs/2.1.0/celix/utils/docs/thpool/FAQ.html</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://celix.apache.org/docs/celix/utils/docs/thpool/FAQ.html</guid>
+      <guid>https://celix.apache.org/docs/2.1.0/celix/utils/docs/thpool/FAQ.html</guid>
       <description>Why isn&amp;rsquo;t pthread_exit() used to exit a thread? thread_do used to use pthread_exit(). However that resulted in hard times of testing for memory leaks. The reason is that on pthread_exit() not all memory is freed bt pthread (probably for future threads or false belief that the application is terminating). For these reasons a simple return is used.
 Interestingly using pthread_exit() results in much more memory being allocated.
 Why do you use sleep() after calling thpool_destroy()?</description>
     </item>
     
     <item>
-      <title>README.md</title>
-      <link>http://celix.apache.org/docs/celix/README.html</link>
+      <title>C Thread Pool FAQ</title>
+      <link>https://celix.apache.org/docs/2.2.0/celix/libs/utils/docs/thpool/FAQ.html</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://celix.apache.org/docs/celix/README.html</guid>
+      <guid>https://celix.apache.org/docs/2.2.0/celix/libs/utils/docs/thpool/FAQ.html</guid>
+      <description>Why isn&amp;rsquo;t pthread_exit() used to exit a thread? thread_do used to use pthread_exit(). However that resulted in hard times of testing for memory leaks. The reason is that on pthread_exit() not all memory is freed bt pthread (probably for future threads or false belief that the application is terminating). For these reasons a simple return is used.
+Interestingly using pthread_exit() results in much more memory being allocated.
+Why do you use sleep() after calling thpool_destroy()?</description>
+    </item>
+    
+    <item>
+      <title>C&#43;&#43; Dependency Manager</title>
+      <link>https://celix.apache.org/docs/2.1.0/celix/dependency_manager_cxx/readme.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://celix.apache.org/docs/2.1.0/celix/dependency_manager_cxx/readme.html</guid>
+      <description>Apache Celix C++ Dependency Manager Introduction The C++ Dependency Manager contains a static library which can be used to manage (dynamic) services on a higher abstraction level in a declarative style. The Apache Celix C++ Dependency Manager is inspired by the Apache Felix Dependency Manager.
+The C++ Dependency Manager uses fluent interface to make specifying DM components and service dependencies very concise and relies on features introduced in C++11.
+C++ and C Dependency Manager The C++ Dependency Manager is build on top of the C Dependency Manager.</description>
+    </item>
+    
+    <item>
+      <title>C&#43;&#43; Dependency Manager</title>
+      <link>https://celix.apache.org/docs/2.2.0/celix/libs/dependency_manager_cxx/README.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://celix.apache.org/docs/2.2.0/celix/libs/dependency_manager_cxx/README.html</guid>
+      <description>Apache Celix C++ Dependency Manager Introduction The C++ Dependency Manager contains a static library which can be used to manage (dynamic) services on a higher abstraction level in a declarative style. The Apache Celix C++ Dependency Manager is inspired by the Apache Felix Dependency Manager.
+The C++ Dependency Manager uses fluent interface to make specifying DM components and service dependencies very concise and relies on features introduced in C++11.
+C++ and C Dependency Manager The C++ Dependency Manager is build on top of the C Dependency Manager.</description>
+    </item>
+    
+    <item>
+      <title>Celix Examples</title>
+      <link>https://celix.apache.org/docs/2.2.0/celix/examples/celix-examples/README.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://celix.apache.org/docs/2.2.0/celix/examples/celix-examples/README.html</guid>
+      <description>Celix Examples </description>
+    </item>
+    
+    <item>
+      <title>Celix Version 3 (Proposal)</title>
+      <link>https://celix.apache.org/docs/2.1.0/celix/documents/roadmap/api_v3/readme.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://celix.apache.org/docs/2.1.0/celix/documents/roadmap/api_v3/readme.html</guid>
+      <description>Celix Version 3 (Proposal) Intro The celix.h header contains a proposed API for Apache Celix version 3. This API is not fixed, but work in progress and should be considered a starting point for discussion.
+There are a few reasons for a API change:
+The current Apache Celix API is mapped from the OSGi API. The problem is that OSGi is designed for Java, a language where classes are present runtime, reflection can be used, resource are controlled through garbage collection and classes are kept available when still needed(garbage collector) even if a bundle is uninstalled.</description>
+    </item>
+    
+    <item>
+      <title>Changes</title>
+      <link>https://celix.apache.org/docs/2.1.0/celix/CHANGES.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://celix.apache.org/docs/2.1.0/celix/CHANGES.html</guid>
+      <description>Changes for 2.1.0 New Features: CELIX-408: Adds support for generating runtime shell scripts so that multiple Celix containers and other executable can be run with a single command. CELIX-418: Adds support for generating properties in the Celix container launcher. CELIX-407: Adds support for serializers as a service for PubSub. This way PubSubAdmin are purely focused on transport techniques. CELIX-401: Adds support for creating Celix docker images using a CMake function. CELIX-397: Adds support for PubSub selection based on a match function.</description>
+    </item>
+    
+    <item>
+      <title>Changes</title>
+      <link>https://celix.apache.org/docs/2.2.0/celix/CHANGES.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://celix.apache.org/docs/2.2.0/celix/CHANGES.html</guid>
+      <description>Changes for 2.2.0 New features:  PubSub TCP (donation) PubSub Avro bin serializer PubSub Websocket (donation) HTTP Admin (donation) Shell Web UI (using HTTP Admin) d  Improvements  CELIX-438: Refactored celix api so that include files and symbols have a _celix &amp;ldquo;namespace&amp;rdquo; CELIX-459: Adds PubSub health/usage monitoring CELIX-467: Adds doxygen generation Refactored etcdlib to supported multiple instances  Bugs  CELIX-410: Fixes issue with property loader duplicating spaces and tabs CELIX-454: Fixed race condition in the etcd pubsub discovery CELIX-460: Fixed issue with msg not found in pub/sub serializer map due to signed/unsigned difference CELIX-466: Fixed race condition Race condition in adding/removing service listener hooks  Changes for 2.</description>
+    </item>
+    
+    <item>
+      <title>CMake Commands</title>
+      <link>https://celix.apache.org/docs/2.1.0/celix/documents/cmake_commands/readme.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://celix.apache.org/docs/2.1.0/celix/documents/cmake_commands/readme.html</guid>
+      <description>Apache Celix - CMake Commands For Apache Celix several cmake command are added to be able to work with Apache Celix bundles and deployments.
+Bundles add_celix_bundle Add a Celix bundle to the project. There are three variants:
+ With SOURCES the bundle will be created using a list of sources files as input for the bundle activator library. With ACTIVATOR the bundle will be created using the library target or absolute path to existing library as activator library.</description>
+    </item>
+    
+    <item>
+      <title>CMake Commands</title>
+      <link>https://celix.apache.org/docs/2.2.0/celix/documents/cmake_commands/README.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://celix.apache.org/docs/2.2.0/celix/documents/cmake_commands/README.html</guid>
+      <description>Apache Celix - CMake Commands For Apache Celix several cmake command are added to be able to work with Apache Celix bundles and deployments.
+Bundles add_celix_bundle Add a Celix bundle to the project. There are three variants:
+ With SOURCES the bundle will be created using a list of sources files as input for the bundle activator library. With ACTIVATOR the bundle will be created using the library target or absolute path to existing library as activator library.</description>
+    </item>
+    
+    <item>
+      <title>Configuration Admin</title>
+      <link>https://celix.apache.org/docs/2.1.0/celix/config_admin/readme.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://celix.apache.org/docs/2.1.0/celix/config_admin/readme.html</guid>
+      <description>Configuration Admin  Introduction The configuration Admin service allows defining and deploying configuration data to bundles. When compared to config.properties it adds the option to update configuration data by providing a persisten storage. It also allows changing configuration data at run-time.
+ Design The config_admin bundle implements the configuration_admin service, the interface to configuration objects and the interface of a managed service. At the moment, the implementation uses a config_admin_factory to generate config_admin services for each bundle that wants to use this service.</description>
+    </item>
+    
+    <item>
+      <title>Configuration Admin</title>
+      <link>https://celix.apache.org/docs/2.2.0/celix/misc/experimental/bundles/config_admin/README.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://celix.apache.org/docs/2.2.0/celix/misc/experimental/bundles/config_admin/README.html</guid>
+      <description>Configuration Admin  Introduction The configuration Admin service allows defining and deploying configuration data to bundles. When compared to config.properties it adds the option to update configuration data by providing a persistent storage. It also allows changing configuration data at run-time.
+ Design The config_admin bundle implements the configuration_admin service, the interface to configuration objects and the interface of a managed service. At the moment, the implementation uses a config_admin_factory to generate config_admin services for each bundle that wants to use this service.</description>
+    </item>
+    
+    <item>
+      <title>Consuming driver</title>
+      <link>https://celix.apache.org/docs/2.2.0/celix/bundles/device_access/example/consuming_driver/README.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://celix.apache.org/docs/2.2.0/celix/bundles/device_access/example/consuming_driver/README.html</guid>
+      <description>Consuming driver A consuming driver will be able to attach to certain device services, but will not - in contrast with a refining driver - publish device services.
+In this example the consuming driver will look for &amp;ldquo;word&amp;rdquo; services and will print the result a few times.</description>
+    </item>
+    
+    <item>
+      <title>Creating a Simple Bundle</title>
+      <link>https://celix.apache.org/docs/2.1.0/celix/documents/getting_started/creating_a_simple_bundle.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://celix.apache.org/docs/2.1.0/celix/documents/getting_started/creating_a_simple_bundle.html</guid>
+      <description>Apache Celix - Getting Started Guide: Creating a Simple Bundle Intro This page is intended for first time users of Apache Celix. It should guide you through building &amp;amp; installing Apache Celix, setting up a new project, creating your first bundle, setting up the project for use with Eclipse project and finally running and debugging your bundle directly from eclipse workspace.
+If there are any uncertainties or question, don&amp;rsquo;t hesitate to ask your questions in the Apache Celix mailing.</description>
+    </item>
+    
+    <item>
+      <title>Creating a Simple Bundle</title>
+      <link>https://celix.apache.org/docs/2.2.0/celix/documents/getting_started/creating_a_simple_bundle.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://celix.apache.org/docs/2.2.0/celix/documents/getting_started/creating_a_simple_bundle.html</guid>
+      <description>Apache Celix - Getting Started Guide: Creating a Simple Bundle Intro This page is intended for first time users of Apache Celix. It should guide you through building &amp;amp; installing Apache Celix, setting up a new project, creating your first bundle, setting up the project for use with Eclipse project and finally running and debugging your bundle directly from eclipse workspace.
+If there are any uncertainties or question, don&amp;rsquo;t hesitate to ask your questions in the Apache Celix mailing.</description>
+    </item>
+    
+    <item>
+      <title>Dependency Manager</title>
+      <link>https://celix.apache.org/docs/2.1.0/celix/dependency_manager/readme.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://celix.apache.org/docs/2.1.0/celix/dependency_manager/readme.html</guid>
+      <description>Apache Celix Dependency Manager Introduction The Dependency Manager contains a static library which can be used to manage (dynamic) services on a higher abstraction level in a declarative style. The Apache Celix Dependency Manager is inspired by the Apache Felix Dependency Manager.
+Components Components are the main building blocks for OSGi applications. They can publish services, and/or they can have dependencies. These dependencies will influence their life cycle as component will only be activated when all required dependencies are available.</description>
+    </item>
+    
+    <item>
+      <title>Dependency Manager</title>
+      <link>https://celix.apache.org/docs/2.2.0/celix/libs/dependency_manager/README.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://celix.apache.org/docs/2.2.0/celix/libs/dependency_manager/README.html</guid>
+      <description>Apache Celix Dependency Manager Introduction The Dependency Manager contains a static library which can be used to manage (dynamic) services on a higher abstraction level in a declarative style. The Apache Celix Dependency Manager is inspired by the Apache Felix Dependency Manager.
+Components Components are the main building blocks for OSGi applications. They can publish services, and/or they can have dependencies. These dependencies will influence their life cycle as component will only be activated when all required dependencies are available.</description>
+    </item>
+    
+    <item>
+      <title>Deployment Admin</title>
+      <link>https://celix.apache.org/docs/2.1.0/celix/deployment_admin/README.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://celix.apache.org/docs/2.1.0/celix/deployment_admin/README.html</guid>
+      <description>Deployment Admin The Celix Deployment Admin implements the OSGi Deployment Admin specification, which provides functionality to manage deployment packages. Deployment package are bundles and other artifacts that can be installed, updated and uninstalled as single unit.
+It can be used for example with Apache Ace, which allows you to centrally manage and distribute software components, configuration data and other artifacts.
+Properties deployment_admin_identification id used by the deployment admin to identify itself deployment_admin_url url of the deployment server deployment_cache_dir possible cache dir for the deployment admin update deployment_tags tags used by the deployment admin  CMake option BUILD_DEPLOYMENT_ADMIN=ON  </description>
+    </item>
+    
+    <item>
+      <title>Deployment Admin</title>
+      <link>https://celix.apache.org/docs/2.2.0/celix/bundles/deployment_admin/README.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://celix.apache.org/docs/2.2.0/celix/bundles/deployment_admin/README.html</guid>
+      <description>Deployment Admin The Celix Deployment Admin implements the OSGi Deployment Admin specification, which provides functionality to manage deployment packages. Deployment package are bundles and other artifacts that can be installed, updated and uninstalled as single unit.
+It can be used for example with Apache Ace, which allows you to centrally manage and distribute software components, configuration data and other artifacts.
+Properties  tags used by the deployment admin  CMake option BUILD_DEPLOYMENT_ADMIN=ON  Deployment Admin Config Options  deployment_admin_identification id used by the deployment admin to identify itself deployment_admin_url url of the deployment server deployment_cache_dir possible cache dir for the deployment admin update deployment_tags  Using info If the Celix Deployment Admin is installed, &amp;lsquo;find_package(Celix)&amp;rsquo; will set:</description>
+    </item>
+    
+    <item>
+      <title>Device Access</title>
+      <link>https://celix.apache.org/docs/2.1.0/celix/device_access/README.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://celix.apache.org/docs/2.1.0/celix/device_access/README.html</guid>
+      <description>Device Access The Device Access contains a for Celix adapted implementation of the OSGi Compendium Device Access Specification.
+Properties DRIVER_LOCATOR_PATH Path to the directory containing the driver bundles, defaults to &amp;quot;drivers&amp;quot;. The Driver Locator uses this path to find drivers.  CMake option BUILD_DEVICE_ACCESS=ON  </description>
+    </item>
+    
+    <item>
+      <title>Device Access</title>
+      <link>https://celix.apache.org/docs/2.2.0/celix/bundles/device_access/README.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://celix.apache.org/docs/2.2.0/celix/bundles/device_access/README.html</guid>
+      <description>Device Access The Device Access contains a for Celix adapted implementation of the OSGi Compendium Device Access Specification.
+Properties DRIVER_LOCATOR_PATH Path to the directory containing the driver bundles, defaults to &amp;quot;drivers&amp;quot;. The Driver Locator uses this path to find drivers.  CMake option BUILD_DEVICE_ACCESS=ON  Using info If the Celix Device Access is installed, &amp;lsquo;find_package(Celix)&amp;rsquo; will set:
+ The Celix::device_access_api interface (i.e. headers only) library target The Celix::device_manager bundle target The Celix::driver_locator bundle target  </description>
+    </item>
+    
+    <item>
+      <title>Discovery ETCD</title>
+      <link>https://celix.apache.org/docs/2.1.0/celix/remote_services/discovery_etcd/README.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://celix.apache.org/docs/2.1.0/celix/remote_services/discovery_etcd/README.html</guid>
+      <description>Discovery ETCD The Celix Discovery ETCD bundles realizes OSGi services discovery based on etcd.
+Properties DISCOVERY_ETCD_ROOT_PATH used path (default: discovery) DEFAULT_ETCD_SERVER_IP ip address of the etcd server (default: 127.0.0.1) DEFAULT_ETCD_SERVER_PORT port of the etcd server (default: 2379) DEFAULT_ETCD_TTL time-to-live for etcd entries in seconds (default: 30)  CMake option BUILD_RSA_DISCOVERY_ETCD=ON  </description>
+    </item>
+    
+    <item>
+      <title>Discovery ETCD</title>
+      <link>https://celix.apache.org/docs/2.2.0/celix/bundles/remote_services/discovery_etcd/README.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://celix.apache.org/docs/2.2.0/celix/bundles/remote_services/discovery_etcd/README.html</guid>
+      <description>Discovery ETCD The Celix Discovery ETCD bundles realizes OSGi services discovery based on etcd.
+Properties DISCOVERY_ETCD_ROOT_PATH Used path to announce and find discovery entpoints (default: discovery) DISCOVERY_ETCD_SERVER_IP ip address of the etcd server (default: 127.0.0.1) DISCOVERY_ETCD_SERVER_PORT port of the etcd server (default: 2379) DISCOVERY_ETCD_TTL time-to-live for etcd entries in seconds (default: 30) DISCOVERY_CFG_SERVER_IP The host to use/announce for this framewokr discovery endpoint. Default &amp;quot;127.0.0.1&amp;quot; DISCOVERY_CFG_SERVER_PORT The port to use/announce for this framework endpoint endpoint.</description>
+    </item>
+    
+    <item>
+      <title>Documentation for v2.1.0</title>
+      <link>https://celix.apache.org/docs/2.1.0/docs.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://celix.apache.org/docs/2.1.0/docs.html</guid>
+      <description>Documentation for Celix v2.1.0 Get started with Celix by going through the appropriate content.
+Please follow the links below to find appropriate content:
+ Introduction Getting Started CMake Commands Building Subprojects  View our roadmap to view future plans for Celix
+ Roadmap  View the 2.1.0 changelog here.
+ The Celix mailing list is an excellent place to reach out for help. If you don&amp;rsquo;t find an answer to your problem in the mailing list archives, post a new question on the mailing list.</description>
+    </item>
+    
+    <item>
+      <title>Documentation for v2.2.0</title>
+      <link>https://celix.apache.org/docs/2.2.0/docs.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://celix.apache.org/docs/2.2.0/docs.html</guid>
+      <description>Documentation for Celix v2.2.0 Get started with Celix by going through the appropriate content.
+Please follow the links below to find appropriate content:
+ Introduction Getting Started CMake Commands Building Subprojects  View the 2.2.0 changelog here.
+ The Celix mailing list is an excellent place to reach out for help. If you don&amp;rsquo;t find an answer to your problem in the mailing list archives, post a new question on the mailing list.</description>
+    </item>
+    
+    <item>
+      <title>Etcdlib</title>
+      <link>https://celix.apache.org/docs/2.1.0/celix/etcdlib/README.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://celix.apache.org/docs/2.1.0/celix/etcdlib/README.html</guid>
+      <description>Etcdlib etcd is a distributed, consistent key-value store for shared configuration and service discovery, part of the CoreOS project.
+This repository provides a library for etcd for C applications.
+Etcdlib can be used as part of Celix but is also useable stand-alone.
+Preparing The following packages (libraries + headers) should be installed on your system:
+  Development Environment
+ build-essentials (gcc/g++ or clang/clang++) cmake (3.2 or higher)    Etcdlib Dependencies</description>
+    </item>
+    
+    <item>
+      <title>Etcdlib</title>
+      <link>https://celix.apache.org/docs/2.2.0/celix/libs/etcdlib/README.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://celix.apache.org/docs/2.2.0/celix/libs/etcdlib/README.html</guid>
+      <description>Etcdlib etcd is a distributed, consistent key-value store for shared configuration and service discovery, part of the CoreOS project.
+This repository provides a library for etcd for C applications.
+Etcdlib can be used as part of Celix but is also usable stand-alone.
+Preparing The following packages (libraries + headers) should be installed on your system:
+  Development Environment
+ build-essentials (gcc/g++ or clang/clang++) cmake (3.2 or higher)    Etcdlib Dependencies</description>
+    </item>
+    
+    <item>
+      <title>Getting Started Guide</title>
+      <link>https://celix.apache.org/docs/2.1.0/celix/documents/getting_started/readme.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://celix.apache.org/docs/2.1.0/celix/documents/getting_started/readme.html</guid>
+      <description>Apache Celix - Getting Started Guide Guides There are several guide to help you get started. The first guide is Getting Started: Creating a simple bundle and this should get you started for your first C and/or C++ bundle.
+After that you can extend the example by using services with the following guides:
+ Getting Started: Using Services with C Getting Started: Using Services with C++.  </description>
+    </item>
+    
+    <item>
+      <title>Getting Started Guide</title>
+      <link>https://celix.apache.org/docs/2.2.0/celix/documents/getting_started/README.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://celix.apache.org/docs/2.2.0/celix/documents/getting_started/README.html</guid>
+      <description>Apache Celix - Getting Started Guide Guides There are several guide to help you get started. The first guide is Getting Started: Creating a simple bundle and this should get you started for your first C and/or C++ bundle.
+After that you can extend the example by using services with the following guides:
+ Getting Started: Using Services with C Getting Started: Using Services with C++  </description>
+    </item>
+    
+    <item>
+      <title>HTTP Admin</title>
+      <link>https://celix.apache.org/docs/2.2.0/celix/bundles/http_admin/README.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://celix.apache.org/docs/2.2.0/celix/bundles/http_admin/README.html</guid>
+      <description>HTTP Admin The HTTP admin provides a service tracker and starts a HTTP web server. The civetweb web server is used as an embedded web server. Websockets are supported by the HTTP admin.
+Services can register and implement HTTP requests or websocket support for a specified URI. The supported HTTP requests are: GET, HEAD, POST, PUT, DELETE, TRACE, OPTIONS and PATCH. The websocket service can support different callback handlers: connect, ready, data and close.</description>
+    </item>
+    
+    <item>
+      <title>HTTP Example</title>
+      <link>https://celix.apache.org/docs/2.2.0/celix/examples/celix-examples/http_example/README.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://celix.apache.org/docs/2.2.0/celix/examples/celix-examples/http_example/README.html</guid>
+      <description>HTTP Example This examples shows how the Celix HTTP Admin can be used.
+This examples contains a http_example example bundle and uses the Celix::http_admin Celix::shell and Celix::shell_wui bundles to create a http_example_cnt Celix container.
+The http_example_cnt Celix container shows how you can create a use existing http/websocket services. After running the container browse to localhost:8080. Under the /shell uri you find the Celix::shell_wui functionality and under /hello uri you find the http_example functionality</description>
+    </item>
+    
+    <item>
+      <title>Improvement Ideas</title>
+      <link>https://celix.apache.org/docs/2.1.0/celix/documents/roadmap/improvement_ideas.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://celix.apache.org/docs/2.1.0/celix/documents/roadmap/improvement_ideas.html</guid>
+      <description>Improvement Ideas Introduce dlmopen for library imports. Currently library are loaded LOCAL for bundles. This works alright, but makes it hard to add a concept of exporting and importing libraries.
+The trick is that the NEEDED header in the importing libraries should match the target exported library SONAME header and no other exported libraries SONAME headers. One solution to make this work is to alter the NEEDED &amp;amp; SONAME runtime.</description>
+    </item>
+    
+    <item>
+      <title>Intro</title>
+      <link>https://celix.apache.org/docs/2.2.0/celix/misc/experimental/README.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://celix.apache.org/docs/2.2.0/celix/misc/experimental/README.html</guid>
+      <description>Intro This directory contains experimental bundles and libraries. These bundles/libraries are not considered stable and/or their API can still drastically change.</description>
+    </item>
+    
+    <item>
+      <title>Introduction</title>
+      <link>https://celix.apache.org/docs/2.1.0/celix/documents/intro/readme.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://celix.apache.org/docs/2.1.0/celix/documents/intro/readme.html</guid>
+      <description>Apache Celix Introduction What is Apache Celix Apache Celix is an implementation of the OSGi specification adapted to C and C++. It is a provides a framework to develop (dynamic) modular software applications using component and/or service-oriented programming.
+Apache Celix is primarily developed in C and adds an additional abstraction, in the form of a library, to support for C++.
+Bundles OSGi uses bundles as medium to (run-time) add and remove modules (additional functionality) to OSGi applications.</description>
+    </item>
+    
+    <item>
+      <title>Introduction</title>
+      <link>https://celix.apache.org/docs/2.2.0/celix/documents/intro/README.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://celix.apache.org/docs/2.2.0/celix/documents/intro/README.html</guid>
+      <description>Apache Celix Introduction What is Apache Celix Apache Celix is an implementation of the OSGi specification adapted to C and C++. It is a provides a framework to develop (dynamic) modular software applications using component and/or service-oriented programming.
+Apache Celix is primarily developed in C and adds an additional abstraction, in the form of a library, to support for C++.
+Bundles OSGi uses bundles as medium to (run-time) add and remove modules (additional functionality) to OSGi applications.</description>
+    </item>
+    
+    <item>
+      <title>Launcher</title>
+      <link>https://celix.apache.org/docs/2.1.0/celix/launcher/README.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://celix.apache.org/docs/2.1.0/celix/launcher/README.html</guid>
+      <description>Launcher The Celix Launcher is a generic executable for launching the Framework. It reads a java properties based configuration file.
+The Launcher also passes the entire configuration to the Framework, this makes them available to the bundleContext_getProperty function.
+Properties cosgi.auto.start.1 Space delimited list of bundles to install and start when the Launcher/Framework is started. Note: Celix currently has no support for start levels, even though the &amp;quot;1&amp;quot; is meant for this.</description>
+    </item>
+    
+    <item>
+      <title>Launcher</title>
+      <link>https://celix.apache.org/docs/2.2.0/celix/libs/launcher/README.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://celix.apache.org/docs/2.2.0/celix/libs/launcher/README.html</guid>
+      <description>Launcher The Celix Launcher is a generic executable for launching the Framework. It reads a java properties based configuration file.
+The Launcher also passes the entire configuration to the Framework, this makes them available to the bundleContext_getProperty function.
+Properties CELIX_AUTO_START_0 Space delimited list of bundles to install and start when the Framework is started. The is for runtime level 0, which is started first. CELIX_AUTO_START_1 Space delimited list of bundles to install and start when the Framework is started.</description>
+    </item>
+    
+    <item>
+      <title>Log Service</title>
+      <link>https://celix.apache.org/docs/2.1.0/celix/log_service/README.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://celix.apache.org/docs/2.1.0/celix/log_service/README.html</guid>
+      <description>Log Service The Celix Log Service realizes an adapted implementation of the OSGi Compendium Log Service. This is a very simple implementation which only stores the log in memory. It can be combined with one of the available Log Writers to forward the buffered entries to e.g. stdout or syslog.
+To ease the use of the Log Service, the Log Helper can be used. It wraps and therefore simplifies the log service usage.</description>
+    </item>
+    
+    <item>
+      <title>Log Service</title>
+      <link>https://celix.apache.org/docs/2.2.0/celix/bundles/logging/log_service/README.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://celix.apache.org/docs/2.2.0/celix/bundles/logging/log_service/README.html</guid>
+      <description>Log Service The Celix Log Service realizes an adapted implementation of the OSGi Compendium Log Service. This is a very simple implementation which only stores the log in memory. It can be combined with one of the available Log Writers to forward the buffered entries to e.g. stdout or syslog.
+To ease the use of the Log Service, the Log Helper can be used. It wraps and therefore simplifies the log service usage.</description>
+    </item>
+    
+    <item>
+      <title>Log Writer</title>
+      <link>https://celix.apache.org/docs/2.1.0/celix/log_writer/README.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://celix.apache.org/docs/2.1.0/celix/log_writer/README.html</guid>
+      <description>Log Writer The Celix Log Writers are components that read/listen to the Log Service and print the Log entries to the console or syslog, respectively.
+CMake options BUILD_LOG_WRITER=ON BUILD_LOG_WRITER_SYSLOG=ON  </description>
+    </item>
+    
+    <item>
+      <title>Log Writer</title>
+      <link>https://celix.apache.org/docs/2.2.0/celix/bundles/logging/log_writer/README.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://celix.apache.org/docs/2.2.0/celix/bundles/logging/log_writer/README.html</guid>
+      <description>Log Writer The Celix Log Writers are components that read/listen to the Log Service and print the Log entries to the console or syslog, respectively.
+CMake options BUILD_LOG_WRITER=ON BUILD_LOG_WRITER_SYSLOG=ON  Using info If the Celix Log Writers are installed find_package(CELIX) will set:
+ The Celix::log_writer_stdout bundle target The Celix::log_writer_syslog bundle target  </description>
+    </item>
+    
+    <item>
+      <title>memstream</title>
+      <link>https://celix.apache.org/docs/2.1.0/celix/utils/public/include/memstream/README.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://celix.apache.org/docs/2.1.0/celix/utils/public/include/memstream/README.html</guid>
+      <description>fmemopen for Mac OS and iOS Originally ported from ingenuitas python-tesseract. Ported by Jeff Verkoeyen under the Apache 2.0 License.
+From the fmemopen man page:
+ FILE *fmemopen(void *buf, size_t size, const char *mode);
+The fmemopen() function opens a stream that permits the access specified by mode. The stream allows I/O to be performed on the string or memory buffer pointed to by buf. This buffer must be at least size bytes long.</description>
+    </item>
+    
+    <item>
+      <title>memstream</title>
+      <link>https://celix.apache.org/docs/2.2.0/celix/libs/utils/include/memstream/README.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://celix.apache.org/docs/2.2.0/celix/libs/utils/include/memstream/README.html</guid>
+      <description>fmemopen for Mac OS and iOS Originally ported from ingenuitas python-tesseract. Ported by Jeff Verkoeyen under the Apache 2.0 License.
+From the fmemopen man page:
+ FILE *fmemopen(void *buf, size_t size, const char *mode);
+The fmemopen() function opens a stream that permits the access specified by mode. The stream allows I/O to be performed on the string or memory buffer pointed to by buf. This buffer must be at least size bytes long.</description>
+    </item>
+    
+    <item>
+      <title>PSA UDP Multicast</title>
+      <link>https://celix.apache.org/docs/2.1.0/celix/pubsub/pubsub_admin_udp_mc/README.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://celix.apache.org/docs/2.1.0/celix/pubsub/pubsub_admin_udp_mc/README.html</guid>
+      <description>PUBSUB-Admin UDP Multicast  Description This description is particular for the UDP-Multicast PUB-SUB.
+The UDP multicast pubsub admin is used to transfer user data transparent via UDP multicast. UDP packets can contain approximately
+64kB . To overcome this limit the admin has a protocol on top of UDP which fragments the data to be send and these
+fragments are reassembled at the reception side.
+IP Addresses To use UDP-multicast 2 IP adresses are needed:</description>
+    </item>
+    
+    <item>
+      <title>PSA UDP Multicast</title>
+      <link>https://celix.apache.org/docs/2.2.0/celix/bundles/pubsub/pubsub_admin_udp_mc/README.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://celix.apache.org/docs/2.2.0/celix/bundles/pubsub/pubsub_admin_udp_mc/README.html</guid>
+      <description>PUBSUB-Admin UDP Multicast  Description This description is particular for the UDP-Multicast PUB-SUB.
+The UDP multicast pubsub admin is used to transfer user data transparent via UDP multicast. UDP packets can contain approximately
+64kB . To overcome this limit the admin has a protocol on top of UDP which fragments the data to be send and these
+fragments are reassembled at the reception side.
+IP Addresses To use UDP-multicast 2 IP addresses are needed:</description>
+    </item>
+    
+    <item>
+      <title>Publisher / subscriber implementation</title>
+      <link>https://celix.apache.org/docs/2.1.0/celix/pubsub/README.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://celix.apache.org/docs/2.1.0/celix/pubsub/README.html</guid>
+      <description>Publisher / subscriber implementation This subdirectory contains an implementation for a publish-subscribe remote services system, that use dfi library for message serialization. For low-level communication, UDP and ZMQ is used.
+Description This publisher / subscriber implementation is based on the concepts of the remote service admin (i.e. rsa / topology / discovery pattern).
+Publishers are senders of data, subscribers can receive data. Publishers can publish/send data to certain channels (called &amp;lsquo;topics&amp;rsquo; further on), subscribers can subscribe to these topics.</description>
+    </item>
+    
+    <item>
+      <title>Publisher / subscriber implementation</title>
+      <link>https://celix.apache.org/docs/2.2.0/celix/bundles/pubsub/README.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://celix.apache.org/docs/2.2.0/celix/bundles/pubsub/README.html</guid>
+      <description>Publisher / subscriber implementation This subdirectory contains an implementation for a publish-subscribe remote services system, that use dfi library for message serialization. For low-level communication, UDP and ZMQ is used.
+Description This publisher / subscriber implementation is based on the concepts of the remote service admin (i.e. rsa / topology / discovery pattern).
+Publishers are senders of data, subscribers can receive data. Publishers can publish/send data to certain channels (called &amp;lsquo;topics&amp;rsquo; further on), subscribers can subscribe to these topics.</description>
+    </item>
+    
+    <item>
+      <title>Pubsub Keys</title>
+      <link>https://celix.apache.org/docs/2.1.0/celix/pubsub/examples/keys/README.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://celix.apache.org/docs/2.1.0/celix/pubsub/examples/keys/README.html</guid>
+      <description>Store the AES key for encrypting and decrypting the encoded secret keys safe in a file! Default file is /etc/pubsub.keys with the following format:
+aes_key:{32 character AES key here} aes_iv:{16 character AES iv here} Use the $PROJECT_BUILD/pubsub/keygen/makecert for generating keypairs Use the $PROJECT_BUILD/pubsub/keygen/ed_file for encrypting and decrypting private keys
+Public keys need to be stored in the &amp;lsquo;public&amp;rsquo; folder having the following format:
+ pub_{topic}.pub sub_{topic}.pub  Secret keys need to be stored in the &amp;lsquo;private&amp;rsquo; folder having the following format:</description>
+    </item>
+    
+    <item>
+      <title>Pubsub Keys</title>
+      <link>https://celix.apache.org/docs/2.2.0/celix/bundles/pubsub/examples/keys/README.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://celix.apache.org/docs/2.2.0/celix/bundles/pubsub/examples/keys/README.html</guid>
+      <description>Store the AES key for encrypting and decrypting the encoded secret keys safe in a file! Default file is /etc/pubsub.keys with the following format:
+aes_key:{32 character AES key here} aes_iv:{16 character AES iv here} Use the $PROJECT_BUILD/pubsub/keygen/makecert for generating keypairs Use the $PROJECT_BUILD/pubsub/keygen/ed_file for encrypting and decrypting private keys
+Public keys need to be stored in the &amp;lsquo;public&amp;rsquo; folder having the following format:
+ pub_{topic}.pub sub_{topic}.pub  Secret keys need to be stored in the &amp;lsquo;private&amp;rsquo; folder having the following format:</description>
+    </item>
+    
+    <item>
+      <title>README.md</title>
+      <link>https://celix.apache.org/docs/2.1.0/celix/README.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://celix.apache.org/docs/2.1.0/celix/README.html</guid>
       <description>Apache Celix    Apache Celix is an implementation of the OSGi specification adapted to C and C++ (C++11). It is a provides a framework to develop (dynamic) modular software applications using component and/or service-oriented programming.
 Building For information how to build Apache Celix see Building Apache Celix
 Introduction to Apache Celix For an introduction into Apache Celix see Apache Celix Intro
@@ -65,360 +627,307 @@ Getting Started with Apache Celix For a guide how to start writing your own bund
     
     <item>
       <title>README.md</title>
-      <link>http://celix.apache.org/docs/celix/deployment_admin/README.html</link>
+      <link>https://celix.apache.org/docs/2.2.0/celix/README.html</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://celix.apache.org/docs/celix/deployment_admin/README.html</guid>
-      <description> Deployment Admin The Celix Deployment Admin implements the OSGi Deployment Admin specification, which provides functionality to manage deployment packages. Deployment package are bundles and other artifacts that can be installed, updated and uninstalled as single unit.
-It can be used for example with Apache Ace, which allows you to centrally manage and distribute software components, configuration data and other artifacts.
-Properties deployment_admin_identification id used by the deployment admin to identify itself deployment_admin_url url of the deployment server deployment_cache_dir possible cache dir for the deployment admin update deployment_tags tags used by the deployment admin  CMake option BUILD_DEPLOYMENT_ADMIN=ON  </description>
+      <guid>https://celix.apache.org/docs/2.2.0/celix/README.html</guid>
+      <description>Apache Celix    Apache Celix is an implementation of the OSGi specification adapted to C and C++ (C++11). It is a framework to develop (dynamic) modular software applications using component and/or service-oriented programming.
+Building For information how to build Apache Celix see Building Apache Celix
+Introduction to Apache Celix For an introduction into Apache Celix see Apache Celix Intro
+Getting Started with Apache Celix For a guide how to start writing your own bundles and services see Getting Started Guide</description>
     </item>
     
     <item>
-      <title>README.md</title>
-      <link>http://celix.apache.org/docs/celix/device_access/README.html</link>
+      <title>Refining driver</title>
+      <link>https://celix.apache.org/docs/2.2.0/celix/bundles/device_access/example/refining_driver/README.html</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://celix.apache.org/docs/celix/device_access/README.html</guid>
-      <description> Device Access The Device Access contains a for Celix adapted implementation of the OSGi Compendium Device Access Specification.
-Properties DRIVER_LOCATOR_PATH Path to the directory containing the driver bundles, defaults to &amp;quot;drivers&amp;quot;. The Driver Locator uses this path to find drivers.  CMake option BUILD_DEVICE_ACCESS=ON  </description>
+      <guid>https://celix.apache.org/docs/2.2.0/celix/bundles/device_access/example/refining_driver/README.html</guid>
+      <description>Refining driver A refining driver is a driver which is able to attach to certain device services and as result publishes different - refined - device services. This example will attach to device services with a &amp;ldquo;char&amp;rdquo; device category and publish
+ for every char device services found - a &amp;ldquo;word&amp;rdquo; device services.  </description>
     </item>
     
     <item>
-      <title>README.md</title>
-      <link>http://celix.apache.org/docs/celix/etcdlib/README.html</link>
+      <title>Remote Service Admin</title>
+      <link>https://celix.apache.org/docs/2.1.0/celix/remote_services/remote_service_admin/README.html</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://celix.apache.org/docs/celix/etcdlib/README.html</guid>
-      <description>Etcdlib etcd is a distributed, consistent key-value store for shared configuration and service discovery, part of the CoreOS project.
-This repository provides a library for etcd for C applications.
-Etcdlib can be used as part of Celix but is also useable stand-alone.
-Preparing The following packages (libraries + headers) should be installed on your system:
- Development Environment
- build-essentials (gcc/g++ or clang/clang++) cmake (3.2 or higher)  Etcdlib Dependencies</description>
-    </item>
-    
-    <item>
-      <title>README.md</title>
-      <link>http://celix.apache.org/docs/celix/launcher/README.html</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>http://celix.apache.org/docs/celix/launcher/README.html</guid>
-      <description>Launcher The Celix Launcher is a generic executable for launching the Framework. It reads a java properties based configuration file.
-The Launcher also passes the entire configuration to the Framework, this makes them available to the bundleContext_getProperty function.
-Properties cosgi.auto.start.1 Space delimited list of bundles to install and start when the Launcher/Framework is started. Note: Celix currently has no support for start levels, even though the &amp;quot;1&amp;quot; is meant for this.</description>
-    </item>
-    
-    <item>
-      <title>README.md</title>
-      <link>http://celix.apache.org/docs/celix/log_service/README.html</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>http://celix.apache.org/docs/celix/log_service/README.html</guid>
-      <description>Log Service The Celix Log Service realizes an adapted implementation of the OSGi Compendium Log Service. This is a very simple implementation which only stores the log in memory. It can be combined with one of the available Log Writers to forward the buffered entries to e.g. stdout or syslog.
-To ease the use of the Log Service, the Log Helper can be used. It wraps and therefore simplifies the log service usage.</description>
-    </item>
-    
-    <item>
-      <title>README.md</title>
-      <link>http://celix.apache.org/docs/celix/log_writer/README.html</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>http://celix.apache.org/docs/celix/log_writer/README.html</guid>
-      <description> Log Writer The Celix Log Writers are components that read/listen to the Log Service and print the Log entries to the console or syslog, respectively.
-CMake options BUILD_LOG_WRITER=ON BUILD_LOG_WRITER_SYSLOG=ON  </description>
-    </item>
-    
-    <item>
-      <title>README.md</title>
-      <link>http://celix.apache.org/docs/celix/pubsub/README.html</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>http://celix.apache.org/docs/celix/pubsub/README.html</guid>
-      <description>Publisher / subscriber implementation This subdirectory contains an implementation for a publish-subscribe remote services system, that use dfi library for message serialization. For low-level communication, UDP and ZMQ is used.
-Description This publisher / subscriber implementation is based on the concepts of the remote service admin (i.e. rsa / topology / discovery pattern).
-Publishers are senders of data, subscribers can receive data. Publishers can publish/send data to certain channels (called &amp;lsquo;topics&amp;rsquo; further on), subscribers can subscribe to these topics.</description>
-    </item>
-    
-    <item>
-      <title>README.md</title>
-      <link>http://celix.apache.org/docs/celix/pubsub/examples/keys/README.html</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>http://celix.apache.org/docs/celix/pubsub/examples/keys/README.html</guid>
-      <description>Store the AES key for encrypting and decrypting the encoded secret keys safe in a file! Default file is /etc/pubsub.keys with the following format:
-aes_key:{32 character AES key here} aes_iv:{16 character AES iv here}  Use the $PROJECT_BUILD/pubsub/keygen/makecert for generating keypairs Use the $PROJECT_BUILD/pubsub/keygen/ed_file for encrypting and decrypting private keys
-Public keys need to be stored in the &amp;lsquo;public&amp;rsquo; folder having the following format: - pub{topic}.pub - sub{topic}.pub
-Secret keys need to be stored in the &amp;lsquo;private&amp;rsquo; folder having the following format: - pub{topic}.</description>
-    </item>
-    
-    <item>
-      <title>README.md</title>
-      <link>http://celix.apache.org/docs/celix/pubsub/pubsub_admin_udp_mc/README.html</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>http://celix.apache.org/docs/celix/pubsub/pubsub_admin_udp_mc/README.html</guid>
-      <description>PUBSUB-Admin UDP Multicast Description This description is particular for the UDP-Multicast PUB-SUB.
-The UDP multicast pubsub admin is used to transfer user data transparent via UDP multicast. UDP packets can contain approximately
-64kB . To overcome this limit the admin has a protocol on top of UDP which fragments the data to be send and these
-fragments are reassembled at the reception side.
-IP Addresses To use UDP-multicast 2 IP adresses are needed:</description>
-    </item>
-    
-    <item>
-      <title>README.md</title>
-      <link>http://celix.apache.org/docs/celix/remote_services/README.html</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>http://celix.apache.org/docs/celix/remote_services/README.html</guid>
-      <description>Title: Apache Celix Remote Service Admin Service
-Introduction The Remote Service Admin Service subproject contains an adapted implementation of the OSGi Enterprise Remote Service Admin Service Specification. The subproject consists of three parts, each described in more detail in the following sections.
-Topology Manager The topology manager decides which services should be imported and exported according to a defined policy. Currently, only one policy is implemented in Celix, the promiscuous policy, which simply imports and exports all services.</description>
-    </item>
-    
-    <item>
-      <title>README.md</title>
-      <link>http://celix.apache.org/docs/celix/remote_services/discovery_etcd/README.html</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>http://celix.apache.org/docs/celix/remote_services/discovery_etcd/README.html</guid>
-      <description> Discovery ETCD The Celix Discovery ETCD bundles realizes OSGi services discovery based on etcd.
-Properties DISCOVERY_ETCD_ROOT_PATH used path (default: discovery) DEFAULT_ETCD_SERVER_IP ip address of the etcd server (default: 127.0.0.1) DEFAULT_ETCD_SERVER_PORT port of the etcd server (default: 2379) DEFAULT_ETCD_TTL time-to-live for etcd entries in seconds (default: 30)  CMake option BUILD_RSA_DISCOVERY_ETCD=ON  </description>
-    </item>
-    
-    <item>
-      <title>README.md</title>
-      <link>http://celix.apache.org/docs/celix/remote_services/remote_service_admin/README.html</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>http://celix.apache.org/docs/celix/remote_services/remote_service_admin/README.html</guid>
+      <guid>https://celix.apache.org/docs/2.1.0/celix/remote_services/remote_service_admin/README.html</guid>
       <description>Remote Service Admin The Remote Service Admin (RSA) provides the mechanisms to import and export services when instructed to do so by the Topology Manager.
 To delegate method calls to the actual service implementation, the RSA_SHM and the RSA_HTTP are using &amp;ldquo;endpoint/proxy&amp;rdquo; bundles, which has all the knowledge about the marshalling and unmarshalling of data for the service. The RSA_DFI implementation combines a foreign function interface technique together with manualy created descriptors.</description>
     </item>
     
     <item>
-      <title>README.md</title>
-      <link>http://celix.apache.org/docs/celix/remote_services/topology_manager/README.html</link>
+      <title>Remote Service Admin</title>
+      <link>https://celix.apache.org/docs/2.2.0/celix/bundles/remote_services/remote_services_api/README.html</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://celix.apache.org/docs/celix/remote_services/topology_manager/README.html</guid>
-      <description> Topology Manager The Topology Manager decides which services should be imported and exported according to a defined policy. Currently, only one policy is implemented in Celix, the promiscuous policy, which simply imports and exports all services. Note that the Topology Manager is essential to use remote services.
-CMake option BUILD_RSA_TOPOLOGY_MANAGER=ON  </description>
+      <guid>https://celix.apache.org/docs/2.2.0/celix/bundles/remote_services/remote_services_api/README.html</guid>
+      <description>Remote Service Admin The Remote Service Admin (RSA) provides the mechanisms to import and export services when instructed to do so by the Topology Manager.
+To delegate method calls to the actual service implementation, the RSA_SHM and the RSA_HTTP are using &amp;ldquo;endpoint/proxy&amp;rdquo; bundles, which has all the knowledge about the marshalling and unmarshalling of data for the service. The RSA_DFI implementation combines a foreign function interface technique together with manually created descriptors.</description>
     </item>
     
     <item>
-      <title>README.md</title>
-      <link>http://celix.apache.org/docs/celix/remote_shell/README.html</link>
+      <title>Remote Service Admin</title>
+      <link>https://celix.apache.org/docs/2.2.0/celix/bundles/remote_services/rsa_spi/README.html</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://celix.apache.org/docs/celix/remote_shell/README.html</guid>
-      <description> Remote Shell The Celix Remote Shell implements a telnet interface for the Celix Shell.
+      <guid>https://celix.apache.org/docs/2.2.0/celix/bundles/remote_services/rsa_spi/README.html</guid>
+      <description>Remote Service Admin The Remote Service Admin (RSA) provides the mechanisms to import and export services when instructed to do so by the Topology Manager.
+To delegate method calls to the actual service implementation, the RSA_SHM and the RSA_HTTP are using &amp;ldquo;endpoint/proxy&amp;rdquo; bundles, which has all the knowledge about the marshalling and unmarshalling of data for the service. The RSA_DFI implementation combines a foreign function interface technique together with manually created descriptors.</description>
+    </item>
+    
+    <item>
+      <title>Remote Service Admin DFI</title>
+      <link>https://celix.apache.org/docs/2.2.0/celix/bundles/remote_services/remote_service_admin_dfi/README.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://celix.apache.org/docs/2.2.0/celix/bundles/remote_services/remote_service_admin_dfi/README.html</guid>
+      <description>Remote Service Admin DFI The Celix Remote Service Admin DFI bundle realizes OSGi remote service using HTTP and JSON. The serialization is done using libdfi to json. Libffi is configured using descriptor files in the bundles.
+Properties RSA_PORT The RSA HTTP port to use (default 8888) RSA_IP The RSA ip address to use for discovery (default 127.0.0.1) RSA_INTERFACE If specified, the ip adress of interface (i.g. eth0) will be used. RSA_LOG_CALLS If set to true, the RSA will Log calls info (including serialized data) to the file in RSA_LOG_CALLS_FILE.</description>
+    </item>
+    
+    <item>
+      <title>Remote Service Admin Service</title>
+      <link>https://celix.apache.org/docs/2.1.0/celix/remote_services/README.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://celix.apache.org/docs/2.1.0/celix/remote_services/README.html</guid>
+      <description>Introduction The Remote Service Admin Service subproject contains an adapted implementation of the OSGi Enterprise Remote Service Admin Service Specification. The subproject consists of three parts, each described in more detail in the following sections.
+Topology Manager The topology manager decides which services should be imported and exported according to a defined policy. Currently, only one policy is implemented in Celix, the promiscuous policy, which simply imports and exports all services.</description>
+    </item>
+    
+    <item>
+      <title>Remote Service Admin Service</title>
+      <link>https://celix.apache.org/docs/2.2.0/celix/bundles/remote_services/README.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://celix.apache.org/docs/2.2.0/celix/bundles/remote_services/README.html</guid>
+      <description>Introduction The Remote Service Admin Service subproject contains an adapted implementation of the OSGi Enterprise Remote Service Admin Service Specification. The subproject consists of three parts, each described in more detail in the following sections.
+Topology Manager The topology manager decides which services should be imported and exported according to a defined policy. Currently, only one policy is implemented in Celix, the promiscuous policy, which simply imports and exports all services.</description>
+    </item>
+    
+    <item>
+      <title>Remote Shell</title>
+      <link>https://celix.apache.org/docs/2.1.0/celix/remote_shell/README.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://celix.apache.org/docs/2.1.0/celix/remote_shell/README.html</guid>
+      <description>Remote Shell The Celix Remote Shell implements a telnet interface for the Celix Shell.
 Properties remote.shell.telnet.port used port (default: 6666) remote.shell.telnet.maxconn amount of concurrent connections (default: 2)  CMake option BUILD_REMOTE_SHELL=ON  </description>
     </item>
     
     <item>
-      <title>README.md</title>
-      <link>http://celix.apache.org/docs/celix/shell/README.html</link>
+      <title>Remote Shell</title>
+      <link>https://celix.apache.org/docs/2.2.0/celix/bundles/shell/remote_shell/README.html</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://celix.apache.org/docs/celix/shell/README.html</guid>
+      <guid>https://celix.apache.org/docs/2.2.0/celix/bundles/shell/remote_shell/README.html</guid>
+      <description>Remote Shell The Celix Remote Shell implements a telnet interface for the Celix Shell.
+Properties remote.shell.telnet.port used port (default: 6666) remote.shell.telnet.maxconn amount of concurrent connections (default: 2)  CMake option BUILD_REMOTE_SHELL=ON  </description>
+    </item>
+    
+    <item>
+      <title>Roadmap</title>
+      <link>https://celix.apache.org/docs/2.1.0/celix/documents/roadmap/roadmap.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://celix.apache.org/docs/2.1.0/celix/documents/roadmap/roadmap.html</guid>
+      <description>Roadmap Note this roadmap is still a draft.
+Apache Celix 2.0.1 Date: TBD (juli/aug 2017?)
+Improve PubSub (CELIX-407)  Finalize introduction serializer services Ensure code coverage of ~ 70%  Finalize Runtime Creation (CELIX-408)  Ensure that the runtime command are used for testing some distributed test (e.g. pubsub)  Add Support for running Celix as a single executable (TODO issue) For different reasons it could be interesting to support running bundles from a single executable.</description>
+    </item>
+    
+    <item>
+      <title>Services example C</title>
+      <link>https://celix.apache.org/docs/2.2.0/celix/examples/celix-examples/services_example_c/README.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://celix.apache.org/docs/2.2.0/celix/examples/celix-examples/services_example_c/README.html</guid>
+      <description>Intro These examples shows howto create and interact with services by example.
+In both examples there is a provider and consumer bundle. The provider bundle creates services and registers them to the Celix framework so that these services are available for use (provide). And the consumer bundle request the services from the Celix framework and uses (consumes) them.
+The examples use the celix_bundleContext_registerService to provide services and uses a combination of celix_bundleContext_useService, celix_bundleContext_useServices and celix_bundleContext_trackServices to consume services.</description>
+    </item>
+    
+    <item>
+      <title>Shell</title>
+      <link>https://celix.apache.org/docs/2.1.0/celix/shell/README.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://celix.apache.org/docs/2.1.0/celix/shell/README.html</guid>
       <description>Shell The Celix Shell provides a service interface which can be used to interact with the Celix framework. Note that it does not offer a user interface. This modular approach enables having multiple frontends, e.g. textual or graphical.
 While the shell can be extended with additional commands by other bundles, it already offers some built in commands:
 lb list bundles install install additional bundle uninstall uninstall bundles update update bundles start start bundle stop stop bundle help displays available commands inspect inspect service and components log print log  Further information about a command can be retrieved by using help combined with the command.</description>
     </item>
     
     <item>
-      <title>README.md</title>
-      <link>http://celix.apache.org/docs/celix/shell_tui/README.html</link>
+      <title>Shell</title>
+      <link>https://celix.apache.org/docs/2.2.0/celix/bundles/shell/shell/README.html</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://celix.apache.org/docs/celix/shell_tui/README.html</guid>
-      <description> Shell TUI The Celix Shell TUI implements a textual user interface for the Celix Shell.
+      <guid>https://celix.apache.org/docs/2.2.0/celix/bundles/shell/shell/README.html</guid>
+      <description>Shell The Celix Shell provides a service interface which can be used to interact with the Celix framework. Note that it does not offer a user interface. This modular approach enables having multiple frontends, e.g. textual or graphical.
+While the shell can be extended with additional commands by other bundles, it already offers some built in commands:
+lb list bundles install install additional bundle uninstall uninstall bundles update update bundles start start bundle stop stop bundle help displays available commands inspect inspect service and components log print log  Further information about a command can be retrieved by using help combined with the command.</description>
+    </item>
+    
+    <item>
+      <title>Shell TUI</title>
+      <link>https://celix.apache.org/docs/2.1.0/celix/shell_tui/README.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://celix.apache.org/docs/2.1.0/celix/shell_tui/README.html</guid>
+      <description>Shell TUI The Celix Shell TUI implements a textual user interface for the Celix Shell.
 CMake option BUILD_SHELL_TUI=ON  Config options  SHELL_USE_ANSI_CONTROL_SEQUENCES - Wether to use ANSI control sequences to support backspace, left, up, etc key commands in the shell tui. Default is true if a TERM environment is set else false.  </description>
     </item>
     
     <item>
-      <title>README.md</title>
-      <link>http://celix.apache.org/docs/celix/utils/README.html</link>
+      <title>Shell TUI</title>
+      <link>https://celix.apache.org/docs/2.2.0/celix/bundles/shell/shell_tui/README.html</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://celix.apache.org/docs/celix/utils/README.html</guid>
-      <description> Utils Celix Utils contains several useful containers/lists implementation used with the Celix project. The following types are available:
-Array List Celix Thread Container Hash Map Linked List Thread Pool  CMake option BUILD_UTILS=ON  </description>
+      <guid>https://celix.apache.org/docs/2.2.0/celix/bundles/shell/shell_tui/README.html</guid>
+      <description>Shell TUI The Celix Shell TUI implements a textual user interface for the Celix Shell.
+CMake option BUILD_SHELL_TUI=ON  Config options  SHELL_USE_ANSI_CONTROL_SEQUENCES - Whether to use ANSI control sequences to support backspace, left, up, etc key commands in the shell tui. Default is true if a TERM environment is set else false.  Using info If the Celix Shell TUI is installed, &amp;lsquo;find_package(Celix)&amp;rsquo; will set:
+ The Celix::shell_tui bundle target if the shell_tui is installed  </description>
     </item>
     
     <item>
-      <title>README.md</title>
-      <link>http://celix.apache.org/docs/celix/utils/docs/thpool/README.html</link>
+      <title>Shell WUI</title>
+      <link>https://celix.apache.org/docs/2.2.0/celix/bundles/shell/shell_wui/README.html</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://celix.apache.org/docs/celix/utils/docs/thpool/README.html</guid>
-      <description>C Thread Pool This is a minimal but fully functional threadpool implementation.
- ANCI C and POSIX compliant Number of threads can be chosen on initialization Minimal but powerful interface Full documentation  The threadpool is under MIT license. Notice that this project took a considerable amount of work and sacrifice of my free time and the reason I give it for free (even for commercial use) is so when you become rich and wealthy you don&amp;rsquo;t forget about us open-source creatures of the night.</description>
+      <guid>https://celix.apache.org/docs/2.2.0/celix/bundles/shell/shell_wui/README.html</guid>
+      <description>Shell WUI The Celix Shell Web User Interface implements a web based user interface for the Celix Shell.
+CMake option BUILD_SHELL_WUI=ON  Config options N/A
+Using info If the Celix Shell WUI is installed, &amp;lsquo;find_package(Celix)&amp;rsquo; will set:
+ The Celix::shell_wui bundle target if the shell_wui is installed  </description>
     </item>
     
     <item>
-      <title>README.md</title>
-      <link>http://celix.apache.org/docs/celix/utils/public/include/memstream/README.html</link>
+      <title>Subprojects</title>
+      <link>https://celix.apache.org/docs/2.1.0/celix/documents/subprojects/readme.html</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://celix.apache.org/docs/celix/utils/public/include/memstream/README.html</guid>
-      <description>fmemopen for Mac OS and iOS Originally ported from ingenuitas python-tesseract. Ported by Jeff Verkoeyen under the Apache 2.0 License.
-From the fmemopen man page:
- FILE *fmemopen(void *buf, size_t size, const char *mode);
-The fmemopen() function opens a stream that permits the access specified by mode. The stream allows I/O to be performed on the string or memory buffer pointed to by buf. This buffer must be at least size bytes long.</description>
-    </item>
-    
-    <item>
-      <title>creating_a_simple_bundle.md</title>
-      <link>http://celix.apache.org/docs/celix/documents/getting_started/creating_a_simple_bundle.html</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>http://celix.apache.org/docs/celix/documents/getting_started/creating_a_simple_bundle.html</guid>
-      <description>Apache Celix - Getting Started Guide: Creating a Simple Bundle Intro This page is intended for first time users of Apache Celix. It should guide you through building &amp;amp; installing Apache Celix, setting up a new project, creating your first bundle, setting up the project for use with Eclipse project and finally running and debugging your bundle directly from eclipse workspace.
-If there are any uncertainties or question, don&amp;rsquo;t hesitate to ask your questions in the Apache Celix mailing.</description>
-    </item>
-    
-    <item>
-      <title>improvement_ideas.md</title>
-      <link>http://celix.apache.org/docs/celix/documents/roadmap/improvement_ideas.html</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>http://celix.apache.org/docs/celix/documents/roadmap/improvement_ideas.html</guid>
-      <description>Improvement Ideas Introduce dlmopen for library imports. Currently library are loaded LOCAL for bundles. This works alright, but makes it hard to add a concept of exporting and importing libraries.
-The trick is that the NEEDED header in the importing libraries should match the target exported library SONAME header and no other exported libraries SONAME headers. One solution to make this work is to alter the NEEDED &amp;amp; SONAME runtime.</description>
-    </item>
-    
-    <item>
-      <title>readme.md</title>
-      <link>http://celix.apache.org/docs/celix/config_admin/readme.html</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>http://celix.apache.org/docs/celix/config_admin/readme.html</guid>
-      <description>Configuration Admin Introduction The configuration Admin service allows defining and deploying configuration data to bundles. When compared to config.properties it adds the option to update configuration data by providing a persisten storage. It also allows changing configuration data at run-time.
-Design The config_admin bundle implements the configuration_admin service, the interface to configuration objects and the interface of a managed service. At the moment, the implementation uses a config_admin_factory to generate config_admin services for each bundle that wants to use this service.</description>
-    </item>
-    
-    <item>
-      <title>readme.md</title>
-      <link>http://celix.apache.org/docs/celix/dependency_manager/readme.html</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>http://celix.apache.org/docs/celix/dependency_manager/readme.html</guid>
-      <description>Apache Celix Dependency Manager Introduction The Dependency Manager contains a static library which can be used to manage (dynamic) services on a higher abstraction level in a declarative style. The Apache Celix Dependency Manager is inspired by the Apache Felix Dependency Manager.
-Components Components are the main building blocks for OSGi applications. They can publish services, and/or they can have dependencies. These dependencies will influence their life cycle as component will only be activated when all required dependencies are available.</description>
-    </item>
-    
-    <item>
-      <title>readme.md</title>
-      <link>http://celix.apache.org/docs/celix/dependency_manager_cxx/readme.html</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>http://celix.apache.org/docs/celix/dependency_manager_cxx/readme.html</guid>
-      <description>Apache Celix C++ Dependency Manager Introduction The C++ Dependency Manager contains a static library which can be used to manage (dynamic) services on a higher abstraction level in a declarative style. The Apache Celix C++ Dependency Manager is inspired by the Apache Felix Dependency Manager.
-The C++ Dependency Manager uses fluent interface to make specifying DM components and service dependencies very concise and relies on features introduced in C++11.</description>
-    </item>
-    
-    <item>
-      <title>readme.md</title>
-      <link>http://celix.apache.org/docs/celix/documents/building/readme.html</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>http://celix.apache.org/docs/celix/documents/building/readme.html</guid>
-      <description>Apache Celix - Building and Installing Apache Celix aims to be support a broad range of UNIX platforms.
-Currently the continuous integration build server builds and tests Apache Celix for:
- Ubuntu Trusty Tahr (14.04)  GCC CLang  OSX  GCC CLang  Android (cross-compiled on Ubuntu Trusty Tahr)  GCC   Preparing The following packages (libraries + headers) should be installed on your system:
- Development Environment  build-essentials (gcc/g++ or clang/clang++) git java (for packaging bundles) cmake (3.</description>
-    </item>
-    
-    <item>
-      <title>readme.md</title>
-      <link>http://celix.apache.org/docs/celix/documents/cmake_commands/readme.html</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>http://celix.apache.org/docs/celix/documents/cmake_commands/readme.html</guid>
-      <description>Apache Celix - CMake Commands For Apache Celix several cmake command are added to be able to work with Apache Celix bundles and deployments.
-Bundles add_celix_bundle Add a Celix bundle to the project. There are three variants:
- With SOURCES the bundle will be created using a list of sources files as input for the bundle activator library. With ACTIVATOR the bundle will be created using the library target or absolute path to existing library as activator library.</description>
-    </item>
-    
-    <item>
-      <title>readme.md</title>
-      <link>http://celix.apache.org/docs/celix/documents/getting_started/readme.html</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>http://celix.apache.org/docs/celix/documents/getting_started/readme.html</guid>
-      <description> Apache Celix - Getting Started Guide Guides There are several guide to help you get started. The first guide is Getting Started: Creating a simple bundle and this should get you started for your first C and/or C++ bundle.
-After that you can extend the example by using services with the following guides:
- Getting Started: Using Services with C Getting Started: Using Services with C++.  </description>
-    </item>
-    
-    <item>
-      <title>readme.md</title>
-      <link>http://celix.apache.org/docs/celix/documents/intro/readme.html</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>http://celix.apache.org/docs/celix/documents/intro/readme.html</guid>
-      <description>Apache Celix Introduction What is Apache Celix Apache Celix is an implementation of the OSGi specification adapted to C and C++. It is a provides a framework to develop (dynamic) modular software applications using component and/or service-oriented programming.
-Apache Celix is primarily developed in C and adds an additional abstraction, in the form of a library, to support for C++.
-Bundles OSGi uses bundles as medium to (run-time) add and remove modules (additional functionality) to OSGi applications.</description>
-    </item>
-    
-    <item>
-      <title>readme.md</title>
-      <link>http://celix.apache.org/docs/celix/documents/roadmap/api_v3/readme.html</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>http://celix.apache.org/docs/celix/documents/roadmap/api_v3/readme.html</guid>
-      <description>Celix Version 3 (Proposal) Intro The celix.h header contains a proposed API for Apache Celix version 3. This API is not fixed, but work in progress and should be considered a starting point for discussion.
-There are a few reasons for a API change:
-The current Apache Celix API is mapped from the OSGi API. The problem is that OSGi is designed for Java, a language where classes are present runtime, reflection can be used, resource are controlled through garbage collection and classes are kept available when still needed(garbage collector) even if a bundle is uninstalled.</description>
-    </item>
-    
-    <item>
-      <title>readme.md</title>
-      <link>http://celix.apache.org/docs/celix/documents/subprojects/readme.html</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>http://celix.apache.org/docs/celix/documents/subprojects/readme.html</guid>
+      <guid>https://celix.apache.org/docs/2.1.0/celix/documents/subprojects/readme.html</guid>
       <description>Apache Celix - Subprojects Apache Celix is organized into several subprojects. The following subproject are currently available:
  Framework - The Apache Celix framework, an implementation of OSGi adapted to C. C Dependency Manager - A C component/dependency model for use through an API provided as library. C++ Dependency Manager - A C++ component/dependency model for use through an API provided as library. Device Access - An implementation of the OSGi Device Access specification adapted to C.</description>
     </item>
     
     <item>
-      <title>roadmap.md</title>
-      <link>http://celix.apache.org/docs/celix/documents/roadmap/roadmap.html</link>
+      <title>Subprojects</title>
+      <link>https://celix.apache.org/docs/2.2.0/celix/documents/subprojects/README.html</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://celix.apache.org/docs/celix/documents/roadmap/roadmap.html</guid>
-      <description>Roadmap Note this roadmap is still a draft.
-Apache Celix 2.0.1 Date: TBD (juli/aug 2017?)
-Improve PubSub (CELIX-407)  Finalize introduction serializer services
- Ensure code coverage of ~ 70%  Finalize Runtime Creation (CELIX-408)  Ensure that the runtime command are used for testing some distributed test (e.g. pubsub)  Add Support for running Celix as a single executable (TODO issue) For different reasons it could be interesting to support running bundles from a single executable.</description>
+      <guid>https://celix.apache.org/docs/2.2.0/celix/documents/subprojects/README.html</guid>
+      <description>Apache Celix - Subprojects Apache Celix is organized into several subprojects. The following subproject are currently available:
+ Framework - The Apache Celix framework, an implementation of OSGi adapted to C. C Dependency Manager - A C component/dependency model for use through an API provided as library. C++ Dependency Manager - A C++ component/dependency model for use through an API provided as library. Device Access - An implementation of the OSGi Device Access specification adapted to C.</description>
     </item>
     
     <item>
-      <title>using_services_with_c.md</title>
-      <link>http://celix.apache.org/docs/celix/documents/getting_started/using_services_with_c.html</link>
+      <title>TODO.md</title>
+      <link>https://celix.apache.org/docs/2.2.0/celix/libs/dependency_manager/TODO.html</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://celix.apache.org/docs/celix/documents/getting_started/using_services_with_c.html</guid>
+      <guid>https://celix.apache.org/docs/2.2.0/celix/libs/dependency_manager/TODO.html</guid>
+      <description>TODO integrate dep man into framework  Update documentetion for CELIX_GEN_BUNDLE_ACTIVATOR usage and removal of dep manager libs / shell_dm Move documentation  </description>
+    </item>
+    
+    <item>
+      <title>TODO.md</title>
+      <link>https://celix.apache.org/docs/2.2.0/celix/libs/dependency_manager_cxx/TODO.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://celix.apache.org/docs/2.2.0/celix/libs/dependency_manager_cxx/TODO.html</guid>
+      <description>TODO integrate cxx dep man into framework  Update documentetion for CELIX_GEN_CXX_BUNDLE_ACTIVATOR usage and removal of dep manager libs / shell_dm Move documentation  </description>
+    </item>
+    
+    <item>
+      <title>Topology Manager</title>
+      <link>https://celix.apache.org/docs/2.1.0/celix/remote_services/topology_manager/README.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://celix.apache.org/docs/2.1.0/celix/remote_services/topology_manager/README.html</guid>
+      <description>Topology Manager The Topology Manager decides which services should be imported and exported according to a defined policy. Currently, only one policy is implemented in Celix, the promiscuous policy, which simply imports and exports all services. Note that the Topology Manager is essential to use remote services.
+CMake option BUILD_RSA_TOPOLOGY_MANAGER=ON  </description>
+    </item>
+    
+    <item>
+      <title>Topology Manager</title>
+      <link>https://celix.apache.org/docs/2.2.0/celix/bundles/remote_services/topology_manager/README.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://celix.apache.org/docs/2.2.0/celix/bundles/remote_services/topology_manager/README.html</guid>
+      <description>Topology Manager The Topology Manager decides which services should be imported and exported according to a defined policy. Currently, only one policy is implemented in Celix, the promiscuous policy, which simply imports and exports all services. Note that the Topology Manager is essential to use remote services.
+CMake option BUILD_RSA_TOPOLOGY_MANAGER=ON  </description>
+    </item>
+    
+    <item>
+      <title>Using Services with C</title>
+      <link>https://celix.apache.org/docs/2.1.0/celix/documents/getting_started/using_services_with_c.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://celix.apache.org/docs/2.1.0/celix/documents/getting_started/using_services_with_c.html</guid>
       <description>Apache Celix - Using Services with C Intro This example gives an overview for providing and using services with Apache Celix with C.
 Services To start of, C services in Celix are just a pointer to a memory location registered in the service registry using a name and an optional set of key/value pairs.
 By convention use the following service layout:
-//example.h #ifndef EXAMPLE_H_ #define EXAMPLE_H_  #define EXAMPLE_NAME &amp;#34;org.</description>
+//example.h #ifndef EXAMPLE_H_#define EXAMPLE_H_ #define EXAMPLE_NAME &amp;#34;org.example&amp;#34;#define EXAMPLE_VERSION &amp;#34;1.0.0&amp;#34;#define EXAMPLE_CONSUMER_RANGE &amp;#34;[1.</description>
     </item>
     
     <item>
-      <title>using_services_with_cxx.md</title>
-      <link>http://celix.apache.org/docs/celix/documents/getting_started/using_services_with_cxx.html</link>
+      <title>Using Services with C</title>
+      <link>https://celix.apache.org/docs/2.2.0/celix/documents/getting_started/using_services_with_c.html</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://celix.apache.org/docs/celix/documents/getting_started/using_services_with_cxx.html</guid>
+      <guid>https://celix.apache.org/docs/2.2.0/celix/documents/getting_started/using_services_with_c.html</guid>
+      <description>Apache Celix - Using Services with C Intro This example gives an overview for providing and using services with Apache Celix with C.
+Services To start of, C services in Celix are just a pointer to a memory location registered in the service registry using a name and an optional set of key/value pairs.
+By convention use the following service layout:
+//example.h #ifndef EXAMPLE_H_#define EXAMPLE_H_ #define EXAMPLE_NAME &amp;#34;org.example&amp;#34;#define EXAMPLE_VERSION &amp;#34;1.0.0&amp;#34;#define EXAMPLE_CONSUMER_RANGE &amp;#34;[1.</description>
+    </item>
+    
+    <item>
+      <title>Using Services with C&#43;&#43;</title>
+      <link>https://celix.apache.org/docs/2.1.0/celix/documents/getting_started/using_services_with_cxx.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://celix.apache.org/docs/2.1.0/celix/documents/getting_started/using_services_with_cxx.html</guid>
       <description>Apache Celix - Using Services with C++ Intro This example gives an overview for providing and using C and C++ services with Apache Celix with C++.
 Services C++ Services To start of, C++ service in Celix are just (abstract) classes.
 In the following example there also a projected default constructor and destructor to ensure no instantiation / deletion of the service is possible:
-#ifndef IANOTHER_EXAMPLE_H #define IANOTHER_EXAMPLE_H  #define IANOTHER_EXAMPLE_VERSION &amp;#34;1.</description>
+#ifndef IANOTHER_EXAMPLE_H#define IANOTHER_EXAMPLE_H #define IANOTHER_EXAMPLE_VERSION &amp;#34;1.0.0&amp;#34;#define IANOTHER_EXAMPLE_CONSUMER_RANGE &amp;#34;[1.</description>
+    </item>
+    
+    <item>
+      <title>Using Services with C&#43;&#43;</title>
+      <link>https://celix.apache.org/docs/2.2.0/celix/documents/getting_started/using_services_with_cxx.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://celix.apache.org/docs/2.2.0/celix/documents/getting_started/using_services_with_cxx.html</guid>
+      <description>Apache Celix - Using Services with C++ Intro This example gives an overview for providing and using C and C++ services with Apache Celix with C++.
+Services C++ Services To start of, C++ service in Celix are just (abstract) classes.
+In the following example there also a projected default constructor and destructor to ensure no instantiation / deletion of the service is possible:
+//IAnotherExample.h #ifndef IANOTHER_EXAMPLE_H#define IANOTHER_EXAMPLE_H #define IANOTHER_EXAMPLE_VERSION &amp;#34;1.0.0&amp;#34;#define IANOTHER_EXAMPLE_CONSUMER_RANGE &amp;#34;[1.</description>
+    </item>
+    
+    <item>
+      <title>Utils</title>
+      <link>https://celix.apache.org/docs/2.1.0/celix/utils/README.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://celix.apache.org/docs/2.1.0/celix/utils/README.html</guid>
+      <description>Utils Celix Utils contains several useful containers/lists implementation used with the Celix project. The following types are available:
+Array List Celix Thread Container Hash Map Linked List Thread Pool  CMake option BUILD_UTILS=ON  </description>
+    </item>
+    
+    <item>
+      <title>Utils</title>
+      <link>https://celix.apache.org/docs/2.2.0/celix/libs/utils/README.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://celix.apache.org/docs/2.2.0/celix/libs/utils/README.html</guid>
+      <description>Utils Celix Utils contains several useful containers/lists implementation used with the Celix project. The following types are available:
+Array List Celix Thread Container Hash Map Linked List Thread Pool  </description>
     </item>
     
   </channel>

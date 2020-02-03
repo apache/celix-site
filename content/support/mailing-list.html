@@ -41,16 +41,24 @@
                 <li class="nav-item">
                     <a class="nav-link" href="/download.cgi">Download</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/docs/docs.html">Docs</a>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="ddDocs" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Docs
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="ddDocs">
+                        <a class="dropdown-item" href="/docs/2.2.0/docs.html">2.2.0 (latest)</a>
+                        <a class="dropdown-item" href="/docs/2.1.0/docs.html">2.1.0</a>
+                    </div>
                 </li>
                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="ddCommunity" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Community
+                    <a class="nav-link dropdown-toggle" href="#" id="ddContributing" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Contributing
                     </a>
-                    <div class="dropdown-menu" aria-labelledby="ddCommunity">
+                    <div class="dropdown-menu" aria-labelledby="ddContributing">
                         <a class="dropdown-item" href="/contributing/youatcelix.html">You at Celix</a>
                         <a class="dropdown-item" href="/contributing/submitting-patches.html">Submitting patches</a>
+                        <a class="dropdown-item" href="/contributing/source-and-builds.html">Source code and builds</a>
+                        <hr>
                         <a class="dropdown-item" href="/contributing/releasing.html">Releasing</a>
                         <a class="dropdown-item" href="/contributing/volunteers.html">Volunteers</a>
                         <a class="dropdown-item" href="https://whimsy.apache.org/board/minutes/Celix.html">Board Reports</a>
@@ -76,6 +84,7 @@
                         <a class="dropdown-item" href="https://www.apache.org/foundation/sponsorship.html">Sponsorship</a>
                         <a class="dropdown-item" href="https://www.apache.org/foundation/thanks.html">Thanks</a>
                         <a class="dropdown-item" href="https://www.apache.org/security/">Security</a>
+                        <a class="dropdown-item" href="https://www.apache.org/foundation/policies/conduct">Code of Conduct</a>
                     </div>
                 </li>
             </ul>
@@ -89,26 +98,21 @@
         <div class="row py-4">
             <div class="col-sm-12 card">
                 <div class="card-body pt-5">
-                    <a class="edit-on-gh" href="https://github.com/apache/celix-site/edit/master/source/support/mailing-list.md" title="Edit this page on GitHub">Edit on GitHub</a>
+                    
+                        <a class="edit-on-gh" href="https://github.com/apache/celix-site/edit/master/source/support/mailing-list.md" title="Edit this page on GitHub">Edit on GitHub</a>
+                    
 
                     
-	
-
-<h1 id="mailing-lists">Mailing Lists</h1>
-
+	<h1 id="mailing-lists">Mailing Lists</h1>
 <p>A mailing list is an electronic discussion forum that anyone can subscribe to. When someone sends an email message
 to the mailing list, a copy of that message is broadcast to everyone who is subscribed to that mailing list. Mailing
 lists are the primary means of communication for people working on Apache projects.</p>
-
 <p><strong>HEADS UP!</strong></p>
-
 <p class="alert alert-primary">A message sent to a public mailing list cannot be unpublished. Although we might be able to modify our own mail archives, 
 the message is mirrored to a lot of other archiving systems which we do not have under control. Therefore almost 100% 
 of all delete requests are denied. Please make sure you <strong>do not send any potential sensitive information to the mailing list</strong>,
 including passwords, server names, ips and so on.</p>
-
 <h2 id="lists">Lists</h2>
-
 <table>
 <thead>
 <tr>
@@ -118,29 +122,24 @@ including passwords, server names, ips and so on.</p>
 <th>Description</th>
 </tr>
 </thead>
-
 <tbody>
 <tr>
 <td><a href="https://lists.apache.org/list.html?dev@celix.apache.org">celix-dev</a></td>
-<td><a href="mailto:dev-subscribe@celix.apache.org?subject=subscribe&amp;amp;body=subscribe">subscribe</a></td>
-<td><a href="mailto:dev-unsubscribe@celix.apache.org?subject=unsubscribe&amp;amp;body=unsubscribe">unsubscribe</a></td>
+<td><a href="mailto:dev-subscribe@celix.apache.org?subject=subscribe&amp;body=subscribe">subscribe</a></td>
+<td><a href="mailto:dev-unsubscribe@celix.apache.org?subject=unsubscribe&amp;body=unsubscribe">unsubscribe</a></td>
 <td>Contact other developers interested in expanding and improving Celix</td>
 </tr>
-
 <tr>
 <td><a href="https://lists.apache.org/list.html?commits@celix.apache.org">celix-commits</a></td>
-<td><a href="mailto:commits-subscribe@celix.apache.org?subject=subscribe&amp;amp;body=subscribe">subscribe</a></td>
-<td><a href="mailto:commits-unsubscribe@celix.apache.org?subject=unsubscribe&amp;amp;body=unsubscribe">unsubscribe</a></td>
+<td><a href="mailto:commits-subscribe@celix.apache.org?subject=subscribe&amp;body=subscribe">subscribe</a></td>
+<td><a href="mailto:commits-unsubscribe@celix.apache.org?subject=unsubscribe&amp;body=unsubscribe">unsubscribe</a></td>
 <td>Receive notifications of changes to the Celix source code repository</td>
 </tr>
 </tbody>
 </table>
-
 <h2 id="archives">Archives</h2>
-
-<p>You can read the <a href="http://mail-archives.apache.org/mod_mbox/celix-dev/">ASF Mail</a> or the
-<a href="https://lists.apache.org/list.html?dev@celix.apache.org">Pony Mail</a> archives if you are looking for older discussions.
-There are many other archives out there as well.</p>
+<p>You can read the <a href="https://lists.apache.org/list.html?dev@celix.apache.org">Pony Mail</a> archives if you are looking for
+older discussions. There are many other archives out there as well.</p>
 
 
                 </div>

@@ -1,0 +1,268 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Introduction / Apache Celix</title>
+
+    
+    <link rel="icon" href="/assets/img/favicon.ico">
+
+    
+    <link href="/assets/css/bootstrap.min.css" rel="stylesheet">
+
+    
+    <link href="/assets/css/style.css" rel="stylesheet">
+</head>
+<body class="light-grey">
+
+<a href="https://github.com/apache/celix" class="github-ribbon">
+    <img src="/assets/img/forkme_right_red_aa0000.png" alt="Fork me on GitHub">
+</a>
+
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top">
+    <div class="container">
+        <a class="navbar-brand" href="/">
+            <img src="/assets/img/celix-white.svg" height="40" class="d-inline-block align-top" alt="Celix Logo">
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="/">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/download.cgi">Download</a>
+                </li>
+                <li class="nav-item dropdown active">
+                    <a class="nav-link dropdown-toggle" href="#" id="ddDocs" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Docs
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="ddDocs">
+                        <a class="dropdown-item" href="/docs/2.2.0/docs.html">2.2.0 (latest)</a>
+                        <a class="dropdown-item" href="/docs/2.1.0/docs.html">2.1.0</a>
+                    </div>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="ddContributing" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Contributing
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="ddContributing">
+                        <a class="dropdown-item" href="/contributing/youatcelix.html">You at Celix</a>
+                        <a class="dropdown-item" href="/contributing/submitting-patches.html">Submitting patches</a>
+                        <a class="dropdown-item" href="/contributing/source-and-builds.html">Source code and builds</a>
+                        <hr>
+                        <a class="dropdown-item" href="/contributing/releasing.html">Releasing</a>
+                        <a class="dropdown-item" href="/contributing/volunteers.html">Volunteers</a>
+                        <a class="dropdown-item" href="https://whimsy.apache.org/board/minutes/Celix.html">Board Reports</a>
+                    </div>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="ddSupport" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Support
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="ddSupport">
+                        <a class="dropdown-item" href="/support/mailing-list.html">Mailing Lists</a>
+                        <a class="dropdown-item" href="/support/issue-tracking.html">Issue Tracking</a>
+                    </div>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="ddFoundation" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        ASF
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="ddFoundation">
+                        <a class="dropdown-item" href="https://www.apache.org/">ASF Home</a>
+                        <a class="dropdown-item" href="https://www.apache.org/foundation/how-it-works.html">How it works</a>
+                        <a class="dropdown-item" href="https://www.apache.org/licenses/">License</a>
+                        <a class="dropdown-item" href="https://www.apache.org/foundation/sponsorship.html">Sponsorship</a>
+                        <a class="dropdown-item" href="https://www.apache.org/foundation/thanks.html">Thanks</a>
+                        <a class="dropdown-item" href="https://www.apache.org/security/">Security</a>
+                        <a class="dropdown-item" href="https://www.apache.org/foundation/policies/conduct">Code of Conduct</a>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+
+<div class="section">
+    <div class="container">
+        <div class="row py-4">
+            <div class="col-sm-12 card">
+                <div class="card-body pt-5">
+                    
+                    
+                        
+                        
+                    
+
+                    
+                        
+                        <a href="/docs/2.1.0/docs.html" title="back to documentation">&lt;&lt; back to documentation</a>
+                    
+
+                    
+	<!--
+Licensed to the Apache Software Foundation (ASF) under one or more
+contributor license agreements.  See the NOTICE file distributed with
+this work for additional information regarding copyright ownership.
+The ASF licenses this file to You under the Apache License, Version 2.0
+(the "License"); you may not use this file except in compliance with
+the License.  You may obtain a copy of the License at
+   
+    http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+-->
+<h1 id="apache-celix-introduction">Apache Celix Introduction</h1>
+<h2 id="what-is-apache-celix">What is Apache Celix</h2>
+<p>Apache Celix is an implementation of the <a href="https://www.osgi.org/developer/specifications">OSGi specification</a> adapted to C and C++. It is a provides a framework to develop (dynamic) modular software applications using component and/or service-oriented programming.</p>
+<p>Apache Celix is primarily developed in C and adds an additional abstraction, in the form of a library, to support for C++.</p>
+<h2 id="bundles">Bundles</h2>
+<p>OSGi uses bundles as medium to (run-time) add and remove modules (additional functionality) to OSGi applications. For Java, OSGi bundles are jars with a OSGi specific manifest. For Apache Celix bundles are zip files containing an OSGi manifest (with some differences) and possible modules in the form of shared libraries. One of these modules can be the bundle activator in which case the Apache Celix framework will lookup the bundle create, start, stop and destroy symbols to manage the lifecycle of the bundle; This can be used bootstrap the bundles functionality.</p>
+<h2 id="c-and-objects">C and Objects</h2>
+<p>C is a procedural programming language and as result has no direct support for the notion of a object.
+To be able to follow the OSGi specification, a standard mapping from C to Java is used. This mapping takes care of how instances, parameters, return values and exceptions (error codes) work in Apache Celix.</p>
+<h3 id="example">Example</h3>
+<p>Before going into detail, here is an example of the mapping from a method in Java to a function in C:</p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Java" data-lang="Java"><span style="color:#080;font-style:italic">//Java signature
+</span><span style="color:#080;font-style:italic"></span><span style="color:#a2f;font-weight:bold">public</span> <span style="color:#a2f;font-weight:bold">interface</span> <span style="color:#00f">BundleContext</span> <span style="color:#666">{</span>
+    <span style="color:#a2f;font-weight:bold">public</span> ServiceReference<span style="color:#666">[</span><span style="color:#666">]</span> <span style="color:#00a000">getServiceReferences</span><span style="color:#666">(</span>String clazz<span style="color:#666">,</span> String filter<span style="color:#666">)</span> <span style="color:#a2f;font-weight:bold">throws</span> InvalidSyntaxException<span style="color:#666">;</span>
+<span style="color:#666">}</span>
+</code></pre></div><div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-C" data-lang="C"><span style="color:#080;font-style:italic">//bundle_context.h
+</span><span style="color:#080;font-style:italic"></span>
+<span style="color:#080;font-style:italic">//C prototype
+</span><span style="color:#080;font-style:italic"></span>celix_status_t <span style="color:#00a000">bundleContext_getServiceReferences</span>(bundle_context_pt context, <span style="color:#a2f;font-weight:bold">const</span> <span style="color:#0b0;font-weight:bold">char</span><span style="color:#666">*</span> serviceName, <span style="color:#a2f;font-weight:bold">const</span> <span style="color:#0b0;font-weight:bold">char</span><span style="color:#666">*</span> filter, array_list_pt<span style="color:#666">*</span> service_references);
+</code></pre></div><h3 id="object-methods">Object methods</h3>
+<p>Using the provided example, the following templates can be extracted for mapping a object method to a C function:</p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-C" data-lang="C"><span style="color:#080;font-style:italic">/**
+</span><span style="color:#080;font-style:italic"> * 1st template
+</span><span style="color:#080;font-style:italic"> * celix_status_t: return type of the status code
+</span><span style="color:#080;font-style:italic"> * 
+</span><span style="color:#080;font-style:italic"> * typeName: name of the object/type this function is part of
+</span><span style="color:#080;font-style:italic"> * functionName: the name of the function
+</span><span style="color:#080;font-style:italic"> * 
+</span><span style="color:#080;font-style:italic"> * typeName_t: The actual instance to &#34;invoke&#34; this function on
+</span><span style="color:#080;font-style:italic"> * parameters: default function parameters
+</span><span style="color:#080;font-style:italic"> * output parameter: the output which the caller can use
+</span><span style="color:#080;font-style:italic"> */</span>
+celix_status_t <span style="color:#666">&lt;</span>typeName<span style="color:#666">&gt;</span>_<span style="color:#666">&lt;</span>functionName<span style="color:#666">&gt;</span>(<span style="color:#666">&lt;</span>typeName<span style="color:#666">&gt;</span>_t<span style="color:#666">*</span> self [,parameters, ] [, output parameter]);
+
+<span style="color:#080;font-style:italic">//OR
+</span><span style="color:#080;font-style:italic"></span>
+<span style="color:#080;font-style:italic">/**
+</span><span style="color:#080;font-style:italic">* 2nd template
+</span><span style="color:#080;font-style:italic"> * celix_status_t: return type of the status code
+</span><span style="color:#080;font-style:italic"> * 
+</span><span style="color:#080;font-style:italic"> * typeName: name of the object/type this function is part of
+</span><span style="color:#080;font-style:italic"> * functionName: the name of the function
+</span><span style="color:#080;font-style:italic"> * 
+</span><span style="color:#080;font-style:italic"> * typeName_t: The actual instance to &#34;invoke&#34; this function on
+</span><span style="color:#080;font-style:italic"> * parameters: default function parameters
+</span><span style="color:#080;font-style:italic"> * output parameter: the output which the caller can use
+</span><span style="color:#080;font-style:italic"> */</span>
+celix_status_t <span style="color:#666">&lt;</span>typeName<span style="color:#666">&gt;</span>_<span style="color:#666">&lt;</span>functionName<span style="color:#666">&gt;</span>(<span style="color:#666">&lt;</span>typeName<span style="color:#666">&gt;</span>_pt self [,parameters, ] [, output parameter]);
+</code></pre></div><p>Note that although the first template is preferred, Apache Celix still uses the second template.</p>
+<p>Unless stated otherwise, the caller is owner of the output and should destroy/deallocate the result.
+An exception is a const output parameters, this indicates the callee is still owner.</p>
+<h3 id="creating-and-destroying-objects">Creating and destroying Objects</h3>
+<p>Objects in Apache Celix can generally be created and destroyed using a create and destroy functions.
+For example:</p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-C" data-lang="C">celix_status_t <span style="color:#00a000">bundleContext_create</span>(framework_pt framework, framework_logger_pt, bundle_pt bundle, bundle_context_pt <span style="color:#666">*</span>bundle_context);
+celix_status_t <span style="color:#00a000">bundleContext_destroy</span>(bundle_context_pt context);
+</code></pre></div><p>For some types a separate allocate and init and a separate deallocate and deinit are also available.
+This gives a user the option the initialize and deinitialize a object on the stack. the hash_map_iterator uses this:</p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-C" data-lang="C">hash_map_iterator_pt <span style="color:#00a000">hashMapIterator_create</span>(hash_map_pt map);
+<span style="color:#0b0;font-weight:bold">void</span> <span style="color:#00a000">hashMapIterator_destroy</span>(hash_map_iterator_pt iterator);
+
+hash_map_iterator_pt <span style="color:#00a000">hashMapIterator_alloc</span>(<span style="color:#0b0;font-weight:bold">void</span>);
+<span style="color:#0b0;font-weight:bold">void</span> <span style="color:#00a000">hashMapIterator_dealloc</span>(hash_map_iterator_pt iterator);
+
+<span style="color:#0b0;font-weight:bold">void</span> <span style="color:#00a000">hashMapIterator_init</span>(hash_map_pt map, hash_map_iterator_pt iterator);
+<span style="color:#0b0;font-weight:bold">void</span> <span style="color:#00a000">hashMapIterator_deinit</span>(hash_map_iterator_pt iterator);
+</code></pre></div><h3 id="osgi-documentation-and-apache-celix">OSGi documentation and Apache Celix</h3>
+<p>Apache Celix follows the OSGi API as close as possible, but since the OSGi specification is written primarily for Java, there will be differences (Java is OO, C is procedural).
+Taking into account those differences and mapping explained before the OSGi javadoc can be used for a more in depth description of what the Apache Celix API offers.</p>
+<ul>
+<li><a href="https://osgi.org/javadoc/r4v43/core/index.html">OSGi core specification 4.3</a></li>
+<li><a href="https://osgi.org/javadoc/r4v43/cmpn/index.html">OSGi compendium specification 4.3</a></li>
+</ul>
+<h2 id="what-is-a-osgi-service">What is a OSGi service?</h2>
+<p>A OSGi service is a Java object register to the OSGi framework under a certain set of properties.
+OSGi services are generally registered as a well known interface (using the <code>objectClass</code> property).</p>
+<p>Consumers can dynamically lookup the services providing a filter to specify what kind of services their are interested in.</p>
+<h2 id="c-services-in-apache-celix">C services in Apache Celix</h2>
+<p>As mentioned OSGi uses Java Interfaces to define a service. Since C does not have Interfaces as compilable unit, this is not possible for Celix.  To be able to define a service which hides implementation details, Celix uses structs with function pointers.</p>
+<p>See <a href="https://github.com/apache/celix/blob/master/documents/getting_started/readme.html">Apache Celix - Getting Started Guide</a> for a more in depth look at services and service usage.</p>
+<h2 id="impact-of-dynamic-services">Impact of dynamic services</h2>
+<p>Services in Apache Celix are dynamic, meaning that they can come and go at any moment.
+How to cope with this dynamic behaviour is very critical for creating a stable solution.</p>
+<p>For Java OSGi this is already a challenge to program correctly, but less critical because generally speaking the garbage collector will arrange that objects still exists even if the providing bundle is deinstalled.
+Taking into account that C has no garbage collection handling the dynamic behaviour correctly is even more critical; If a bundle providing a certain services is removed the code segment / memory allocated for the service will be removed / deallocated.</p>
+<p>Apache Celix offers different solutions how to cope with this dynamic behaviour:</p>
+<ul>
+<li>Bundle Context &amp; Service References  - This (low level) <a href="../../framework/public/include/bundle_context.h">API</a> exists to be compatible with the OSGi standard. This should not be used in production code, because no locking/syncing mechanisms are available.</li>
+<li>Service Listener - This (log level) <a href="../../framework/public/include/service_listener.h">API</a> can be used to retrieve event when services are being removed or are added. Combined with locking this can be used to safely monitor and use services.</li>
+<li>Service Tracker - This <a href="../../framework/public/include/service_tracker.h">API</a> can be used to register callbacks function when services are being removed or are added. Combined with locking this can be used to safely use services.</li>
+<li><a href="../../dependency_manager/readme.html">Dependency Manager</a> - This library can be used to add service dependency is a declarative way.  A locking or syncing mechanism can be selected to safely use services. Note that this is not part of the OSGi standard.</li>
+</ul>
+<p>Even though the dependency manager is not part of the OSGi specification, this is the preferred way because it uses a higher abstraction and removes a lot boilerplate code.</p>
+<h2 id="c-support">C++ Support</h2>
+<p>One of the reasons why C was chosen as implementation language is that C can act as a common denominator for (service oriented) interoperability between a range of languages.
+C++ support is added with the use of a <a href="../../dependency_manager_cxx/readme.html">C++ Dependency Manager</a>.
+The Dependency Manager is arguably the most convenient way to interact with services, confers most uses cases and eliminates the necessity to port the rest of the (large) API to C++.</p>
+<h2 id="documentation">Documentation</h2>
+<p>For more information see:</p>
+<ul>
+<li>[Apache Celix - Building and Installing] (../building/readme.html)</li>
+<li><a href="../getting_started/readme.html">Apache Celix - Getting Started Guide</a></li>
+<li><a href="../cmake_commands/readme.html">Apache Celix - CMake Commands</a></li>
+</ul>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<footer class="py-3 bg-secondary">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8 text-center">
+                <p class="m-0 text-white">
+                    Copyright &copy; 2020 The Apache Software Foundation, Licensed under
+                    the <a href="http://www.apache.org/licenses/LICENSE-2.0">Apache License, Version 2.0</a>.
+                    <br>
+                    Apache Celix, Celix, Apache, the Apache feather logo and the Apache Celix logo are trademarks of The Apache Software Foundation.
+                </p>
+            </div>
+            <div class="col-md-4 text-center">
+                <a href="https://www.apache.org/events/current-event.html" target="_blank">
+                    <img src="https://www.apache.org/events/current-event-234x60.png" title="Apache Event" width="234" height="60" border="0">
+                </a>
+            </div>
+        </div>
+    </div>
+</footer>
+
+
+<script src="/assets/js/jquery.min.js"></script>
+<script src="/assets/js/bootstrap.bundle.min.js"></script>
+
+
+</body>
+</html>

@@ -1,32 +1,32 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Supports on Apache Celix</title>
-    <link>http://celix.apache.org/support.html</link>
+    <link>https://celix.apache.org/support.html</link>
     <description>Recent content in Supports on Apache Celix</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     
-	<atom:link href="http://celix.apache.org/support/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://celix.apache.org/support/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Issue Tracking</title>
-      <link>http://celix.apache.org/support/issue-tracking.html</link>
+      <link>https://celix.apache.org/support/issue-tracking.html</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://celix.apache.org/support/issue-tracking.html</guid>
-      <description>Issue Tracking Celix uses Jira for bug reports, feature requests, enhancements and tasks of all kind.
-Anyone can use Jira to report bugs. But before doing so, please make sure that:
- the bug isn&amp;rsquo;t already reported, the problem is actually a bug (the mailing list can be used for support), you attach enough information to replicate the bug (preferably a unit test)  If you have fixed a bug, the patch can be attached to a bug report.</description>
+      <guid>https://celix.apache.org/support/issue-tracking.html</guid>
+      <description>Issue Tracking Celix uses GitHub issues for bug reports, feature requests, enhancements and tasks of all kind.
+Anyone with a GitHub account can use GitHub to create issues. But before doing so, please make sure that:
+ the issue has not already been reported, the problem is actually a bug (the mailing list can be used for support), if it&amp;rsquo;s a bug, you attach enough information to replicate the bug (preferably a unit test)  If you have fixed a bug or added a new feature, a pull request to the Celix repository can be created.</description>
     </item>
     
     <item>
       <title>Mailing Lists</title>
-      <link>http://celix.apache.org/support/mailing-list.html</link>
+      <link>https://celix.apache.org/support/mailing-list.html</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://celix.apache.org/support/mailing-list.html</guid>
+      <guid>https://celix.apache.org/support/mailing-list.html</guid>
       <description>Mailing Lists A mailing list is an electronic discussion forum that anyone can subscribe to. When someone sends an email message to the mailing list, a copy of that message is broadcast to everyone who is subscribed to that mailing list. Mailing lists are the primary means of communication for people working on Apache projects.
 HEADS UP!
 A message sent to a public mailing list cannot be unpublished. Although we might be able to modify our own mail archives, the message is mirrored to a lot of other archiving systems which we do not have under control.</description>

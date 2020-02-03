@@ -41,16 +41,24 @@
                 <li class="nav-item">
                     <a class="nav-link" href="/download.cgi">Download</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/docs/docs.html">Docs</a>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="ddDocs" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Docs
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="ddDocs">
+                        <a class="dropdown-item" href="/docs/2.2.0/docs.html">2.2.0 (latest)</a>
+                        <a class="dropdown-item" href="/docs/2.1.0/docs.html">2.1.0</a>
+                    </div>
                 </li>
                 <li class="nav-item dropdown active">
-                    <a class="nav-link dropdown-toggle" href="#" id="ddCommunity" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Community
+                    <a class="nav-link dropdown-toggle" href="#" id="ddContributing" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Contributing
                     </a>
-                    <div class="dropdown-menu" aria-labelledby="ddCommunity">
+                    <div class="dropdown-menu" aria-labelledby="ddContributing">
                         <a class="dropdown-item" href="/contributing/youatcelix.html">You at Celix</a>
                         <a class="dropdown-item" href="/contributing/submitting-patches.html">Submitting patches</a>
+                        <a class="dropdown-item" href="/contributing/source-and-builds.html">Source code and builds</a>
+                        <hr>
                         <a class="dropdown-item" href="/contributing/releasing.html">Releasing</a>
                         <a class="dropdown-item" href="/contributing/volunteers.html">Volunteers</a>
                         <a class="dropdown-item" href="https://whimsy.apache.org/board/minutes/Celix.html">Board Reports</a>
@@ -76,6 +84,7 @@
                         <a class="dropdown-item" href="https://www.apache.org/foundation/sponsorship.html">Sponsorship</a>
                         <a class="dropdown-item" href="https://www.apache.org/foundation/thanks.html">Thanks</a>
                         <a class="dropdown-item" href="https://www.apache.org/security/">Security</a>
+                        <a class="dropdown-item" href="https://www.apache.org/foundation/policies/conduct">Code of Conduct</a>
                     </div>
                 </li>
             </ul>
@@ -89,107 +98,88 @@
         <div class="row py-4">
             <div class="col-sm-12 card">
                 <div class="card-body pt-5">
-                    <a class="edit-on-gh" href="https://github.com/apache/celix-site/edit/master/source/contributing/releasing.md" title="Edit this page on GitHub">Edit on GitHub</a>
+                    
+                        <a class="edit-on-gh" href="https://github.com/apache/celix-site/edit/master/source/contributing/releasing.md" title="Edit this page on GitHub">Edit on GitHub</a>
+                    
 
                     
-	
-
-<h1 id="releasing-apache-celix">Releasing Apache Celix</h1>
-
+	<h1 id="releasing-apache-celix">Releasing Apache Celix</h1>
 <p>Note: This information is only of use to Apache Celix Release Managers!</p>
-
 <p>Steps to follow:</p>
-
 <nav id="TableOfContents">
-<ul>
-<li><a href="#releasing-apache-celix">Releasing Apache Celix</a>
-<ul>
-<li><a href="#create-signing-keys">Create signing KEYS</a></li>
-<li><a href="#create-release-branch">Create release branch</a></li>
-<li><a href="#update-release-related-files">Update release related files</a></li>
-<li><a href="#compile-and-test">Compile and test</a></li>
-<li><a href="#create-sign-and-publish-artifacts">Create, sign and publish artifacts</a></li>
-<li><a href="#run-the-vote">Run the vote</a></li>
-<li><a href="#post-the-vote-results">Post the vote results</a></li>
-<li><a href="#vote-passed">Vote Passed</a>
-<ul>
-<li><a href="#merge-to-master-and-create-git-tag">Merge to master and create GIT tag</a></li>
-<li><a href="#roll-out-release-artifacts">Roll out release artifacts</a></li>
-<li><a href="#announce-the-release">Announce the release</a></li>
-</ul></li>
-</ul></li>
-</ul>
+  <ul>
+    <li><a href="#create-signing-keys">Create signing KEYS</a></li>
+    <li><a href="#create-release-branch">Create release branch</a></li>
+    <li><a href="#update-release-related-files">Update release related files</a></li>
+    <li><a href="#compile-and-test">Compile and test</a></li>
+    <li><a href="#create-sign-and-publish-artifacts">Create, sign and publish artifacts</a></li>
+    <li><a href="#run-the-vote">Run the vote</a></li>
+    <li><a href="#post-the-vote-results">Post the vote results</a></li>
+    <li><a href="#vote-passed">Vote Passed</a>
+      <ul>
+        <li><a href="#merge-to-master-and-create-git-tag">Merge to master and create GIT tag</a></li>
+        <li><a href="#roll-out-release-artifacts">Roll out release artifacts</a></li>
+        <li><a href="#announce-the-release">Announce the release</a></li>
+      </ul>
+    </li>
+  </ul>
 </nav>
-
 <p>Interesting links:</p>
-
 <ul>
 <li><a href="http://www.apache.org/dev/release.html">Apache Release Guide</a></li>
 <li><a href="http://www.apache.org/dev/release-signing.html">Apache Release Signing</a></li>
 <li><a href="http://creadur.apache.org/rat/apache-rat/index.html">Apache RAT</a></li>
 <li><a href="http://www.apache.org/dev/openpgp.html">Apache OpenPGP HowTo</a></li>
 </ul>
-
 <h2 id="create-signing-keys">Create signing KEYS</h2>
-
 <p>Each Release Manager must have his own signing keys. Information about and instruction for the generation
 of these keys can be found on the <a href="http://www.apache.org/dev/release-signing.html#generate">Signing Releases page</a>
 and <a href="http://www.apache.org/dev/openpgp.html#generate-key">How To OpenPGP</a>. Be sure to follow the information
 provided on that site and its references.</p>
-
 <p>The generated key can be uploaded to the <a href="http://pgp.mit.edu/">MIT PGP Public Key Server</a>.</p>
-
 <p>Next, the public key signature must be added to the KEYS file. Again, read the <a href="http://www.apache.org/dev/release-signing.html#keys-policy">Signing Releases page</a>
 for more information. This updated file needs to be uploaded to GIT, be sure to upload it to:</p>
-
 <ul>
 <li><a href="https://dist.apache.org/repos/dist/dev/celix/KEYS">Apache Celix release development area KEYS</a></li>
 <li><a href="https://dist.apache.org/repos/dist/release/celix/KEYS">Apache Celix release distribution area KEYS</a></li>
 </ul>
-
 <h2 id="create-release-branch">Create release branch</h2>
-
 <p>A release will be prepared in a release branch. Normally this is branch created from the develop.</p>
 <div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">git checkout develop
 git checkout -b release/celix-X.Y.Z
-git push origin release/celix-X.Y.Z</code></pre></div>
-<h2 id="update-release-related-files">Update release related files</h2>
-
+git push origin release/celix-X.Y.Z
+</code></pre></div><h2 id="update-release-related-files">Update release related files</h2>
 <p>For every release the related files must be updated. The following files are relevant:</p>
-
 <ul>
 <li>CHANGES
-
 <ul>
 <li>Add a list of fixed issues which can be created using JIRA.</li>
-</ul></li>
+</ul>
+</li>
 <li>RELEASE_NOTES
-
 <ul>
 <li>Add additional notes regarding this release, eg known short comings.</li>
-</ul></li>
+</ul>
+</li>
 <li>BUILDING
-
 <ul>
 <li>Even though the BUILDING file doesn&rsquo;t have any specific release information, it should be verified before making a release.</li>
-</ul></li>
+</ul>
+</li>
 <li>NOTICE
-
 <ul>
 <li>If needed, add any new license related information to this file.</li>
-</ul></li>
 </ul>
-
+</li>
+</ul>
 <p>Besides this information, the version needs to be bumped. Even though every bundle has its own version, a release is made with one
 overall version. This version is defined in the top-level CMakeLists.txt file. Update the following pieces:</p>
-<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-C" data-lang="C">set(CELIX_MAJOR <span style="color:#b44">&#34;X&#34;</span>)
-set(CELIX_MINOR <span style="color:#b44">&#34;Y&#34;</span>)
-set(CELIX_MICRO <span style="color:#b44">&#34;Z&#34;</span>)</code></pre></div>
-<p class="alert alert-primary">Note: The DEFAULT_VERSION property is used as default version for new bundles and as 
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-C" data-lang="C">set(CELIX_MAJOR <span style="color:#b44"></span><span style="color:#b44">&#34;</span><span style="color:#b44">X</span><span style="color:#b44">&#34;</span>)
+set(CELIX_MINOR <span style="color:#b44"></span><span style="color:#b44">&#34;</span><span style="color:#b44">Y</span><span style="color:#b44">&#34;</span>)
+set(CELIX_MICRO <span style="color:#b44"></span><span style="color:#b44">&#34;</span><span style="color:#b44">Z</span><span style="color:#b44">&#34;</span>)
+</code></pre></div><p class="alert alert-primary">Note: The DEFAULT_VERSION property is used as default version for new bundles and as 
 such does not need to be updated when making a release.</p>
-
 <h2 id="compile-and-test">Compile and test</h2>
-
 <p>Before creating a branch, be sure that the source compiles and tests run successfully. If there are any known shortcomings,
 make sure they are listed in the RELEASE_NOTES. Details for compiling and testing are available in the BUILDING file.</p>
 <div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#080;font-style:italic"># Create a directory as sibling of the celix release directory</span>
@@ -200,8 +190,8 @@ $ <span style="color:#a2f">cd</span> celix-build
 $ ccmake ../celix
 $ make
 $ make deploy
-$ make test</code></pre></div>
-<p>Also verify that the provides examples work as expected. If needed ask other committers to test parts.</p>
+$ make <span style="color:#a2f">test</span>
+</code></pre></div><p>Also verify that the provides examples work as expected. If needed ask other committers to test parts.</p>
 <div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#080;font-style:italic"># Go to the deploy directory to see all examples</span>
 $ <span style="color:#a2f">cd</span> deploy
 
@@ -211,19 +201,17 @@ $ sh run.sh
 
 <span style="color:#080;font-style:italic"># Depending on the example the output might be different. Most examples provide a shell to inspect the framework.</span>
 <span style="color:#080;font-style:italic"># To list the commands use the &#34;help&#34; command.</span>
--&gt; help</code></pre></div>
-<p>After verifying the build, run Apache RAT to check for any licensing problems. If Apache RAT is configured in the CMake build the &ldquo;rat&rdquo; target can be used to run the check.</p>
+-&gt; <span style="color:#a2f">help</span>
+</code></pre></div><p>After verifying the build, run Apache RAT to check for any licensing problems. If Apache RAT is configured in the CMake build the &ldquo;rat&rdquo; target can be used to run the check.</p>
 <div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#080;font-style:italic"># From the celix-build directory</span>
 <span style="color:#080;font-style:italic"># Run CMake to set the APACHE_RAT library (path to the JAR file).</span>
 $ ccmake ../celix
 <span style="color:#080;font-style:italic"># Run RAT</span>
-$ make rat</code></pre></div>
-<p>Apache RAT should not raise any concerns, if there are, check the source files for a license header. If it is a false positive update
+$ make rat
+</code></pre></div><p>Apache RAT should not raise any concerns, if there are, check the source files for a license header. If it is a false positive update
 the rat-excludes.txt file in the root of the project. Be sure it is a false positive! If in doubt, ask the mailing list! Third party
 licenses may need to be mentioned in the NOTICE file.</p>
-
 <h2 id="create-sign-and-publish-artifacts">Create, sign and publish artifacts</h2>
-
 <p>Since Celix only releases source artifacts, creating the artifact is simple and straightforward
 First verify that all changes are committed to the release branch and the branch is pushed to github</p>
 <div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#080;font-style:italic"># Create symbolic link so the archive has a directory with version information</span>
@@ -233,8 +221,8 @@ $ ln -s celix celix-X.Y.Z
 $ tar --exclude<span style="color:#666">=</span><span style="color:#b44">&#34;.*&#34;</span> -hczf celix-X.Y.Z.tar.gz celix-X.Y.Z
 
 <span style="color:#080;font-style:italic"># The create symbolic link can be removed</span>
-$ celix celix-X.Y.Z</code></pre></div>
-<p>After creating the artifact, the file has to be signed. More information about signing can be found at
+$ celix celix-X.Y.Z
+</code></pre></div><p>After creating the artifact, the file has to be signed. More information about signing can be found at
 <a href="http://www.apache.org/dev/release-signing.html">Release signing</a>.</p>
 <div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#080;font-style:italic"># Generate MD5 checksum</span>
 $ md5 celix-X.Y.Z.tar.gz &gt; celix-X.Y.Z.tar.gz.md5
@@ -243,15 +231,11 @@ $ md5 celix-X.Y.Z.tar.gz &gt; celix-X.Y.Z.tar.gz.md5
 $ gpg --print-md SHA512 celix-X.Y.Z.tar.gz &gt; celix-X.Y.Z.tar.gz.sha
 
 <span style="color:#080;font-style:italic"># Generate ASCII signature</span>
-$ gpg --armor --output celix-X.Y.Z.tar.gz.asc --detach-sig celix-X.Y.Z.tar.gz</code></pre></div>
-<p>Copy the archive of the source to the <a href="https://dist.apache.org/repos/dist/dev/celix">Apache Celix release development area</a> (using SVN).</p>
-
+$ gpg --armor --output celix-X.Y.Z.tar.gz.asc --detach-sig celix-X.Y.Z.tar.gz
+</code></pre></div><p>Copy the archive of the source to the <a href="https://dist.apache.org/repos/dist/dev/celix">Apache Celix release development area</a> (using SVN).</p>
 <p>See the <a href="http://www.apache.org/dev/release.html#host-rc">Apache Release Guide</a> for more information.</p>
-
 <h2 id="run-the-vote">Run the vote</h2>
-
 <p>Before a release is official a vote has to be held. More information on voting can be found on <a href="http://www.apache.org/foundation/voting.html">Apache Voting Process</a>.</p>
-
 <p>The first vote has to be done on the public <a href="/support/mailing-list.html">mailing list</a> of the project. The following template must be used for this vote:</p>
 <div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">To: dev@celix.apache.org
 Subject: [VOTE] Release Celix version X.Y.Z
@@ -285,14 +269,11 @@ at-least 3 binding +1 votes and more +1 votes than -1 votes).
 If this release is approved I will promote it to an official release
 (e.g. move from dist/dev to dist/release and tagging the release in git)
 
-This vote will be open for at least 72 hours.</code></pre></div>
-<p>After this first vote the results must be posted to the &ldquo;dev&rdquo; list, see below for more information.</p>
-
+This vote will be open for at least 72 hours.
+</code></pre></div><p>After this first vote the results must be posted to the &ldquo;dev&rdquo; list, see below for more information.</p>
 <p class="alert alert-primary">Note: Be sure to use the [VOTE] tag, this is used by the automated vote tracking 
 system to keep track of outstanding vote threads.</p>
-
 <h2 id="post-the-vote-results">Post the vote results</h2>
-
 <p>As mentioned before, after each vote the results must be posted to the corresponding list. This &ldquo;Result&rdquo; vote contains the number
 of votes made, including whether a vote is binding or not. For a successful vote the following template can be used.</p>
 <div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">To: dev@celix.apache.org
@@ -310,17 +291,13 @@ release branch will be merged with master and a 2.1.0 tag will be created.
 After the mirroring period the news &amp; downloads of the website will be
 updated and the release will be announced.
 
-Thanks for voting.</code></pre></div>
-<p class="alert alert-primary">Note: Be sure to post the vote result with the same topic as the original message. Also 
+Thanks for voting.
+</code></pre></div><p class="alert alert-primary">Note: Be sure to post the vote result with the same topic as the original message. Also 
 prepend the subject with [RESULT]. This is, again, needed to be able to keep track of vote threads.</p>
-
 <h2 id="vote-passed">Vote Passed</h2>
-
 <p>If the vote is passed sucessfully the release branch can be merged to master, a release tag needs to be created, the release must be moved from the &ldquo;dev&rdquo; area to the &ldquo;release&rdquo; area
 and the release can be announced.</p>
-
 <h3 id="merge-to-master-and-create-git-tag">Merge to master and create GIT tag</h3>
-
 <p>After changing all files a tag for the new release must be made. Before doing so, make sure all changed files are committed.
 The release branch needs to be merged into master, a tag - named like rel/celix-X.Y.Z - needs to created and all the changes needs to merged with develop.</p>
 <div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ git checkout master
@@ -338,29 +315,20 @@ $ git tag -s rel/celix-X.Y.Z -m <span style="color:#b44">&#39;Celix release X.Y.
 $ git push origin rel/celix-X.Y.Z
 
 $ git checkout develop
-$ git merge master</code></pre></div>
-<h3 id="roll-out-release-artifacts">Roll out release artifacts</h3>
-
+$ git merge master
+</code></pre></div><h3 id="roll-out-release-artifacts">Roll out release artifacts</h3>
 <p>When a release is moved from the &ldquo;dev&rdquo; area to &ldquo;release&rdquo; area. The automated
 svnpubsub will move the artifact to the correct server for mirroring. Mirroring typically can take up to 24 hours.</p>
-
 <p>Besides uploading the new release, the old release should be archived. Since archiving is already automated,
 it is only needed to delete the previous version from the release area. See the
 <a href="http://www.apache.org/dev/release.html#when-to-archive">Apache Release Guide</a> for more information.</p>
-
 <p>See the <a href="http://www.apache.org/dev/release.html#upload-ci">Apache Release Guide</a> for more information.</p>
-
 <p>After these 24 hours the release can be announced.</p>
-
 <h3 id="announce-the-release">Announce the release</h3>
-
 <p>Update website&rsquo;s News and Download sections to include the new release.</p>
-
 <p>On the &ldquo;Download&rdquo; page, the old release can be replaced with the new one, there is no need to keep a link to archived versions.
 The &ldquo;News&rdquo; section can simply be extended with an additional entry.</p>
-
-<p>Additionally it is a good idea to post a message to &ldquo;announce@apache.org&rdquo;.</p>
-
+<p>Additionally it is a good idea to post a message to &ldquo;<a href="mailto:announce@apache.org">announce@apache.org</a>&rdquo;.</p>
 <p>The following template must be used:</p>
 <div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">To: announce@apache.org, dev@celix.apache.org
 Subject: [ANNOUNCE] Apache Celix X.Y.Z released
@@ -378,8 +346,8 @@ The full change log is available here:
 
 We welcome your help and feedback. For more information on how to report problems, and to get involved, visit the project website at http://celix.apache.org/
 
-The Apache Celix Team</code></pre></div>
-<p class="alert alert-primary">Note: the email must be sent from an @apache.org address</p>
+The Apache Celix Team
+</code></pre></div><p class="alert alert-primary">Note: the email must be sent from an @apache.org address</p>
 
 
                 </div>

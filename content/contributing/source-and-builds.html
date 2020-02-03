@@ -1,0 +1,189 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Source code and builds / Apache Celix</title>
+
+    
+    <link rel="icon" href="/assets/img/favicon.ico">
+
+    
+    <link href="/assets/css/bootstrap.min.css" rel="stylesheet">
+
+    
+    <link href="/assets/css/style.css" rel="stylesheet">
+</head>
+<body class="light-grey">
+
+<a href="https://github.com/apache/celix" class="github-ribbon">
+    <img src="/assets/img/forkme_right_red_aa0000.png" alt="Fork me on GitHub">
+</a>
+
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top">
+    <div class="container">
+        <a class="navbar-brand" href="/">
+            <img src="/assets/img/celix-white.svg" height="40" class="d-inline-block align-top" alt="Celix Logo">
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="/">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/download.cgi">Download</a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="ddDocs" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Docs
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="ddDocs">
+                        <a class="dropdown-item" href="/docs/2.2.0/docs.html">2.2.0 (latest)</a>
+                        <a class="dropdown-item" href="/docs/2.1.0/docs.html">2.1.0</a>
+                    </div>
+                </li>
+                <li class="nav-item dropdown active">
+                    <a class="nav-link dropdown-toggle" href="#" id="ddContributing" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Contributing
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="ddContributing">
+                        <a class="dropdown-item" href="/contributing/youatcelix.html">You at Celix</a>
+                        <a class="dropdown-item" href="/contributing/submitting-patches.html">Submitting patches</a>
+                        <a class="dropdown-item" href="/contributing/source-and-builds.html">Source code and builds</a>
+                        <hr>
+                        <a class="dropdown-item" href="/contributing/releasing.html">Releasing</a>
+                        <a class="dropdown-item" href="/contributing/volunteers.html">Volunteers</a>
+                        <a class="dropdown-item" href="https://whimsy.apache.org/board/minutes/Celix.html">Board Reports</a>
+                    </div>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="ddSupport" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Support
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="ddSupport">
+                        <a class="dropdown-item" href="/support/mailing-list.html">Mailing Lists</a>
+                        <a class="dropdown-item" href="/support/issue-tracking.html">Issue Tracking</a>
+                    </div>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="ddFoundation" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        ASF
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="ddFoundation">
+                        <a class="dropdown-item" href="https://www.apache.org/">ASF Home</a>
+                        <a class="dropdown-item" href="https://www.apache.org/foundation/how-it-works.html">How it works</a>
+                        <a class="dropdown-item" href="https://www.apache.org/licenses/">License</a>
+                        <a class="dropdown-item" href="https://www.apache.org/foundation/sponsorship.html">Sponsorship</a>
+                        <a class="dropdown-item" href="https://www.apache.org/foundation/thanks.html">Thanks</a>
+                        <a class="dropdown-item" href="https://www.apache.org/security/">Security</a>
+                        <a class="dropdown-item" href="https://www.apache.org/foundation/policies/conduct">Code of Conduct</a>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+
+<div class="section">
+    <div class="container">
+        <div class="row py-4">
+            <div class="col-sm-12 card">
+                <div class="card-body pt-5">
+                    
+                        <a class="edit-on-gh" href="https://github.com/apache/celix-site/edit/master/source/contributing/source-and-builds.md" title="Edit this page on GitHub">Edit on GitHub</a>
+                    
+
+                    
+	<h1 id="source-code-and-builds">Source code and builds</h1>
+<nav id="TableOfContents">
+  <ul>
+    <li><a href="#celix-source-repository">Celix source repository</a>
+      <ul>
+        <li><a href="#building-and-using-celix">Building and using Celix</a></li>
+      </ul>
+    </li>
+    <li><a href="#website-source-repository">Website source repository</a>
+      <ul>
+        <li><a href="#building-the-website">Building the website</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+<h2 id="celix-source-repository">Celix source repository</h2>
+<p>Besides the archives offered on the <a href="/download.cgi">download</a> page, Celix uses a source code repository hosted on both
+Apache and GitHub environments for development. This repository is mirrored and is our one-and-only development repository.</p>
+<p>With <a href="http://git-scm.com/">Git</a> installed, obtaining a working copy of the Celix codebase is as simple as</p>
+<pre><code>&gt; git clone https://gitbox.apache.org/repos/asf/celix.git
+</code></pre><p>or from GitHub</p>
+<pre><code>&gt; git clone https://github.com/apache/celix.git
+</code></pre><p>For more about using version control systems at Apache, see the ASF&rsquo;s
+<a href="http://www.apache.org/dev/#version-control">Source Code Repositories</a> page.</p>
+<h3 id="building-and-using-celix">Building and using Celix</h3>
+<p>How to build and use Celix is described within our &lsquo;Docs&rsquo; section which can be found <a href="/docs/2.2.0/docs.html">here</a> for the latest release.</p>
+<h2 id="website-source-repository">Website source repository</h2>
+<p>The website Celix provides - <a href="https://celix.apache.org">https://celix.apache.org</a> - is mostly written in Markdown and build using <a href="https://gohugo.io/">Hugo</a>.
+The website source code repository can be obtained using</p>
+<pre><code>&gt; git clone https://gitbox.apache.org/repos/asf/celix-site.git
+</code></pre><p>or from GitHub</p>
+<pre><code>&gt; git clone https://github.com/apache/celix-site.git
+</code></pre><h3 id="building-the-website">Building the website</h3>
+<p>To generate the static website, execute <code>hugo</code> to generate and serve the website on <code>localhost:1313</code>.</p>
+<p>During development, it may be useful to run an incremental build. For this to work, execute <code>hugo server -D</code> to
+continuously generate and serve the website on <code>localhost:1313</code>.</p>
+<p>After making some changes and being ready to submit the work a pull request against the <code>celix-site</code> repository can be
+created. The celix-site repository has <a href="https://www.netlify.com">Netlify</a> enabled meaning a bot will comment with a link
+to preview the actual site. For example the following pull request: <a href="https://github.com/apache/celix-site/pull/7#issuecomment-510947939">https://github.com/apache/celix-site/pull/7</a>.
+Per pull request a preview will be generated so new contributors are able to preview the generated site very quickly and
+reviewing new contributions will therefore be easier as well.</p>
+<a href="https://www.netlify.com">
+  <img src="https://www.netlify.com/img/global/badges/netlify-color-accent.svg"/>
+</a>
+<br/>
+<br/>
+<p>After merging the change back to the <code>master</code> branch, <a href="https://builds.apache.org/job/celix-site/">Jenkins</a>
+will be triggered for deploying the site to <a href="https://celix.apache.org">https://celix.apache.org</a>.</p>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<footer class="py-3 bg-secondary">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8 text-center">
+                <p class="m-0 text-white">
+                    Copyright &copy; 2020 The Apache Software Foundation, Licensed under
+                    the <a href="http://www.apache.org/licenses/LICENSE-2.0">Apache License, Version 2.0</a>.
+                    <br>
+                    Apache Celix, Celix, Apache, the Apache feather logo and the Apache Celix logo are trademarks of The Apache Software Foundation.
+                </p>
+            </div>
+            <div class="col-md-4 text-center">
+                <a href="https://www.apache.org/events/current-event.html" target="_blank">
+                    <img src="https://www.apache.org/events/current-event-234x60.png" title="Apache Event" width="234" height="60" border="0">
+                </a>
+            </div>
+        </div>
+    </div>
+</footer>
+
+
+<script src="/assets/js/jquery.min.js"></script>
+<script src="/assets/js/bootstrap.bundle.min.js"></script>
+
+
+</body>
+</html>

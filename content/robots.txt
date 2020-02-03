@@ -3,4 +3,4 @@ User-agent: *
 Disallow: /404/
 Disallow: 404.html
 
-SITEMAP: http://celix.apache.org/sitemap.xml
+SITEMAP: https://celix.apache.org/sitemap.xml
