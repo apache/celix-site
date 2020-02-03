@@ -42,7 +42,14 @@ limitations under the License.
         <div class="row py-4">
             <div class="col-sm-12 card">
                 <div class="card-body pt-5">
-                    <a class="edit-on-gh" href="{{ .Site.Params.siteRepositoryUrl }}/edit/{{ .Site.Params.siteRepositorySourceBranch }}/source/{{ .Page.File.Path }}" title="Edit this page on GitHub">Edit on GitHub</a>
+                    {{ if isset .Params "version" }}
+                        {{ $vers := .Param "version" }}
+                        {{ if eq $vers .Site.Params.latestVersion }}
+                            <a class="edit-on-gh" href="{{ .Site.Params.siteRepositoryUrl }}/edit/{{ .Site.Params.siteRepositorySourceBranch }}/source/{{ .Page.File.Path }}" title="Edit this page on GitHub">Edit on GitHub</a>
+                        {{ end }}
+                    {{ else }}
+                        <a class="edit-on-gh" href="{{ .Site.Params.siteRepositoryUrl }}/edit/{{ .Site.Params.siteRepositorySourceBranch }}/source/{{ .Page.File.Path }}" title="Edit this page on GitHub">Edit on GitHub</a>
+                    {{ end }}
 
                     {{ block "main" . }}{{ end }}
                 </div>

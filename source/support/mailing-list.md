@@ -24,6 +24,5 @@ including passwords, server names, ips and so on.</p>
 
 ## Archives
 
-You can read the [ASF Mail](http://mail-archives.apache.org/mod_mbox/celix-dev/) or the
-[Pony Mail](https://lists.apache.org/list.html?dev@celix.apache.org) archives if you are looking for older discussions.
-There are many other archives out there as well.
+You can read the [Pony Mail](https://lists.apache.org/list.html?dev@celix.apache.org) archives if you are looking for 
+older discussions. There are many other archives out there as well.

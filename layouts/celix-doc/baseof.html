@@ -42,9 +42,23 @@ limitations under the License.
         <div class="row py-4">
             <div class="col-sm-12 card">
                 <div class="card-body pt-5">
-                    {{ $page := replaceRE "TODO" "" .Page.File.Path }} <!-- TODO: .*(docs\/celix\/) -->
-                    <a class="edit-on-gh" href="{{ .Site.Params.repositoryUrl }}/edit/{{ .Site.Params.repositorySourceBranch }}/{{ $page }}" title="Edit this page on GitHub">Edit on GitHub</a>
-                    <a href="/docs/docs.html" title="back to documentation">&lt;&lt; back to documentation</a>
+                    {{ $page := replaceRE "(^docs/.*/celix/)" "" .Page.File.Path }}
+                    {{ if isset .Params "version" }}
+                        {{ $vers := .Param "version" }}
+                        {{ if eq $vers .Site.Params.latestVersion }}
+                            <a class="edit-on-gh" href="{{ .Site.Params.repositoryUrl }}/edit/{{ .Site.Params.repositorySourceBranch }}/{{ $page }}" title="Edit this page on GitHub">Edit on GitHub</a>
+                        {{ end }}
+                    {{ else }}
+                        <a class="edit-on-gh" href="{{ .Site.Params.repositoryUrl }}/edit/{{ .Site.Params.repositorySourceBranch }}/{{ $page }}" title="Edit this page on GitHub">Edit on GitHub</a>
+                    {{ end }}
+
+                    {{ if isset .Params "version" }}
+                        {{ $version := .Param "version" }}
+                        <a href="/docs/{{ $version }}/docs.html" title="back to documentation">&lt;&lt; back to documentation</a>
+                    {{ else }}
+                        {{ $version := .Site.Params.latestVersion }}
+                        <a href="/docs/{{ $version }}/docs.html" title="back to documentation">&lt;&lt; back to documentation</a>
+                    {{ end }}
 
                     {{ block "main" . }}{{ end }}
                 </div>

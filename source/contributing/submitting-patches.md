@@ -95,8 +95,8 @@ or GitHub
 
 and done!
 
-Please remember Apache Celix is following the [GitFlow Workflow](https://www.atlassian.com/git/tutorials/comparing-workflows/gitflow-workflow)
-and the most recent work is on the `develop` branch.
+<p class="alert alert-primary">Note: Remember that Apache Celix is following the <a href="https://www.atlassian.com/git/tutorials/comparing-workflows/gitflow-workflow">GitFlow Workflow</a>
+and the most recent work is on the `develop` branch.</p>
 
 ## Non-committers 
 

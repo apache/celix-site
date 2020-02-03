@@ -38,7 +38,7 @@ See [Hugo](https://gohugo.io/) for more info and for details how to install Hugo
  - Run `git submodule init` and `git submodule update` to retrieve the Celix sources.
  - Run `./extract_celix_docs.sh` to copy the markdown files from the Celix main repository to the site repository.
 
-### Create doxygen documentation
+### Create Doxygen documentation
 
 TODO
 
