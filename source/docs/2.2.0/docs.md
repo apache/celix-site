@@ -13,7 +13,9 @@ Please follow the links below to find appropriate content:
  - [CMake Commands](./celix/documents/cmake_commands/README.html)
  - [Building](./celix/documents/building/README.html)
  - [Subprojects](./celix/documents/subprojects/README.html)
- 
+
+The Doxygen documentation for release 2.2.0 is available <a href="html/index.html" target="_blank">here</a>.
+
 View the 2.2.0 changelog [here](./celix/CHANGES.html).
  
 > The [Celix mailing list](/support/mailing-list.html) is an excellent place to reach out for help. If you don't find 
