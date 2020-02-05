@@ -1,6 +1,5 @@
 ---
 title: Documentation for v2.1.0
-version: 2.1.0
 ---
 
 # Documentation for Celix v2.1.0
