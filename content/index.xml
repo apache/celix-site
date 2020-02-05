@@ -338,7 +338,8 @@ Please follow the links below to find appropriate content:
       <guid>https://celix.apache.org/docs/2.2.0/docs.html</guid>
       <description>Documentation for Celix v2.2.0 Get started with Celix by going through the appropriate content.
 Please follow the links below to find appropriate content:
- Introduction Getting Started CMake Commands Building Subprojects  View the 2.2.0 changelog here.
+ Introduction Getting Started CMake Commands Building Subprojects  The Doxygen documentation for release 2.2.0 is available here.
+View the 2.2.0 changelog here.
  The Celix mailing list is an excellent place to reach out for help. If you don&amp;rsquo;t find an answer to your problem in the mailing list archives, post a new question on the mailing list.</description>
     </item>
     
