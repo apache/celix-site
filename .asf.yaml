@@ -1,0 +1,7 @@
+github:
+  description: "Website source for Apache Celix"
+  homepage: https://celix.apache.org/
+  labels:
+    - apache
+    - celix
+    - hugo
