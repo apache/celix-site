@@ -6,6 +6,15 @@ title: Submitting patches
 
 {{% tableofcontents %}}
 
+
+<p class="alert alert-primary">
+    Celix uses Git so you must install a git client locally to be able to clone the Celix repository.
+</p>
+
+<p class="alert alert-primary">
+    The development workflow that Apache Celix is following is described <a href="development-workflow.html">here</a>.
+</p>
+
 ## Contributing with GitHub
 
 Using the GitHub mirror is the simplest way to contribute to Apache Celix if you are not a member
@@ -34,16 +43,14 @@ Right now you should have two remotes defined for the repo, `origin` and `fork`,
 
     git remote -v 
 
-Now you are ready to work with the Apache Celix' code base. Start with switching to `develop` branch
-
-    git checkout develop
+Now you are ready to work with the Apache Celix' code base.
     
-now is time to fetch any changes from remote repository
+Fetch any changes from the remote repository
 
     git fetch
     git pull
     
-you should create a branch to keep your changes and it must be done off the `develop` branch
+You can now create branches for your changes (branches must be created from the `master` branch)
 
     git checkout -b my-branch
 
@@ -61,14 +68,14 @@ The final step is to open a Pull Request (short: PR) against the original Apache
 [Apache Celix mirror](https://github.com/apache/celix), then to [Pull request](https://github.com/apache/celix/pulls)
 and hit [New Pull Request](https://github.com/apache/celix/compare/) button.
 
-If not already selected, click on `compare across forks.` Right now you must select from the dropdowns on right
-your fork and branch to compare the differences with the Apache Celix' `develop` branch.
+If not already selected, click on `compare across forks.` Right now you must select from the dropdowns on the right
+your fork and branch to compare the differences with the Apache Celix' `master` branch.
 
-Finally hit `Create Pull Request` button and you are done!
+Finally, hit the `Create Pull Request` button and you are done!
 
-After your PR got accepted and merged you must clean up your local repo, please switch your current branch to `develop`
+After your PR got accepted and merged you must clean up your local repo, please switch your current branch to `master`
 
-    git checkout develop
+    git checkout master
     
 and fetch updates from remote
 
@@ -83,9 +90,7 @@ and you are ready to start working on another feature/issue.
 
 ## Committers
 
-Celix uses Git so you must install a git client locally and then you can clone the Celix repository:
-
-either using Apache GitBox
+Committers can use either Apache GitBox
 
     git clone https://gitbox.apache.org/repos/asf/celix.git    
     
@@ -94,18 +99,6 @@ or GitHub
     git clone https://github.com/apache/celix.git
 
 and done!
-
-<p class="alert alert-primary">Note: Remember that Apache Celix is following the <a href="https://www.atlassian.com/git/tutorials/comparing-workflows/gitflow-workflow">GitFlow Workflow</a>
-and the most recent work is on the `develop` branch.</p>
-
-## Non-committers 
-
-If you are not a committer you can still clone the Gitbox repo but you won't be able push to any changes to it.
-At that moment, it's easier to use GitHub, as GitHub provides the functionality to handle Pull Requests.
-
-    git clone https://github.com/apache/celix.git
-
-For more info, read [Contributing with GitHub](#contributing-with-github) on this page.
 
 ## Further reading
 

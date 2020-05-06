@@ -36,7 +36,7 @@ date = ["date", ":filename", "publishDate", "lastmod"]
 latestVersion = "2.2.0"
 
 repositoryUrl = "https://github.com/apache/celix"
-repositorySourceBranch = "develop"
+repositorySourceBranch = "master"
 
 siteRepositoryUrl = "https://github.com/apache/celix-site"
 siteRepositorySourceBranch = "master"
