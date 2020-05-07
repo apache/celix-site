@@ -34,12 +34,12 @@ for more information. This updated file needs to be uploaded to GIT, be sure to 
 
 ## Create release branch
 
-A release will be prepared in a release branch. Normally this is branch created from the develop.
+A release will be prepared in a release branch. This branch is created from the `master` branch.
 
 ```bash
-git checkout develop
-git checkout -b release/celix-X.Y.Z
-git push origin release/celix-X.Y.Z
+git checkout master
+git checkout -b release-X.Y.Z
+git push origin release-X.Y.Z
 ```
 
 ## Update release related files
@@ -217,36 +217,35 @@ updated and the release will be announced.
 Thanks for voting.
 ```
 
-<p class="alert alert-primary">Note: Be sure to post the vote result with the same topic as the original message. Also 
-prepend the subject with [RESULT]. This is, again, needed to be able to keep track of vote threads.</p>
+<p class="alert alert-primary">
+    Note: Be sure to post the vote result with the same topic as the original message. Also prepend the subject with [RESULT]. 
+    This is, again, needed to be able to keep track of vote threads.
+</p>
 
 ## Vote Passed
 
 If the vote is passed sucessfully the release branch can be merged to master, a release tag needs to be created, the release must be moved from the "dev" area to the "release" area 
 and the release can be announced.
 
-### Merge to master and create GIT tag
+### Create Git tag and merge to master
 
 After changing all files a tag for the new release must be made. Before doing so, make sure all changed files are committed.
-The release branch needs to be merged into master, a tag - named like rel/celix-X.Y.Z - needs to created and all the changes needs to merged with develop.
+A tag - named like rel/celix-X.Y.Z - needs to created and the release branch needs to be merged into master.
 
 ```bash
-$ git checkout master
-$ git merge release/celix-X.Y.Z
-$ git push origin master
-
 # To sign a tag using your GPG key, it is necessary to configure git with the key you want to use
 # Configure git by issuing the following command, where E43F742E needs to be replaced with your key id
 $ git config --global user.signingkey E43F742E
 
-# Next thing to do is creating the tag
+# Create the tag
 $ git tag -s rel/celix-X.Y.Z -m 'Celix release X.Y.Z'
 
 # Next thing to do is pushing the tag to the remote
 $ git push origin rel/celix-X.Y.Z
 
-$ git checkout develop
-$ git merge master
+$ git checkout master
+$ git merge release-X.Y.Z
+$ git push origin master
 ```
 
 ### Roll out release artifacts
