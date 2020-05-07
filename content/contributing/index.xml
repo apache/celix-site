@@ -11,6 +11,16 @@
     
     
     <item>
+      <title>Development workflow</title>
+      <link>https://celix.apache.org/contributing/development-workflow.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://celix.apache.org/contributing/development-workflow.html</guid>
+      <description>Development workflow Celix uses an adapted version of the GitFlow workflow. The default branch of the Celix repositories is the master branch. Feature branches are created from and against the master branch. Releases &amp;amp; hotfixes are also created from and against the master branch.
+The following image visualizes the workflow Celix is using:</description>
+    </item>
+    
+    <item>
       <title>Releasing Process</title>
       <link>https://celix.apache.org/contributing/releasing.html</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
@@ -18,7 +28,7 @@
       <guid>https://celix.apache.org/contributing/releasing.html</guid>
       <description>Releasing Apache Celix Note: This information is only of use to Apache Celix Release Managers!
 Steps to follow:
- Create signing KEYS Create release branch Update release related files Compile and test Create, sign and publish artifacts Run the vote Post the vote results Vote Passed  Merge to master and create GIT tag Roll out release artifacts Announce the release     Interesting links:
+ Create signing KEYS Create release branch Update release related files Compile and test Create, sign and publish artifacts Run the vote Post the vote results Vote Passed  Create Git tag and merge to master Roll out release artifacts Announce the release     Interesting links:
  Apache Release Guide Apache Release Signing Apache RAT Apache OpenPGP HowTo  Create signing KEYS Each Release Manager must have his own signing keys.</description>
     </item>
     
@@ -38,8 +48,8 @@ With Git installed, obtaining a working copy of the Celix codebase is as simple 
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://celix.apache.org/contributing/submitting-patches.html</guid>
-      <description>Submitting patches  Contributing with GitHub Committers Non-committers Further reading   Contributing with GitHub Using the GitHub mirror is the simplest way to contribute to Apache Celix if you are not a member of the Celix Committers group.
-First you must have an account created at GitHub to be able perform the next step. If you don&amp;rsquo;t, go ahead and create one just right now! Please remember to setup SSH keys and test them!</description>
+      <description>Submitting patches  Contributing with GitHub Committers Further reading   Celix uses Git so you must install a git client locally to be able to clone the Celix repository. The development workflow that Apache Celix is following is described here. Contributing with GitHub Using the GitHub mirror is the simplest way to contribute to Apache Celix if you are not a member of the Celix Committers group.
+First you must have an account created at GitHub to be able perform the next step.</description>
     </item>
     
     <item>

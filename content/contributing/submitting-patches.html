@@ -108,10 +108,15 @@
   <ul>
     <li><a href="#contributing-with-github">Contributing with GitHub</a></li>
     <li><a href="#committers">Committers</a></li>
-    <li><a href="#non-committers">Non-committers</a></li>
     <li><a href="#further-reading">Further reading</a></li>
   </ul>
 </nav>
+<p class="alert alert-primary">
+    Celix uses Git so you must install a git client locally to be able to clone the Celix repository.
+</p>
+<p class="alert alert-primary">
+    The development workflow that Apache Celix is following is described <a href="development-workflow.html">here</a>.
+</p>
 <h2 id="contributing-with-github">Contributing with GitHub</h2>
 <p>Using the GitHub mirror is the simplest way to contribute to Apache Celix if you are not a member
 of the Celix Committers group.</p>
@@ -132,14 +137,12 @@ with the source code.</p>
 <p>Right now you should have two remotes defined for the repo, <code>origin</code> and <code>fork</code>, use below command to confirm that</p>
 <pre><code>git remote -v 
 </code></pre>
-<p>Now you are ready to work with the Apache Celix&rsquo; code base. Start with switching to <code>develop</code> branch</p>
-<pre><code>git checkout develop
-</code></pre>
-<p>now is time to fetch any changes from remote repository</p>
+<p>Now you are ready to work with the Apache Celix&rsquo; code base.</p>
+<p>Fetch any changes from the remote repository</p>
 <pre><code>git fetch
 git pull
 </code></pre>
-<p>you should create a branch to keep your changes and it must be done off the <code>develop</code> branch</p>
+<p>You can now create branches for your changes (branches must be created from the <code>master</code> branch)</p>
 <pre><code>git checkout -b my-branch
 </code></pre>
 <p>Do your changes and commit them to <code>my-branch</code>, when you&rsquo;re done you can push the changes to GitHub, to your fork.</p>
@@ -152,11 +155,11 @@ git pull
 <p>The final step is to open a Pull Request (short: PR) against the original Apache Celix repo. Go to the
 <a href="https://github.com/apache/celix">Apache Celix mirror</a>, then to <a href="https://github.com/apache/celix/pulls">Pull request</a>
 and hit <a href="https://github.com/apache/celix/compare/">New Pull Request</a> button.</p>
-<p>If not already selected, click on <code>compare across forks.</code> Right now you must select from the dropdowns on right
-your fork and branch to compare the differences with the Apache Celix&rsquo; <code>develop</code> branch.</p>
-<p>Finally hit <code>Create Pull Request</code> button and you are done!</p>
-<p>After your PR got accepted and merged you must clean up your local repo, please switch your current branch to <code>develop</code></p>
-<pre><code>git checkout develop
+<p>If not already selected, click on <code>compare across forks.</code> Right now you must select from the dropdowns on the right
+your fork and branch to compare the differences with the Apache Celix&rsquo; <code>master</code> branch.</p>
+<p>Finally, hit the <code>Create Pull Request</code> button and you are done!</p>
+<p>After your PR got accepted and merged you must clean up your local repo, please switch your current branch to <code>master</code></p>
+<pre><code>git checkout master
 </code></pre>
 <p>and fetch updates from remote</p>
 <pre><code>git fetch -p
@@ -167,22 +170,13 @@ git pull
 </code></pre>
 <p>and you are ready to start working on another feature/issue.</p>
 <h2 id="committers">Committers</h2>
-<p>Celix uses Git so you must install a git client locally and then you can clone the Celix repository:</p>
-<p>either using Apache GitBox</p>
+<p>Committers can use either Apache GitBox</p>
 <pre><code>git clone https://gitbox.apache.org/repos/asf/celix.git    
 </code></pre>
 <p>or GitHub</p>
 <pre><code>git clone https://github.com/apache/celix.git
 </code></pre>
 <p>and done!</p>
-<p class="alert alert-primary">Note: Remember that Apache Celix is following the <a href="https://www.atlassian.com/git/tutorials/comparing-workflows/gitflow-workflow">GitFlow Workflow</a>
-and the most recent work is on the `develop` branch.</p>
-<h2 id="non-committers">Non-committers</h2>
-<p>If you are not a committer you can still clone the Gitbox repo but you won&rsquo;t be able push to any changes to it.
-At that moment, it&rsquo;s easier to use GitHub, as GitHub provides the functionality to handle Pull Requests.</p>
-<pre><code>git clone https://github.com/apache/celix.git
-</code></pre>
-<p>For more info, read <a href="#contributing-with-github">Contributing with GitHub</a> on this page.</p>
 <h2 id="further-reading">Further reading</h2>
 <ul>
 <li><a href="http://wiki.apache.org/general/GitAtApache">Git at Apache</a></li>
