@@ -1,5 +1,5 @@
 github:
-  description: "Website source for Apache Celix"
+  description: "Website sources for the Apache Celix website"
   homepage: https://celix.apache.org/
   labels:
     - apache
