@@ -126,18 +126,15 @@ $ ln -s celix celix-X.Y.Z
 $ tar --exclude=".*" -hczf celix-X.Y.Z.tar.gz celix-X.Y.Z
 
 # The create symbolic link can be removed
-$ celix celix-X.Y.Z
+$ unlink celix-X.Y.Z
 ```
 
 After creating the artifact, the file has to be signed. More information about signing can be found at 
 [Release signing](http://www.apache.org/dev/release-signing.html).
 
 ```bash
-# Generate MD5 checksum
-$ md5 celix-X.Y.Z.tar.gz > celix-X.Y.Z.tar.gz.md5
-
 # Generate SHA512 checksum
-$ gpg --print-md SHA512 celix-X.Y.Z.tar.gz > celix-X.Y.Z.tar.gz.sha
+$ gpg --print-md SHA512 celix-X.Y.Z.tar.gz > celix-X.Y.Z.tar.gz.sha512
 
 # Generate ASCII signature
 $ gpg --armor --output celix-X.Y.Z.tar.gz.asc --detach-sig celix-X.Y.Z.tar.gz
