@@ -41,5 +41,5 @@ You may also consult the [complete list of mirrors](https://www.apache.org/mirro
 
 - Source: <a href="[preferred]celix/celix-{{< param "latestVersion" >}}/celix-{{< param "latestVersion" >}}.tar.gz">celix-{{< param "latestVersion" >}}.tar.gz</a> 
 [ [PGP](https://downloads.apache.org/celix/celix-{{< param "latestVersion" >}}/celix-{{< param "latestVersion" >}}.tar.gz.asc) ]
-[ [SHA1](https://downloads.apache.org/celix/celix-{{< param "latestVersion" >}}/celix-{{< param "latestVersion" >}}.tar.gz.sha) ]
+[ [SHA512](https://downloads.apache.org/celix/celix-{{< param "latestVersion" >}}/celix-{{< param "latestVersion" >}}.tar.gz.sha.512) ]
 
