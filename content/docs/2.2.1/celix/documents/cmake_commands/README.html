@@ -1,0 +1,534 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>CMake Commands / Apache Celix</title>
+
+    
+    <link rel="icon" href="/assets/img/favicon.ico">
+
+    
+    <link href="/assets/css/bootstrap.min.css" rel="stylesheet">
+
+    
+    <link href="/assets/css/style.css" rel="stylesheet">
+</head>
+<body class="light-grey">
+
+<a href="https://github.com/apache/celix" class="github-ribbon">
+    <img src="/assets/img/forkme_right_red_aa0000.png" alt="Fork me on GitHub">
+</a>
+
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top">
+    <div class="container">
+        <a class="navbar-brand" href="/">
+            <img src="/assets/img/celix-white.svg" height="40" class="d-inline-block align-top" alt="Celix Logo">
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="/">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/download.cgi">Download</a>
+                </li>
+                <li class="nav-item dropdown active">
+                    <a class="nav-link dropdown-toggle" href="#" id="ddDocs" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Docs
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="ddDocs">
+                        <a class="dropdown-item" href="/docs/2.2.1/docs.html">2.2.1 (latest)</a>
+                        <a class="dropdown-item" href="/docs/2.1.0/docs.html">2.1.0</a>
+                    </div>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="ddContributing" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Contributing
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="ddContributing">
+                        <a class="dropdown-item" href="/contributing/youatcelix.html">You at Celix</a>
+                        <a class="dropdown-item" href="/contributing/submitting-patches.html">Submitting patches</a>
+                        <a class="dropdown-item" href="/contributing/source-and-builds.html">Source code and builds</a>
+                        <hr>
+                        <a class="dropdown-item" href="/contributing/releasing.html">Releasing</a>
+                        <a class="dropdown-item" href="/contributing/volunteers.html">Volunteers</a>
+                        <a class="dropdown-item" href="https://whimsy.apache.org/board/minutes/Celix.html">Board Reports</a>
+                    </div>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="ddSupport" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Support
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="ddSupport">
+                        <a class="dropdown-item" href="/support/mailing-list.html">Mailing Lists</a>
+                        <a class="dropdown-item" href="/support/issue-tracking.html">Issue Tracking</a>
+                    </div>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="ddFoundation" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        ASF
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="ddFoundation">
+                        <a class="dropdown-item" href="https://www.apache.org/">ASF Home</a>
+                        <a class="dropdown-item" href="https://www.apache.org/foundation/how-it-works.html">How it works</a>
+                        <a class="dropdown-item" href="https://www.apache.org/licenses/">License</a>
+                        <a class="dropdown-item" href="https://www.apache.org/foundation/sponsorship.html">Sponsorship</a>
+                        <a class="dropdown-item" href="https://www.apache.org/foundation/thanks.html">Thanks</a>
+                        <a class="dropdown-item" href="https://www.apache.org/security/">Security</a>
+                        <a class="dropdown-item" href="https://www.apache.org/foundation/policies/conduct">Code of Conduct</a>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+
+<div class="section">
+    <div class="container">
+        <div class="row py-4">
+            <div class="col-sm-12 card">
+                <div class="card-body pt-5">
+                    
+                    
+                        
+                        
+                            <a class="edit-on-gh" href="https://github.com/apache/celix/edit/master/documents/cmake_commands/README.md" title="Edit this page on GitHub">Edit on GitHub</a>
+                        
+                    
+
+                    
+                        
+                        <a href="/docs/2.2.1/docs.html" title="back to documentation">&lt;&lt; back to documentation</a>
+                    
+
+                    
+	<!--
+Licensed to the Apache Software Foundation (ASF) under one or more
+contributor license agreements.  See the NOTICE file distributed with
+this work for additional information regarding copyright ownership.
+The ASF licenses this file to You under the Apache License, Version 2.0
+(the "License"); you may not use this file except in compliance with
+the License.  You may obtain a copy of the License at
+   
+    http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+-->
+<h1 id="apache-celix---cmake-commands">Apache Celix - CMake Commands</h1>
+<p>For Apache Celix several cmake command are added to be able to work with Apache Celix bundles and deployments.</p>
+<h1 id="bundles">Bundles</h1>
+<h2 id="add_celix_bundle">add_celix_bundle</h2>
+<p>Add a Celix bundle to the project.  There are three variants:</p>
+<ul>
+<li>With SOURCES the bundle will be created using a list of sources files as input for the bundle activator library.</li>
+<li>With ACTIVATOR the bundle will be created using the library target or absolute path to existing library as activator library.</li>
+<li>With the NO_ACTIVATOR option will create a bundle without a activator (i.e. a pure resource bundle).</li>
+</ul>
+<p>Optional arguments are:</p>
+<ul>
+<li>NAME: The (human readable) name of the bundle. This will be used as Bundle-Name manifest entry. Default is the  &lt;bundle_target_name&gt;.</li>
+<li>SYMBOLIC_NAME: The symbolic name of the bundle. This will be used as Bundle-SymbolicName manifest entry. Default is the &lt;bundle_target_name&gt;.</li>
+<li>DESCRIPTION: The description of the bundle. This will be used as Bundle-Description manifest entry. Default this is empty.</li>
+<li>GROUP: The group the bundle is part of. This will be used as Bundle-Group manifest entry. Default this is empty (no group).</li>
+<li>VERSION: The bundle version. This will be used for the Bundle-Version manifest entry. In combination with SOURCES the version will also be used to set the activator library target property VERSION and SOVERSION.
+For SOVERSION only the major part is used. Expected scheme is &ldquo;<major>.<minor>.<path>&rdquo;. Default version is &ldquo;0.0.0&rdquo;</li>
+<li>FILENAME: The filename of the bundle file. Default is &lt;bundle_target_name&gt;.zip.</li>
+<li>PRIVATE_LIBRARIES: private libraries to be included in the bundle. Specified libraries are added to the &ldquo;Private-Library&rdquo; manifest statement and added in the root of the bundle. libraries can be cmake library targets or absolute paths to existing libraries.</li>
+<li>HEADERS: Additional headers values that are appended to the bundle manifest.</li>
+</ul>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-CMake" data-lang="CMake"><span style="color:#a2f">add_celix_bundle</span>(<span style="color:#b44">&lt;bundle_target_name&gt;</span>
+        <span style="color:#b44">SOURCES</span> <span style="color:#b44">source1</span> <span style="color:#b44">source2</span> <span style="color:#b44">...</span>
+        <span style="color:#b44">[NAME</span> <span style="color:#b44">bundle_name]</span>
+        <span style="color:#b44">[SYMBOLIC_NAME</span> <span style="color:#b44">bundle_symbolic_name]</span>
+        <span style="color:#b44">[DESCRIPTION</span> <span style="color:#b44">bundle_description]</span>
+        <span style="color:#b44">[GROUP</span> <span style="color:#b44">bundle_group]</span>
+        <span style="color:#b44">[VERSION</span> <span style="color:#b44">bundle_version]</span>
+        <span style="color:#b44">[FILENAME</span> <span style="color:#b44">bundle_filename]</span>
+        <span style="color:#b44">[PRIVATE_LIBRARIES</span> <span style="color:#b44">private_lib1</span> <span style="color:#b44">private_lib2</span> <span style="color:#b44">...]</span>
+        <span style="color:#b44">[HEADERS</span> <span style="color:#b44">&#34;header1: header1_value&#34;</span> <span style="color:#b44">&#34;header2: header2_value&#34;</span> <span style="color:#b44">...]</span>
+)<span style="">
+</span></code></pre></div><div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-CMake" data-lang="CMake"><span style="color:#a2f">add_celix_bundle</span>(<span style="color:#b44">&lt;bundle_target_name&gt;</span>
+        <span style="color:#b44">ACTIVATOR</span> <span style="color:#b44">&lt;activator_lib&gt;</span>
+        <span style="color:#b44">[NAME</span> <span style="color:#b44">bundle_name]</span>
+        <span style="color:#b44">[SYMBOLIC_NAME</span> <span style="color:#b44">bundle_symbolic_name]</span>
+        <span style="color:#b44">[DESCRIPTION</span> <span style="color:#b44">bundle_description]</span>
+        <span style="color:#b44">[GROUP</span> <span style="color:#b44">bundle_group]</span>
+        <span style="color:#b44">[VERSION</span> <span style="color:#b44">bundle_version]</span>
+        <span style="color:#b44">[FILENAME</span> <span style="color:#b44">bundle_filename]</span>
+        <span style="color:#b44">[PRIVATE_LIBRARIES</span> <span style="color:#b44">private_lib1</span> <span style="color:#b44">private_lib2</span> <span style="color:#b44">...]</span>
+        <span style="color:#b44">[HEADERS</span> <span style="color:#b44">&#34;header1: header1_value&#34;</span> <span style="color:#b44">&#34;header2: header2_value&#34;</span> <span style="color:#b44">...]</span>
+)<span style="">
+</span></code></pre></div><div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-CMake" data-lang="CMake"><span style="color:#a2f">add_celix_bundle</span>(<span style="color:#b44">&lt;bundle_target_name&gt;</span>
+        <span style="color:#b44">NO_ACTIVATOR</span>
+        <span style="color:#b44">[NAME</span> <span style="color:#b44">bundle_name]</span>
+        <span style="color:#b44">[SYMBOLIC_NAME</span> <span style="color:#b44">bundle_symbolic_name]</span>
+        <span style="color:#b44">[DESCRIPTION</span> <span style="color:#b44">bundle_description]</span>
+        <span style="color:#b44">[GROUP</span> <span style="color:#b44">bundle_group]</span>
+        <span style="color:#b44">[VERSION</span> <span style="color:#b44">bundle_version]</span>
+        <span style="color:#b44">[FILENAME</span> <span style="color:#b44">bundle_filename]</span>
+        <span style="color:#b44">[PRIVATE_LIBRARIES</span> <span style="color:#b44">private_lib1</span> <span style="color:#b44">private_lib2</span> <span style="color:#b44">...]</span>
+        <span style="color:#b44">[HEADERS</span> <span style="color:#b44">&#34;header1: header1_value&#34;</span> <span style="color:#b44">&#34;header2: header2_value&#34;</span> <span style="color:#b44">...]</span>
+)<span style="">
+</span></code></pre></div><h2 id="celix_bundle_private_libs">celix_bundle_private_libs</h2>
+<p>Add libraries to a bundle. The libraries should be cmake library targets or an absolute path to an existing library.</p>
+<p>The libraries will be copied into the bundle zip and activator library will be linked (PRIVATE) against them.</p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-CMake" data-lang="CMake"><span style="color:#a2f">celix_bundle_private_libs</span>(<span style="color:#b44">&lt;bundle_target&gt;</span>
+    <span style="color:#b44">lib1</span> <span style="color:#b44">lib2</span> <span style="color:#b44">...</span>
+)<span style="">
+</span></code></pre></div><h2 id="celix_bundle_files">celix_bundle_files</h2>
+<p>Add files to the target bundle. DESTINATION is relative to the bundle archive root.
+The rest of the command is conform file(COPY &hellip;) cmake command.
+See cmake file(COPY &hellip;) command for more info.</p>
+<p>Note with celix_bundle_files files are copied cmake generation time.
+Updates are not copied !</p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-CMake" data-lang="CMake"><span style="color:#a2f">celix_bundle_files</span>(<span style="color:#b44">&lt;bundle_target&gt;</span>
+    <span style="color:#b44">files...</span> <span style="color:#b44">DESTINATION</span> <span style="color:#b44">&lt;dir&gt;</span>
+    <span style="color:#b44">[FILE_PERMISSIONS</span> <span style="color:#b44">permissions...]</span>
+    <span style="color:#b44">[DIRECTORY_PERMISSIONS</span> <span style="color:#b44">permissions...]</span>
+    <span style="color:#b44">[NO_SOURCE_PERMISSIONS]</span> <span style="color:#b44">[USE_SOURCE_PERMISSIONS]</span>
+    <span style="color:#b44">[FILES_MATCHING]</span>
+    <span style="color:#b44">[</span> <span style="color:#b44">[PATTERN</span> <span style="color:#b44">&lt;pattern&gt;</span> <span style="color:#b44">|</span> <span style="color:#b44">REGEX</span> <span style="color:#b44">&lt;regex&gt;]</span>
+      <span style="color:#b44">[EXCLUDE]</span> <span style="color:#b44">[PERMISSIONS</span> <span style="color:#b44">permissions...]</span> <span style="color:#b44">]</span> 
+    <span style="color:#b44">[...]</span>
+)<span style="">
+</span></code></pre></div><h2 id="celix_bundle_headers">celix_bundle_headers</h2>
+<p>Append the provided headers to the target bundle manifest.</p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-CMake" data-lang="CMake"><span style="color:#a2f">celix_bundle_headers</span>(<span style="color:#b44">&lt;bundle_target&gt;</span>
+    <span style="color:#b44">&#34;header1: header1_value&#34;</span>
+    <span style="color:#b44">&#34;header2: header2_value&#34;</span>
+    <span style="color:#b44">...</span>
+)<span style="">
+</span></code></pre></div><h2 id="celix_bundle_symbolic_name">celix_bundle_symbolic_name</h2>
+<p>Set bundle symbolic name</p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-CMake" data-lang="CMake"><span style="color:#a2f">celix_bundle_symbolic_name</span>(<span style="color:#b44">&lt;bundle_target&gt;</span> <span style="color:#b44">symbolic_name</span>)<span style="">
+</span></code></pre></div><h2 id="celix_bundle_name">celix_bundle_name</h2>
+<p>Set bundle name</p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-CMake" data-lang="CMake"><span style="color:#a2f">celix_bundle_name</span>(<span style="color:#b44">&lt;bundle_target&gt;</span> <span style="color:#b44">name</span>)<span style="">
+</span></code></pre></div><h2 id="celix_bundle_version">celix_bundle_version</h2>
+<p>Set bundle version</p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-CMake" data-lang="CMake"><span style="color:#a2f">celix_bundle_version</span>(<span style="color:#b44">&lt;bundle_target&gt;</span> <span style="color:#b44">version</span>)<span style="">
+</span></code></pre></div><h2 id="celix_bundle_description">celix_bundle_description</h2>
+<p>Set bundle description</p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-CMake" data-lang="CMake"><span style="color:#a2f">celix_bundle_description</span>(<span style="color:#b44">&lt;bundle_target&gt;</span> <span style="color:#b44">description</span>)<span style="">
+</span></code></pre></div><h2 id="celix_bundle_group">celix_bundle_group</h2>
+<p>Set bundle group.</p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-CMake" data-lang="CMake"><span style="color:#a2f">celix_bundle_group</span>(<span style="color:#b44">&lt;bundle_target&gt;</span> <span style="color:#b44">bundle</span> <span style="color:#b44">group</span>)<span style="">
+</span></code></pre></div><h2 id="install_celix_bundle">install_celix_bundle</h2>
+<p>Install bundle when &lsquo;make install&rsquo; is executed.
+Bundles are installed at <code>&lt;install-prefix&gt;/share/&lt;project_name&gt;/bundles</code>.
+Headers are installed at <code>&lt;install-prefix&gt;/include/&lt;project_name&gt;/&lt;bundle_name&gt;</code>
+Resources are installed at <code>&lt;install-prefix&gt;/shared/&lt;project_name&gt;/&lt;bundle_name&gt;</code></p>
+<p>Optional arguments:</p>
+<ul>
+<li>EXPORT: Associates the installed bundle with a export_name.
+The export name can be used to generate a Celix Targets cmake file (see install_celix_bundle_targets)</li>
+<li>PROJECT_NAME: The project name for installing. Default is the cmake project name.</li>
+<li>BUNDLE_NAME: The bundle name used when installing headers/resources. Default is the bundle target name.</li>
+<li>HEADERS: A list of headers to install for the bundle.</li>
+<li>RESOURCES: A list of resources to install for the bundle.</li>
+</ul>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-CMake" data-lang="CMake"><span style="color:#a2f">install_celix_bundle</span>(<span style="color:#b44">&lt;bundle_target&gt;</span>
+    <span style="color:#b44">[EXPORT]</span> <span style="color:#b44">export_name</span>
+    <span style="color:#b44">[PROJECT_NAME]</span> <span style="color:#b44">project_name</span>
+    <span style="color:#b44">[BUNDLE_NAME]</span> <span style="color:#b44">bundle_name</span>
+    <span style="color:#b44">[HEADERS</span> <span style="color:#b44">header_file1</span> <span style="color:#b44">header_file2</span> <span style="color:#b44">...]</span>
+    <span style="color:#b44">[RESOURCES</span> <span style="color:#b44">resource1</span> <span style="color:#b44">resource2</span> <span style="color:#b44">...]</span>
+)<span style="">
+</span></code></pre></div><h2 id="install_celix_targets">install_celix_targets</h2>
+<p>Generate and install a Celix Targets cmake file which contains CMake commands to create imported targets for the bundles
+install using the provided &lt;export_name&gt;. These imported CMake targets can be used in in CMake project using the installed
+bundles.</p>
+<p>Optional Arguments:</p>
+<ul>
+<li>FILE: The Celix Targets cmake filename to used. Default is &lt;export_name&gt;BundleTargets.cmake</li>
+<li>PROJECT_NAME: The project name to used for the share location. Default is the cmake project name.</li>
+<li>DESTINATION: The (relative) location to install the Celix Targets cmake file to. Default is share/&lt;PROJECT_NAME&gt;/cmake.</li>
+</ul>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-CMake" data-lang="CMake"><span style="color:#a2f">install_celix_targets</span>(<span style="color:#b44">&lt;export_name&gt;</span>
+    <span style="color:#b44">NAMESPACE</span> <span style="color:#b44">&lt;namespace&gt;</span>
+    <span style="color:#b44">[FILE</span> <span style="color:#b44">&lt;celix_target_filename&gt;]</span>
+    <span style="color:#b44">[PROJECT_NAME</span> <span style="color:#b44">&lt;project_name&gt;]</span>
+    <span style="color:#b44">[DESTINATION</span> <span style="color:#b44">&lt;celix_targets_destination&gt;]</span>
+)<span style="">
+</span></code></pre></div><p>Example:</p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-CMake" data-lang="CMake"><span style="color:#a2f">install_celix_targets</span>(<span style="color:#b44">celix</span> <span style="color:#b44">NAMESPACE</span> <span style="color:#b44">Celix::</span> <span style="color:#b44">DESTINATION</span> <span style="color:#b44">share/celix/cmake</span> <span style="color:#b44">FILE</span> <span style="color:#b44">CelixTargets.cmake</span>)<span style="">
+</span></code></pre></div><h1 id="celix-containers">Celix Containers</h1>
+<p>The &lsquo;add_celix_container&rsquo; Celix CMake command can be used to create Celix containers.
+Celix containers are executables preconfigured with configuration properties and bundles to run.</p>
+<h2 id="add_celix_container">add_celix_container</h2>
+<p>Add a Celix container, consisting out of a selection of bundles and a Celix launcher.
+Celix containers can be used to run/test a selection of bundles in the celix framework.
+A Celix container will be build in <code>&lt;cmake_build_dir&gt;/deploy[/&lt;group_name&gt;]/&lt;celix_container_name&gt;</code>.
+Use the <code>&lt;celix_container_name&gt;</code> executable to run the containers.</p>
+<p>There are three variants of &lsquo;add_celix_container&rsquo;:</p>
+<ul>
+<li>If no launcher is specified a custom Celix launcher will be generated. This launcher also contains the configured properties.</li>
+<li>If a LAUNCHER_SRC is provided a Celix launcher will be build using the provided sources. Additional sources can be added with the
+CMake &lsquo;target_sources&rsquo; command.</li>
+<li>If a LAUNCHER (absolute path to a executable of CMake <code>add_executable</code> target) is provided that will be used as Celix launcher.</li>
+</ul>
+<p>Creating a Celix containers using &lsquo;add_celix_container&rsquo; will lead to a CMake executable target (expect if a LAUNCHER is used).
+These targets can be used to run/debug Celix containers from a IDE (if the IDE supports CMake).</p>
+<p>Optional Arguments:</p>
+<ul>
+<li>COPY: With this option the used bundles are copied to the container build dir in the &lsquo;bundles&rsquo; dir.<br>
+A additional result of this is that the configured references to the bundles are then relative instead of absolute.</li>
+<li>CXX: With this option the generated Celix launcher (if used) will be a C++ source instead of a C source.
+A additional result of this is that Celix launcher is also linked against stdlibc++.</li>
+<li>USE_CONFIG: With this option config properties are generated in a &lsquo;config.properties&rsquo; instead of embedded in the Celix launcher.</li>
+<li>GROUP: If configured the build location will be prefixed the GROUP. Default is empty.</li>
+<li>NAME: The name of the executable. Default is &lt;celix_container_name&gt;. Only useful for generated/LAUNCHER_SRC Celix launchers.</li>
+<li>DIR: The base build directory of the Celix container. Default is <code>&lt;cmake_build_dir&gt;/deploy</code>.</li>
+<li>BUNDLES: A list of bundles to configured for the Celix container to install and start.
+These bundle will be configured for run level 3. See &lsquo;celix_container_bundles&rsquo; for more info.</li>
+<li>PROPERTIES: A list of configuration properties, these can be used to configure the Celix framework and/or bundles.
+Normally this will be EMBEDED_PROPERTIES, but if the USE_CONFIG option is used this will be RUNTIME_PROPERTIES.
+See the framework library or bundles documentation about the available configuration options.</li>
+<li>EMBEDDED_PROPERTIES: A list of configuration properties which will be used in the generated Celix launcher.</li>
+<li>RUNTIME_PROPERTIES: A list of configuration properties which will be used in the generated config.properties file.</li>
+</ul>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-CMake" data-lang="CMake"><span style="color:#a2f">add_celix_container</span>(<span style="color:#b44">&lt;celix_container_name&gt;</span>
+    <span style="color:#b44">[COPY]</span>
+    <span style="color:#b44">[CXX]</span>
+    <span style="color:#b44">[USE_CONFIG]</span>
+    <span style="color:#b44">[GROUP</span> <span style="color:#b44">group_name]</span>
+    <span style="color:#b44">[NAME</span> <span style="color:#b44">celix_container_name]</span>
+    <span style="color:#b44">[DIR</span> <span style="color:#b44">dir]</span>
+    <span style="color:#b44">[BUNDLES</span> <span style="color:#b44">&lt;bundle1&gt;</span> <span style="color:#b44">&lt;bundle2&gt;</span> <span style="color:#b44">...]</span>
+    <span style="color:#b44">[PROPERTIES</span> <span style="color:#b44">&#34;prop1=val1&#34;</span> <span style="color:#b44">&#34;prop2=val2&#34;</span> <span style="color:#b44">...]</span>
+    <span style="color:#b44">[EMBEDDED_PROPERTIES</span> <span style="color:#b44">&#34;prop1=val1&#34;</span> <span style="color:#b44">&#34;prop2=val2&#34;</span> <span style="color:#b44">...]</span>
+    <span style="color:#b44">[RUNTIME_PROPERTIES</span> <span style="color:#b44">&#34;prop1=val1&#34;</span> <span style="color:#b44">&#34;prop2=val2&#34;</span> <span style="color:#b44">...]</span>
+)<span style="">
+</span></code></pre></div><div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-CMake" data-lang="CMake"><span style="color:#a2f">add_celix_container</span>(<span style="color:#b44">&lt;celix_container_name&gt;</span>
+    <span style="color:#b44">LAUNCHER</span> <span style="color:#b44">launcher</span>
+    <span style="color:#b44">[COPY]</span>
+    <span style="color:#b44">[CXX]</span>
+    <span style="color:#b44">[USE_CONFIG]</span>
+    <span style="color:#b44">[GROUP</span> <span style="color:#b44">group_name]</span>
+    <span style="color:#b44">[NAME</span> <span style="color:#b44">celix_container_name]</span>
+    <span style="color:#b44">[DIR</span> <span style="color:#b44">dir]</span>
+    <span style="color:#b44">[BUNDLES</span> <span style="color:#b44">&lt;bundle1&gt;</span> <span style="color:#b44">&lt;bundle2&gt;</span> <span style="color:#b44">...]</span>
+    <span style="color:#b44">[PROPERTIES</span> <span style="color:#b44">&#34;prop1=val1&#34;</span> <span style="color:#b44">&#34;prop2=val2&#34;</span> <span style="color:#b44">...]</span>
+    <span style="color:#b44">[EMBEDDED_PROPERTIES</span> <span style="color:#b44">&#34;prop1=val1&#34;</span> <span style="color:#b44">&#34;prop2=val2&#34;</span> <span style="color:#b44">...]</span>
+    <span style="color:#b44">[RUNTIME_PROPERTIES</span> <span style="color:#b44">&#34;prop1=val1&#34;</span> <span style="color:#b44">&#34;prop2=val2&#34;</span> <span style="color:#b44">...]</span>
+)<span style="">
+</span></code></pre></div><div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-CMake" data-lang="CMake"><span style="color:#a2f">add_celix_container</span>(<span style="color:#b44">&lt;celix_container_name&gt;</span>
+    <span style="color:#b44">LAUNCHER_SRC</span> <span style="color:#b44">launcher_src</span>
+    <span style="color:#b44">[COPY]</span>
+    <span style="color:#b44">[CXX]</span>
+    <span style="color:#b44">[USE_CONFIG]</span>
+    <span style="color:#b44">[GROUP</span> <span style="color:#b44">group_name]</span>
+    <span style="color:#b44">[NAME</span> <span style="color:#b44">celix_container_name]</span>
+    <span style="color:#b44">[DIR</span> <span style="color:#b44">dir]</span>
+    <span style="color:#b44">[BUNDLES</span> <span style="color:#b44">&lt;bundle1&gt;</span> <span style="color:#b44">&lt;bundle2&gt;</span> <span style="color:#b44">...]</span>
+    <span style="color:#b44">[PROPERTIES</span> <span style="color:#b44">&#34;prop1=val1&#34;</span> <span style="color:#b44">&#34;prop2=val2&#34;</span> <span style="color:#b44">...]</span>
+    <span style="color:#b44">[EMBEDDED_PROPERTIES</span> <span style="color:#b44">&#34;prop1=val1&#34;</span> <span style="color:#b44">&#34;prop2=val2&#34;</span> <span style="color:#b44">...]</span>
+    <span style="color:#b44">[RUNTIME_PROPERTIES</span> <span style="color:#b44">&#34;prop1=val1&#34;</span> <span style="color:#b44">&#34;prop2=val2&#34;</span> <span style="color:#b44">...]</span>
+)<span style="">
+</span></code></pre></div><h2 id="celix_container_bundles">celix_container_bundles</h2>
+<p>Add the selected bundles to the Celix container. These bundles are (if configured) copied to the container build dir and
+are added to the configuration properties so that they are installed and started when the Celix container executed.</p>
+<p>The Celix framework support 7 (0 - 6) run levels. Run levels can be used to control the start and stop order of bundles.
+Bundles in run level 0 are started first and bundles in run level 6 are started last.
+When stopping bundles in run level 6 are stopped first and bundles in run level 0 are stopped last.
+Within a run level the order of configured decides the start order; bundles added earlier are started first.</p>
+<p>Optional Arguments:</p>
+<ul>
+<li>LEVEL: The run level for the added bundles. Default is 3.</li>
+</ul>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-CMake" data-lang="CMake"><span style="color:#a2f">celix_container_bundles</span>(<span style="color:#b44">&lt;celix_container_target_name&gt;</span>
+    <span style="color:#b44">[LEVEL</span> (<span style="color:#b44">0..5</span>)<span style="color:#b44">]</span>
+    <span style="color:#b44">bundle1</span>
+    <span style="color:#b44">bundle2</span>
+    <span style="color:#b44">...</span>
+)<span style="">
+</span></code></pre></div><h2 id="celix_container_properties">celix_container_properties</h2>
+<p>Add the provided properties to the target Celix container config properties.
+If the USE_CONFIG option is used these configuration properties will be added to the &lsquo;config.properties&rsquo; file else they
+will be added to the generated Celix launcher.</p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-CMake" data-lang="CMake"><span style="color:#a2f">celix_container_properties</span>(<span style="color:#b44">&lt;celix_container_target_name&gt;</span>
+    <span style="color:#b44">&#34;prop1=val1&#34;</span>
+    <span style="color:#b44">&#34;prop2=val2&#34;</span>
+    <span style="color:#b44">...</span>
+)<span style="">
+</span></code></pre></div><h2 id="celix_container_embedded_properties">celix_container_embedded_properties</h2>
+<p>Add the provided properties to the target Celix container config properties.
+These properties will be embedded into the generated Celix launcher.</p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-CMake" data-lang="CMake"><span style="color:#a2f">celix_container_embedded_properties</span>(<span style="color:#b44">&lt;celix_container_target_name&gt;</span>
+    <span style="color:#b44">&#34;prop1=val1&#34;</span> 
+    <span style="color:#b44">&#34;prop2=val2&#34;</span> 
+    <span style="color:#b44">...</span>
+)<span style="">
+</span></code></pre></div><h2 id="celix_container_runtime_properties">celix_container_runtime_properties</h2>
+<p>Add the provided properties to the target Celix container config properties.
+These properties will be added to the config.properties in the container build dir.</p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-CMake" data-lang="CMake"><span style="color:#a2f">celix_container_runtime_properties</span>(<span style="color:#b44">&lt;celix_container_target_name&gt;</span>
+    <span style="color:#b44">&#34;prop1=val1&#34;</span> 
+    <span style="color:#b44">&#34;prop2=val2&#34;</span> 
+    <span style="color:#b44">...</span>
+)<span style="">
+</span></code></pre></div><h1 id="celix-docker-images">Celix Docker Images</h1>
+<p>The <code>add_celix_docker</code> Apache Celix CMake command can be used to create Apache Celix docker directories.
+These directories can be used (with &lsquo;docker build&rsquo; or podman) to create very small Apache Celix docker images.</p>
+<h2 id="add_celix_docker">add_celix_docker</h2>
+<p>Adds a docker target dir, containing a all the required executables,
+libraries, filesystem files and selected bundles needed to run a Apache Celix framework in a docker container.</p>
+<p>The &lsquo;add_celix_docker&rsquo; target is a executable target and can be used to link libraries which are needed in the docker image.</p>
+<p>The docker dir can be found in <code>&lt;cmake_build_dir&gt;/docker[/&lt;group_name&gt;]/&lt;docker_name&gt;</code>.</p>
+<p>The docker directories are build with the target <code>celix-build-docker-dirs</code>, this does not create the
+docker images and can also be executed on systems without docker. The <code>celix-build-docker-dirs</code> is trigger
+with <code>make all</code>.</p>
+<p>The docker images are build with the target <code>celix-build-docker-images</code>. For this to work docker needs te installed
+and the user executing the <code>celix-build-docker-images</code> should have right to create docker images.
+The <code>celix-build-docker-images</code> is not triggered with <code>make all</code></p>
+<p>There are three variants of &lsquo;add_celix_docker&rsquo;:</p>
+<ul>
+<li>If no launcher is specified a custom Celix launcher will be generated. This launcher also contains the configured properties.</li>
+<li>If a LAUNCHER_SRC is provided a Celix launcher will be build using the provided sources. Additional sources can be added with the
+CMake &lsquo;target_sources&rsquo; command.</li>
+<li>If a LAUNCHER (absolute path to a executable of CMake <code>add_executable</code> target) is provided that will be used as Celix launcher.</li>
+</ul>
+<p>Optional arguments:</p>
+<ul>
+<li>CXX: With this option the generated Celix launcher (if used) will be a C++ source instead of a C source.
+A additional result of this is that Celix launcher is also linked against stdlibc++.</li>
+<li>GROUP: If configured the build location will be prefixed the GROUP. Default is empty.</li>
+<li>NAME: The name of the executable. Default is &lt;docker_target_name&gt;. Only useful for generated/LAUNCHER_SRC Celix launchers.</li>
+<li>FROM: Configured the docker image base. Default is scratch.
+If configured a minimal filesystem will not be created!</li>
+<li>BUNDLES_DIR: Configures the directory where are all the bundles are copied. Default is /bundles.</li>
+<li>WORKDIR: Configures the workdir of the docker image. Default is /root.</li>
+<li>IMAGE_NAME: Configure the image name. Default is NAME.</li>
+<li>BUNDLES: Configures the used bundles. These bundles are configured for run level 3. see &lsquo;celix_docker_bundles&rsquo; for more info.</li>
+<li>PROPERTIES: Configure configuration properties.</li>
+<li>INSTRUCTIONS: Additional dockker instruction to add the the generated Dockerfile.</li>
+</ul>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-CMake" data-lang="CMake"><span style="color:#a2f">add_celix_docker</span>(<span style="color:#b44">&lt;docker_target_name&gt;</span>
+    <span style="color:#b44">[CXX]</span>
+    <span style="color:#b44">[GROUP</span> <span style="color:#b44">group_name]</span>
+    <span style="color:#b44">[NAME</span> <span style="color:#b44">deploy_name]</span>
+    <span style="color:#b44">[FROM</span> <span style="color:#b44">docker_from_image]</span>
+    <span style="color:#b44">[BUNDLES_DIR</span> <span style="color:#b44">bundle_dir_in_docker_image]</span>
+    <span style="color:#b44">[WORKDIR</span> <span style="color:#b44">workdir_in_docker_image]</span>
+    <span style="color:#b44">[IMAGE_NAME</span> <span style="color:#b44">docker_image_name]</span>
+    <span style="color:#b44">[BUNDLES</span> <span style="color:#b44">&lt;bundle1&gt;</span> <span style="color:#b44">&lt;bundle2&gt;</span> <span style="color:#b44">...]</span>
+    <span style="color:#b44">[PROPERTIES</span> <span style="color:#b44">&#34;prop1=val1&#34;</span> <span style="color:#b44">&#34;prop2=val2&#34;</span> <span style="color:#b44">...]</span>
+    <span style="color:#b44">[INSTRUCTIONS</span> <span style="color:#b44">&#34;instr1&#34;</span> <span style="color:#b44">&#34;instr2&#34;</span> <span style="color:#b44">...]</span>
+)<span style="">
+</span></code></pre></div><div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-CMake" data-lang="CMake"><span style="color:#a2f">add_celix_docker</span>(<span style="color:#b44">&lt;docker_target_name&gt;</span>
+    <span style="color:#b44">LAUNCHER_SRC</span> <span style="color:#b44">launcher_src</span>
+    <span style="color:#b44">[CXX]</span>
+    <span style="color:#b44">[GROUP</span> <span style="color:#b44">group_name]</span>
+    <span style="color:#b44">[NAME</span> <span style="color:#b44">deploy_name]</span>
+    <span style="color:#b44">[FROM</span> <span style="color:#b44">docker_from_image]</span>
+    <span style="color:#b44">[BUNDLES_DIR</span> <span style="color:#b44">bundle_dir_in_docker_image]</span>
+    <span style="color:#b44">[WORKDIR</span> <span style="color:#b44">workdir_in_docker_image]</span>
+    <span style="color:#b44">[IMAGE_NAME</span> <span style="color:#b44">docker_image_name]</span>
+    <span style="color:#b44">[BUNDLES</span> <span style="color:#b44">&lt;bundle1&gt;</span> <span style="color:#b44">&lt;bundle2&gt;</span> <span style="color:#b44">...]</span>
+    <span style="color:#b44">[PROPERTIES</span> <span style="color:#b44">&#34;prop1=val1&#34;</span> <span style="color:#b44">&#34;prop2=val2&#34;</span> <span style="color:#b44">...]</span>
+    <span style="color:#b44">[INSTRUCTIONS</span> <span style="color:#b44">&#34;instr1&#34;</span> <span style="color:#b44">&#34;instr2&#34;</span> <span style="color:#b44">...]</span>
+)<span style="">
+</span></code></pre></div><div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-CMake" data-lang="CMake"><span style="color:#a2f">add_celix_docker</span>(<span style="color:#b44">&lt;docker_target_name&gt;</span>
+    <span style="color:#b44">LAUNCHER</span> <span style="color:#b44">launcher</span>
+    <span style="color:#b44">[CXX]</span>
+    <span style="color:#b44">[GROUP</span> <span style="color:#b44">group_name]</span>
+    <span style="color:#b44">[NAME</span> <span style="color:#b44">deploy_name]</span>
+    <span style="color:#b44">[FROM</span> <span style="color:#b44">docker_from_image]</span>
+    <span style="color:#b44">[BUNDLES_DIR</span> <span style="color:#b44">bundle_dir_in_docker_image]</span>
+    <span style="color:#b44">[WORKDIR</span> <span style="color:#b44">workdir_in_docker_image]</span>
+    <span style="color:#b44">[IMAGE_NAME</span> <span style="color:#b44">docker_image_name]</span>
+    <span style="color:#b44">[BUNDLES</span> <span style="color:#b44">&lt;bundle1&gt;</span> <span style="color:#b44">&lt;bundle2&gt;</span> <span style="color:#b44">...]</span>
+    <span style="color:#b44">[PROPERTIES</span> <span style="color:#b44">&#34;prop1=val1&#34;</span> <span style="color:#b44">&#34;prop2=val2&#34;</span> <span style="color:#b44">...]</span>
+    <span style="color:#b44">[INSTRUCTIONS</span> <span style="color:#b44">&#34;instr1&#34;</span> <span style="color:#b44">&#34;instr2&#34;</span> <span style="color:#b44">...]</span>
+)<span style="">
+</span></code></pre></div><h2 id="celix_docker_bundles">celix_docker_bundles</h2>
+<p>Add the selected bundles to the Celix docker image. These bundles are copied to the docker build dir and
+are added to the configuration properties so that they are installed and started when the Celix docker container is created and started.</p>
+<p>The Celix framework support 7 (0 - 6) run levels. Run levels can be used to control the start and stop order of bundles.
+Bundles in run level 0 are started first and bundles in run level 6 are started last.
+When stopping bundles in run level 6 are stopped first and bundles in run level 0 are stopped last.
+Within a run level the order of configured decides the start order; bundles added earlier are started first.</p>
+<p>Optional Arguments:</p>
+<ul>
+<li>LEVEL: The run level for the added bundles. Default is 3.</li>
+</ul>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-CMake" data-lang="CMake"><span style="color:#a2f">celix_docker_bundles</span>(<span style="color:#b44">&lt;celix_container_target_name&gt;</span>
+    <span style="color:#b44">[LEVEL</span> (<span style="color:#b44">0..5</span>)<span style="color:#b44">]</span>
+    <span style="color:#b44">bundle1</span>
+    <span style="color:#b44">bundle2</span>
+    <span style="color:#b44">...</span>
+)<span style="">
+</span></code></pre></div><h2 id="celix_docker_properties">celix_docker_properties</h2>
+<p>Same as <code>celix_container_properties</code>, but then for the celix container
+in the docker image.</p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-CMake" data-lang="CMake"><span style="color:#a2f">celix_docker_properties</span>(<span style="color:#b44">&lt;docker_target_name&gt;</span>
+    <span style="color:#b44">&#34;prop1=val1&#34;</span>
+    <span style="color:#b44">&#34;prop2=val2&#34;</span>
+    <span style="color:#b44">...</span>
+)<span style="">
+</span></code></pre></div><h2 id="celix_docker_embedded_properties">celix_docker_embedded_properties</h2>
+<p>Same as <code>celix_container_embedded_properties</code>, but then for the celix container
+in the docker image.</p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-CMake" data-lang="CMake"><span style="color:#a2f">celix_docker_embedded_properties</span>(<span style="color:#b44">&lt;docker_target_name&gt;</span>
+    <span style="color:#b44">&#34;prop1=val1&#34;</span>
+    <span style="color:#b44">&#34;prop2=val2&#34;</span>
+    <span style="color:#b44">...</span>
+)<span style="">
+</span></code></pre></div><h2 id="celix_docker_instructions">celix_docker_instructions</h2>
+<p>Add the provided docker instruction to the end of the generated
+Dockerfile.</p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-CMake" data-lang="CMake"><span style="color:#a2f">celix_docker_instructions</span>(<span style="color:#b44">&lt;docker_target_name&gt;</span>
+    <span style="color:#b44">&#34;instruction1&#34;</span>
+    <span style="color:#b44">&#34;instruction2&#34;</span>
+    <span style="color:#b44">...</span>
+)<span style="">
+</span></code></pre></div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<footer class="py-3 bg-secondary">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8 text-center">
+                <p class="m-0 text-white">
+                    Copyright &copy; 2020 The Apache Software Foundation, Licensed under
+                    the <a href="http://www.apache.org/licenses/LICENSE-2.0">Apache License, Version 2.0</a>.
+                    <br>
+                    Apache Celix, Celix, Apache, the Apache feather logo and the Apache Celix logo are trademarks of The Apache Software Foundation.
+                </p>
+            </div>
+            <div class="col-md-4 text-center">
+                <a href="https://www.apache.org/events/current-event.html" target="_blank">
+                    <img src="https://www.apache.org/events/current-event-234x60.png" title="Apache Event" width="234" height="60" border="0">
+                </a>
+            </div>
+        </div>
+    </div>
+</footer>
+
+
+<script src="/assets/js/jquery.min.js"></script>
+<script src="/assets/js/bootstrap.bundle.min.js"></script>
+
+
+</body>
+</html>

@@ -4,12 +4,12 @@
   
   <url>
     <loc>https://celix.apache.org/</loc>
-    <lastmod>2020-07-17T22:02:28+02:00</lastmod>
+    <lastmod>2020-07-18T15:09:35+02:00</lastmod>
   </url>
   
   <url>
-    <loc>https://celix.apache.org/docs/2.2.0/celix/bundles/device_access/example/base_driver/README.html</loc>
-    <lastmod>2020-02-03T15:43:09+01:00</lastmod>
+    <loc>https://celix.apache.org/docs/2.2.1/celix/bundles/device_access/example/base_driver/README.html</loc>
+    <lastmod>2020-07-18T15:09:35+02:00</lastmod>
   </url>
   
   <url>
@@ -18,8 +18,8 @@
   </url>
   
   <url>
-    <loc>https://celix.apache.org/docs/2.2.0/celix/documents/building/README.html</loc>
-    <lastmod>2020-02-03T15:43:09+01:00</lastmod>
+    <loc>https://celix.apache.org/docs/2.2.1/celix/documents/building/README.html</loc>
+    <lastmod>2020-07-18T15:09:35+02:00</lastmod>
   </url>
   
   <url>
@@ -28,8 +28,8 @@
   </url>
   
   <url>
-    <loc>https://celix.apache.org/docs/2.2.0/celix/libs/utils/docs/thpool/README.html</loc>
-    <lastmod>2020-02-03T15:43:09+01:00</lastmod>
+    <loc>https://celix.apache.org/docs/2.2.1/celix/libs/utils/docs/thpool/README.html</loc>
+    <lastmod>2020-07-18T15:09:35+02:00</lastmod>
   </url>
   
   <url>
@@ -38,8 +38,8 @@
   </url>
   
   <url>
-    <loc>https://celix.apache.org/docs/2.2.0/celix/libs/utils/docs/thpool/Design.html</loc>
-    <lastmod>2020-02-03T15:43:09+01:00</lastmod>
+    <loc>https://celix.apache.org/docs/2.2.1/celix/libs/utils/docs/thpool/Design.html</loc>
+    <lastmod>2020-07-18T15:09:35+02:00</lastmod>
   </url>
   
   <url>
@@ -48,8 +48,8 @@
   </url>
   
   <url>
-    <loc>https://celix.apache.org/docs/2.2.0/celix/libs/utils/docs/thpool/FAQ.html</loc>
-    <lastmod>2020-02-03T15:43:09+01:00</lastmod>
+    <loc>https://celix.apache.org/docs/2.2.1/celix/libs/utils/docs/thpool/FAQ.html</loc>
+    <lastmod>2020-07-18T15:09:35+02:00</lastmod>
   </url>
   
   <url>
@@ -58,13 +58,13 @@
   </url>
   
   <url>
-    <loc>https://celix.apache.org/docs/2.2.0/celix/libs/dependency_manager_cxx/README.html</loc>
-    <lastmod>2020-02-03T15:43:09+01:00</lastmod>
+    <loc>https://celix.apache.org/docs/2.2.1/celix/libs/dependency_manager_cxx/README.html</loc>
+    <lastmod>2020-07-18T15:09:35+02:00</lastmod>
   </url>
   
   <url>
-    <loc>https://celix.apache.org/docs/2.2.0/celix/examples/celix-examples/README.html</loc>
-    <lastmod>2020-02-03T15:43:09+01:00</lastmod>
+    <loc>https://celix.apache.org/docs/2.2.1/celix/examples/celix-examples/README.html</loc>
+    <lastmod>2020-07-18T15:09:35+02:00</lastmod>
   </url>
   
   <url>
@@ -78,8 +78,8 @@
   </url>
   
   <url>
-    <loc>https://celix.apache.org/docs/2.2.0/celix/CHANGES.html</loc>
-    <lastmod>2020-02-03T15:43:09+01:00</lastmod>
+    <loc>https://celix.apache.org/docs/2.2.1/celix/CHANGES.html</loc>
+    <lastmod>2020-07-18T15:09:35+02:00</lastmod>
   </url>
   
   <url>
@@ -88,8 +88,8 @@
   </url>
   
   <url>
-    <loc>https://celix.apache.org/docs/2.2.0/celix/documents/cmake_commands/README.html</loc>
-    <lastmod>2020-02-03T15:43:09+01:00</lastmod>
+    <loc>https://celix.apache.org/docs/2.2.1/celix/documents/cmake_commands/README.html</loc>
+    <lastmod>2020-07-18T15:09:35+02:00</lastmod>
   </url>
   
   <url>
@@ -98,13 +98,13 @@
   </url>
   
   <url>
-    <loc>https://celix.apache.org/docs/2.2.0/celix/misc/experimental/bundles/config_admin/README.html</loc>
-    <lastmod>2020-02-03T15:43:09+01:00</lastmod>
+    <loc>https://celix.apache.org/docs/2.2.1/celix/misc/experimental/bundles/config_admin/README.html</loc>
+    <lastmod>2020-07-18T15:09:35+02:00</lastmod>
   </url>
   
   <url>
-    <loc>https://celix.apache.org/docs/2.2.0/celix/bundles/device_access/example/consuming_driver/README.html</loc>
-    <lastmod>2020-02-03T15:43:09+01:00</lastmod>
+    <loc>https://celix.apache.org/docs/2.2.1/celix/bundles/device_access/example/consuming_driver/README.html</loc>
+    <lastmod>2020-07-18T15:09:35+02:00</lastmod>
   </url>
   
   <url>
@@ -118,8 +118,8 @@
   </url>
   
   <url>
-    <loc>https://celix.apache.org/docs/2.2.0/celix/documents/getting_started/creating_a_simple_bundle.html</loc>
-    <lastmod>2020-02-03T15:43:09+01:00</lastmod>
+    <loc>https://celix.apache.org/docs/2.2.1/celix/documents/getting_started/creating_a_simple_bundle.html</loc>
+    <lastmod>2020-07-18T15:09:35+02:00</lastmod>
   </url>
   
   <url>
@@ -128,8 +128,8 @@
   </url>
   
   <url>
-    <loc>https://celix.apache.org/docs/2.2.0/celix/libs/dependency_manager/README.html</loc>
-    <lastmod>2020-02-03T15:43:09+01:00</lastmod>
+    <loc>https://celix.apache.org/docs/2.2.1/celix/libs/dependency_manager/README.html</loc>
+    <lastmod>2020-07-18T15:09:35+02:00</lastmod>
   </url>
   
   <url>
@@ -138,8 +138,8 @@
   </url>
   
   <url>
-    <loc>https://celix.apache.org/docs/2.2.0/celix/bundles/deployment_admin/README.html</loc>
-    <lastmod>2020-02-03T15:43:09+01:00</lastmod>
+    <loc>https://celix.apache.org/docs/2.2.1/celix/bundles/deployment_admin/README.html</loc>
+    <lastmod>2020-07-18T15:09:35+02:00</lastmod>
   </url>
   
   <url>
@@ -153,8 +153,8 @@
   </url>
   
   <url>
-    <loc>https://celix.apache.org/docs/2.2.0/celix/bundles/device_access/README.html</loc>
-    <lastmod>2020-02-03T15:43:09+01:00</lastmod>
+    <loc>https://celix.apache.org/docs/2.2.1/celix/bundles/device_access/README.html</loc>
+    <lastmod>2020-07-18T15:09:35+02:00</lastmod>
   </url>
   
   <url>
@@ -163,13 +163,13 @@
   </url>
   
   <url>
-    <loc>https://celix.apache.org/docs/2.2.0/celix/bundles/remote_services/discovery_etcd/README.html</loc>
-    <lastmod>2020-02-03T15:43:09+01:00</lastmod>
+    <loc>https://celix.apache.org/docs/2.2.1/celix/bundles/remote_services/discovery_etcd/README.html</loc>
+    <lastmod>2020-07-18T15:09:35+02:00</lastmod>
   </url>
   
   <url>
     <loc>https://celix.apache.org/docs.html</loc>
-    <lastmod>2020-02-05T16:43:21+01:00</lastmod>
+    <lastmod>2020-07-18T15:09:35+02:00</lastmod>
   </url>
   
   <url>
@@ -178,13 +178,13 @@
   </url>
   
   <url>
-    <loc>https://celix.apache.org/docs/2.2.0/docs.html</loc>
-    <lastmod>2020-02-05T16:43:21+01:00</lastmod>
+    <loc>https://celix.apache.org/docs/2.2.1/docs.html</loc>
+    <lastmod>2020-07-18T15:09:35+02:00</lastmod>
   </url>
   
   <url>
     <loc>https://celix.apache.org/download.html</loc>
-    <lastmod>2020-07-17T22:02:28+02:00</lastmod>
+    <lastmod>2020-07-18T15:09:35+02:00</lastmod>
   </url>
   
   <url>
@@ -193,8 +193,8 @@
   </url>
   
   <url>
-    <loc>https://celix.apache.org/docs/2.2.0/celix/libs/etcdlib/README.html</loc>
-    <lastmod>2020-02-03T15:43:09+01:00</lastmod>
+    <loc>https://celix.apache.org/docs/2.2.1/celix/libs/etcdlib/README.html</loc>
+    <lastmod>2020-07-18T15:09:35+02:00</lastmod>
   </url>
   
   <url>
@@ -203,18 +203,18 @@
   </url>
   
   <url>
-    <loc>https://celix.apache.org/docs/2.2.0/celix/documents/getting_started/README.html</loc>
-    <lastmod>2020-02-03T15:43:09+01:00</lastmod>
+    <loc>https://celix.apache.org/docs/2.2.1/celix/documents/getting_started/README.html</loc>
+    <lastmod>2020-07-18T15:09:35+02:00</lastmod>
   </url>
   
   <url>
-    <loc>https://celix.apache.org/docs/2.2.0/celix/bundles/http_admin/README.html</loc>
-    <lastmod>2020-02-03T15:43:09+01:00</lastmod>
+    <loc>https://celix.apache.org/docs/2.2.1/celix/bundles/http_admin/README.html</loc>
+    <lastmod>2020-07-18T15:09:35+02:00</lastmod>
   </url>
   
   <url>
-    <loc>https://celix.apache.org/docs/2.2.0/celix/examples/celix-examples/http_example/README.html</loc>
-    <lastmod>2020-02-03T15:43:09+01:00</lastmod>
+    <loc>https://celix.apache.org/docs/2.2.1/celix/examples/celix-examples/http_example/README.html</loc>
+    <lastmod>2020-07-18T15:09:35+02:00</lastmod>
   </url>
   
   <url>
@@ -223,8 +223,8 @@
   </url>
   
   <url>
-    <loc>https://celix.apache.org/docs/2.2.0/celix/misc/experimental/README.html</loc>
-    <lastmod>2020-02-03T15:43:09+01:00</lastmod>
+    <loc>https://celix.apache.org/docs/2.2.1/celix/misc/experimental/README.html</loc>
+    <lastmod>2020-07-18T15:09:35+02:00</lastmod>
   </url>
   
   <url>
@@ -233,8 +233,8 @@
   </url>
   
   <url>
-    <loc>https://celix.apache.org/docs/2.2.0/celix/documents/intro/README.html</loc>
-    <lastmod>2020-02-03T15:43:09+01:00</lastmod>
+    <loc>https://celix.apache.org/docs/2.2.1/celix/documents/intro/README.html</loc>
+    <lastmod>2020-07-18T15:09:35+02:00</lastmod>
   </url>
   
   <url>
@@ -248,8 +248,8 @@
   </url>
   
   <url>
-    <loc>https://celix.apache.org/docs/2.2.0/celix/libs/launcher/README.html</loc>
-    <lastmod>2020-02-03T15:43:09+01:00</lastmod>
+    <loc>https://celix.apache.org/docs/2.2.1/celix/libs/launcher/README.html</loc>
+    <lastmod>2020-07-18T15:09:35+02:00</lastmod>
   </url>
   
   <url>
@@ -258,8 +258,8 @@
   </url>
   
   <url>
-    <loc>https://celix.apache.org/docs/2.2.0/celix/bundles/logging/log_service/README.html</loc>
-    <lastmod>2020-02-03T15:43:09+01:00</lastmod>
+    <loc>https://celix.apache.org/docs/2.2.1/celix/bundles/logging/log_service/README.html</loc>
+    <lastmod>2020-07-18T15:09:35+02:00</lastmod>
   </url>
   
   <url>
@@ -268,8 +268,8 @@
   </url>
   
   <url>
-    <loc>https://celix.apache.org/docs/2.2.0/celix/bundles/logging/log_writer/README.html</loc>
-    <lastmod>2020-02-03T15:43:09+01:00</lastmod>
+    <loc>https://celix.apache.org/docs/2.2.1/celix/bundles/logging/log_writer/README.html</loc>
+    <lastmod>2020-07-18T15:09:35+02:00</lastmod>
   </url>
   
   <url>
@@ -283,8 +283,8 @@
   </url>
   
   <url>
-    <loc>https://celix.apache.org/docs/2.2.0/celix/libs/utils/include/memstream/README.html</loc>
-    <lastmod>2020-02-03T15:43:09+01:00</lastmod>
+    <loc>https://celix.apache.org/docs/2.2.1/celix/libs/utils/include/memstream/README.html</loc>
+    <lastmod>2020-07-18T15:09:35+02:00</lastmod>
   </url>
   
   <url>
@@ -293,8 +293,8 @@
   </url>
   
   <url>
-    <loc>https://celix.apache.org/docs/2.2.0/celix/bundles/pubsub/pubsub_admin_udp_mc/README.html</loc>
-    <lastmod>2020-02-03T15:43:09+01:00</lastmod>
+    <loc>https://celix.apache.org/docs/2.2.1/celix/bundles/pubsub/pubsub_admin_udp_mc/README.html</loc>
+    <lastmod>2020-07-18T15:09:35+02:00</lastmod>
   </url>
   
   <url>
@@ -303,8 +303,8 @@
   </url>
   
   <url>
-    <loc>https://celix.apache.org/docs/2.2.0/celix/bundles/pubsub/README.html</loc>
-    <lastmod>2020-02-03T15:43:09+01:00</lastmod>
+    <loc>https://celix.apache.org/docs/2.2.1/celix/bundles/pubsub/README.html</loc>
+    <lastmod>2020-07-18T15:09:35+02:00</lastmod>
   </url>
   
   <url>
@@ -313,8 +313,8 @@
   </url>
   
   <url>
-    <loc>https://celix.apache.org/docs/2.2.0/celix/bundles/pubsub/examples/keys/README.html</loc>
-    <lastmod>2020-02-03T15:43:09+01:00</lastmod>
+    <loc>https://celix.apache.org/docs/2.2.1/celix/bundles/pubsub/examples/keys/README.html</loc>
+    <lastmod>2020-07-18T15:09:35+02:00</lastmod>
   </url>
   
   <url>
@@ -323,13 +323,13 @@
   </url>
   
   <url>
-    <loc>https://celix.apache.org/docs/2.2.0/celix/README.html</loc>
-    <lastmod>2020-02-03T15:43:09+01:00</lastmod>
+    <loc>https://celix.apache.org/docs/2.2.1/celix/README.html</loc>
+    <lastmod>2020-07-18T15:09:35+02:00</lastmod>
   </url>
   
   <url>
-    <loc>https://celix.apache.org/docs/2.2.0/celix/bundles/device_access/example/refining_driver/README.html</loc>
-    <lastmod>2020-02-03T15:43:09+01:00</lastmod>
+    <loc>https://celix.apache.org/docs/2.2.1/celix/bundles/device_access/example/refining_driver/README.html</loc>
+    <lastmod>2020-07-18T15:09:35+02:00</lastmod>
   </url>
   
   <url>
@@ -343,18 +343,18 @@
   </url>
   
   <url>
-    <loc>https://celix.apache.org/docs/2.2.0/celix/bundles/remote_services/remote_services_api/README.html</loc>
-    <lastmod>2020-02-03T15:43:09+01:00</lastmod>
+    <loc>https://celix.apache.org/docs/2.2.1/celix/bundles/remote_services/remote_services_api/README.html</loc>
+    <lastmod>2020-07-18T15:09:35+02:00</lastmod>
   </url>
   
   <url>
-    <loc>https://celix.apache.org/docs/2.2.0/celix/bundles/remote_services/rsa_spi/README.html</loc>
-    <lastmod>2020-02-03T15:43:09+01:00</lastmod>
+    <loc>https://celix.apache.org/docs/2.2.1/celix/bundles/remote_services/rsa_spi/README.html</loc>
+    <lastmod>2020-07-18T15:09:35+02:00</lastmod>
   </url>
   
   <url>
-    <loc>https://celix.apache.org/docs/2.2.0/celix/bundles/remote_services/remote_service_admin_dfi/README.html</loc>
-    <lastmod>2020-02-03T15:43:09+01:00</lastmod>
+    <loc>https://celix.apache.org/docs/2.2.1/celix/bundles/remote_services/remote_service_admin_dfi/README.html</loc>
+    <lastmod>2020-07-18T15:09:35+02:00</lastmod>
   </url>
   
   <url>
@@ -363,8 +363,8 @@
   </url>
   
   <url>
-    <loc>https://celix.apache.org/docs/2.2.0/celix/bundles/remote_services/README.html</loc>
-    <lastmod>2020-02-03T15:43:09+01:00</lastmod>
+    <loc>https://celix.apache.org/docs/2.2.1/celix/bundles/remote_services/README.html</loc>
+    <lastmod>2020-07-18T15:09:35+02:00</lastmod>
   </url>
   
   <url>
@@ -373,8 +373,8 @@
   </url>
   
   <url>
-    <loc>https://celix.apache.org/docs/2.2.0/celix/bundles/shell/remote_shell/README.html</loc>
-    <lastmod>2020-02-03T15:43:09+01:00</lastmod>
+    <loc>https://celix.apache.org/docs/2.2.1/celix/bundles/shell/remote_shell/README.html</loc>
+    <lastmod>2020-07-18T15:09:35+02:00</lastmod>
   </url>
   
   <url>
@@ -383,8 +383,8 @@
   </url>
   
   <url>
-    <loc>https://celix.apache.org/docs/2.2.0/celix/examples/celix-examples/services_example_c/README.html</loc>
-    <lastmod>2020-02-03T15:43:09+01:00</lastmod>
+    <loc>https://celix.apache.org/docs/2.2.1/celix/examples/celix-examples/services_example_c/README.html</loc>
+    <lastmod>2020-07-18T15:09:35+02:00</lastmod>
   </url>
   
   <url>
@@ -393,8 +393,8 @@
   </url>
   
   <url>
-    <loc>https://celix.apache.org/docs/2.2.0/celix/bundles/shell/shell/README.html</loc>
-    <lastmod>2020-02-03T15:43:09+01:00</lastmod>
+    <loc>https://celix.apache.org/docs/2.2.1/celix/bundles/shell/shell/README.html</loc>
+    <lastmod>2020-07-18T15:09:35+02:00</lastmod>
   </url>
   
   <url>
@@ -403,13 +403,13 @@
   </url>
   
   <url>
-    <loc>https://celix.apache.org/docs/2.2.0/celix/bundles/shell/shell_tui/README.html</loc>
-    <lastmod>2020-02-03T15:43:09+01:00</lastmod>
+    <loc>https://celix.apache.org/docs/2.2.1/celix/bundles/shell/shell_tui/README.html</loc>
+    <lastmod>2020-07-18T15:09:35+02:00</lastmod>
   </url>
   
   <url>
-    <loc>https://celix.apache.org/docs/2.2.0/celix/bundles/shell/shell_wui/README.html</loc>
-    <lastmod>2020-02-03T15:43:09+01:00</lastmod>
+    <loc>https://celix.apache.org/docs/2.2.1/celix/bundles/shell/shell_wui/README.html</loc>
+    <lastmod>2020-07-18T15:09:35+02:00</lastmod>
   </url>
   
   <url>
@@ -428,8 +428,8 @@
   </url>
   
   <url>
-    <loc>https://celix.apache.org/docs/2.2.0/celix/documents/subprojects/README.html</loc>
-    <lastmod>2020-02-03T15:43:09+01:00</lastmod>
+    <loc>https://celix.apache.org/docs/2.2.1/celix/documents/subprojects/README.html</loc>
+    <lastmod>2020-07-18T15:09:35+02:00</lastmod>
   </url>
   
   <url>
@@ -438,13 +438,13 @@
   </url>
   
   <url>
-    <loc>https://celix.apache.org/docs/2.2.0/celix/libs/dependency_manager/TODO.html</loc>
-    <lastmod>2020-02-03T15:43:09+01:00</lastmod>
+    <loc>https://celix.apache.org/docs/2.2.1/celix/libs/dependency_manager/TODO.html</loc>
+    <lastmod>2020-07-18T15:09:35+02:00</lastmod>
   </url>
   
   <url>
-    <loc>https://celix.apache.org/docs/2.2.0/celix/libs/dependency_manager_cxx/TODO.html</loc>
-    <lastmod>2020-02-03T15:43:09+01:00</lastmod>
+    <loc>https://celix.apache.org/docs/2.2.1/celix/libs/dependency_manager_cxx/TODO.html</loc>
+    <lastmod>2020-07-18T15:09:35+02:00</lastmod>
   </url>
   
   <url>
@@ -453,8 +453,8 @@
   </url>
   
   <url>
-    <loc>https://celix.apache.org/docs/2.2.0/celix/bundles/remote_services/topology_manager/README.html</loc>
-    <lastmod>2020-02-03T15:43:09+01:00</lastmod>
+    <loc>https://celix.apache.org/docs/2.2.1/celix/bundles/remote_services/topology_manager/README.html</loc>
+    <lastmod>2020-07-18T15:09:35+02:00</lastmod>
   </url>
   
   <url>
@@ -463,8 +463,8 @@
   </url>
   
   <url>
-    <loc>https://celix.apache.org/docs/2.2.0/celix/documents/getting_started/using_services_with_c.html</loc>
-    <lastmod>2020-02-03T15:43:09+01:00</lastmod>
+    <loc>https://celix.apache.org/docs/2.2.1/celix/documents/getting_started/using_services_with_c.html</loc>
+    <lastmod>2020-07-18T15:09:35+02:00</lastmod>
   </url>
   
   <url>
@@ -473,8 +473,8 @@
   </url>
   
   <url>
-    <loc>https://celix.apache.org/docs/2.2.0/celix/documents/getting_started/using_services_with_cxx.html</loc>
-    <lastmod>2020-02-03T15:43:09+01:00</lastmod>
+    <loc>https://celix.apache.org/docs/2.2.1/celix/documents/getting_started/using_services_with_cxx.html</loc>
+    <lastmod>2020-07-18T15:09:35+02:00</lastmod>
   </url>
   
   <url>
@@ -483,8 +483,8 @@
   </url>
   
   <url>
-    <loc>https://celix.apache.org/docs/2.2.0/celix/libs/utils/README.html</loc>
-    <lastmod>2020-02-03T15:43:09+01:00</lastmod>
+    <loc>https://celix.apache.org/docs/2.2.1/celix/libs/utils/README.html</loc>
+    <lastmod>2020-07-18T15:09:35+02:00</lastmod>
   </url>
   
   <url>
