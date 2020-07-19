@@ -102,4 +102,4 @@ and done!
 
 ## Further reading
 
- * [Git at Apache](http://wiki.apache.org/general/GitAtApache)
+ * [Git at Apache](https://infra.apache.org/git-primer.html)

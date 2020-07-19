@@ -24,7 +24,7 @@ on request. But if we start to believe you have grown into the project
 and would make a great addition to our committer community we'll
 held a private discussion and eventually invite you to join officially.
 
-You can read more about this on the page ["How the ASF works"](http://www.apache.org/foundation/how-it-works.html).
+You can read more about this on the page ["How the ASF works"](https://www.apache.org/foundation/how-it-works.html).
 
 Now as you have understood that you don't need to ask for anything to start,
 you can simply start. It is always a good idea to first subscribe to the

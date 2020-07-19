@@ -11,7 +11,7 @@ title: Source code and builds
 Besides the archives offered on the [download](/download.cgi) page, Celix uses a source code repository hosted on both 
 Apache and GitHub environments for development. This repository is mirrored and is our one-and-only development repository. 
 
-With [Git](http://git-scm.com/) installed, obtaining a working copy of the Celix codebase is as simple as
+With [Git](https://git-scm.com/) installed, obtaining a working copy of the Celix codebase is as simple as
 
 ```
 > git clone https://gitbox.apache.org/repos/asf/celix.git
@@ -24,7 +24,7 @@ or from GitHub
 ```
 
 For more about using version control systems at Apache, see the ASF's
-[Source Code Repositories](http://www.apache.org/dev/#version-control) page.
+[Source Code Repositories](https://www.apache.org/dev/#version-control) page.
 
 ### Building and using Celix
  
