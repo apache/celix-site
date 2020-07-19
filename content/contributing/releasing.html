@@ -126,22 +126,22 @@
 </nav>
 <p>Interesting links:</p>
 <ul>
-<li><a href="http://www.apache.org/dev/release.html">Apache Release Guide</a></li>
-<li><a href="http://www.apache.org/dev/release-signing.html">Apache Release Signing</a></li>
-<li><a href="http://creadur.apache.org/rat/apache-rat/index.html">Apache RAT</a></li>
-<li><a href="http://www.apache.org/dev/openpgp.html">Apache OpenPGP HowTo</a></li>
+<li><a href="https://www.apache.org/dev/release.html">Apache Release Guide</a></li>
+<li><a href="https://www.apache.org/dev/release-signing.html">Apache Release Signing</a></li>
+<li><a href="https://creadur.apache.org/rat/apache-rat/index.html">Apache RAT</a></li>
+<li><a href="https://www.apache.org/dev/openpgp.html">Apache OpenPGP HowTo</a></li>
 </ul>
 <h2 id="create-signing-keys">Create signing KEYS</h2>
 <p>Each Release Manager must have his own signing keys. Information about and instruction for the generation
-of these keys can be found on the <a href="http://www.apache.org/dev/release-signing.html#generate">Signing Releases page</a>
-and <a href="http://www.apache.org/dev/openpgp.html#generate-key">How To OpenPGP</a>. Be sure to follow the information
+of these keys can be found on the <a href="https://www.apache.org/dev/release-signing.html#generate">Signing Releases page</a>
+and <a href="https://www.apache.org/dev/openpgp.html#generate-key">How To OpenPGP</a>. Be sure to follow the information
 provided on that site and its references.</p>
-<p>The generated key can be uploaded to the <a href="http://pgp.mit.edu/">MIT PGP Public Key Server</a>.</p>
-<p>Next, the public key signature must be added to the KEYS file. Again, read the <a href="http://www.apache.org/dev/release-signing.html#keys-policy">Signing Releases page</a>
+<p>The generated key can be uploaded to the <a href="https://pgp.mit.edu/">MIT PGP Public Key Server</a>.</p>
+<p>Next, the public key signature must be added to the KEYS file. Again, read the <a href="https://www.apache.org/dev/release-signing.html#keys-policy">Signing Releases page</a>
 for more information. This updated file needs to be uploaded to GIT, be sure to upload it to:</p>
 <ul>
 <li><a href="https://dist.apache.org/repos/dist/dev/celix/KEYS">Apache Celix release development area KEYS</a></li>
-<li><a href="https://dist.apache.org/repos/dist/release/celix/KEYS">Apache Celix release distribution area KEYS</a></li>
+<li><a href="https://downloads.apache.org/celix/KEYS">Apache Celix release distribution area KEYS</a></li>
 </ul>
 <h2 id="create-release-branch">Create release branch</h2>
 <p>A release will be prepared in a release branch. This branch is created from the <code>master</code> branch.</p>
@@ -223,16 +223,16 @@ $ tar --exclude<span style="color:#666">=</span><span style="color:#b44">&#34;.*
 <span style="color:#080;font-style:italic"># The create symbolic link can be removed</span>
 $ unlink celix-X.Y.Z
 </code></pre></div><p>After creating the artifact, the file has to be signed. More information about signing can be found at
-<a href="http://www.apache.org/dev/release-signing.html">Release signing</a>.</p>
+<a href="https://infra.apache.org/release-signing.html">Release signing</a>.</p>
 <div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#080;font-style:italic"># Generate SHA512 checksum</span>
 $ gpg --print-md SHA512 celix-X.Y.Z.tar.gz &gt; celix-X.Y.Z.tar.gz.sha512
 
 <span style="color:#080;font-style:italic"># Generate ASCII signature</span>
 $ gpg --armor --output celix-X.Y.Z.tar.gz.asc --detach-sig celix-X.Y.Z.tar.gz
 </code></pre></div><p>Copy the archive of the source to the <a href="https://dist.apache.org/repos/dist/dev/celix">Apache Celix release development area</a> (using SVN).</p>
-<p>See the <a href="http://www.apache.org/dev/release.html#host-rc">Apache Release Guide</a> for more information.</p>
+<p>See the <a href="https://www.apache.org/legal/release-policy.html#host-rc">Apache Release Guide</a> for more information.</p>
 <h2 id="run-the-vote">Run the vote</h2>
-<p>Before a release is official a vote has to be held. More information on voting can be found on <a href="http://www.apache.org/foundation/voting.html">Apache Voting Process</a>.</p>
+<p>Before a release is official a vote has to be held. More information on voting can be found on <a href="https://www.apache.org/foundation/voting.html">Apache Voting Process</a>.</p>
 <p>The first vote has to be done on the public <a href="/support/mailing-list.html">mailing list</a> of the project. The following template must be used for this vote:</p>
 <div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">To: dev@celix.apache.org
 Subject: [VOTE] Release Celix version X.Y.Z
@@ -253,7 +253,7 @@ Celix&#39;s keys can be found at:
 https://dist.apache.org/repos/dist/dev/celix/KEYS
 
 Information for voting on a release can be found at:
-http://www.apache.org/dev/release.html#approving-a-release
+https://www.apache.org/legal/release-policy.html#approving-a-release
 
 Please vote to approve this release:
 
@@ -317,8 +317,8 @@ $ git push origin master
 svnpubsub will move the artifact to the correct server for mirroring. Mirroring typically can take up to 24 hours.</p>
 <p>Besides uploading the new release, the old release should be archived. Since archiving is already automated,
 it is only needed to delete the previous version from the release area. See the
-<a href="http://www.apache.org/dev/release.html#when-to-archive">Apache Release Guide</a> for more information.</p>
-<p>See the <a href="http://www.apache.org/dev/release.html#upload-ci">Apache Release Guide</a> for more information.</p>
+<a href="https://www.apache.org/legal/release-policy.html#when-to-archive">Apache Release Guide</a> for more information.</p>
+<p>See the <a href="https://www.apache.org/legal/release-policy.html#upload-ci">Apache Release Guide</a> for more information.</p>
 <p>After these 24 hours the release can be announced.</p>
 <h3 id="announce-the-release">Announce the release</h3>
 <p>Update website&rsquo;s News and Download sections to include the new release.</p>
@@ -336,11 +336,11 @@ Celix is an implementation of the OSGi specification adapted to C. It will follo
 This new release focuses on .... {add additional information for this release}
 
 The release is available here:
-http://celix.apache.org/download.cgi
+https://celix.apache.org/download.cgi
 
 The full change log is available here:
 
-We welcome your help and feedback. For more information on how to report problems, and to get involved, visit the project website at http://celix.apache.org/
+We welcome your help and feedback. For more information on how to report problems, and to get involved, visit the project website at https://celix.apache.org/
 
 The Apache Celix Team
 </code></pre></div><p class="alert alert-primary">Note: the email must be sent from an @apache.org address</p>
@@ -359,7 +359,7 @@ The Apache Celix Team
             <div class="col-md-8 text-center">
                 <p class="m-0 text-white">
                     Copyright &copy; 2020 The Apache Software Foundation, Licensed under
-                    the <a href="http://www.apache.org/licenses/LICENSE-2.0">Apache License, Version 2.0</a>.
+                    the <a href="https://www.apache.org/licenses/LICENSE-2.0">Apache License, Version 2.0</a>.
                     <br>
                     Apache Celix, Celix, Apache, the Apache feather logo and the Apache Celix logo are trademarks of The Apache Software Foundation.
                 </p>
