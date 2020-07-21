@@ -50,15 +50,42 @@ if [[ ! -d "${RELEASE_DIR}" ]]; then
         cp -v ${CELIX_SRC_DIR}/${FILE_PATH} ${CELIX_DOCS_DIR}/${FILE_DIR}
 
         # Prepend markdown file with Hugo header
-        DEST_FILE=${CELIX_DOCS_DIR}/${FILE_PATH}
-        SECOND_LINE=$(head -n 2 ${DEST_FILE} | tail -n 1)
+        DEST_FILE="${CELIX_DOCS_DIR}/${FILE_PATH}"
+        FIRST_LINE="$(head -n 1 ${DEST_FILE})"
 
-        if [[ "${SECOND_LINE}" != *"type: celix-doc"* ]]; then
-            sed -i "1s;^;---\ntype: celix-doc\ntitle: ${FILE_NAME}\nversion: ${RELEASE_VERSION}\n---\n\n;" ${DEST_FILE}
+        if [[ "${FIRST_LINE}" != *"---"* ]]; then
+            # No header found, probably a 3rd party file
+            # Prepend header to file
+            sed -i "1s;^;---\ntitle: ${FILE_NAME}\ntype: celix-doc\nversion: ${RELEASE_VERSION}\n---\n\n;" "${DEST_FILE}"
+        else
+            # Get everything between the --- at the beginning of the file
+            # Also replace line-breaks with '\n' for multiline replacements
+            header=$(awk 'BEGIN{ORS="\\n";}/---/{++c;next} c==1' ${DEST_FILE})
+
+            # Strip final '\n' character
+            header=${header/%\\n/}
+
+            # Escape forward slashes for the replacement command
+            original_header="${header////\\/}"
+            new_header="${original_header}"
+
+            if [[ "${new_header}" != *"type:"* ]]; then
+                new_header="${new_header}\ntype: celix-doc"
+            fi
+
+            # Append the version
+            new_header="${new_header}\nversion: ${RELEASE_VERSION}"
+
+            # Only replace header if there are any differences
+            if [[ "${original_header}" != "${new_header}" ]]; then
+                # Use perl instead of sed because of sed its incredibly vague syntax for multi-line replacements
+                # See: https://unix.stackexchange.com/a/26290
+                perl -0777 -i -pe "s/${original_header}/${new_header}/" "${DEST_FILE}"
+            fi
         fi
 
         # Replace markdown links with HTML links
-        sed -i "s/.md)/.html)/" ${DEST_FILE}
+        sed -i "s/.md)/.html)/" "${DEST_FILE}"
     done
 else
     echo "Not extracting docs, output directory already exists!"
