@@ -14,7 +14,7 @@ Please follow the links below to find appropriate content:
  - [Building](./celix/documents/building/README.html)
  - [Subprojects](./celix/documents/subprojects/README.html)
 
-The Doxygen documentation for release 2.2.1 is available <a href="html/index.html" target="_blank">here</a>.
+The Doxygen documentation for release 2.2.1 is available <a href="https://nightlies.apache.org/celix/2.2.1/" target="_blank">here</a>.
 
 View the 2.2.1 changelog [here](./celix/CHANGES.html).
  
