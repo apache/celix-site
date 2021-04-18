@@ -258,12 +258,36 @@ See the [Apache Release Guide](https://www.apache.org/legal/release-policy.html#
 
 After these 24 hours the release can be announced.
 
+### Publish release documentation
+
+After the release is available and tagged, the matching Doxygen documentation needs to be published.
+The following Jenkins job can be used for that:
+https://ci-builds.apache.org/job/Celix/job/doxygen-docs/
+
+* Click on 'Build with parameters'
+* In the `VERSION` field, enter the release number, e.g. `2.2.1`
+* Because release documentation will be generated, also check the `RELEASE` checkbox.
+* Click on the `BUILD` button.
+
+A build will be started after which a new directory will be created [here](https://nightlies.apache.org/celix/).
+
+### Update the website
+
+An important thing after the release has been created is updating the website.
+The following needs to be updated:
+
+* Update the `latestVersion` in the [config.toml]({{< site_src "config.toml" >}})
+* If the release is a new minor or major version, the documentation for the previous version can be retained
+by updating the [header.html]({{< site_src "layouts/partials/header.html" >}}) and adding the release number to the `Docs` dropdown.
+* Update the `celix-src` submodule to the correct release tag
+* Run the [extract_celix_docs.sh]({{< site_src "extract_celix_docs.sh" >}}) script to copy the markdown documentation within the Celix code base
+to the website.
+* Verify whether the documentation is correctly copied & otherwise make some minor tweaks.
+* Check-in the documentation and create a pull request to the [celix-site]({{< param "siteRepositoryUrl" >}}) repository for the Celix team to review.
+
+Once the site is updated proceed with announcing the release.
+
 ### Announce the release
-
-Update website's News and Download sections to include the new release.
-
-On the "Download" page, the old release can be replaced with the new one, there is no need to keep a link to archived versions. 
-The "News" section can simply be extended with an additional entry.
 
 Additionally it is a good idea to post a message to "announce@apache.org".
 
