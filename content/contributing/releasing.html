@@ -119,6 +119,8 @@
       <ul>
         <li><a href="#create-git-tag-and-merge-to-master">Create Git tag and merge to master</a></li>
         <li><a href="#roll-out-release-artifacts">Roll out release artifacts</a></li>
+        <li><a href="#publish-release-documentation">Publish release documentation</a></li>
+        <li><a href="#update-the-website">Update the website</a></li>
         <li><a href="#announce-the-release">Announce the release</a></li>
       </ul>
     </li>
@@ -320,10 +322,35 @@ it is only needed to delete the previous version from the release area. See the
 <a href="https://www.apache.org/legal/release-policy.html#when-to-archive">Apache Release Guide</a> for more information.</p>
 <p>See the <a href="https://www.apache.org/legal/release-policy.html#upload-ci">Apache Release Guide</a> for more information.</p>
 <p>After these 24 hours the release can be announced.</p>
+<h3 id="publish-release-documentation">Publish release documentation</h3>
+<p>After the release is available and tagged, the matching Doxygen documentation needs to be published.
+The following Jenkins job can be used for that:
+<a href="https://ci-builds.apache.org/job/Celix/job/doxygen-docs/">https://ci-builds.apache.org/job/Celix/job/doxygen-docs/</a></p>
+<ul>
+<li>Click on &lsquo;Build with parameters&rsquo;</li>
+<li>In the <code>VERSION</code> field, enter the release number, e.g. <code>2.2.1</code></li>
+<li>Because release documentation will be generated, also check the <code>RELEASE</code> checkbox.</li>
+<li>Click on the <code>BUILD</code> button.</li>
+</ul>
+<p>A build will be started after which a new directory will be created <a href="https://nightlies.apache.org/celix/">here</a>.</p>
+<h3 id="update-the-website">Update the website</h3>
+<p>An important thing after the release has been created is updating the website.
+The following needs to be updated:</p>
+<ul>
+<li>Update the <code>latestVersion</code> in the <a href="
+https://github.com/apache/celix-site/blob/master/config.toml">config.toml</a></li>
+<li>If the release is a new minor or major version, the documentation for the previous version can be retained
+by updating the <a href="
+https://github.com/apache/celix-site/blob/master/layouts/partials/header.html">header.html</a> and adding the release number to the <code>Docs</code> dropdown.</li>
+<li>Update the <code>celix-src</code> submodule to the correct release tag</li>
+<li>Run the <a href="
+https://github.com/apache/celix-site/blob/master/extract_celix_docs.sh">extract_celix_docs.sh</a> script to copy the markdown documentation within the Celix code base
+to the website.</li>
+<li>Verify whether the documentation is correctly copied &amp; otherwise make some minor tweaks.</li>
+<li>Check-in the documentation and create a pull request to the <a href="https://github.com/apache/celix-site">celix-site</a> repository for the Celix team to review.</li>
+</ul>
+<p>Once the site is updated proceed with announcing the release.</p>
 <h3 id="announce-the-release">Announce the release</h3>
-<p>Update website&rsquo;s News and Download sections to include the new release.</p>
-<p>On the &ldquo;Download&rdquo; page, the old release can be replaced with the new one, there is no need to keep a link to archived versions.
-The &ldquo;News&rdquo; section can simply be extended with an additional entry.</p>
 <p>Additionally it is a good idea to post a message to &ldquo;<a href="mailto:announce@apache.org">announce@apache.org</a>&rdquo;.</p>
 <p>The following template must be used:</p>
 <div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">To: announce@apache.org, dev@celix.apache.org

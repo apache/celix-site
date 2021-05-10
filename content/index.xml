@@ -699,8 +699,7 @@ Getting Started with Apache Celix For a guide how to start writing your own bund
       <guid>https://celix.apache.org/contributing/releasing.html</guid>
       <description>Releasing Apache Celix Note: This information is only of use to Apache Celix Release Managers!
 Steps to follow:
- Create signing KEYS Create release branch Update release related files Compile and test Create, sign and publish artifacts Run the vote Post the vote results Vote Passed  Create Git tag and merge to master Roll out release artifacts Announce the release     Interesting links:
- Apache Release Guide Apache Release Signing Apache RAT Apache OpenPGP HowTo  Create signing KEYS Each Release Manager must have his own signing keys.</description>
+ Create signing KEYS Create release branch Update release related files Compile and test Create, sign and publish artifacts Run the vote Post the vote results Vote Passed  Create Git tag and merge to master Roll out release artifacts Publish release documentation Update the website Announce the release     Interesting links:</description>
     </item>
     
     <item>
