@@ -15,7 +15,6 @@ Committee members are listed in the chronological order, according to the date e
 
 - Alexander Broekhuis (abroekhuis at apache.org)
 - Marcel Offermans (marss at apache.org)
-- Konstantin I Boudnik (cos at apache.org)
 - Pepijn Noltes (pnoltes at apache.org) **(Chairman)**
 - Roman Shaposhnik (rvs at apache.org)
 - Bjoern Petri (bpetri at apache.org)
