@@ -32,3 +32,4 @@ Other committers are listed in the chronological order, according to the date ea
 - Daan Fischer (dfischer at apache.org)
 - Roy Bulter (rbulter at apache.org)
 - Idzard Hoekstra (idzardh at apache.org)
+- Michael de Lang (oipo at apache.org)
