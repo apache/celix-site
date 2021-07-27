@@ -1,3 +1,6 @@
+publish:
+  whoami: asf-site
+
 github:
   description: "Website sources for the Apache Celix website"
   homepage: https://celix.apache.org/
