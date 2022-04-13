@@ -44,5 +44,6 @@ github:
   protected_branches:
     asf-site: {}
     master:
-      required_pull_request_reviews: {}
+      required_pull_request_reviews:
+        required_approving_review_count: 0
 
