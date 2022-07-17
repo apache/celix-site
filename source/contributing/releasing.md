@@ -283,6 +283,8 @@ by updating the [header.html]({{< site_src "layouts/partials/header.html" >}}) a
 * Run the [extract_celix_docs.sh]({{< site_src "extract_celix_docs.sh" >}}) script to copy the markdown documentation within the Celix code base
 to the website.
 * Verify whether the documentation is correctly copied & otherwise make some minor tweaks.
+* Create a `docs.md` file within the release documentation directory (example path: `source/docs/2.2.1/docs.md`, where 2.2.1 needs to be
+  substituted with the actual released version). This file can be copied and updated from e.g. a previous release.
 * Check-in the documentation and create a pull request to the [celix-site]({{< param "siteRepositoryUrl" >}}) repository for the Celix team to review.
 
 Once the site is updated proceed with announcing the release.
