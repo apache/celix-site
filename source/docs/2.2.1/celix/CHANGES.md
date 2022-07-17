@@ -23,7 +23,7 @@ limitations under the License.
 
 # Changes for 2.2.1
 
-# Fixes
+## Fixes
 
 - Fixes etcdlib CMake setup to that etcdlib can be build as a separate project
 

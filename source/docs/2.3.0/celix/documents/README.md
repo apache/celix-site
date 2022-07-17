@@ -79,7 +79,7 @@ bundles contains binaries depending on the stdlibc++ library.
 ## More information
 
 * Building
-  * [Building and Installing Apache Celix](building)
+  * [Building and Installing Apache Celix](building/README.html)
   * [Building and Developing Apache Celix with CLion](building/dev_celix_with_clion.html)
 * Framework 
   * [Apache Celix Bundles](bundles.html)

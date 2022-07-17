@@ -288,7 +288,7 @@ add_celix_container(test_container BUNDLES
 )
 ```
 
-See [Apache Celix CMake Commands](cmake_commands) for more detailed information.
+See [Apache Celix CMake Commands](cmake_commands/README.html) for more detailed information.
 
 # The `celix::lb` shell command
 To interactively see the installed bundles the `celix::lb` shell command (list bundles) can be used.
