@@ -26,11 +26,11 @@ provided on that site and its references.
 
 The generated key can be uploaded to the [MIT PGP Public Key Server](https://pgp.mit.edu/).
 
-Next, the public key signature must be added to the KEYS file. Again, read the [Signing Releases page](https://www.apache.org/dev/release-signing.html#keys-policy) 
-for more information. This updated file needs to be uploaded to GIT, be sure to upload it to:
+Next, the public key signature must be added to the [Celix KEYS file](https://downloads.apache.org/celix/KEYS).
+Again, read the [Signing Releases page](https://www.apache.org/dev/release-signing.html#keys-policy) for more
+information. This updated file needs to be uploaded to SVN at the following location:
 
-* [Apache Celix release development area KEYS](https://dist.apache.org/repos/dist/dev/celix/KEYS)
-* [Apache Celix release distribution area KEYS](https://downloads.apache.org/celix/KEYS)
+* [Apache Celix release distribution area KEYS](https://dist.apache.org/repos/dist/release/celix/KEYS)
 
 ## Create release branch
 
@@ -115,8 +115,8 @@ licenses may need to be mentioned in the NOTICE file.
 
 ## Create, sign and publish artifacts
 
-Since Celix only releases source artifacts, creating the artifact is simple and straightforward
-First verify that all changes are committed to the release branch and the branch is pushed to github
+Since Celix only releases source artifacts, creating the artifact is simple and straightforward.
+First verify that all changes are committed to the release branch and the branch is pushed to GitHub.
 
 ```bash
 # Create symbolic link so the archive has a directory with version information
