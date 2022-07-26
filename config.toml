@@ -33,7 +33,7 @@ fractions = false
 date = ["date", ":filename", "publishDate", "lastmod"]
 
 [params]
-latestVersion = "2.2.1"
+latestVersion = "2.3.0"
 
 repositoryUrl = "https://github.com/apache/celix"
 repositorySourceBranch = "master"
