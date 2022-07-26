@@ -26,11 +26,11 @@ provided on that site and its references.
 
 The generated key can be uploaded to the [MIT PGP Public Key Server](https://pgp.mit.edu/).
 
-Next, the public key signature must be added to the KEYS file. Again, read the [Signing Releases page](https://www.apache.org/dev/release-signing.html#keys-policy) 
-for more information. This updated file needs to be uploaded to GIT, be sure to upload it to:
+Next, the public key signature must be added to the [Celix KEYS file](https://downloads.apache.org/celix/KEYS).
+Again, read the [Signing Releases page](https://www.apache.org/dev/release-signing.html#keys-policy) for more
+information. This updated file needs to be uploaded to SVN at the following location:
 
-* [Apache Celix release development area KEYS](https://dist.apache.org/repos/dist/dev/celix/KEYS)
-* [Apache Celix release distribution area KEYS](https://downloads.apache.org/celix/KEYS)
+* [Apache Celix release distribution area KEYS](https://dist.apache.org/repos/dist/release/celix/KEYS)
 
 ## Create release branch
 
@@ -115,8 +115,8 @@ licenses may need to be mentioned in the NOTICE file.
 
 ## Create, sign and publish artifacts
 
-Since Celix only releases source artifacts, creating the artifact is simple and straightforward
-First verify that all changes are committed to the release branch and the branch is pushed to github
+Since Celix only releases source artifacts, creating the artifact is simple and straightforward.
+First verify that all changes are committed to the release branch and the branch is pushed to GitHub.
 
 ```bash
 # Create symbolic link so the archive has a directory with version information
@@ -283,6 +283,8 @@ by updating the [header.html]({{< site_src "layouts/partials/header.html" >}}) a
 * Run the [extract_celix_docs.sh]({{< site_src "extract_celix_docs.sh" >}}) script to copy the markdown documentation within the Celix code base
 to the website.
 * Verify whether the documentation is correctly copied & otherwise make some minor tweaks.
+* Create a `docs.md` file within the release documentation directory (example path: `source/docs/2.2.1/docs.md`, where 2.2.1 needs to be
+  substituted with the actual released version). This file can be copied and updated from e.g. a previous release.
 * Check-in the documentation and create a pull request to the [celix-site]({{< param "siteRepositoryUrl" >}}) repository for the Celix team to review.
 
 Once the site is updated proceed with announcing the release.
