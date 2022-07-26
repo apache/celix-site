@@ -1,0 +1,473 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>README.md / Apache Celix</title>
+
+    
+    <link rel="icon" href="/assets/img/favicon.ico">
+
+    
+    <link href="/assets/css/bootstrap.min.css" rel="stylesheet">
+
+    
+    <link href="/assets/css/style.css" rel="stylesheet">
+
+    <style>
+         
+         
+        .card-body img {
+            max-width: 100%;
+            width: 100%;
+            height: auto;
+        }
+
+         
+        .card-body img + em {
+            text-decoration: underline;
+        }
+    </style>
+
+    
+<script>
+  var _paq = window._paq = window._paq || [];
+   
+  _paq.push(['disableCookies']);
+   
+  _paq.push(['trackPageView']);
+  _paq.push(['enableLinkTracking']);
+  (function() {
+    var u="https://analytics.apache.org/";
+    _paq.push(['setTrackerUrl', u+'matomo.php']);
+    _paq.push(['setSiteId', '9']);
+    var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+    g.async=true; g.src=u+'matomo.js'; s.parentNode.insertBefore(g,s);
+  })();
+</script>
+
+
+</head>
+<body class="light-grey">
+
+<a href="https://github.com/apache/celix" class="github-ribbon">
+    <img src="/assets/img/forkme_right_red_aa0000.png" alt="Fork me on GitHub">
+</a>
+
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top">
+    <div class="container">
+        <a class="navbar-brand" href="/">
+            <img src="/assets/img/celix-white.svg" height="40" class="d-inline-block align-top" alt="Celix Logo">
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="/">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/download.cgi">Download</a>
+                </li>
+                <li class="nav-item dropdown active">
+                    <a class="nav-link dropdown-toggle" href="#" id="ddDocs" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Docs
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="ddDocs">
+                        <a class="dropdown-item" href="/docs/2.3.0/docs.html">2.3.0 (latest)</a>
+                        <a class="dropdown-item" href="/docs/2.2.1/docs.html">2.2.1</a>
+                        <a class="dropdown-item" href="/docs/2.1.0/docs.html">2.1.0</a>
+                    </div>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="ddContributing" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Contributing
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="ddContributing">
+                        <a class="dropdown-item" href="/contributing/youatcelix.html">You at Celix</a>
+                        <a class="dropdown-item" href="/contributing/submitting-patches.html">Submitting patches</a>
+                        <a class="dropdown-item" href="/contributing/source-and-builds.html">Source code and builds</a>
+                        <hr>
+                        <a class="dropdown-item" href="/contributing/releasing.html">Releasing</a>
+                        <a class="dropdown-item" href="/contributing/volunteers.html">Volunteers</a>
+                        <a class="dropdown-item" href="https://whimsy.apache.org/board/minutes/Celix.html">Board Reports</a>
+                    </div>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="ddSupport" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Support
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="ddSupport">
+                        <a class="dropdown-item" href="/support/mailing-list.html">Mailing Lists</a>
+                        <a class="dropdown-item" href="/support/issue-tracking.html">Issue Tracking</a>
+                    </div>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="ddFoundation" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        ASF
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="ddFoundation">
+                        <a class="dropdown-item" href="https://www.apache.org/">ASF Home</a>
+                        <a class="dropdown-item" href="https://www.apache.org/foundation/how-it-works.html">How it works</a>
+                        <a class="dropdown-item" href="https://www.apache.org/licenses/">License</a>
+                        <a class="dropdown-item" href="https://www.apache.org/foundation/sponsorship.html">Sponsorship</a>
+                        <a class="dropdown-item" href="https://www.apache.org/foundation/thanks.html">Thanks</a>
+                        <a class="dropdown-item" href="https://www.apache.org/security/">Security</a>
+                        <a class="dropdown-item" href="https://www.apache.org/foundation/policies/conduct">Code of Conduct</a>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+
+<div class="section">
+    <div class="container">
+        <div class="row py-4">
+            <div class="col-sm-12 card">
+                <div class="card-body pt-5">
+                    
+                    
+                        
+                        
+                            <a class="edit-on-gh" href="https://github.com/apache/celix/edit/master/README.md" title="Edit this page on GitHub">Edit on GitHub</a>
+                        
+                    
+
+                    
+                        
+                        <a href="/docs/2.3.0/docs.html" title="back to documentation">&lt;&lt; back to documentation</a>
+                    
+
+                    
+	<!--
+Licensed to the Apache Software Foundation (ASF) under one or more
+contributor license agreements.  See the NOTICE file distributed with
+this work for additional information regarding copyright ownership.
+The ASF licenses this file to You under the Apache License, Version 2.0
+(the "License"); you may not use this file except in compliance with
+the License.  You may obtain a copy of the License at
+   
+    http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+-->
+<h1 id="apache-celix">Apache Celix</h1>
+<p><a href="https://opensource.org/licenses/Apache-2.0"><img src="https://img.shields.io/badge/License-Apache%202.0-blue.svg" alt="License"></a>
+<img src="https://github.com/apache/celix/workflows/Celix%20Ubuntu/badge.svg" alt="Celix Ubuntu">
+<img src="https://github.com/apache/celix/workflows/Celix%20MacOS/badge.svg" alt="Celix MacOS">
+<a href="https://codecov.io/gh/apache/celix"><img src="https://codecov.io/gh/apache/celix/branch/master/graph/badge.svg" alt="codecov"></a>
+<a href="https://scan.coverity.com/projects/6685"><img src="https://scan.coverity.com/projects/6685/badge.svg" alt="Coverity Scan Build Status"></a></p>
+<p>Apache Celix is an implementation of a dynamic service framework inspired by the OSGi specification and adapted to C
+and C++ (C++17).
+It is a framework to develop dynamic modular software applications using component and in-process service-oriented
+programming.</p>
+<h2 id="documentation">Documentation</h2>
+<ul>
+<li><a href="documents/building/README.html">Building Apache Celix</a></li>
+<li><a href="documents/README.html">Apache Celix Intro</a></li>
+</ul>
+<h2 id="c-usage">C++ Usage</h2>
+<h3 id="hello-world-bundle">Hello World Bundle</h3>
+<p>Modularity in Celix is achieved by runtime installable bundles and dynamic - in process - services.<br>
+A Celix bundle is set of resources packed in a zip containing at least a manifest and almost always
+some shared library containing the bundle functionality.
+A Celix bundle can be created using the Celix CMake function <code>add_celix_bundle</code>.
+A Celix bundle is activated by executing the bundle entry points. For C++ bundles these bundle entry points are generated using the <code>CELIX_GEN_CXX_BUNDLE_ACTIVATOR</code> macro.</p>
+<p>Celix applications (Celix containers) can be created with the Celix CMake function <code>add_celix_container</code>.
+This function generates a C++ main function and is also used to configure default installed bundles.
+This can be bundles provided by Celix, an other project or build by the project self.</p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-C++" data-lang="C++"><span style="color:#080;font-style:italic">//src/MyBundleActivator.cc
+</span><span style="color:#080;font-style:italic"></span><span style="color:#080">#</span><span style="color:#080">include</span> <span style="color:#080">&lt;iostream&gt;</span><span style="color:#080">
+</span><span style="color:#080"></span><span style="color:#080">#</span><span style="color:#080">include</span> <span style="color:#080">&#34;celix/BundleActivator.h&#34;</span><span style="color:#080">
+</span><span style="color:#080"></span>
+<span style="color:#a2f;font-weight:bold">class</span> <span style="color:#00f">MyBundleActivator</span> {
+<span style="color:#a2f;font-weight:bold">public</span><span style="color:#666">:</span>
+    <span style="color:#a2f;font-weight:bold">explicit</span> MyBundleActivator(<span style="color:#a2f;font-weight:bold">const</span> std<span style="color:#666">:</span><span style="color:#666">:</span>shared_ptr<span style="color:#666">&lt;</span>celix<span style="color:#666">:</span><span style="color:#666">:</span>BundleContext<span style="color:#666">&gt;</span><span style="color:#666">&amp;</span> ctx) {
+        std<span style="color:#666">:</span><span style="color:#666">:</span>cout <span style="color:#666">&lt;</span><span style="color:#666">&lt;</span> <span style="color:#b44"></span><span style="color:#b44">&#34;</span><span style="color:#b44">Hello world from bundle with id </span><span style="color:#b44">&#34;</span> <span style="color:#666">&lt;</span><span style="color:#666">&lt;</span> ctx<span style="color:#666">-</span><span style="color:#666">&gt;</span>getBundleId() <span style="color:#666">&lt;</span><span style="color:#666">&lt;</span> std<span style="color:#666">:</span><span style="color:#666">:</span>endl;
+    }
+
+    <span style="color:#666">~</span>MyBundleActivator() <span style="color:#a2f;font-weight:bold">noexcept</span> {
+        std<span style="color:#666">:</span><span style="color:#666">:</span>cout <span style="color:#666">&lt;</span><span style="color:#666">&lt;</span> <span style="color:#b44"></span><span style="color:#b44">&#34;</span><span style="color:#b44">Goodbye world</span><span style="color:#b44">&#34;</span> <span style="color:#666">&lt;</span><span style="color:#666">&lt;</span> std<span style="color:#666">:</span><span style="color:#666">:</span>endl;
+    }
+};
+
+CELIX_GEN_CXX_BUNDLE_ACTIVATOR(MyBundleActivator)
+</code></pre></div><div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-CMake" data-lang="CMake"><span style="color:#080;font-style:italic">#CMakeLists.txt
+</span><span style="color:#080;font-style:italic"></span><span style="color:#a2f">find_package</span>(<span style="color:#b44">Celix</span> <span style="color:#b44">REQUIRED</span>)<span style="">
+</span><span style=""></span><span style="">
+</span><span style=""></span><span style="color:#a2f">add_celix_bundle</span>(<span style="color:#b44">MyBundle</span>
+    <span style="color:#b44">SOURCES</span> <span style="color:#b44">src/MyBundleActivator.cc</span>
+)<span style="">
+</span><span style=""></span><span style="">
+</span><span style=""></span><span style="color:#a2f">add_celix_container</span>(<span style="color:#b44">MyContainer</span>
+    <span style="color:#b44">BUNDLES</span>
+        <span style="color:#b44">Celix::ShellCxx</span>
+        <span style="color:#b44">Celix::shell_tui</span>
+        <span style="color:#b44">MyBundle</span>
+)<span style="">
+</span></code></pre></div><div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh"><span style="color:#080;font-style:italic">#bash</span>
+<span style="color:#080;font-style:italic">#goto project dir</span>
+<span style="color:#a2f">cd</span> cmake-build-debug <span style="color:#080;font-style:italic">#assuming clion cmake-build-debug dir</span>
+<span style="color:#a2f">cd</span> deploy/MyContainer
+./MyContainer
+<span style="color:#080;font-style:italic">#Celix shell</span>
+-&gt; lb -a
+<span style="color:#080;font-style:italic">#list of all installed bundles</span>
+-&gt; <span style="color:#a2f">help</span>
+<span style="color:#080;font-style:italic">#list of all available Celix shell commands</span>
+-&gt; <span style="color:#a2f">help</span> celix::lb
+<span style="color:#080;font-style:italic">#Help info about the shell command `celix::lb`</span>
+-&gt; stop <span style="color:#666">3</span>
+<span style="color:#080;font-style:italic">#stops MyBundle</span>
+-&gt; start <span style="color:#666">3</span>
+<span style="color:#080;font-style:italic">#starts MyBundle</span>
+-&gt; stop <span style="color:#666">0</span> 
+<span style="color:#080;font-style:italic">#stops the Celix framework</span>
+</code></pre></div><h3 id="register-a-service">Register a service</h3>
+<p>In the Celix framework, a service is a C++ object or C struct registered in the Celix framework service registry under one interface together with properties (meta information). Services can be discovered and used by bundles.</p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-C++" data-lang="C++"><span style="color:#080;font-style:italic">//include/ICalc.h
+</span><span style="color:#080;font-style:italic"></span><span style="color:#080">#</span><span style="color:#080">pragma once</span><span style="color:#080">
+</span><span style="color:#080"></span><span style="color:#a2f;font-weight:bold">class</span> <span style="color:#00f">ICalc</span> {
+<span style="color:#a2f;font-weight:bold">public</span><span style="color:#666">:</span>
+    <span style="color:#a2f;font-weight:bold">virtual</span> <span style="color:#666">~</span>ICalc() <span style="color:#a2f;font-weight:bold">noexcept</span> <span style="color:#666">=</span> <span style="color:#a2f;font-weight:bold">default</span>;
+    <span style="color:#a2f;font-weight:bold">virtual</span> <span style="color:#0b0;font-weight:bold">int</span> <span style="color:#00a000">add</span>(<span style="color:#0b0;font-weight:bold">int</span> a, <span style="color:#0b0;font-weight:bold">int</span> b) <span style="color:#666">=</span> <span style="color:#666">0</span>;
+};
+</code></pre></div><div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-C++" data-lang="C++"><span style="color:#080;font-style:italic">//src/CalcProviderBundleActivator.cc
+</span><span style="color:#080;font-style:italic"></span><span style="color:#080">#</span><span style="color:#080">include</span> <span style="color:#080">&#34;ICalc.h&#34;</span><span style="color:#080">
+</span><span style="color:#080"></span><span style="color:#080">#</span><span style="color:#080">include</span> <span style="color:#080">&#34;celix/BundleActivator.h&#34;</span><span style="color:#080">
+</span><span style="color:#080"></span>
+<span style="color:#a2f;font-weight:bold">class</span> <span style="color:#00f">CalcProvider</span> <span style="color:#666">:</span> <span style="color:#a2f;font-weight:bold">public</span> ICalc {
+<span style="color:#a2f;font-weight:bold">public</span><span style="color:#666">:</span>
+    <span style="color:#666">~</span>CalcProvider() <span style="color:#a2f;font-weight:bold">noexcept</span> <span style="color:#a2f;font-weight:bold">override</span> <span style="color:#666">=</span> <span style="color:#a2f;font-weight:bold">default</span>;
+    <span style="color:#0b0;font-weight:bold">int</span> <span style="color:#00a000">add</span>(<span style="color:#0b0;font-weight:bold">int</span> a, <span style="color:#0b0;font-weight:bold">int</span> b) <span style="color:#a2f;font-weight:bold">override</span> { <span style="color:#a2f;font-weight:bold">return</span> a <span style="color:#666">+</span> b; }
+};
+
+<span style="color:#a2f;font-weight:bold">class</span> <span style="color:#00f">CalcProviderBundleActivator</span> {
+<span style="color:#a2f;font-weight:bold">public</span><span style="color:#666">:</span>
+    <span style="color:#a2f;font-weight:bold">explicit</span> CalcProviderBundleActivator(<span style="color:#a2f;font-weight:bold">const</span> std<span style="color:#666">:</span><span style="color:#666">:</span>shared_ptr<span style="color:#666">&lt;</span>celix<span style="color:#666">:</span><span style="color:#666">:</span>BundleContext<span style="color:#666">&gt;</span><span style="color:#666">&amp;</span> ctx) {
+        reg <span style="color:#666">=</span> ctx<span style="color:#666">-</span><span style="color:#666">&gt;</span>registerService<span style="color:#666">&lt;</span>ICalc<span style="color:#666">&gt;</span>(std<span style="color:#666">:</span><span style="color:#666">:</span>make_shared<span style="color:#666">&lt;</span>CalcProvider<span style="color:#666">&gt;</span>())
+                .build();
+    }
+<span style="color:#a2f;font-weight:bold">private</span><span style="color:#666">:</span>
+    std<span style="color:#666">:</span><span style="color:#666">:</span>shared_ptr<span style="color:#666">&lt;</span>celix<span style="color:#666">:</span><span style="color:#666">:</span>ServiceRegistration<span style="color:#666">&gt;</span> reg{};
+};
+
+CELIX_GEN_CXX_BUNDLE_ACTIVATOR(CalcProviderBundleActivator)
+</code></pre></div><div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-CMake" data-lang="CMake"><span style="color:#080;font-style:italic">#CMakeLists.txt
+</span><span style="color:#080;font-style:italic"></span><span style="color:#a2f">find_package</span>(<span style="color:#b44">Celix</span> <span style="color:#b44">REQUIRED</span>)<span style="">
+</span><span style=""></span><span style="">
+</span><span style=""></span><span style="color:#a2f">add_celix_bundle</span>(<span style="color:#b44">CalcProviderBundle</span>
+    <span style="color:#b44">SOURCES</span> <span style="color:#b44">src/CalcProviderBundleActivator.cc</span>
+)<span style="">
+</span><span style=""></span><span style="color:#a2f">target_include_directories</span>(<span style="color:#b44">CalcProviderBundle</span> <span style="color:#b44">PRIVATE</span> <span style="color:#b44">include</span>)<span style="">
+</span><span style=""></span><span style="">
+</span><span style=""></span><span style="color:#a2f">add_celix_container</span>(<span style="color:#b44">CalcProviderContainer</span>
+    <span style="color:#b44">BUNDLES</span>
+        <span style="color:#b44">Celix::ShellCxx</span>
+        <span style="color:#b44">Celix::shell_tui</span>
+        <span style="color:#b44">CalcProviderBundle</span>
+)<span style="">
+</span></code></pre></div><div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#080;font-style:italic">#bash</span>
+<span style="color:#080;font-style:italic">#goto project dir</span>
+<span style="color:#a2f">cd</span> cmake-build-debug <span style="color:#080;font-style:italic">#assuming clion cmake-build-debug dir</span>
+<span style="color:#a2f">cd</span> deploy/CalcProviderBundle
+./CalcProviderBundle
+</code></pre></div><h3 id="use-a-service-ad-hoc">Use a service (ad hoc)</h3>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-C++" data-lang="C++"><span style="color:#080;font-style:italic">//include/ICalc.h
+</span><span style="color:#080;font-style:italic"></span><span style="color:#080">#</span><span style="color:#080">pragma once</span><span style="color:#080">
+</span><span style="color:#080"></span><span style="color:#a2f;font-weight:bold">class</span> <span style="color:#00f">ICalc</span> {
+<span style="color:#a2f;font-weight:bold">public</span><span style="color:#666">:</span>
+    <span style="color:#a2f;font-weight:bold">virtual</span> <span style="color:#666">~</span>ICalc() <span style="color:#a2f;font-weight:bold">noexcept</span> <span style="color:#666">=</span> <span style="color:#a2f;font-weight:bold">default</span>;
+    <span style="color:#a2f;font-weight:bold">virtual</span> <span style="color:#0b0;font-weight:bold">int</span> <span style="color:#00a000">add</span>(<span style="color:#0b0;font-weight:bold">int</span> a, <span style="color:#0b0;font-weight:bold">int</span> b) <span style="color:#666">=</span> <span style="color:#666">0</span>;
+};
+</code></pre></div><div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-C++" data-lang="C++"><span style="color:#080;font-style:italic">//src/CalcUserBundleActivator.cc
+</span><span style="color:#080;font-style:italic"></span><span style="color:#080">#</span><span style="color:#080">include</span> <span style="color:#080">&lt;iostream&gt;</span><span style="color:#080">
+</span><span style="color:#080"></span><span style="color:#080">#</span><span style="color:#080">include</span> <span style="color:#080">&#34;ICalc.h&#34;</span><span style="color:#080">
+</span><span style="color:#080"></span><span style="color:#080">#</span><span style="color:#080">include</span> <span style="color:#080">&#34;celix/BundleActivator.h&#34;</span><span style="color:#080">
+</span><span style="color:#080"></span>
+<span style="color:#a2f;font-weight:bold">class</span> <span style="color:#00f">CalcUserBundleActivator</span> {
+<span style="color:#a2f;font-weight:bold">public</span><span style="color:#666">:</span>
+    <span style="color:#a2f;font-weight:bold">explicit</span> CalcUserBundleActivator(<span style="color:#a2f;font-weight:bold">const</span> std<span style="color:#666">:</span><span style="color:#666">:</span>shared_ptr<span style="color:#666">&lt;</span>celix<span style="color:#666">:</span><span style="color:#666">:</span>BundleContext<span style="color:#666">&gt;</span><span style="color:#666">&amp;</span> ctx) {
+        ctx<span style="color:#666">-</span><span style="color:#666">&gt;</span>useService<span style="color:#666">&lt;</span>ICalc<span style="color:#666">&gt;</span>()
+            .addUseCallback([](ICalc<span style="color:#666">&amp;</span> calc) {
+                std<span style="color:#666">:</span><span style="color:#666">:</span>cout <span style="color:#666">&lt;</span><span style="color:#666">&lt;</span> <span style="color:#b44"></span><span style="color:#b44">&#34;</span><span style="color:#b44">result is </span><span style="color:#b44">&#34;</span> <span style="color:#666">&lt;</span><span style="color:#666">&lt;</span> calc.add(<span style="color:#666">2</span>, <span style="color:#666">3</span>) <span style="color:#666">&lt;</span><span style="color:#666">&lt;</span> std<span style="color:#666">:</span><span style="color:#666">:</span>endl;
+            })
+            .setTimeout(std<span style="color:#666">:</span><span style="color:#666">:</span>chrono<span style="color:#666">:</span><span style="color:#666">:</span>seconds{<span style="color:#666">1</span>}) <span style="color:#080;font-style:italic">//wait for 1 second if a service is not directly found
+</span><span style="color:#080;font-style:italic"></span>            .build();
+    }
+};
+
+CELIX_GEN_CXX_BUNDLE_ACTIVATOR(CalcUserBundleActivator)
+</code></pre></div><div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-CMake" data-lang="CMake"><span style="color:#080;font-style:italic">#CMakeLists.txt
+</span><span style="color:#080;font-style:italic"></span><span style="color:#a2f">find_package</span>(<span style="color:#b44">Celix</span> <span style="color:#b44">REQUIRED</span>)<span style="">
+</span><span style=""></span><span style="">
+</span><span style=""></span><span style="color:#a2f">add_celix_bundle</span>(<span style="color:#b44">CalcUserBundle</span>
+    <span style="color:#b44">SOURCES</span> <span style="color:#b44">src/CalcUserBundleActivator.cc</span>
+)<span style="">
+</span><span style=""></span><span style="color:#a2f">target_include_directories</span>(<span style="color:#b44">CalcUserBundle</span> <span style="color:#b44">PRIVATE</span> <span style="color:#b44">include</span>)<span style="">
+</span><span style=""></span><span style="">
+</span><span style=""></span><span style="color:#a2f">add_celix_container</span>(<span style="color:#b44">CalcUserContainer</span>
+    <span style="color:#b44">BUNDLES</span>
+        <span style="color:#b44">Celix::ShellCxx</span>
+        <span style="color:#b44">Celix::shell_tui</span>
+        <span style="color:#b44">CalcProviderBundle</span>
+        <span style="color:#b44">CalcUserBundle</span>
+)<span style="">
+</span></code></pre></div><div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#080;font-style:italic">#bash</span>
+<span style="color:#080;font-style:italic">#goto project dir</span>
+<span style="color:#a2f">cd</span> cmake-build-debug <span style="color:#080;font-style:italic">#assuming clion cmake-build-debug dir</span>
+<span style="color:#a2f">cd</span> deploy/CalcUserContainer
+./CalcUserContainer
+</code></pre></div><h3 id="track-services">Track services</h3>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-C++" data-lang="C++"><span style="color:#080;font-style:italic">//include/ICalc.h
+</span><span style="color:#080;font-style:italic"></span><span style="color:#080">#</span><span style="color:#080">pragma once</span><span style="color:#080">
+</span><span style="color:#080"></span><span style="color:#a2f;font-weight:bold">class</span> <span style="color:#00f">ICalc</span> {
+<span style="color:#a2f;font-weight:bold">public</span><span style="color:#666">:</span>
+    <span style="color:#a2f;font-weight:bold">virtual</span> <span style="color:#666">~</span>ICalc() <span style="color:#a2f;font-weight:bold">noexcept</span> <span style="color:#666">=</span> <span style="color:#a2f;font-weight:bold">default</span>;
+    <span style="color:#a2f;font-weight:bold">virtual</span> <span style="color:#0b0;font-weight:bold">int</span> <span style="color:#00a000">add</span>(<span style="color:#0b0;font-weight:bold">int</span> a, <span style="color:#0b0;font-weight:bold">int</span> b) <span style="color:#666">=</span> <span style="color:#666">0</span>;
+};
+</code></pre></div><div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-C++" data-lang="C++"><span style="color:#080;font-style:italic">//src/CalcTrackerBundleActivator.cc
+</span><span style="color:#080;font-style:italic"></span><span style="color:#080">#</span><span style="color:#080">include</span> <span style="color:#080">&lt;mutex&gt;</span><span style="color:#080">
+</span><span style="color:#080"></span><span style="color:#080">#</span><span style="color:#080">include</span> <span style="color:#080">&#34;ICalc.h&#34;</span><span style="color:#080">
+</span><span style="color:#080"></span><span style="color:#080">#</span><span style="color:#080">include</span> <span style="color:#080">&#34;celix/BundleActivator.h&#34;</span><span style="color:#080">
+</span><span style="color:#080"></span>
+<span style="color:#a2f;font-weight:bold">class</span> <span style="color:#00f">CalcTrackerBundleActivator</span> {
+<span style="color:#a2f;font-weight:bold">public</span><span style="color:#666">:</span>
+    <span style="color:#a2f;font-weight:bold">explicit</span> CalcTrackerBundleActivator(<span style="color:#a2f;font-weight:bold">const</span> std<span style="color:#666">:</span><span style="color:#666">:</span>shared_ptr<span style="color:#666">&lt;</span>celix<span style="color:#666">:</span><span style="color:#666">:</span>BundleContext<span style="color:#666">&gt;</span><span style="color:#666">&amp;</span> ctx) {
+        tracker <span style="color:#666">=</span> ctx<span style="color:#666">-</span><span style="color:#666">&gt;</span>trackServices<span style="color:#666">&lt;</span>ICalc<span style="color:#666">&gt;</span>()
+            .build();
+        <span style="color:#a2f;font-weight:bold">for</span> (<span style="color:#a2f;font-weight:bold">auto</span> <span style="color:#a0a000">calc</span> : tracker<span style="color:#666">-</span><span style="color:#666">&gt;</span>getServices()) {
+            std<span style="color:#666">:</span><span style="color:#666">:</span>cout <span style="color:#666">&lt;</span><span style="color:#666">&lt;</span> <span style="color:#b44"></span><span style="color:#b44">&#34;</span><span style="color:#b44">result is </span><span style="color:#b44">&#34;</span> <span style="color:#666">&lt;</span><span style="color:#666">&lt;</span> std<span style="color:#666">:</span><span style="color:#666">:</span>to_string(calc<span style="color:#666">-</span><span style="color:#666">&gt;</span>add(<span style="color:#666">2</span>, <span style="color:#666">3</span>)) <span style="color:#666">&lt;</span><span style="color:#666">&lt;</span> std<span style="color:#666">:</span><span style="color:#666">:</span>endl;
+        }
+    }
+    
+<span style="color:#a2f;font-weight:bold">private</span><span style="color:#666">:</span>
+    std<span style="color:#666">:</span><span style="color:#666">:</span>shared_ptr<span style="color:#666">&lt;</span>celix<span style="color:#666">:</span><span style="color:#666">:</span>ServiceTracker<span style="color:#666">&lt;</span>ICalc<span style="color:#666">&gt;</span><span style="color:#666">&gt;</span> tracker{};
+};
+
+CELIX_GEN_CXX_BUNDLE_ACTIVATOR(CalcTrackerBundleActivator)
+</code></pre></div><div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-CMake" data-lang="CMake"><span style="color:#a2f">find_package</span>(<span style="color:#b44">Celix</span> <span style="color:#b44">REQUIRED</span>)<span style="">
+</span><span style=""></span><span style="">
+</span><span style=""></span><span style="color:#a2f">add_celix_bundle</span>(<span style="color:#b44">CalcTrackerBundle</span>
+    <span style="color:#b44">SOURCES</span> <span style="color:#b44">src/CalcTrackerBundleActivator.cc</span>
+)<span style="">
+</span><span style=""></span><span style="color:#a2f">target_include_directories</span>(<span style="color:#b44">CalcTrackerBundle</span> <span style="color:#b44">PRIVATE</span> <span style="color:#b44">include</span>)<span style="">
+</span><span style=""></span><span style="">
+</span><span style=""></span><span style="color:#a2f">add_celix_container</span>(<span style="color:#b44">CalcTrackerContainer</span>
+    <span style="color:#b44">BUNDLES</span>
+        <span style="color:#b44">Celix::ShellCxx</span>
+        <span style="color:#b44">Celix::shell_tui</span>
+        <span style="color:#b44">CalcProviderBundle</span>
+        <span style="color:#b44">CalcTrackerBundle</span>
+)<span style="">
+</span></code></pre></div><div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#080;font-style:italic">#bash</span>
+<span style="color:#080;font-style:italic">#goto project dir</span>
+<span style="color:#a2f">cd</span> cmake-build-debug <span style="color:#080;font-style:italic">#assuming clion cmake-build-debug dir</span>
+<span style="color:#a2f">cd</span> deploy/CalcTrackerContainer
+./CalcTrackerContainer
+</code></pre></div><h3 id="service-properties-and-filters">Service properties and filters</h3>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-C++" data-lang="C++"><span style="color:#080;font-style:italic">//src/FilterExampleBundleActivator.cc
+</span><span style="color:#080;font-style:italic"></span><span style="color:#080">#</span><span style="color:#080">include</span> <span style="color:#080">&lt;iostream&gt;</span><span style="color:#080">
+</span><span style="color:#080"></span><span style="color:#080">#</span><span style="color:#080">include</span> <span style="color:#080">&#34;celix/BundleActivator.h&#34;</span><span style="color:#080">
+</span><span style="color:#080"></span><span style="color:#080">#</span><span style="color:#080">include</span> <span style="color:#080">&#34;celix/IShellCommand.h&#34;</span><span style="color:#080">
+</span><span style="color:#080"></span>
+<span style="color:#a2f;font-weight:bold">class</span> <span style="color:#00f">HelloWorldShellCommand</span> <span style="color:#666">:</span> <span style="color:#a2f;font-weight:bold">public</span> celix<span style="color:#666">:</span><span style="color:#666">:</span>IShellCommand {
+<span style="color:#a2f;font-weight:bold">public</span><span style="color:#666">:</span>
+    <span style="color:#0b0;font-weight:bold">void</span> executeCommand(<span style="color:#a2f;font-weight:bold">const</span> std<span style="color:#666">:</span><span style="color:#666">:</span>string<span style="color:#666">&amp;</span> <span style="color:#080;font-style:italic">/*commandLine*/</span>, <span style="color:#a2f;font-weight:bold">const</span> std<span style="color:#666">:</span><span style="color:#666">:</span>vector<span style="color:#666">&lt;</span>std<span style="color:#666">:</span><span style="color:#666">:</span>string<span style="color:#666">&gt;</span><span style="color:#666">&amp;</span> <span style="color:#080;font-style:italic">/*commandArgs*/</span>, FILE<span style="color:#666">*</span> outStream, FILE<span style="color:#666">*</span> <span style="color:#080;font-style:italic">/*errorStream*/</span>) {
+        fprintf(outStream, <span style="color:#b44"></span><span style="color:#b44">&#34;</span><span style="color:#b44">Hello World</span><span style="color:#b62;font-weight:bold">\n</span><span style="color:#b44">&#34;</span>);
+    }
+};
+
+<span style="color:#a2f;font-weight:bold">class</span> <span style="color:#00f">FilterExampleBundleActivator</span> {
+<span style="color:#a2f;font-weight:bold">public</span><span style="color:#666">:</span>
+    <span style="color:#a2f;font-weight:bold">explicit</span> FilterExampleBundleActivator(<span style="color:#a2f;font-weight:bold">const</span> std<span style="color:#666">:</span><span style="color:#666">:</span>shared_ptr<span style="color:#666">&lt;</span>celix<span style="color:#666">:</span><span style="color:#666">:</span>BundleContext<span style="color:#666">&gt;</span><span style="color:#666">&amp;</span> ctx) {
+        <span style="color:#a2f;font-weight:bold">auto</span> reg1 <span style="color:#666">=</span> ctx<span style="color:#666">-</span><span style="color:#666">&gt;</span>registerService<span style="color:#666">&lt;</span>celix<span style="color:#666">:</span><span style="color:#666">:</span>IShellCommand<span style="color:#666">&gt;</span>(std<span style="color:#666">:</span><span style="color:#666">:</span>make_shared<span style="color:#666">&lt;</span>HelloWorldShellCommand<span style="color:#666">&gt;</span>())
+                .addProperty(celix<span style="color:#666">:</span><span style="color:#666">:</span>IShellCommand<span style="color:#666">:</span><span style="color:#666">:</span>COMMAND_NAME, <span style="color:#b44"></span><span style="color:#b44">&#34;</span><span style="color:#b44">command1</span><span style="color:#b44">&#34;</span>)
+                .build();
+        <span style="color:#a2f;font-weight:bold">auto</span> reg2 <span style="color:#666">=</span> ctx<span style="color:#666">-</span><span style="color:#666">&gt;</span>registerService<span style="color:#666">&lt;</span>celix<span style="color:#666">:</span><span style="color:#666">:</span>IShellCommand<span style="color:#666">&gt;</span>(std<span style="color:#666">:</span><span style="color:#666">:</span>make_shared<span style="color:#666">&lt;</span>HelloWorldShellCommand<span style="color:#666">&gt;</span>())
+                .addProperty(celix<span style="color:#666">:</span><span style="color:#666">:</span>IShellCommand<span style="color:#666">:</span><span style="color:#666">:</span>COMMAND_NAME, <span style="color:#b44"></span><span style="color:#b44">&#34;</span><span style="color:#b44">command2</span><span style="color:#b44">&#34;</span>)
+                .build();
+        regs.push_back(reg1);
+        regs.push_back(reg2);
+        
+        <span style="color:#a2f;font-weight:bold">auto</span> serviceIdsNoFilter  <span style="color:#666">=</span> ctx<span style="color:#666">-</span><span style="color:#666">&gt;</span>findServices<span style="color:#666">&lt;</span>celix<span style="color:#666">:</span><span style="color:#666">:</span>IShellCommand<span style="color:#666">&gt;</span>();
+        <span style="color:#a2f;font-weight:bold">auto</span> serviceIdsWithFilter <span style="color:#666">=</span> ctx<span style="color:#666">-</span><span style="color:#666">&gt;</span>findServices<span style="color:#666">&lt;</span>celix<span style="color:#666">:</span><span style="color:#666">:</span>IShellCommand<span style="color:#666">&gt;</span>(std<span style="color:#666">:</span><span style="color:#666">:</span>string{<span style="color:#b44"></span><span style="color:#b44">&#34;</span><span style="color:#b44">(</span><span style="color:#b44">&#34;</span>} <span style="color:#666">+</span> celix<span style="color:#666">:</span><span style="color:#666">:</span>IShellCommand<span style="color:#666">:</span><span style="color:#666">:</span>COMMAND_NAME <span style="color:#666">+</span> <span style="color:#b44"></span><span style="color:#b44">&#34;</span><span style="color:#b44">=</span><span style="color:#b44">&#34;</span> <span style="color:#666">+</span> <span style="color:#b44"></span><span style="color:#b44">&#34;</span><span style="color:#b44">command1)</span><span style="color:#b44">&#34;</span>);
+        std<span style="color:#666">:</span><span style="color:#666">:</span>cout <span style="color:#666">&lt;</span><span style="color:#666">&lt;</span> <span style="color:#b44"></span><span style="color:#b44">&#34;</span><span style="color:#b44">Found </span><span style="color:#b44">&#34;</span> <span style="color:#666">&lt;</span><span style="color:#666">&lt;</span> std<span style="color:#666">:</span><span style="color:#666">:</span>to_string(serviceIdsNoFilter.size()) <span style="color:#666">&lt;</span><span style="color:#666">&lt;</span> <span style="color:#b44"></span><span style="color:#b44">&#34;</span><span style="color:#b44"> IShelLCommand services and found </span><span style="color:#b44">&#34;</span>;
+        std<span style="color:#666">:</span><span style="color:#666">:</span>cout <span style="color:#666">&lt;</span><span style="color:#666">&lt;</span> std<span style="color:#666">:</span><span style="color:#666">:</span>to_string(serviceIdsWithFilter.size()) <span style="color:#666">&lt;</span><span style="color:#666">&lt;</span> <span style="color:#b44"></span><span style="color:#b44">&#34;</span><span style="color:#b44"> IShellCommand service with name command1</span><span style="color:#b44">&#34;</span> <span style="color:#666">&lt;</span><span style="color:#666">&lt;</span> std<span style="color:#666">:</span><span style="color:#666">:</span>endl;
+    }
+<span style="color:#a2f;font-weight:bold">private</span><span style="color:#666">:</span>
+    std<span style="color:#666">:</span><span style="color:#666">:</span>vector<span style="color:#666">&lt;</span>std<span style="color:#666">:</span><span style="color:#666">:</span>shared_ptr<span style="color:#666">&lt;</span>celix<span style="color:#666">:</span><span style="color:#666">:</span>ServiceRegistration<span style="color:#666">&gt;</span><span style="color:#666">&gt;</span> regs{};
+};
+
+CELIX_GEN_CXX_BUNDLE_ACTIVATOR(FilterExampleBundleActivator)
+</code></pre></div><div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-CMake" data-lang="CMake"><span style="color:#080;font-style:italic">#CMakeLists.txt
+</span><span style="color:#080;font-style:italic"></span><span style="color:#a2f">find_package</span>(<span style="color:#b44">Celix</span> <span style="color:#b44">REQUIRED</span>)<span style="">
+</span><span style=""></span><span style="">
+</span><span style=""></span><span style="color:#a2f">add_celix_bundle</span>(<span style="color:#b44">FilterExampleBundle</span>
+    <span style="color:#b44">SOURCES</span> <span style="color:#b44">src/FilterExampleBundleActivator.cc</span>
+)<span style="">
+</span><span style=""></span><span style="color:#a2f">target_link_libraries</span>(<span style="color:#b44">FilterExampleBundle</span> <span style="color:#b44">PRIVATE</span> <span style="color:#b44">Celix::shell_api</span>) <span style="color:#080;font-style:italic">#adds celix/IShellCommand.h to the include path
+</span><span style="color:#080;font-style:italic"></span><span style="">
+</span><span style=""></span><span style="color:#a2f">add_celix_container</span>(<span style="color:#b44">FilterExampleContainer</span>
+    <span style="color:#b44">BUNDLES</span>
+        <span style="color:#b44">Celix::ShellCxx</span>
+        <span style="color:#b44">Celix::shell_tui</span>
+        <span style="color:#b44">FilterExampleBundle</span>
+)<span style="">
+</span></code></pre></div><div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#080;font-style:italic">#bash</span>
+<span style="color:#080;font-style:italic">#goto project dir</span>
+<span style="color:#a2f">cd</span> cmake-build-debug <span style="color:#080;font-style:italic">#assuming clion cmake-build-debug dir</span>
+<span style="color:#a2f">cd</span> deploy/FilterExampleContainer
+./FilterExampleContainer
+<span style="color:#080;font-style:italic">#Celix shell</span>
+-&gt; command1
+-&gt; command2
+-&gt; <span style="color:#a2f">help</span>
+</code></pre></div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<footer class="py-3 bg-secondary">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8 text-center">
+                <p class="m-0 text-white">
+                    Copyright &copy; 2022 The Apache Software Foundation, Licensed under
+                    the <a href="https://www.apache.org/licenses/LICENSE-2.0">Apache License, Version 2.0</a>.
+                    <br>
+                    Apache Celix, Celix, Apache, the Apache feather logo and the Apache Celix logo are trademarks of The Apache Software Foundation.
+                </p>
+            </div>
+            <div class="col-md-4 text-center">
+                <a href="https://www.apache.org/events/current-event.html" target="_blank">
+                    <img src="https://www.apache.org/events/current-event-234x60.png" title="Apache Event" width="234" height="60" border="0">
+                </a>
+            </div>
+        </div>
+    </div>
+</footer>
+
+
+<script src="/assets/js/jquery.min.js"></script>
+<script src="/assets/js/bootstrap.bundle.min.js"></script>
+
+
+</body>
+</html>

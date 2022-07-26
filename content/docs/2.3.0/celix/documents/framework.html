@@ -1,0 +1,349 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Apache Celix Framework / Apache Celix</title>
+
+    
+    <link rel="icon" href="/assets/img/favicon.ico">
+
+    
+    <link href="/assets/css/bootstrap.min.css" rel="stylesheet">
+
+    
+    <link href="/assets/css/style.css" rel="stylesheet">
+
+    <style>
+         
+         
+        .card-body img {
+            max-width: 100%;
+            width: 100%;
+            height: auto;
+        }
+
+         
+        .card-body img + em {
+            text-decoration: underline;
+        }
+    </style>
+
+    
+<script>
+  var _paq = window._paq = window._paq || [];
+   
+  _paq.push(['disableCookies']);
+   
+  _paq.push(['trackPageView']);
+  _paq.push(['enableLinkTracking']);
+  (function() {
+    var u="https://analytics.apache.org/";
+    _paq.push(['setTrackerUrl', u+'matomo.php']);
+    _paq.push(['setSiteId', '9']);
+    var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+    g.async=true; g.src=u+'matomo.js'; s.parentNode.insertBefore(g,s);
+  })();
+</script>
+
+
+</head>
+<body class="light-grey">
+
+<a href="https://github.com/apache/celix" class="github-ribbon">
+    <img src="/assets/img/forkme_right_red_aa0000.png" alt="Fork me on GitHub">
+</a>
+
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top">
+    <div class="container">
+        <a class="navbar-brand" href="/">
+            <img src="/assets/img/celix-white.svg" height="40" class="d-inline-block align-top" alt="Celix Logo">
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="/">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/download.cgi">Download</a>
+                </li>
+                <li class="nav-item dropdown active">
+                    <a class="nav-link dropdown-toggle" href="#" id="ddDocs" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Docs
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="ddDocs">
+                        <a class="dropdown-item" href="/docs/2.3.0/docs.html">2.3.0 (latest)</a>
+                        <a class="dropdown-item" href="/docs/2.2.1/docs.html">2.2.1</a>
+                        <a class="dropdown-item" href="/docs/2.1.0/docs.html">2.1.0</a>
+                    </div>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="ddContributing" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Contributing
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="ddContributing">
+                        <a class="dropdown-item" href="/contributing/youatcelix.html">You at Celix</a>
+                        <a class="dropdown-item" href="/contributing/submitting-patches.html">Submitting patches</a>
+                        <a class="dropdown-item" href="/contributing/source-and-builds.html">Source code and builds</a>
+                        <hr>
+                        <a class="dropdown-item" href="/contributing/releasing.html">Releasing</a>
+                        <a class="dropdown-item" href="/contributing/volunteers.html">Volunteers</a>
+                        <a class="dropdown-item" href="https://whimsy.apache.org/board/minutes/Celix.html">Board Reports</a>
+                    </div>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="ddSupport" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Support
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="ddSupport">
+                        <a class="dropdown-item" href="/support/mailing-list.html">Mailing Lists</a>
+                        <a class="dropdown-item" href="/support/issue-tracking.html">Issue Tracking</a>
+                    </div>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="ddFoundation" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        ASF
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="ddFoundation">
+                        <a class="dropdown-item" href="https://www.apache.org/">ASF Home</a>
+                        <a class="dropdown-item" href="https://www.apache.org/foundation/how-it-works.html">How it works</a>
+                        <a class="dropdown-item" href="https://www.apache.org/licenses/">License</a>
+                        <a class="dropdown-item" href="https://www.apache.org/foundation/sponsorship.html">Sponsorship</a>
+                        <a class="dropdown-item" href="https://www.apache.org/foundation/thanks.html">Thanks</a>
+                        <a class="dropdown-item" href="https://www.apache.org/security/">Security</a>
+                        <a class="dropdown-item" href="https://www.apache.org/foundation/policies/conduct">Code of Conduct</a>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+
+<div class="section">
+    <div class="container">
+        <div class="row py-4">
+            <div class="col-sm-12 card">
+                <div class="card-body pt-5">
+                    
+                    
+                        
+                        
+                            <a class="edit-on-gh" href="https://github.com/apache/celix/edit/master/documents/framework.md" title="Edit this page on GitHub">Edit on GitHub</a>
+                        
+                    
+
+                    
+                        
+                        <a href="/docs/2.3.0/docs.html" title="back to documentation">&lt;&lt; back to documentation</a>
+                    
+
+                    
+	<!--
+Licensed to the Apache Software Foundation (ASF) under one or more
+contributor license agreements.  See the NOTICE file distributed with
+this work for additional information regarding copyright ownership.
+The ASF licenses this file to You under the Apache License, Version 2.0
+(the "License"); you may not use this file except in compliance with
+the License.  You may obtain a copy of the License at
+   
+    http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+-->
+<h1 id="apache-celix-framework">Apache Celix Framework</h1>
+<p>The Apache Celix framework is the core of Apache Celix applications and provides supports for deployments of
+dynamic, extensible modules known as bundles.</p>
+<p>An instance of an Apache Celix framework can be created with the celix framework factory or by configuring
+<a href="containers.html">Apache Celix containers</a> using the <code>add_celix_container</code> Apache Celix CMake command.</p>
+<h2 id="framework-factory">Framework factory</h2>
+<p>A new instance of an Apache Celix framework can be created using the C/C++ function/method:</p>
+<ul>
+<li><code>celix_frameworkFactory_createFramework</code></li>
+<li><code>celix::createFramework</code></li>
+</ul>
+<p>When an Apache Celix framework is destroyed it will automatically stop and uninstall all running bundles.
+For C, an Apache Celix framework needs to be destroyed with the call <code>celix_frameworkFactory_destroyFramework</code> and
+for C++ this happens when the framework goes out of scope.</p>
+<h3 id="example-creating-an-apache-celix-framework-in-c">Example: Creating an Apache Celix Framework in C</h3>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-C" data-lang="C"><span style="color:#080;font-style:italic">//src/main.c
+</span><span style="color:#080;font-style:italic"></span><span style="color:#080">#</span><span style="color:#080">include</span> <span style="color:#080">&lt;celix_api.h&gt;</span><span style="color:#080">
+</span><span style="color:#080"></span><span style="color:#0b0;font-weight:bold">int</span> <span style="color:#00a000">main</span>() {
+    <span style="color:#080;font-style:italic">//create framework properties
+</span><span style="color:#080;font-style:italic"></span>    celix_properties_t<span style="color:#666">*</span> properties <span style="color:#666">=</span> properties_create();
+    properties_set(properties, <span style="color:#b44"></span><span style="color:#b44">&#34;</span><span style="color:#b44">CELIX_LOGGING_DEFAULT_ACTIVE_LOG_LEVEL</span><span style="color:#b44">&#34;</span>, <span style="color:#b44"></span><span style="color:#b44">&#34;</span><span style="color:#b44">debug</span><span style="color:#b44">&#34;</span>);
+
+    <span style="color:#080;font-style:italic">//create framework
+</span><span style="color:#080;font-style:italic"></span>    celix_framework_t<span style="color:#666">*</span> fw <span style="color:#666">=</span> celix_frameworkFactory_createFramework(properties);
+
+    <span style="color:#080;font-style:italic">//get framework bundle context and log hello
+</span><span style="color:#080;font-style:italic"></span>    celix_bundle_context_t<span style="color:#666">*</span> fwContext <span style="color:#666">=</span> celix_framework_getFrameworkContext(fw);
+    celix_bundleContext_log(fwContext, CELIX_LOG_LEVEL_INFO, <span style="color:#b44"></span><span style="color:#b44">&#34;</span><span style="color:#b44">Hello from framework bundle context</span><span style="color:#b44">&#34;</span>);
+
+    <span style="color:#080;font-style:italic">//destroy framework
+</span><span style="color:#080;font-style:italic"></span>    celix_frameworkFactory_destroyFramework(fw);
+}
+</code></pre></div><div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cmake" data-lang="cmake"><span style="color:#080;font-style:italic">#CMakeLists.txt
+</span><span style="color:#080;font-style:italic"></span><span style="color:#a2f">find_package</span>(<span style="color:#b44">Celix</span> <span style="color:#b44">REQUIRED</span>)<span style="">
+</span><span style=""></span><span style="color:#a2f">add_executable</span>(<span style="color:#b44">create_framework_in_c</span> <span style="color:#b44">src/main.c</span>)<span style="">
+</span><span style=""></span><span style="color:#a2f">target_link_libraries</span>(<span style="color:#b44">create_framework_in_c</span> <span style="color:#b44">PRIVATE</span> <span style="color:#b44">Celix::framework</span>)<span style="">
+</span></code></pre></div><h3 id="example-creating-an-apache-celix-framework-in-c-1">Example: Creating an Apache Celix Framework in C++</h3>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-C++" data-lang="C++"><span style="color:#080;font-style:italic">//src/main.cc
+</span><span style="color:#080;font-style:italic"></span><span style="color:#080">#</span><span style="color:#080">include</span> <span style="color:#080">&lt;celix/FrameworkFactory.h&gt;</span><span style="color:#080">
+</span><span style="color:#080"></span><span style="color:#0b0;font-weight:bold">int</span> <span style="color:#00a000">main</span>() {
+    <span style="color:#080;font-style:italic">//create framework properties
+</span><span style="color:#080;font-style:italic"></span>    celix<span style="color:#666">:</span><span style="color:#666">:</span>Properties properties{};
+    properties.set(<span style="color:#b44"></span><span style="color:#b44">&#34;</span><span style="color:#b44">CELIX_LOGGING_DEFAULT_ACTIVE_LOG_LEVEL</span><span style="color:#b44">&#34;</span>, <span style="color:#b44"></span><span style="color:#b44">&#34;</span><span style="color:#b44">debug</span><span style="color:#b44">&#34;</span>);
+
+    <span style="color:#080;font-style:italic">//create framework
+</span><span style="color:#080;font-style:italic"></span>    std<span style="color:#666">:</span><span style="color:#666">:</span>shared_ptr<span style="color:#666">&lt;</span>celix<span style="color:#666">:</span><span style="color:#666">:</span>Framework<span style="color:#666">&gt;</span> fw <span style="color:#666">=</span> celix<span style="color:#666">:</span><span style="color:#666">:</span>createFramework(properties);
+
+    <span style="color:#080;font-style:italic">//get framework bundle context and log hello
+</span><span style="color:#080;font-style:italic"></span>    std<span style="color:#666">:</span><span style="color:#666">:</span>shared_ptr<span style="color:#666">&lt;</span>celix<span style="color:#666">:</span><span style="color:#666">:</span>BundleContext<span style="color:#666">&gt;</span> ctx <span style="color:#666">=</span> fw<span style="color:#666">-</span><span style="color:#666">&gt;</span>getFrameworkBundleContext();
+    ctx<span style="color:#666">-</span><span style="color:#666">&gt;</span>logInfo(<span style="color:#b44"></span><span style="color:#b44">&#34;</span><span style="color:#b44">Hello from framework bundle context</span><span style="color:#b44">&#34;</span>);
+}
+</code></pre></div><div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cmake" data-lang="cmake"><span style="color:#080;font-style:italic">#CMakeLists.txt
+</span><span style="color:#080;font-style:italic"></span><span style="color:#a2f">find_package</span>(<span style="color:#b44">Celix</span> <span style="color:#b44">REQUIRED</span>)<span style="">
+</span><span style=""></span><span style="color:#a2f">add_executable</span>(<span style="color:#b44">create_framework_in_cxx</span> <span style="color:#b44">src/main.cc</span>)<span style="">
+</span><span style=""></span><span style="color:#a2f">target_link_libraries</span>(<span style="color:#b44">create_framework_in_cxx</span> <span style="color:#b44">PRIVATE</span> <span style="color:#b44">Celix::framework</span>)<span style="">
+</span></code></pre></div><h2 id="apache-celix-launcher">Apache Celix launcher</h2>
+<p>If the Apache Celix framework is the main application, the Apache Celix launcher can be used to create the framework
+and wait for a framework shutdown.</p>
+<p>The Apache Celix launcher also does some additional work:</p>
+<ul>
+<li>Handles command arguments (mainly to print to embedded and runtime framework properties).</li>
+<li>Tries to read a &ldquo;config.properties&rdquo; file from the current workdir and combines this with the optional provided
+embedded properties to the Apache Celix Launcher.</li>
+<li>Configures a framework shutdown for the <code>SIGINT</code> and <code>SIGTERM</code> signal.</li>
+<li>Configures an &ldquo;ignore&rdquo; signal handler for the <code>SIGUSR1</code> and <code>SIGUSR2</code> signal.</li>
+<li>Calls the <code>curl_global_init</code> to initialize potential use of curl. Note that the <code>curl_global_init</code> is not thread safe
+or protected by something like pthread_once.</li>
+<li>Destroys the Apache Celix Framework after shutdown.</li>
+</ul>
+<h3 id="example-creating-an-apache-celix-framework-with-the-apache-celix-launcher">Example: Creating an Apache Celix Framework with the Apache Celix Launcher</h3>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-C" data-lang="C"><span style="color:#080;font-style:italic">//src/launcher.c
+</span><span style="color:#080;font-style:italic"></span><span style="color:#080">#</span><span style="color:#080">include</span> <span style="color:#080">&lt;celix_api.h&gt;</span><span style="color:#080">
+</span><span style="color:#080"></span><span style="color:#0b0;font-weight:bold">int</span> <span style="color:#00a000">main</span>(<span style="color:#0b0;font-weight:bold">int</span> argc, <span style="color:#0b0;font-weight:bold">char</span><span style="color:#666">*</span><span style="color:#666">*</span> argv) {
+    <span style="color:#a2f;font-weight:bold">return</span> celixLauncher_launchAndWaitForShutdown(argc, argv, <span style="color:#a2f">NULL</span>);
+}
+</code></pre></div><div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cmake" data-lang="cmake"><span style="color:#080;font-style:italic">#CMakeLists.txt
+</span><span style="color:#080;font-style:italic"></span><span style="color:#a2f">find_package</span>(<span style="color:#b44">Celix</span> <span style="color:#b44">REQUIRED</span>)<span style="">
+</span><span style=""></span><span style="color:#a2f">add_executable</span>(<span style="color:#b44">create_framework_with_celix_launcher</span> <span style="color:#b44">src/launcher.c</span>)<span style="">
+</span><span style=""></span><span style="color:#a2f">target_link_libraries</span>(<span style="color:#b44">create_framework_with_celix_launcher</span> <span style="color:#b44">PRIVATE</span> <span style="color:#b44">Celix::framework</span>)<span style="">
+</span></code></pre></div><h2 id="installing-and-starting-bundles-in-an-apache-celix-framework">Installing and starting bundles in an Apache Celix framework</h2>
+<p>Bundles can be installed and started using the Apache Celix framework bundle context or - when using the Apache Celix
+launcher - with a &ldquo;config.properties&rdquo; file.</p>
+<p>Bundles are installed using a path to a zip file. If the path is a relative path, the framework will search for the
+bundle in the directories configured in the framework property <code>CELIX_BUNDLES_PATH</code>.
+The default value of <code>CELIX_BUNDLES_PATH</code> is &ldquo;bundles&rdquo;.</p>
+<p>Another option is to use framework properties to configure which bundles to install and start.
+This can be done by using the CELIX_AUTO_START_0 till CELIX_AUTO_START_6 framework properties.
+(note that bundles configured in CELIX_AUTO_START_0 are installed and started first).
+For a more complete overview of possible framework properties see <code>celix_constants.h</code></p>
+<p>If the Apache Celix launcher is used, the framework properties can be provided with a &ldquo;config.properties&rdquo;
+file using the Java Properties File Format.</p>
+<p>Framework properties to install and start bundles:</p>
+<ul>
+<li>CELIX_AUTO_START_0</li>
+<li>CELIX_AUTO_START_1</li>
+<li>CELIX_AUTO_START_2</li>
+<li>CELIX_AUTO_START_3</li>
+<li>CELIX_AUTO_START_4</li>
+<li>CELIX_AUTO_START_5</li>
+<li>CELIX_AUTO_START_6</li>
+</ul>
+<h3 id="example-installing-and-starting-bundles-in-c">Example: Installing and starting bundles in C</h3>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-C" data-lang="C"><span style="color:#080;font-style:italic">//src/main.c
+</span><span style="color:#080;font-style:italic"></span><span style="color:#080">#</span><span style="color:#080">include</span> <span style="color:#080">&lt;celix_api.h&gt;</span><span style="color:#080">
+</span><span style="color:#080"></span><span style="color:#0b0;font-weight:bold">int</span> <span style="color:#00a000">main</span>() {
+    <span style="color:#080;font-style:italic">//create framework properties
+</span><span style="color:#080;font-style:italic"></span>    celix_properties_t<span style="color:#666">*</span> properties <span style="color:#666">=</span> properties_create();
+    properties_set(properties, <span style="color:#b44"></span><span style="color:#b44">&#34;</span><span style="color:#b44">CELIX_BUNDLES_PATH</span><span style="color:#b44">&#34;</span>, <span style="color:#b44"></span><span style="color:#b44">&#34;</span><span style="color:#b44">bundles;/opt/alternative/bundles</span><span style="color:#b44">&#34;</span>);
+    
+    <span style="color:#080;font-style:italic">//create framework
+</span><span style="color:#080;font-style:italic"></span>    celix_framework_t<span style="color:#666">*</span> fw <span style="color:#666">=</span> celix_frameworkFactory_createFramework(<span style="color:#a2f">NULL</span>);
+
+    <span style="color:#080;font-style:italic">//get framework bundle context and install a bundle
+</span><span style="color:#080;font-style:italic"></span>    celix_bundle_context_t<span style="color:#666">*</span> fwContext <span style="color:#666">=</span> celix_framework_getFrameworkContext(fw);
+    celix_bundleContext_installBundle(fwContext, <span style="color:#b44"></span><span style="color:#b44">&#34;</span><span style="color:#b44">FooBundle.zip</span><span style="color:#b44">&#34;</span>, <span style="color:#a2f">true</span>);
+
+    <span style="color:#080;font-style:italic">//destroy framework
+</span><span style="color:#080;font-style:italic"></span>    celix_frameworkFactory_destroyFramework(fw);
+}
+</code></pre></div><h3 id="example-installing-and-starting-bundles-in-c-1">Example: Installing and starting bundles in C++</h3>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-C++" data-lang="C++"><span style="color:#080;font-style:italic">//src/main.cc
+</span><span style="color:#080;font-style:italic"></span><span style="color:#080">#</span><span style="color:#080">include</span> <span style="color:#080">&lt;celix/FrameworkFactory.h&gt;</span><span style="color:#080">
+</span><span style="color:#080"></span><span style="color:#0b0;font-weight:bold">int</span> <span style="color:#00a000">main</span>() {
+    <span style="color:#080;font-style:italic">//create framework properties
+</span><span style="color:#080;font-style:italic"></span>    celix<span style="color:#666">:</span><span style="color:#666">:</span>Properties properties{};
+    properties.set(<span style="color:#b44"></span><span style="color:#b44">&#34;</span><span style="color:#b44">CELIX_BUNDLES_PATH</span><span style="color:#b44">&#34;</span>, <span style="color:#b44"></span><span style="color:#b44">&#34;</span><span style="color:#b44">bundles;/opt/alternative/bundles</span><span style="color:#b44">&#34;</span>);
+    
+    <span style="color:#080;font-style:italic">//create framework
+</span><span style="color:#080;font-style:italic"></span>    std<span style="color:#666">:</span><span style="color:#666">:</span>shared_ptr<span style="color:#666">&lt;</span>celix<span style="color:#666">:</span><span style="color:#666">:</span>Framework<span style="color:#666">&gt;</span> fw <span style="color:#666">=</span> celix<span style="color:#666">:</span><span style="color:#666">:</span>createFramework(properties);
+    
+    <span style="color:#080;font-style:italic">//get framework bundle context and install a bundle
+</span><span style="color:#080;font-style:italic"></span>    std<span style="color:#666">:</span><span style="color:#666">:</span>shared_ptr<span style="color:#666">&lt;</span>celix<span style="color:#666">:</span><span style="color:#666">:</span>BundleContext<span style="color:#666">&gt;</span> ctx <span style="color:#666">=</span> fw<span style="color:#666">-</span><span style="color:#666">&gt;</span>getFrameworkBundleContext();
+    ctx<span style="color:#666">-</span><span style="color:#666">&gt;</span>installBundle(<span style="color:#b44"></span><span style="color:#b44">&#34;</span><span style="color:#b44">FooBundle.zip</span><span style="color:#b44">&#34;</span>);
+}
+</code></pre></div><h3 id="example-installing-and-starting-bundles-using-the-apache-celix-launcher">Example: Installing and starting bundles using the Apache Celix Launcher</h3>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-C" data-lang="C"><span style="color:#080;font-style:italic">//src/launcher.c
+</span><span style="color:#080;font-style:italic"></span><span style="color:#080">#</span><span style="color:#080">include</span> <span style="color:#080">&lt;celix_api.h&gt;</span><span style="color:#080">
+</span><span style="color:#080"></span><span style="color:#0b0;font-weight:bold">int</span> <span style="color:#00a000">main</span>(<span style="color:#0b0;font-weight:bold">int</span> argc, <span style="color:#0b0;font-weight:bold">char</span><span style="color:#666">*</span><span style="color:#666">*</span> argv) {
+    <span style="color:#a2f;font-weight:bold">return</span> celixLauncher_launchAndWaitForShutdown(argc, argv, <span style="color:#a2f">NULL</span>);
+}
+</code></pre></div><div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cmake" data-lang="cmake"><span style="color:#080;font-style:italic">#CMakeLists.txt
+</span><span style="color:#080;font-style:italic"></span><span style="color:#a2f">find_package</span>(<span style="color:#b44">Celix</span> <span style="color:#b44">REQUIRED</span>)<span style="">
+</span><span style=""></span><span style="color:#a2f">file</span>(<span style="color:#b44">GENERATE</span> <span style="color:#b44">OUTPUT</span> <span style="color:#666">${</span><span style="color:#b8860b">CMAKE_CURRENT_BINARY_DIR</span><span style="color:#666">}</span><span style="color:#b44">/config.properties</span> <span style="color:#b44">CONTENT</span> <span style="color:#b44">&#34;
+</span><span style="color:#b44">CELIX_BUNDLES_PATH=bundles;/opt/alternative/bundles
+</span><span style="color:#b44">CELIX_AUTO_START_3=FooBundle.zip
+</span><span style="color:#b44">&#34;</span>)<span style="">
+</span><span style=""></span><span style="color:#a2f">add_executable</span>(<span style="color:#b44">create_framework_with_celix_launcher</span> <span style="color:#b44">src/launcher.c</span>)<span style="">
+</span><span style=""></span><span style="color:#a2f">target_link_libraries</span>(<span style="color:#b44">create_framework_with_celix_launcher</span> <span style="color:#b44">PRIVATE</span> <span style="color:#b44">Celix::framework</span>)<span style="">
+</span></code></pre></div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<footer class="py-3 bg-secondary">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8 text-center">
+                <p class="m-0 text-white">
+                    Copyright &copy; 2022 The Apache Software Foundation, Licensed under
+                    the <a href="https://www.apache.org/licenses/LICENSE-2.0">Apache License, Version 2.0</a>.
+                    <br>
+                    Apache Celix, Celix, Apache, the Apache feather logo and the Apache Celix logo are trademarks of The Apache Software Foundation.
+                </p>
+            </div>
+            <div class="col-md-4 text-center">
+                <a href="https://www.apache.org/events/current-event.html" target="_blank">
+                    <img src="https://www.apache.org/events/current-event-234x60.png" title="Apache Event" width="234" height="60" border="0">
+                </a>
+            </div>
+        </div>
+    </div>
+</footer>
+
+
+<script src="/assets/js/jquery.min.js"></script>
+<script src="/assets/js/bootstrap.bundle.min.js"></script>
+
+
+</body>
+</html>

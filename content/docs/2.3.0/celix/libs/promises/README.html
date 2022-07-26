@@ -1,0 +1,260 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Promises / Apache Celix</title>
+
+    
+    <link rel="icon" href="/assets/img/favicon.ico">
+
+    
+    <link href="/assets/css/bootstrap.min.css" rel="stylesheet">
+
+    
+    <link href="/assets/css/style.css" rel="stylesheet">
+
+    <style>
+         
+         
+        .card-body img {
+            max-width: 100%;
+            width: 100%;
+            height: auto;
+        }
+
+         
+        .card-body img + em {
+            text-decoration: underline;
+        }
+    </style>
+
+    
+<script>
+  var _paq = window._paq = window._paq || [];
+   
+  _paq.push(['disableCookies']);
+   
+  _paq.push(['trackPageView']);
+  _paq.push(['enableLinkTracking']);
+  (function() {
+    var u="https://analytics.apache.org/";
+    _paq.push(['setTrackerUrl', u+'matomo.php']);
+    _paq.push(['setSiteId', '9']);
+    var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+    g.async=true; g.src=u+'matomo.js'; s.parentNode.insertBefore(g,s);
+  })();
+</script>
+
+
+</head>
+<body class="light-grey">
+
+<a href="https://github.com/apache/celix" class="github-ribbon">
+    <img src="/assets/img/forkme_right_red_aa0000.png" alt="Fork me on GitHub">
+</a>
+
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top">
+    <div class="container">
+        <a class="navbar-brand" href="/">
+            <img src="/assets/img/celix-white.svg" height="40" class="d-inline-block align-top" alt="Celix Logo">
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="/">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/download.cgi">Download</a>
+                </li>
+                <li class="nav-item dropdown active">
+                    <a class="nav-link dropdown-toggle" href="#" id="ddDocs" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Docs
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="ddDocs">
+                        <a class="dropdown-item" href="/docs/2.3.0/docs.html">2.3.0 (latest)</a>
+                        <a class="dropdown-item" href="/docs/2.2.1/docs.html">2.2.1</a>
+                        <a class="dropdown-item" href="/docs/2.1.0/docs.html">2.1.0</a>
+                    </div>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="ddContributing" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Contributing
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="ddContributing">
+                        <a class="dropdown-item" href="/contributing/youatcelix.html">You at Celix</a>
+                        <a class="dropdown-item" href="/contributing/submitting-patches.html">Submitting patches</a>
+                        <a class="dropdown-item" href="/contributing/source-and-builds.html">Source code and builds</a>
+                        <hr>
+                        <a class="dropdown-item" href="/contributing/releasing.html">Releasing</a>
+                        <a class="dropdown-item" href="/contributing/volunteers.html">Volunteers</a>
+                        <a class="dropdown-item" href="https://whimsy.apache.org/board/minutes/Celix.html">Board Reports</a>
+                    </div>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="ddSupport" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Support
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="ddSupport">
+                        <a class="dropdown-item" href="/support/mailing-list.html">Mailing Lists</a>
+                        <a class="dropdown-item" href="/support/issue-tracking.html">Issue Tracking</a>
+                    </div>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="ddFoundation" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        ASF
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="ddFoundation">
+                        <a class="dropdown-item" href="https://www.apache.org/">ASF Home</a>
+                        <a class="dropdown-item" href="https://www.apache.org/foundation/how-it-works.html">How it works</a>
+                        <a class="dropdown-item" href="https://www.apache.org/licenses/">License</a>
+                        <a class="dropdown-item" href="https://www.apache.org/foundation/sponsorship.html">Sponsorship</a>
+                        <a class="dropdown-item" href="https://www.apache.org/foundation/thanks.html">Thanks</a>
+                        <a class="dropdown-item" href="https://www.apache.org/security/">Security</a>
+                        <a class="dropdown-item" href="https://www.apache.org/foundation/policies/conduct">Code of Conduct</a>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+
+<div class="section">
+    <div class="container">
+        <div class="row py-4">
+            <div class="col-sm-12 card">
+                <div class="card-body pt-5">
+                    
+                    
+                        
+                        
+                            <a class="edit-on-gh" href="https://github.com/apache/celix/edit/master/libs/promises/README.md" title="Edit this page on GitHub">Edit on GitHub</a>
+                        
+                    
+
+                    
+                        
+                        <a href="/docs/2.3.0/docs.html" title="back to documentation">&lt;&lt; back to documentation</a>
+                    
+
+                    
+	<h1 id="celix-promises">Celix Promises</h1>
+<p>Celix Promises are based on the OSGi Promises Specification (OSGi Compendium Release 7 Specification, Chapter 705).
+It follows the specification as close as possible, but some adjustments are mode for C++17.</p>
+<p>NOTE: this implementation is still experiment and the api and behaviour will probably still change.</p>
+<h2 id="osgi-information">OSGi Information</h2>
+<p><a href="https://osgi.org/specification/osgi.cmpn/7.0.0/util.promise.html">OSGi Compendium Release 7 Promises Specification (HTML)</a></p>
+<p><a href="https://docs.osgi.org/download/r7/osgi.cmpn-7.0.0.pdf">OSGi Compendium Release 7 Specification (PDF)</a></p>
+<h2 id="usage">Usage</h2>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-C++" data-lang="C++"><span style="color:#080;font-style:italic">//src/PromiseExample.cc
+</span><span style="color:#080;font-style:italic"></span><span style="color:#080">#</span><span style="color:#080">include</span> <span style="color:#080">&lt;iostream&gt;</span><span style="color:#080">
+</span><span style="color:#080"></span><span style="color:#080">#</span><span style="color:#080">include</span> <span style="color:#080">&#34;celix/PromiseFactory.h&#34;</span><span style="color:#080">
+</span><span style="color:#080"></span>
+<span style="color:#a2f;font-weight:bold">static</span> <span style="color:#0b0;font-weight:bold">long</span> <span style="color:#00a000">calc_fib</span>(<span style="color:#0b0;font-weight:bold">long</span> n) {
+    <span style="color:#0b0;font-weight:bold">long</span> m <span style="color:#666">=</span> <span style="color:#666">1</span>;
+    <span style="color:#0b0;font-weight:bold">long</span> k <span style="color:#666">=</span> <span style="color:#666">0</span>;
+    <span style="color:#a2f;font-weight:bold">for</span> (<span style="color:#0b0;font-weight:bold">long</span> i <span style="color:#666">=</span> <span style="color:#666">0</span>; i <span style="color:#666">&lt;</span><span style="color:#666">=</span> n; <span style="color:#666">+</span><span style="color:#666">+</span>i) {
+        <span style="color:#0b0;font-weight:bold">int</span> tmp <span style="color:#666">=</span> m <span style="color:#666">+</span> k;
+        m <span style="color:#666">=</span> k;
+        k <span style="color:#666">=</span> tmp;
+    }
+    <span style="color:#a2f;font-weight:bold">return</span> m;
+}
+
+celix<span style="color:#666">:</span><span style="color:#666">:</span>Promise<span style="color:#666">&lt;</span><span style="color:#0b0;font-weight:bold">long</span><span style="color:#666">&gt;</span> fib(celix<span style="color:#666">:</span><span style="color:#666">:</span>PromiseFactory<span style="color:#666">&amp;</span> factory, <span style="color:#0b0;font-weight:bold">long</span> n) {
+    <span style="color:#a2f;font-weight:bold">return</span> factory.deferredTask<span style="color:#666">&lt;</span><span style="color:#0b0;font-weight:bold">long</span><span style="color:#666">&gt;</span>([n](<span style="color:#a2f;font-weight:bold">auto</span> deferred) {
+        deferred.resolve(calc_fib(n));
+    });
+}
+
+<span style="color:#0b0;font-weight:bold">int</span> <span style="color:#00a000">main</span>() {
+    celix<span style="color:#666">:</span><span style="color:#666">:</span>PromiseFactory factory{};
+    
+    fib(factory, <span style="color:#666">1000000000</span>)
+        .setTimeout(std<span style="color:#666">:</span><span style="color:#666">:</span>chrono<span style="color:#666">:</span><span style="color:#666">:</span>milliseconds {<span style="color:#666">100</span>})
+        .onSuccess([](<span style="color:#0b0;font-weight:bold">long</span> val) {
+            std<span style="color:#666">:</span><span style="color:#666">:</span>cout <span style="color:#666">&lt;</span><span style="color:#666">&lt;</span> <span style="color:#b44"></span><span style="color:#b44">&#34;</span><span style="color:#b44">Success promise 1 : </span><span style="color:#b44">&#34;</span> <span style="color:#666">&lt;</span><span style="color:#666">&lt;</span> std<span style="color:#666">:</span><span style="color:#666">:</span>to_string(val) <span style="color:#666">&lt;</span><span style="color:#666">&lt;</span> std<span style="color:#666">:</span><span style="color:#666">:</span>endl;
+        })
+        .onFailure([](<span style="color:#a2f;font-weight:bold">const</span> std<span style="color:#666">:</span><span style="color:#666">:</span>exception<span style="color:#666">&amp;</span> e) {
+            std<span style="color:#666">:</span><span style="color:#666">:</span>cerr <span style="color:#666">&lt;</span><span style="color:#666">&lt;</span> <span style="color:#b44"></span><span style="color:#b44">&#34;</span><span style="color:#b44">Failure promise 1 : </span><span style="color:#b44">&#34;</span> <span style="color:#666">&lt;</span><span style="color:#666">&lt;</span> e.what() <span style="color:#666">&lt;</span><span style="color:#666">&lt;</span> std<span style="color:#666">:</span><span style="color:#666">:</span>endl;
+        });
+    
+    fib(factory, <span style="color:#666">39</span>)
+        .setTimeout(std<span style="color:#666">:</span><span style="color:#666">:</span>chrono<span style="color:#666">:</span><span style="color:#666">:</span>milliseconds{<span style="color:#666">100</span>})
+        .onSuccess([](<span style="color:#0b0;font-weight:bold">long</span> val) {
+            std<span style="color:#666">:</span><span style="color:#666">:</span>cout <span style="color:#666">&lt;</span><span style="color:#666">&lt;</span> <span style="color:#b44"></span><span style="color:#b44">&#34;</span><span style="color:#b44">Success promise 2 : </span><span style="color:#b44">&#34;</span> <span style="color:#666">&lt;</span><span style="color:#666">&lt;</span> std<span style="color:#666">:</span><span style="color:#666">:</span>to_string(val) <span style="color:#666">&lt;</span><span style="color:#666">&lt;</span> std<span style="color:#666">:</span><span style="color:#666">:</span>endl;
+        })
+        .onFailure([](<span style="color:#a2f;font-weight:bold">const</span> std<span style="color:#666">:</span><span style="color:#666">:</span>exception<span style="color:#666">&amp;</span> e) {
+            std<span style="color:#666">:</span><span style="color:#666">:</span>cerr <span style="color:#666">&lt;</span><span style="color:#666">&lt;</span> <span style="color:#b44"></span><span style="color:#b44">&#34;</span><span style="color:#b44">Failure promise 2 : </span><span style="color:#b44">&#34;</span> <span style="color:#666">&lt;</span><span style="color:#666">&lt;</span> e.what() <span style="color:#666">&lt;</span><span style="color:#666">&lt;</span> std<span style="color:#666">:</span><span style="color:#666">:</span>endl;
+        });
+    
+    <span style="color:#080;font-style:italic">//NOTE the program can only exit if the executor in the PromiseFactory is done executing all tasks.
+</span><span style="color:#080;font-style:italic"></span>}
+</code></pre></div><div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cmake" data-lang="cmake"><span style="color:#080;font-style:italic">#CMakeLists.txt
+</span><span style="color:#080;font-style:italic"></span><span style="color:#a2f">find_package</span>(<span style="color:#b44">Celix</span> <span style="color:#b44">REQUIRED</span>)<span style="">
+</span><span style=""></span><span style="color:#a2f">add_executable</span>(<span style="color:#b44">PromiseExamples</span> <span style="color:#b44">src/PromiseExamples.cc</span>)<span style="">
+</span><span style=""></span><span style="color:#a2f">target_link_libraries</span>(<span style="color:#b44">PromiseExamples</span> <span style="color:#b44">PRIVATE</span> <span style="color:#b44">Celix::Promises</span>)<span style="">
+</span></code></pre></div><h2 id="differences-with-osgi-promises--java">Differences with OSGi Promises &amp; Java</h2>
+<ol>
+<li>Promises must always be resolved, otherwise the Celix::Promises library will leak memory. To support this more easily the <code>Promise::setTimeout</code> method can be used to set a timeout on the current promise.</li>
+<li>There is no singleton default executor. A PromiseFactory can be constructed argument-less to create a default executor, but this executor is then bound to the lifecycle of the PromiseFactory. If celix::IExecutor is injected in the PromiseFactory, it is up to user to control the complete lifecycle of the executor (e.g. by providing this in a ThreadExecutionModel bundle and ensuring this is started early (and as result stopped late).</li>
+<li>The default constructor for celix::Deferred has been removed. A celix:Deferred can only be created through a PromiseFactory. This is done because the promise concept is heavily bound with the execution abstraction and thus a execution model. Creating a Deferred without a explicit executor is not desirable.</li>
+<li>The PromiseFactory also has a deferredTask method. This is a convenient method create a Deferred, execute a task async to resolve the Deferred and return a Promise of the created Deferred in one call.</li>
+<li>The celix::IExecutor abstraction has a priority argument (and as result also the calls in PromiseFactory, etc).</li>
+<li>The IExecutor has a added wait() method. This can be used to ensure an executor is done executing the tasks backlog.</li>
+<li>The methods celix::Deferred<T>::fail and celix::Deferred<T>::resolve are robust for resolving a promise if it is already resolved.
+This is different from the OSGi spec and this is done because it always a race condition to check if a promise is already resolved (isDone()) and then resolve the promise.
+The methods <code>celix::Deferred&lt;T&gt;::tryFail</code> and <code>celix::Deferred&lt;T&gt;::tryResolve</code> can be used to resolve a promise and check if it was already resolved atomically.</li>
+</ol>
+<h2 id="open-issues--todos">Open Issues &amp; TODOs</h2>
+<ul>
+<li>Documentation not complete</li>
+<li>PromiseFactory is not complete yet</li>
+<li>The static helper class Promises is not implemented yet (e.g. all/any)</li>
+<li>Promise::flatMap not implemented yet</li>
+</ul>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<footer class="py-3 bg-secondary">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8 text-center">
+                <p class="m-0 text-white">
+                    Copyright &copy; 2022 The Apache Software Foundation, Licensed under
+                    the <a href="https://www.apache.org/licenses/LICENSE-2.0">Apache License, Version 2.0</a>.
+                    <br>
+                    Apache Celix, Celix, Apache, the Apache feather logo and the Apache Celix logo are trademarks of The Apache Software Foundation.
+                </p>
+            </div>
+            <div class="col-md-4 text-center">
+                <a href="https://www.apache.org/events/current-event.html" target="_blank">
+                    <img src="https://www.apache.org/events/current-event-234x60.png" title="Apache Event" width="234" height="60" border="0">
+                </a>
+            </div>
+        </div>
+    </div>
+</footer>
+
+
+<script src="/assets/js/jquery.min.js"></script>
+<script src="/assets/js/bootstrap.bundle.min.js"></script>
+
+
+</body>
+</html>

@@ -1,0 +1,439 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Apache Celix Bundles / Apache Celix</title>
+
+    
+    <link rel="icon" href="/assets/img/favicon.ico">
+
+    
+    <link href="/assets/css/bootstrap.min.css" rel="stylesheet">
+
+    
+    <link href="/assets/css/style.css" rel="stylesheet">
+
+    <style>
+         
+         
+        .card-body img {
+            max-width: 100%;
+            width: 100%;
+            height: auto;
+        }
+
+         
+        .card-body img + em {
+            text-decoration: underline;
+        }
+    </style>
+
+    
+<script>
+  var _paq = window._paq = window._paq || [];
+   
+  _paq.push(['disableCookies']);
+   
+  _paq.push(['trackPageView']);
+  _paq.push(['enableLinkTracking']);
+  (function() {
+    var u="https://analytics.apache.org/";
+    _paq.push(['setTrackerUrl', u+'matomo.php']);
+    _paq.push(['setSiteId', '9']);
+    var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+    g.async=true; g.src=u+'matomo.js'; s.parentNode.insertBefore(g,s);
+  })();
+</script>
+
+
+</head>
+<body class="light-grey">
+
+<a href="https://github.com/apache/celix" class="github-ribbon">
+    <img src="/assets/img/forkme_right_red_aa0000.png" alt="Fork me on GitHub">
+</a>
+
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top">
+    <div class="container">
+        <a class="navbar-brand" href="/">
+            <img src="/assets/img/celix-white.svg" height="40" class="d-inline-block align-top" alt="Celix Logo">
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="/">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/download.cgi">Download</a>
+                </li>
+                <li class="nav-item dropdown active">
+                    <a class="nav-link dropdown-toggle" href="#" id="ddDocs" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Docs
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="ddDocs">
+                        <a class="dropdown-item" href="/docs/2.3.0/docs.html">2.3.0 (latest)</a>
+                        <a class="dropdown-item" href="/docs/2.2.1/docs.html">2.2.1</a>
+                        <a class="dropdown-item" href="/docs/2.1.0/docs.html">2.1.0</a>
+                    </div>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="ddContributing" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Contributing
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="ddContributing">
+                        <a class="dropdown-item" href="/contributing/youatcelix.html">You at Celix</a>
+                        <a class="dropdown-item" href="/contributing/submitting-patches.html">Submitting patches</a>
+                        <a class="dropdown-item" href="/contributing/source-and-builds.html">Source code and builds</a>
+                        <hr>
+                        <a class="dropdown-item" href="/contributing/releasing.html">Releasing</a>
+                        <a class="dropdown-item" href="/contributing/volunteers.html">Volunteers</a>
+                        <a class="dropdown-item" href="https://whimsy.apache.org/board/minutes/Celix.html">Board Reports</a>
+                    </div>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="ddSupport" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Support
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="ddSupport">
+                        <a class="dropdown-item" href="/support/mailing-list.html">Mailing Lists</a>
+                        <a class="dropdown-item" href="/support/issue-tracking.html">Issue Tracking</a>
+                    </div>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="ddFoundation" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        ASF
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="ddFoundation">
+                        <a class="dropdown-item" href="https://www.apache.org/">ASF Home</a>
+                        <a class="dropdown-item" href="https://www.apache.org/foundation/how-it-works.html">How it works</a>
+                        <a class="dropdown-item" href="https://www.apache.org/licenses/">License</a>
+                        <a class="dropdown-item" href="https://www.apache.org/foundation/sponsorship.html">Sponsorship</a>
+                        <a class="dropdown-item" href="https://www.apache.org/foundation/thanks.html">Thanks</a>
+                        <a class="dropdown-item" href="https://www.apache.org/security/">Security</a>
+                        <a class="dropdown-item" href="https://www.apache.org/foundation/policies/conduct">Code of Conduct</a>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+
+<div class="section">
+    <div class="container">
+        <div class="row py-4">
+            <div class="col-sm-12 card">
+                <div class="card-body pt-5">
+                    
+                    
+                        
+                        
+                            <a class="edit-on-gh" href="https://github.com/apache/celix/edit/master/documents/bundles.md" title="Edit this page on GitHub">Edit on GitHub</a>
+                        
+                    
+
+                    
+                        
+                        <a href="/docs/2.3.0/docs.html" title="back to documentation">&lt;&lt; back to documentation</a>
+                    
+
+                    
+	<!--
+Licensed to the Apache Software Foundation (ASF) under one or more
+contributor license agreements.  See the NOTICE file distributed with
+this work for additional information regarding copyright ownership.
+The ASF licenses this file to You under the Apache License, Version 2.0
+(the "License"); you may not use this file except in compliance with
+the License.  You may obtain a copy of the License at
+   
+    http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+-->
+<h1 id="apache-celix-bundles">Apache Celix Bundles</h1>
+<p>An Apache Celix Bundle contains a collection of shared libraries, configuration files and optional
+an activation entry combined in a zip file. Bundles can be dynamically installed and started in an Apache Celix framework.</p>
+<h2 id="the-anatomy-of-a-celix-bundle">The anatomy of a Celix Bundle</h2>
+<p>Technically an Apache Celix Bundle is a zip file with the following content:</p>
+<ul>
+<li>META-INF/MANIFEST.MF: The required bundle manifest, containing information about the bundle (name, activator library etc)</li>
+<li>Bundle shared libraries (so/dylib files): Optionally a bundle has 1 or more shared libraries.
+The bundle manifest configures which libraries will be loaded (private libs) and which - if any - library is used
+when activating the bundle.</li>
+<li>Bundle resource files: A bundle can also contain additional resource files.
+This could be configuration files, html files, etc.<br>
+It is also possible to have bundles which no shared library, but only resource files.
+Note that bundles can access other bundles resources files.</li>
+</ul>
+<p>If a <code>jar</code> command is available the Celix CMake commands will use that (instead of the <code>zip</code> command) to create bundle
+zip files so that the MANIFEST.MF is always the first entry in the zip file.</p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#080;font-style:italic">#unpacking celix_shell_wui.zip bundle file from a cmake build `cmake-build-debug`.</span>
+<span style="color:#080;font-style:italic">#The celix_shell_wui.zip file is the Celix Shell Web UI bundle. Which provides a web ui interface to the Celix</span> 
+<span style="color:#080;font-style:italic">#interactive shell; It contains a manifest file, shared libraries, and additional web resources</span> 
+<span style="color:#080;font-style:italic">#which can be picked up by the `Celix::http_admin` bundle.</span> 
+% unzip cmake-build-debug/bundles/shell/shell_wui/celix_shell_wui.zip -d unpacked_bundle_dir 
+% find unpacked_bundle_dir 
+unpacked_bundle_dir
+unpacked_bundle_dir/resources
+unpacked_bundle_dir/resources/index.html
+unpacked_bundle_dir/resources/ansi_up.js
+unpacked_bundle_dir/resources/script.js
+unpacked_bundle_dir/META-INF
+unpacked_bundle_dir/META-INF/MANIFEST.MF
+unpacked_bundle_dir/libcivetweb_shared.so <span style="color:#080;font-style:italic">#or dylib for OSX</span>
+unpacked_bundle_dir/libshell_wui.1.so <span style="color:#080;font-style:italic">#or dylib for OSX</span>    
+</code></pre></div><h2 id="bundle-lifecycle">Bundle lifecycle</h2>
+<p>An Apache Celix Bundle has its own lifecycle with the following states:</p>
+<ul>
+<li>Installed - The bundle has been installed into the Celix framework, but it is not yet resolved. For Celix this
+currently means that not all bundle libraries can or have been loaded.</li>
+<li>Resolved - The bundle is installed and its requirements have been met. For Celix this currently means that the
+bundle libraries have been loaded.</li>
+<li>Starting - Starting is a temporary state while the bundle activator&rsquo;s create and start callbacks are being executed.</li>
+<li>Active - The bundle is active.</li>
+<li>Stopping - Stopping is a temporary state while the bundle activator stop and destroy callbacks are being executed.</li>
+<li>Uninstalled - The bundle has been removed from the Celix framework.</li>
+</ul>
+<p><img src="diagrams/bundles_lifecycle.png" alt="State diagram of the bundle lifecycle"></p>
+<h2 id="bundle-activation">Bundle activation</h2>
+<p>Bundles can be installed and started dynamically. When a bundle is started it will be activated by looking up the bundle
+activator entry points (using <code>dlsym</code>). The entry points signatures are:</p>
+<ul>
+<li><code>celix_status_t celix_bundleActivator_create(celix_bundle_context_t *ctx, void **userData)</code>:
+Called to create the bundle activator.</li>
+<li><code>celix_status_t celix_bundleActivator_start(void *userData, celix_bundle_context_t *ctx)</code>:
+Called to start the bundle.</li>
+<li><code>celix_status_t celix_bundleActivator_stop(void *userData, celix_bundle_context_t *ctx)</code>:
+Called to stop the bundle.</li>
+<li><code>celix_status_t celix_bundleActivator_destroy(void *userData, celix_bundle_context_t* ctx)</code>:
+Called to destroy (free mem) the bundle activator.</li>
+</ul>
+<p>The most convenient way to create a bundle activator in C is to use the macro <code>CELIX_GEN_BUNDLE_ACTIVATOR</code> defined in
+<code>celix_bundle_activator.h</code>. This macro requires two functions (start,stop), these function can be <code>static</code> and
+use a typed bundle activator struct instead of <code>void*</code>.</p>
+<p>For C++, the macro <code>CELIX_GEN_CXX_BUNDLE_ACTIVATOR</code> defined in <code>celix/BundleActivator.h</code> must be used to create a
+bundle activator. For C++ a RAII approach is used for bundle activation.
+This means that a C++ bundle is started by creating a bundle activator object and stopped by
+letting the bundle activator object go out of scope.</p>
+<h2 id="bundle-and-bundle-context">Bundle and Bundle Context</h2>
+<p>A bundle can interact with the Apache Celix framework using a bundle execution context or bundle context in short.
+The bundle context provides functions/methods to:</p>
+<ul>
+<li>Register and un-register services.</li>
+<li>Install, start, stop or uninstall bundles.</li>
+<li>Track for service being added or removed.</li>
+<li>Track for bundles being installed, started, stopped or uninstalled.</li>
+<li>Track for service tracker being started or stopped</li>
+<li>Find service ids for a given filter.</li>
+<li>Use services directly (without manually creating a service tracker).</li>
+<li>Use bundles directly (without manually creating a bundle tracker).</li>
+<li>Wait for events in the Celix event thread.</li>
+<li>Retrieve framework property values.</li>
+<li>Retrieve the bundle object associated with the bundle context.</li>
+</ul>
+<h2 id="hello-world-bundle-example">Hello World Bundle Example</h2>
+<p>The hello world bundle example is a simple example which print a &ldquo;Hello world&rdquo; and &ldquo;Goodbye world&rdquo; line when
+starting / stopping the bundle.</p>
+<p>Knowledge about C, C++ and CMake is expected to understand the examples.</p>
+<p>The C and C++ examples exists of a single source file which contains the bundle activator and some Apache Celix
+CMake commands to create a bundle and a container.</p>
+<p>Both containers example uses 3 bundles: the Apache Celix Shell bundle, the Apache Celix Shell Textual UI bundle
+and the Hello World bundle. The Apache Celix Shell bundle provides a set of interactive shell commands and the
+Apache Celix Shell Textual UI bundle can be used to run these command from a console terminal.</p>
+<p>When the C or C++ Hello World bundle example container is started, the following commands can be used to dynamically
+stop and start the Hello World bundle.</p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">stop <span style="color:#666">3</span> <span style="color:#080;font-style:italic">#Stopping the Hello World bundle. Note that the Hello World is the third bundle, so it will get a bundle id 3.</span>
+start <span style="color:#666">3</span> <span style="color:#080;font-style:italic">#Starting the Hello World bundle again.</span>
+uninstall <span style="color:#666">3</span> <span style="color:#080;font-style:italic">#Stoping and uninstalling the Hello World bundle.</span>
+stop <span style="color:#666">0</span> <span style="color:#080;font-style:italic">#stop the Apache Celix framework</span>
+</code></pre></div><p>The see what other Apache Celix shell commands are available run the <code>celix::help</code> command:</p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#a2f">help</span> <span style="color:#080;font-style:italic">#note can also be triggered with celix::help (the fully qualified command name).</span> 
+<span style="color:#a2f">help</span> celix::start 
+<span style="color:#a2f">help</span> celix::lb
+stop <span style="color:#666">0</span> <span style="color:#080;font-style:italic">#stop the Apache Celix framework</span>
+</code></pre></div><h3 id="c-example">C Example</h3>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-C" data-lang="C"><span style="color:#080;font-style:italic">//src/my_bundle_activator.c
+</span><span style="color:#080;font-style:italic"></span><span style="color:#080">#</span><span style="color:#080">include</span> <span style="color:#080">&lt;celix_api.h&gt;</span><span style="color:#080">
+</span><span style="color:#080"></span>
+<span style="color:#a2f;font-weight:bold">typedef</span> <span style="color:#a2f;font-weight:bold">struct</span> my_bundle_activator_data {
+    <span style="color:#080;font-style:italic">/*the hello world bundle activator struct is empty*/</span>
+} my_bundle_activator_data_t;
+
+<span style="color:#a2f;font-weight:bold">static</span> celix_status_t <span style="color:#00a000">my_bundle_start</span>(my_bundle_activator_data_t <span style="color:#666">*</span>data, celix_bundle_context_t <span style="color:#666">*</span>ctx) {
+    printf(<span style="color:#b44"></span><span style="color:#b44">&#34;</span><span style="color:#b44">Hello world from bundle with id %li</span><span style="color:#b62;font-weight:bold">\n</span><span style="color:#b44">&#34;</span>, celix_bundleContext_getBundleId(ctx));
+    <span style="color:#a2f;font-weight:bold">return</span> CELIX_SUCCESS;
+}
+
+<span style="color:#a2f;font-weight:bold">static</span> celix_status_t <span style="color:#00a000">my_bundle_stop</span>(my_bundle_activator_data_t <span style="color:#666">*</span>data, celix_bundle_context_t <span style="color:#666">*</span>ctx) {
+    printf(<span style="color:#b44"></span><span style="color:#b44">&#34;</span><span style="color:#b44">Goodbye world</span><span style="color:#b62;font-weight:bold">\n</span><span style="color:#b44">&#34;</span>);
+    <span style="color:#a2f;font-weight:bold">return</span> CELIX_SUCCESS;
+}
+
+CELIX_GEN_BUNDLE_ACTIVATOR(my_bundle_activator_data_t, my_bundle_start, my_bundle_stop)
+</code></pre></div><div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-CMake" data-lang="CMake"><span style="color:#080;font-style:italic">#CMakeLists.txt
+</span><span style="color:#080;font-style:italic"></span><span style="color:#a2f">find_package</span>(<span style="color:#b44">Celix</span> <span style="color:#b44">REQUIRED</span>)<span style="">
+</span><span style=""></span><span style="">
+</span><span style=""></span><span style="color:#080;font-style:italic">#With `make all`, `make celix-bundles` this bundle will be created at:
+</span><span style="color:#080;font-style:italic"></span><span style="color:#080;font-style:italic">#  ${CMAKE_CURRENT_BINARY_DIR}/my_bundle.zip.
+</span><span style="color:#080;font-style:italic"></span><span style="color:#a2f">add_celix_bundle</span>(<span style="color:#b44">my_bundle</span>
+    <span style="color:#b44">VERSION</span> <span style="color:#b44">1.0.0</span> 
+    <span style="color:#b44">SOURCES</span> <span style="color:#b44">src/my_bundle_activator.c</span>
+)<span style="">
+</span><span style=""></span><span style="">
+</span><span style=""></span><span style="color:#080;font-style:italic">#With `make all`, `make celix-containers` or `make my_container` this Celix container executable will be created at:
+</span><span style="color:#080;font-style:italic"></span><span style="color:#080;font-style:italic"># ${CMAKE_BINARY_DIR}/deploy/my_container/my_container
+</span><span style="color:#080;font-style:italic"></span><span style="color:#a2f">add_celix_container</span>(<span style="color:#b44">my_container</span>
+    <span style="color:#b44">C</span>
+    <span style="color:#b44">BUNDLES</span>
+        <span style="color:#b44">Celix::shell</span>
+        <span style="color:#b44">Celix::shell_tui</span>
+        <span style="color:#b44">my_bundle</span>
+)<span style="">
+</span></code></pre></div><h3 id="c-example-1">C++ Example</h3>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-C++" data-lang="C++"><span style="color:#080;font-style:italic">//src/MyBundleActivator.cc
+</span><span style="color:#080;font-style:italic"></span><span style="color:#080">#</span><span style="color:#080">include</span> <span style="color:#080">&lt;iostream&gt;</span><span style="color:#080">
+</span><span style="color:#080"></span><span style="color:#080">#</span><span style="color:#080">include</span> <span style="color:#080">&#34;celix/BundleActivator.h&#34;</span><span style="color:#080">
+</span><span style="color:#080"></span>
+<span style="color:#a2f;font-weight:bold">class</span> <span style="color:#00f">MyBundleActivator</span> {
+<span style="color:#a2f;font-weight:bold">public</span><span style="color:#666">:</span>
+    <span style="color:#a2f;font-weight:bold">explicit</span> MyBundleActivator(<span style="color:#a2f;font-weight:bold">const</span> std<span style="color:#666">:</span><span style="color:#666">:</span>shared_ptr<span style="color:#666">&lt;</span>celix<span style="color:#666">:</span><span style="color:#666">:</span>BundleContext<span style="color:#666">&gt;</span><span style="color:#666">&amp;</span> ctx) {
+        std<span style="color:#666">:</span><span style="color:#666">:</span>cout <span style="color:#666">&lt;</span><span style="color:#666">&lt;</span> <span style="color:#b44"></span><span style="color:#b44">&#34;</span><span style="color:#b44">Hello world from bundle with id </span><span style="color:#b44">&#34;</span> <span style="color:#666">&lt;</span><span style="color:#666">&lt;</span> ctx<span style="color:#666">-</span><span style="color:#666">&gt;</span>getBundleId() <span style="color:#666">&lt;</span><span style="color:#666">&lt;</span> std<span style="color:#666">:</span><span style="color:#666">:</span>endl;
+    }
+
+    <span style="color:#666">~</span>MyBundleActivator() <span style="color:#a2f;font-weight:bold">noexcept</span> {
+        std<span style="color:#666">:</span><span style="color:#666">:</span>cout <span style="color:#666">&lt;</span><span style="color:#666">&lt;</span> <span style="color:#b44"></span><span style="color:#b44">&#34;</span><span style="color:#b44">Goodbye world</span><span style="color:#b44">&#34;</span> <span style="color:#666">&lt;</span><span style="color:#666">&lt;</span> std<span style="color:#666">:</span><span style="color:#666">:</span>endl;
+    }
+};
+
+CELIX_GEN_CXX_BUNDLE_ACTIVATOR(MyBundleActivator)
+</code></pre></div><div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-CMake" data-lang="CMake"><span style="color:#080;font-style:italic">#CMakeLists.txt
+</span><span style="color:#080;font-style:italic"></span><span style="color:#a2f">find_package</span>(<span style="color:#b44">Celix</span> <span style="color:#b44">REQUIRED</span>)<span style="">
+</span><span style=""></span><span style="">
+</span><span style=""></span><span style="color:#080;font-style:italic">#With `make all`, `make celix-bundles` this bundle will be created at:
+</span><span style="color:#080;font-style:italic"></span><span style="color:#080;font-style:italic">#  ${CMAKE_CURRENT_BINARY_DIR}/MyBundle.zip.
+</span><span style="color:#080;font-style:italic"></span><span style="color:#a2f">add_celix_bundle</span>(<span style="color:#b44">MyBundle</span>
+    <span style="color:#b44">SOURCES</span> <span style="color:#b44">src/MyBundleActivator.cc</span>
+)<span style="">
+</span><span style=""></span><span style="">
+</span><span style=""></span><span style="color:#080;font-style:italic">#With `make all`, `make celix-containers` or `make MyContainer` this Celix container executable will be created at:
+</span><span style="color:#080;font-style:italic"></span><span style="color:#080;font-style:italic"># ${CMAKE_BINARY_DIR}/deploy/my_container/MyContainer
+</span><span style="color:#080;font-style:italic"></span><span style="color:#a2f">add_celix_container</span>(<span style="color:#b44">MyContainer</span>
+    <span style="color:#b44">CXX</span>
+    <span style="color:#b44">BUNDLES</span>
+        <span style="color:#b44">Celix::ShellCxx</span>
+        <span style="color:#b44">Celix::shell_tui</span>
+        <span style="color:#b44">MyBundle</span>
+)<span style="">
+</span></code></pre></div><h2 id="interaction-between-bundles">Interaction between bundles</h2>
+<p>By design bundles cannot directly access the symbols of another bundle. Interaction between bundles must be done using
+Apache Celix services. This means that unless functionality is provided by means of an Apache Celix service,
+bundle functionality is private to the bundle.
+In Apache Celix symbols are kept private by loading bundle libraries locally (<code>dlopen</code> with <code>RTLD_LOCAL</code>).</p>
+<h2 id="installing-bundles">Installing bundles</h2>
+<p>Apache Celix bundles can be installed on the system with the Apache Celix CMake command <code>install_celix_bundle</code>.
+Bundles will be installed as zip files in the package (default the CMAKE_PROJECT_NAME) share directory
+(e.g <code>/use/share/celix/bundles</code>).</p>
+<p>It is also possible to use Apache Celix bundles as CMake imported targets, but this requires a more complex
+CMake installation setup.</p>
+<h2 id="installing-celix-cmake-targets">Installing Celix CMake targets</h2>
+<p>The <code>install_celix_targets</code> can be used to generate a CMake file with the imported Apache Celix Bundle CMake targets
+and this is ideally coupled with a CMake config file so that the bundles are made available when
+CMake&rsquo;s <code>find_package</code> is used.</p>
+<p>Example:</p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-CMake" data-lang="CMake"><span style="color:#080;font-style:italic">#Project setup
+</span><span style="color:#080;font-style:italic"></span><span style="color:#a2f">project</span>(<span style="color:#b44">ExamplePackage</span> <span style="color:#b44">C</span> <span style="color:#b44">CXX</span>)<span style="">
+</span><span style=""></span><span style="color:#a2f">find_package</span>(<span style="color:#b44">Celix</span> <span style="color:#b44">REQUIRED</span>)<span style="">
+</span><span style=""></span><span style="">
+</span><span style=""></span><span style="color:#080;font-style:italic">#Create bundles
+</span><span style="color:#080;font-style:italic"></span><span style="color:#a2f">add_celix_bundle</span>(<span style="color:#b44">ExampleBundleA</span> <span style="color:#b44">...</span>)<span style="">
+</span><span style=""></span><span style="color:#a2f">add_celix_bundle</span>(<span style="color:#b44">ExampleBundleB</span> <span style="color:#b44">...</span>)<span style="">
+</span><span style=""></span><span style="">
+</span><span style=""></span><span style="color:#080;font-style:italic">#Install bundle zips
+</span><span style="color:#080;font-style:italic"></span><span style="color:#a2f">install_celix_bundle</span>(<span style="color:#b44">ExampleBundleA</span> <span style="color:#b44">EXPORT</span> <span style="color:#b44">MyExport</span>)<span style="">
+</span><span style=""></span><span style="color:#a2f">install_celix_bundle</span>(<span style="color:#b44">ExampleBundleB</span> <span style="color:#b44">EXPORT</span> <span style="color:#b44">MyExport</span>)<span style="">
+</span><span style=""></span><span style="color:#080;font-style:italic">#install exported Celix CMake targets
+</span><span style="color:#080;font-style:italic"></span><span style="color:#a2f">install_celix_targets</span>(<span style="color:#b44">MyExport</span> <span style="color:#b44">NAMESPACE</span> <span style="color:#b44">ExamplePackage::</span> <span style="color:#b44">DESTINATION</span> <span style="color:#b44">share/ExamplePackage/cmake</span> <span style="color:#b44">FILE</span> <span style="color:#b44">CelixTargets</span>)<span style="">
+</span><span style=""></span><span style="">
+</span><span style=""></span><span style="color:#080;font-style:italic">#Install Package CMake configuration
+</span><span style="color:#080;font-style:italic"></span><span style="color:#a2f">file</span>(<span style="color:#b44">GENERATE</span> <span style="color:#b44">OUTPUT</span> <span style="color:#666">${</span><span style="color:#b8860b">CMAKE_BINARY_DIR</span><span style="color:#666">}</span><span style="color:#b44">/ExamplePackageConfig.cmake</span> <span style="color:#b44">CONTENT</span> <span style="color:#b44">&#34;
+</span><span style="color:#b44">  # relative install dir from lib/CMake/ExamplePackage.
+</span><span style="color:#b44">  get_filename_component(REL_INSTALL_DIR &#34;</span><span style="color:#666">${</span><span style="color:#b8860b">CMAKE_CURRENT_LIST_FILE</span><span style="color:#666">}</span><span style="color:#b44">&#34; PATH)
+</span><span style="color:#b44">  get_filename_component(REL_INSTALL_DIR &#34;</span><span style="color:#666">${</span><span style="color:#b8860b">REL_INSTALL_DIR</span><span style="color:#666">}</span><span style="color:#b44">&#34; PATH)
+</span><span style="color:#b44">  get_filename_component(REL_INSTALL_DIR &#34;</span><span style="color:#666">${</span><span style="color:#b8860b">REL_INSTALL_DIR</span><span style="color:#666">}</span><span style="color:#b44">&#34; PATH)
+</span><span style="color:#b44">  get_filename_component(REL_INSTALL_DIR &#34;</span><span style="color:#666">${</span><span style="color:#b8860b">REL_INSTALL_DIR</span><span style="color:#666">}</span><span style="color:#b44">&#34; PATH)
+</span><span style="color:#b44">  include(${REL_INSTALL_DIR}/share/celix/cmake/CelixTargets.cmake)
+</span><span style="color:#b44">&#34;</span>)<span style="">
+</span><span style=""></span><span style="">
+</span><span style=""></span><span style="color:#a2f">install</span>(<span style="color:#b44">FILES</span>
+  <span style="color:#666">${</span><span style="color:#b8860b">CMAKE_BINARY_DIR</span><span style="color:#666">}</span><span style="color:#b44">/ExamplePackageConfig.cmake</span>
+  <span style="color:#b44">DESTINATION</span> <span style="color:#666">${</span><span style="color:#b8860b">CMAKE_INSTALL_LIBDIR</span><span style="color:#666">}</span><span style="color:#b44">/cmake/ExamplePackage</span>)<span style="">
+</span></code></pre></div><p>Downstream Usage Example:</p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-CMake" data-lang="CMake"><span style="color:#a2f">project</span>(<span style="color:#b44">UsageExample</span> <span style="color:#b44">C</span> <span style="color:#b44">CXX</span>)<span style="">
+</span><span style=""></span><span style="color:#a2f">find_package</span>(<span style="color:#b44">Celix</span> <span style="color:#b44">REQUIRED</span>)<span style="">
+</span><span style=""></span><span style="color:#a2f">find_package</span>(<span style="color:#b44">ExamplePackage</span> <span style="color:#b44">REQUIRED</span>)<span style="">
+</span><span style=""></span><span style="color:#a2f">add_celix_container</span>(<span style="color:#b44">test_container</span> <span style="color:#b44">BUNDLES</span>
+  <span style="color:#b44">Celix::shell</span>
+  <span style="color:#b44">Celix::shell_tui</span>
+  <span style="color:#b44">ExamplePackage::ExampleBundleA</span>
+  <span style="color:#b44">ExamplePackage::ExampleBundleB</span>
+)<span style="">
+</span></code></pre></div><p>See <a href="cmake_commands/README.html">Apache Celix CMake Commands</a> for more detailed information.</p>
+<h1 id="the-celixlb-shell-command">The <code>celix::lb</code> shell command</h1>
+<p>To interactively see the installed bundles the <code>celix::lb</code> shell command (list bundles) can be used.</p>
+<p>Examples of supported <code>lb</code> command lines are:</p>
+<ul>
+<li><code>celix::lb</code> - Show an overview of the installed bundles with their bundle id, bundle state, bundle name and
+bundle group.</li>
+<li><code>lb</code> - Same as <code>celix::lb</code> (as long as there is no colliding other <code>lb</code> commands).</li>
+<li><code>lb -s</code> - Same as <code>celix::lb</code> but instead of showing the bundle name the bundle symbolic name is printed.</li>
+<li><code>lb -u</code> - Same as <code>celix::lb</code> but instead of showing the bundle name the bundle update location is printed.</li>
+</ul>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<footer class="py-3 bg-secondary">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8 text-center">
+                <p class="m-0 text-white">
+                    Copyright &copy; 2022 The Apache Software Foundation, Licensed under
+                    the <a href="https://www.apache.org/licenses/LICENSE-2.0">Apache License, Version 2.0</a>.
+                    <br>
+                    Apache Celix, Celix, Apache, the Apache feather logo and the Apache Celix logo are trademarks of The Apache Software Foundation.
+                </p>
+            </div>
+            <div class="col-md-4 text-center">
+                <a href="https://www.apache.org/events/current-event.html" target="_blank">
+                    <img src="https://www.apache.org/events/current-event-234x60.png" title="Apache Event" width="234" height="60" border="0">
+                </a>
+            </div>
+        </div>
+    </div>
+</footer>
+
+
+<script src="/assets/js/jquery.min.js"></script>
+<script src="/assets/js/bootstrap.bundle.min.js"></script>
+
+
+</body>
+</html>
