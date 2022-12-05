@@ -22,6 +22,7 @@ Committee members are listed in the chronological order, according to the date e
 - Gabriele Ricciardi (gricciardi at apache.org)
 - Roy Lenferink (rlenferink at apache.org)
 - Erjan Altena (erjanaltena at apache.org)
+- Peng Zheng (pengzheng at apache.org)
 
 ## Committers
 
@@ -33,4 +34,6 @@ Other committers are listed in the chronological order, according to the date ea
 - Roy Bulter (rbulter at apache.org)
 - Idzard Hoekstra (idzardh at apache.org)
 - Michael de Lang (oipo at apache.org)
-- Peng Zheng (pengzheng at apache.org)
+- Rick Stegeman (stegemr at apache.org)
+- Zhenbao Xu (xuzhenbao at apache.org)
+
