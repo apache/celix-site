@@ -60,6 +60,7 @@ pipeline {
             steps {
                 script {
                     withEnv(["PATH+HUGO=${env.HUGO_DIR}/bin"]) {
+                        sh 'hugo version'
                         sh "hugo --destination ${env.OUT_DIR}"
                     }
                 }
