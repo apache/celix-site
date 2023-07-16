@@ -169,30 +169,30 @@ Conan will arrange the building of the Apache Celix dependencies and generate Fi
 <p>Conan will also generate a <code>active_run.sh</code> and <code>deactivate_run.sh</code> script that does the environment (de)setup for the
 binary locations of the build dependencies (i.e. configures <code>PATH</code> and <code>LD_LIBRARY_PATH</code>/<code>DYLD_LIBRARY_PATH</code>).</p>
 <h2 id="setting-up-the-build-directory">Setting up the build directory</h2>
-<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell"><span style="color:#080;font-style:italic">#clone git repo</span>
-git clone https://github.com/apache/celix.git
-<span style="color:#a2f">cd</span> celix
-
-<span style="color:#080;font-style:italic">#if needed setup conan default and debug profile</span>
-conan profile new default --detect
-conan profile new debug --detect
-conan profile update settings.build_type<span style="color:#666">=</span>Debug debug
-
-<span style="color:#080;font-style:italic">#generate and configure cmake-build-debug directory</span>
-conan install . celix/2.3.0 -pr:b default -pr:h debug -if cmake-build-debug/ -o celix:enable_testing<span style="color:#666">=</span>True -o celix:enable_address_sanitizer<span style="color:#666">=</span>True -o celix:build_all<span style="color:#666">=</span>True -b missing
-conan build . -bf cmake-build-debug/ --configure
-
-<span style="color:#080;font-style:italic">#optional build</span>
-<span style="color:#a2f">cd</span> cmake-build-debug
-make -j
-
-<span style="color:#080;font-style:italic">#optional setup run env and run tests</span>
-<span style="color:#a2f">source</span> activate_run.sh 
-ctest --verbose
-<span style="color:#a2f">source</span> deactivate_run.sh 
-</code></pre></div><h2 id="configuring-clion">Configuring CLion</h2>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span><span style="color:#080;font-style:italic">#clone git repo</span>
+</span></span><span style="display:flex;"><span>git clone https://github.com/apache/celix.git
+</span></span><span style="display:flex;"><span><span style="color:#a2f">cd</span> celix
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#080;font-style:italic">#if needed setup conan default and debug profile</span>
+</span></span><span style="display:flex;"><span>conan profile new default --detect
+</span></span><span style="display:flex;"><span>conan profile new debug --detect
+</span></span><span style="display:flex;"><span>conan profile update settings.build_type<span style="color:#666">=</span>Debug debug
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#080;font-style:italic">#generate and configure cmake-build-debug directory</span>
+</span></span><span style="display:flex;"><span>conan install . celix/2.3.0 -pr:b default -pr:h debug -if cmake-build-debug/ -o celix:enable_testing<span style="color:#666">=</span>True -o celix:enable_address_sanitizer<span style="color:#666">=</span>True -o celix:build_all<span style="color:#666">=</span>True -b missing
+</span></span><span style="display:flex;"><span>conan build . -bf cmake-build-debug/ --configure
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#080;font-style:italic">#optional build</span>
+</span></span><span style="display:flex;"><span><span style="color:#a2f">cd</span> cmake-build-debug
+</span></span><span style="display:flex;"><span>make -j
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#080;font-style:italic">#optional setup run env and run tests</span>
+</span></span><span style="display:flex;"><span><span style="color:#a2f">source</span> activate_run.sh 
+</span></span><span style="display:flex;"><span>ctest --verbose
+</span></span><span style="display:flex;"><span><span style="color:#a2f">source</span> deactivate_run.sh 
+</span></span></code></pre></div><h2 id="configuring-clion">Configuring CLion</h2>
 <p>To ensure that all Conan build dependencies can be found the Run/Debug configurations of CLion needs te be updated.</p>
-<p>This can be done under the menu &ldquo;Run-&gt;Edit Configurations&hellip;&quot;, then select &ldquo;Edit configuration templates&hellip;&rdquo; and
+<p>This can be done under the menu &ldquo;Run-&gt;Edit Configurations&hellip;&rdquo;, then select &ldquo;Edit configuration templates&hellip;&rdquo; and
 then update the &ldquo;Google Test&rdquo; template so that the <code>active_run.sh</code> Conan generated script is sourced in the
 &ldquo;Environment variables&rdquo; entry.</p>
 <p>If the Apache Celix CMake build directory is <code>home/joe/workspace/celix/cmake-build-debug</code> then the value for

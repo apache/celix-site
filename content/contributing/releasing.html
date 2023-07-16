@@ -167,10 +167,10 @@ information. This updated file needs to be uploaded to SVN at the following loca
 </ul>
 <h2 id="create-release-branch">Create release branch</h2>
 <p>A release will be prepared in a release branch. This branch is created from the <code>master</code> branch.</p>
-<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">git checkout master
-git checkout -b release-X.Y.Z
-git push origin release-X.Y.Z
-</code></pre></div><h2 id="update-release-related-files">Update release related files</h2>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>git checkout master
+</span></span><span style="display:flex;"><span>git checkout -b release-X.Y.Z
+</span></span><span style="display:flex;"><span>git push origin release-X.Y.Z
+</span></span></code></pre></div><h2 id="update-release-related-files">Update release related files</h2>
 <p>For every release the related files must be updated. The following files are relevant:</p>
 <ul>
 <li>CHANGES
@@ -196,122 +196,122 @@ git push origin release-X.Y.Z
 </ul>
 <p>Besides this information, the version needs to be bumped. Even though every bundle has its own version, a release is made with one
 overall version. This version is defined in the top-level CMakeLists.txt file. Update the following pieces:</p>
-<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-C" data-lang="C">set(CELIX_MAJOR <span style="color:#b44"></span><span style="color:#b44">&#34;</span><span style="color:#b44">X</span><span style="color:#b44">&#34;</span>)
-set(CELIX_MINOR <span style="color:#b44"></span><span style="color:#b44">&#34;</span><span style="color:#b44">Y</span><span style="color:#b44">&#34;</span>)
-set(CELIX_MICRO <span style="color:#b44"></span><span style="color:#b44">&#34;</span><span style="color:#b44">Z</span><span style="color:#b44">&#34;</span>)
-</code></pre></div><p class="alert alert-primary">Note: The DEFAULT_VERSION property is used as default version for new bundles and as 
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C" data-lang="C"><span style="display:flex;"><span><span style="color:#00a000">set</span>(CELIX_MAJOR <span style="color:#b44">&#34;X&#34;</span>)
+</span></span><span style="display:flex;"><span><span style="color:#00a000">set</span>(CELIX_MINOR <span style="color:#b44">&#34;Y&#34;</span>)
+</span></span><span style="display:flex;"><span><span style="color:#00a000">set</span>(CELIX_MICRO <span style="color:#b44">&#34;Z&#34;</span>)
+</span></span></code></pre></div><p class="alert alert-primary">Note: The DEFAULT_VERSION property is used as default version for new bundles and as 
 such does not need to be updated when making a release.</p>
 <h2 id="compile-and-test">Compile and test</h2>
 <p>Before creating a branch, be sure that the source compiles and tests run successfully. If there are any known shortcomings,
 make sure they are listed in the RELEASE_NOTES. Details for compiling and testing are available in the BUILDING file.</p>
-<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#080;font-style:italic"># Create a directory as sibling of the celix release directory</span>
-$ mkdir celix-build
-$ <span style="color:#a2f">cd</span> celix-build
-
-<span style="color:#080;font-style:italic"># Run CMake to generate the makefiles. Enable all BUILD options.</span>
-$ ccmake ../celix
-$ make
-$ make deploy
-$ make <span style="color:#a2f">test</span>
-</code></pre></div><p>Also verify that the provides examples work as expected. If needed ask other committers to test parts.</p>
-<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#080;font-style:italic"># Go to the deploy directory to see all examples</span>
-$ <span style="color:#a2f">cd</span> deploy
-
-<span style="color:#080;font-style:italic"># Test the different examples, eg</span>
-$ <span style="color:#a2f">cd</span> hello_world
-$ sh run.sh
-
-<span style="color:#080;font-style:italic"># Depending on the example the output might be different. Most examples provide a shell to inspect the framework.</span>
-<span style="color:#080;font-style:italic"># To list the commands use the &#34;help&#34; command.</span>
--&gt; <span style="color:#a2f">help</span>
-</code></pre></div><p>After verifying the build, run Apache RAT to check for any licensing problems. If Apache RAT is configured in the CMake build the &ldquo;rat&rdquo; target can be used to run the check.</p>
-<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#080;font-style:italic"># From the celix-build directory</span>
-<span style="color:#080;font-style:italic"># Run CMake to set the APACHE_RAT library (path to the JAR file).</span>
-$ ccmake ../celix
-<span style="color:#080;font-style:italic"># Run RAT</span>
-$ make rat
-</code></pre></div><p>Apache RAT should not raise any concerns, if there are, check the source files for a license header. If it is a false positive update
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#080;font-style:italic"># Create a directory as sibling of the celix release directory</span>
+</span></span><span style="display:flex;"><span>$ mkdir celix-build
+</span></span><span style="display:flex;"><span>$ <span style="color:#a2f">cd</span> celix-build
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#080;font-style:italic"># Run CMake to generate the makefiles. Enable all BUILD options.</span>
+</span></span><span style="display:flex;"><span>$ ccmake ../celix
+</span></span><span style="display:flex;"><span>$ make
+</span></span><span style="display:flex;"><span>$ make deploy
+</span></span><span style="display:flex;"><span>$ make <span style="color:#a2f">test</span>
+</span></span></code></pre></div><p>Also verify that the provides examples work as expected. If needed ask other committers to test parts.</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#080;font-style:italic"># Go to the deploy directory to see all examples</span>
+</span></span><span style="display:flex;"><span>$ <span style="color:#a2f">cd</span> deploy
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#080;font-style:italic"># Test the different examples, eg</span>
+</span></span><span style="display:flex;"><span>$ <span style="color:#a2f">cd</span> hello_world
+</span></span><span style="display:flex;"><span>$ sh run.sh
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#080;font-style:italic"># Depending on the example the output might be different. Most examples provide a shell to inspect the framework.</span>
+</span></span><span style="display:flex;"><span><span style="color:#080;font-style:italic"># To list the commands use the &#34;help&#34; command.</span>
+</span></span><span style="display:flex;"><span>-&gt; <span style="color:#a2f">help</span>
+</span></span></code></pre></div><p>After verifying the build, run Apache RAT to check for any licensing problems. If Apache RAT is configured in the CMake build the &ldquo;rat&rdquo; target can be used to run the check.</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#080;font-style:italic"># From the celix-build directory</span>
+</span></span><span style="display:flex;"><span><span style="color:#080;font-style:italic"># Run CMake to set the APACHE_RAT library (path to the JAR file).</span>
+</span></span><span style="display:flex;"><span>$ ccmake ../celix
+</span></span><span style="display:flex;"><span><span style="color:#080;font-style:italic"># Run RAT</span>
+</span></span><span style="display:flex;"><span>$ make rat
+</span></span></code></pre></div><p>Apache RAT should not raise any concerns, if there are, check the source files for a license header. If it is a false positive update
 the rat-excludes.txt file in the root of the project. Be sure it is a false positive! If in doubt, ask the mailing list! Third party
 licenses may need to be mentioned in the NOTICE file.</p>
 <h2 id="create-sign-and-publish-artifacts">Create, sign and publish artifacts</h2>
 <p>Since Celix only releases source artifacts, creating the artifact is simple and straightforward.
 First verify that all changes are committed to the release branch and the branch is pushed to GitHub.</p>
-<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#080;font-style:italic"># Create symbolic link so the archive has a directory with version information</span>
-$ ln -s celix celix-X.Y.Z
-
-<span style="color:#080;font-style:italic"># Create GZip archive</span>
-$ tar --exclude<span style="color:#666">=</span><span style="color:#b44">&#34;.*&#34;</span> -hczf celix-X.Y.Z.tar.gz celix-X.Y.Z
-
-<span style="color:#080;font-style:italic"># The create symbolic link can be removed</span>
-$ unlink celix-X.Y.Z
-</code></pre></div><p>After creating the artifact, the file has to be signed. More information about signing can be found at
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#080;font-style:italic"># Create symbolic link so the archive has a directory with version information</span>
+</span></span><span style="display:flex;"><span>$ ln -s celix celix-X.Y.Z
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#080;font-style:italic"># Create GZip archive</span>
+</span></span><span style="display:flex;"><span>$ tar --exclude<span style="color:#666">=</span><span style="color:#b44">&#34;.*&#34;</span> -hczf celix-X.Y.Z.tar.gz celix-X.Y.Z
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#080;font-style:italic"># The create symbolic link can be removed</span>
+</span></span><span style="display:flex;"><span>$ unlink celix-X.Y.Z
+</span></span></code></pre></div><p>After creating the artifact, the file has to be signed. More information about signing can be found at
 <a href="https://infra.apache.org/release-signing.html">Release signing</a>.</p>
-<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#080;font-style:italic"># Generate SHA512 checksum</span>
-$ gpg --print-md SHA512 celix-X.Y.Z.tar.gz &gt; celix-X.Y.Z.tar.gz.sha512
-
-<span style="color:#080;font-style:italic"># Generate ASCII signature</span>
-$ gpg --armor --output celix-X.Y.Z.tar.gz.asc --detach-sig celix-X.Y.Z.tar.gz
-</code></pre></div><p>Copy the archive of the source to the <a href="https://dist.apache.org/repos/dist/dev/celix">Apache Celix release development area</a> (using SVN).</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#080;font-style:italic"># Generate SHA512 checksum</span>
+</span></span><span style="display:flex;"><span>$ gpg --print-md SHA512 celix-X.Y.Z.tar.gz &gt; celix-X.Y.Z.tar.gz.sha512
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#080;font-style:italic"># Generate ASCII signature</span>
+</span></span><span style="display:flex;"><span>$ gpg --armor --output celix-X.Y.Z.tar.gz.asc --detach-sig celix-X.Y.Z.tar.gz
+</span></span></code></pre></div><p>Copy the archive of the source to the <a href="https://dist.apache.org/repos/dist/dev/celix">Apache Celix release development area</a> (using SVN).</p>
 <p>See the <a href="https://www.apache.org/legal/release-policy.html#host-rc">Apache Release Guide</a> for more information.</p>
 <h2 id="run-the-vote">Run the vote</h2>
 <p>Before a release is official a vote has to be held. More information on voting can be found on <a href="https://www.apache.org/foundation/voting.html">Apache Voting Process</a>.</p>
 <p>The first vote has to be done on the public <a href="/support/mailing-list.html">mailing list</a> of the project. The following template must be used for this vote:</p>
-<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">To: dev@celix.apache.org
-Subject: [VOTE] Release Celix version X.Y.Z
-
-This is the release vote for Apache Celix, version X.Y.Z.
-
-It fixes the following issues:
-
-Source files:
-https://dist.apache.org/repos/dist/dev/celix/celix-X.Y.Z/
-
-The commit ID to be voted upon:
-COMMIT ID
-
-https://github.com/apache/celix/tree/COMMITID
-
-Celix&#39;s keys can be found at:
-https://dist.apache.org/repos/dist/dev/celix/KEYS
-
-Information for voting on a release can be found at:
-https://www.apache.org/legal/release-policy.html#approving-a-release
-
-Please vote to approve this release:
-
-[ ] +1 Approve the release
-[ ] -1 Disapprove the release (please provide specific comments)
-
-Note that an Apache release needs to be a Majority Approval (requires
-at-least 3 binding +1 votes and more +1 votes than -1 votes).
-
-If this release is approved I will promote it to an official release
-(e.g. move from dist/dev to dist/release and tagging the release in git)
-
-This vote will be open for at least 72 hours.
-</code></pre></div><p>After this first vote the results must be posted to the &ldquo;dev&rdquo; list, see below for more information.</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>To: dev@celix.apache.org
+</span></span><span style="display:flex;"><span>Subject: [VOTE] Release Celix version X.Y.Z
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>This is the release vote for Apache Celix, version X.Y.Z.
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>It fixes the following issues:
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>Source files:
+</span></span><span style="display:flex;"><span>https://dist.apache.org/repos/dist/dev/celix/celix-X.Y.Z/
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>The commit ID to be voted upon:
+</span></span><span style="display:flex;"><span>COMMIT ID
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>https://github.com/apache/celix/tree/COMMITID
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>Celix&#39;s keys can be found at:
+</span></span><span style="display:flex;"><span>https://dist.apache.org/repos/dist/dev/celix/KEYS
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>Information for voting on a release can be found at:
+</span></span><span style="display:flex;"><span>https://www.apache.org/legal/release-policy.html#approving-a-release
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>Please vote to approve this release:
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>[ ] +1 Approve the release
+</span></span><span style="display:flex;"><span>[ ] -1 Disapprove the release (please provide specific comments)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>Note that an Apache release needs to be a Majority Approval (requires
+</span></span><span style="display:flex;"><span>at-least 3 binding +1 votes and more +1 votes than -1 votes).
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>If this release is approved I will promote it to an official release
+</span></span><span style="display:flex;"><span>(e.g. move from dist/dev to dist/release and tagging the release in git)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>This vote will be open for at least 72 hours.
+</span></span></code></pre></div><p>After this first vote the results must be posted to the &ldquo;dev&rdquo; list, see below for more information.</p>
 <p class="alert alert-primary">Note: Be sure to use the [VOTE] tag, this is used by the automated vote tracking 
 system to keep track of outstanding vote threads.</p>
 <h2 id="post-the-vote-results">Post the vote results</h2>
 <p>As mentioned before, after each vote the results must be posted to the corresponding list. This &ldquo;Result&rdquo; vote contains the number
 of votes made, including whether a vote is binding or not. For a successful vote the following template can be used.</p>
-<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">To: dev@celix.apache.org
-Subject: [RESULT][VOTE] Release Celix version X.Y.Z
-
-The vote has passed with the following result:
-
-+1 Name of Approvers (binding)
-+1 Name of Approvers (not binding)
-...
-
-The released artifact will be moved to the release area for mirroring. The
-release branch will be merged with master and a 2.1.0 tag will be created.
-
-After the mirroring period the news &amp; downloads of the website will be
-updated and the release will be announced.
-
-Thanks for voting.
-</code></pre></div><p class="alert alert-primary">
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>To: dev@celix.apache.org
+</span></span><span style="display:flex;"><span>Subject: [RESULT][VOTE] Release Celix version X.Y.Z
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>The vote has passed with the following result:
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>+1 Name of Approvers (binding)
+</span></span><span style="display:flex;"><span>+1 Name of Approvers (not binding)
+</span></span><span style="display:flex;"><span>...
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>The released artifact will be moved to the release area for mirroring. The
+</span></span><span style="display:flex;"><span>release branch will be merged with master and a 2.1.0 tag will be created.
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>After the mirroring period the news &amp; downloads of the website will be
+</span></span><span style="display:flex;"><span>updated and the release will be announced.
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>Thanks for voting.
+</span></span></code></pre></div><p class="alert alert-primary">
     Note: Be sure to post the vote result with the same topic as the original message. Also prepend the subject with [RESULT]. 
     This is, again, needed to be able to keep track of vote threads.
 </p>
@@ -321,20 +321,20 @@ and the release can be announced.</p>
 <h3 id="create-git-tag-and-merge-to-master">Create Git tag and merge to master</h3>
 <p>After changing all files a tag for the new release must be made. Before doing so, make sure all changed files are committed.
 A tag - named like rel/celix-X.Y.Z - needs to created and the release branch needs to be merged into master.</p>
-<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#080;font-style:italic"># To sign a tag using your GPG key, it is necessary to configure git with the key you want to use</span>
-<span style="color:#080;font-style:italic"># Configure git by issuing the following command, where E43F742E needs to be replaced with your key id</span>
-$ git config --global user.signingkey E43F742E
-
-<span style="color:#080;font-style:italic"># Create the tag</span>
-$ git tag -s rel/celix-X.Y.Z -m <span style="color:#b44">&#39;Celix release X.Y.Z&#39;</span>
-
-<span style="color:#080;font-style:italic"># Next thing to do is pushing the tag to the remote</span>
-$ git push origin rel/celix-X.Y.Z
-
-$ git checkout master
-$ git merge release-X.Y.Z
-$ git push origin master
-</code></pre></div><h3 id="roll-out-release-artifacts">Roll out release artifacts</h3>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#080;font-style:italic"># To sign a tag using your GPG key, it is necessary to configure git with the key you want to use</span>
+</span></span><span style="display:flex;"><span><span style="color:#080;font-style:italic"># Configure git by issuing the following command, where E43F742E needs to be replaced with your key id</span>
+</span></span><span style="display:flex;"><span>$ git config --global user.signingkey E43F742E
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#080;font-style:italic"># Create the tag</span>
+</span></span><span style="display:flex;"><span>$ git tag -s rel/celix-X.Y.Z -m <span style="color:#b44">&#39;Celix release X.Y.Z&#39;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#080;font-style:italic"># Next thing to do is pushing the tag to the remote</span>
+</span></span><span style="display:flex;"><span>$ git push origin rel/celix-X.Y.Z
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>$ git checkout master
+</span></span><span style="display:flex;"><span>$ git merge release-X.Y.Z
+</span></span><span style="display:flex;"><span>$ git push origin master
+</span></span></code></pre></div><h3 id="roll-out-release-artifacts">Roll out release artifacts</h3>
 <p>When a release is moved from the &ldquo;dev&rdquo; area to &ldquo;release&rdquo; area. The automated
 svnpubsub will move the artifact to the correct server for mirroring. Mirroring typically can take up to 24 hours.</p>
 <p>Besides uploading the new release, the old release should be archived. Since archiving is already automated,
@@ -375,24 +375,24 @@ substituted with the actual released version). This file can be copied and updat
 <h3 id="announce-the-release">Announce the release</h3>
 <p>Additionally it is a good idea to post a message to &ldquo;<a href="mailto:announce@apache.org">announce@apache.org</a>&rdquo;.</p>
 <p>The following template must be used:</p>
-<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">To: announce@apache.org, dev@celix.apache.org
-Subject: [ANNOUNCE] Apache Celix X.Y.Z released
-
-The Apache Celix team is pleased to announce the release of Celix X.Y.Z.
-
-Celix is an implementation of the OSGi specification adapted to C. It will follow the API as close as possible, but since the OSGi specification is written primarily for Java, there will be differences. An important aspect of the implementation is interoperability between Java and C. This interoperability is achieved by porting and implementing the Remote Services specification in Celix.
-
-This new release focuses on .... {add additional information for this release}
-
-The release is available here:
-https://celix.apache.org/download.cgi
-
-The full change log is available here:
-
-We welcome your help and feedback. For more information on how to report problems, and to get involved, visit the project website at https://celix.apache.org/
-
-The Apache Celix Team
-</code></pre></div><p class="alert alert-primary">Note: the email must be sent from an @apache.org address</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>To: announce@apache.org, dev@celix.apache.org
+</span></span><span style="display:flex;"><span>Subject: [ANNOUNCE] Apache Celix X.Y.Z released
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>The Apache Celix team is pleased to announce the release of Celix X.Y.Z.
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>Celix is an implementation of the OSGi specification adapted to C. It will follow the API as close as possible, but since the OSGi specification is written primarily for Java, there will be differences. An important aspect of the implementation is interoperability between Java and C. This interoperability is achieved by porting and implementing the Remote Services specification in Celix.
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>This new release focuses on .... {add additional information for this release}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>The release is available here:
+</span></span><span style="display:flex;"><span>https://celix.apache.org/download.cgi
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>The full change log is available here:
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>We welcome your help and feedback. For more information on how to report problems, and to get involved, visit the project website at https://celix.apache.org/
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>The Apache Celix Team
+</span></span></code></pre></div><p class="alert alert-primary">Note: the email must be sent from an @apache.org address</p>
 
 
                 </div>

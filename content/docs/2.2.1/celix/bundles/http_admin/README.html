@@ -169,12 +169,12 @@ The supported HTTP requests are: GET, HEAD, POST, PUT, DELETE, TRACE, OPTIONS an
 The websocket service can support different callback handlers: connect, ready, data and close.</p>
 <p>Aliasing is also supported for both HTTP services and websocket services. Multiple aliases can be added by using the comma as seperator.
 Adding aliasing is done by adding the following function to the target CMakeFile (fill in <Alias path> and <Path to destination>):</p>
-<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-CMake" data-lang="CMake"><span style="color:#a2f">celix_bundle_headers</span>(<span style="color:#b44">&lt;TARGET&gt;</span>
-        <span style="color:#b44">&#34;X-Web-Resource: /&lt;Alias path&gt;$&lt;SEMICOLON&gt;/&lt;Path to destination&gt;, /&lt;Alias path 2&gt;$&lt;SEMICOLON&gt;/&lt;Path to destination&gt;&#34;</span>
-)<span style="">
-</span></code></pre></div><p>Bundle alias resources can be added by the with the following function in the bundle CMakefile:</p>
-<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-CMake" data-lang="CMake"><span style="color:#a2f">celix_bundle_add_dir</span>(<span style="color:#b44">&lt;TARGET&gt;</span> <span style="color:#b44">&lt;Document</span> <span style="color:#b44">root</span> <span style="color:#b44">of</span> <span style="color:#b44">bundle&gt;</span> <span style="color:#b44">DESTINATION</span> <span style="color:#b44">&#34;.&#34;</span>)<span style="">
-</span></code></pre></div><h3 id="celix-supported-configproperties">Celix supported config.properties</h3>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-CMake" data-lang="CMake"><span style="display:flex;"><span><span style="color:#a2f">celix_bundle_headers</span>(<span style="color:#b44">&lt;TARGET&gt;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#b44">&#34;X-Web-Resource: /&lt;Alias path&gt;$&lt;SEMICOLON&gt;/&lt;Path to destination&gt;, /&lt;Alias path 2&gt;$&lt;SEMICOLON&gt;/&lt;Path to destination&gt;&#34;</span>
+</span></span><span style="display:flex;"><span>)<span style="">
+</span></span></span></code></pre></div><p>Bundle alias resources can be added by the with the following function in the bundle CMakefile:</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-CMake" data-lang="CMake"><span style="display:flex;"><span><span style="color:#a2f">celix_bundle_add_dir</span>(<span style="color:#b44">&lt;TARGET&gt;</span> <span style="color:#b44">&lt;Document</span> <span style="color:#b44">root</span> <span style="color:#b44">of</span> <span style="color:#b44">bundle&gt;</span> <span style="color:#b44">DESTINATION</span> <span style="color:#b44">&#34;.&#34;</span>)<span style="">
+</span></span></span></code></pre></div><h3 id="celix-supported-configproperties">Celix supported config.properties</h3>
 <pre><code>CELIX_HTTP_ADMIN_LISTENING_PORTS                 default = 8080, can be multiple ports divided by a comma
 CELIX_HTTP_ADMIN_PORT_RANGE_MIN                  default = 8000
 CELIX_HTTP_ADMIN_PORT_RANGE_MAX                  default = 9000

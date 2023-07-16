@@ -161,7 +161,7 @@ possible to recreate this functionality using a BSD-specific method called <code
 <p>FILE * funopen(const void *cookie, int (*readfn)(void *, char *, int),
 int (*writefn)(void *, const char *, int), fpos_t (*seekfn)(void *, fpos_t, int),
 int (*closefn)(void *));</p>
-<p>The funopen() function associates a stream with up to four ``I/O functions&rsquo;'.  Either readfn or
+<p>The funopen() function associates a stream with up to four ``I/O functions&rsquo;&rsquo;.  Either readfn or
 writefn must be specified; the others can be given as an appropriately-typed NULL pointer.  These
 I/O functions will be used to read, write, seek and close the new stream.</p>
 </blockquote>
@@ -171,16 +171,16 @@ pointers to blocks of memory.</p>
 <p>Drag fmemopen.h and fmemopen.c to your project and add them to your target. <code>#include &quot;fmemopen.h&quot;</code>
 wherever you need to use <code>fmemopen</code>.</p>
 <h1 id="examples">Examples</h1>
-<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-obj-c" data-lang="obj-c"><span style="color:#080">#</span><span style="color:#080">import &#34;fmemopen.h&#34;</span><span style="color:#080">
-</span><span style="color:#080"></span>
-NSString<span style="color:#666">*</span> string <span style="color:#666">=</span> <span style="color:#b44">@&#34;</span><span style="color:#b44">fmemopen in Objective-C</span><span style="color:#b44">&#34;</span>;
-<span style="color:#a2f;font-weight:bold">const</span> <span style="color:#0b0;font-weight:bold">char</span><span style="color:#666">*</span> cstr <span style="color:#666">=</span> [string UTF8String];
-FILE<span style="color:#666">*</span> file <span style="color:#666">=</span> fmemopen((<span style="color:#0b0;font-weight:bold">void</span> <span style="color:#666">*</span>)cstr, <span style="color:#a2f;font-weight:bold">sizeof</span>(<span style="color:#0b0;font-weight:bold">char</span>) <span style="color:#666">*</span> (string.length <span style="color:#666">+</span> <span style="color:#666">1</span>), <span style="color:#b44"></span><span style="color:#b44">&#34;</span><span style="color:#b44">r</span><span style="color:#b44">&#34;</span>);
-
-<span style="color:#080;font-style:italic">// fread on file will now read the contents of the NSString
-</span><span style="color:#080;font-style:italic"></span>
-fclose(file);
-</code></pre></div>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-obj-c" data-lang="obj-c"><span style="display:flex;"><span><span style="color:#080">#import &#34;fmemopen.h&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#080"></span>
+</span></span><span style="display:flex;"><span>NSString<span style="color:#666">*</span> string <span style="color:#666">=</span> <span style="color:#b44">@&#34;fmemopen in Objective-C&#34;</span>;
+</span></span><span style="display:flex;"><span><span style="color:#a2f;font-weight:bold">const</span> <span style="color:#0b0;font-weight:bold">char</span><span style="color:#666">*</span> cstr <span style="color:#666">=</span> [string UTF8String];
+</span></span><span style="display:flex;"><span>FILE<span style="color:#666">*</span> file <span style="color:#666">=</span> fmemopen((<span style="color:#0b0;font-weight:bold">void</span> <span style="color:#666">*</span>)cstr, <span style="color:#a2f;font-weight:bold">sizeof</span>(<span style="color:#0b0;font-weight:bold">char</span>) <span style="color:#666">*</span> (string.length <span style="color:#666">+</span> <span style="color:#666">1</span>), <span style="color:#b44">&#34;r&#34;</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#080;font-style:italic">// fread on file will now read the contents of the NSString
+</span></span></span><span style="display:flex;"><span><span style="color:#080;font-style:italic"></span>
+</span></span><span style="display:flex;"><span>fclose(file);
+</span></span></code></pre></div>
 
                 </div>
             </div>

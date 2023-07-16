@@ -249,80 +249,80 @@ dependencies and provided services.</li>
 configured. The generated bundle activator will ensure that all components are removed from the DM when the
 bundle is stopped and the DM will ensure that the components are deactivated and destroyed correctly.</li>
 </ol>
-<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-C" data-lang="C"><span style="color:#080;font-style:italic">//src/simple_component_activator.c
-</span><span style="color:#080;font-style:italic"></span><span style="color:#080">#</span><span style="color:#080">include</span> <span style="color:#080">&lt;stdio.h&gt;</span><span style="color:#080">
-</span><span style="color:#080"></span><span style="color:#080">#</span><span style="color:#080">include</span> <span style="color:#080">&lt;celix_api.h&gt;</span><span style="color:#080">
-</span><span style="color:#080"></span>
-<span style="color:#080;font-style:italic">//********************* COMPONENT *******************************/
-</span><span style="color:#080;font-style:italic"></span>
-<span style="color:#a2f;font-weight:bold">typedef</span> <span style="color:#a2f;font-weight:bold">struct</span> simple_component {
-    <span style="color:#0b0;font-weight:bold">int</span> transitionCount; <span style="color:#080;font-style:italic">//not protected, only updated and read in the celix event thread.
-</span><span style="color:#080;font-style:italic"></span>} simple_component_t;
-
-<span style="color:#a2f;font-weight:bold">static</span> simple_component_t<span style="color:#666">*</span> <span style="color:#00a000">simpleComponent_create</span>() {
-    simple_component_t<span style="color:#666">*</span> cmp <span style="color:#666">=</span> calloc(<span style="color:#666">1</span>, <span style="color:#a2f;font-weight:bold">sizeof</span>(<span style="color:#666">*</span>cmp));
-    cmp<span style="color:#666">-</span><span style="color:#666">&gt;</span>transitionCount <span style="color:#666">=</span> <span style="color:#666">1</span>;
-    <span style="color:#a2f;font-weight:bold">return</span> cmp;
-}
-
-<span style="color:#a2f;font-weight:bold">static</span> <span style="color:#0b0;font-weight:bold">void</span> <span style="color:#00a000">simpleComponent_destroy</span>(simple_component_t<span style="color:#666">*</span> cmp) {
-    free(cmp);
-}
-
-<span style="color:#a2f;font-weight:bold">static</span> <span style="color:#0b0;font-weight:bold">int</span> <span style="color:#00a000">simpleComponent_init</span>(simple_component_t<span style="color:#666">*</span> cmp) { <span style="color:#080;font-style:italic">// &lt;------------------------------------------------------&lt;1&gt;
-</span><span style="color:#080;font-style:italic"></span>    printf(<span style="color:#b44"></span><span style="color:#b44">&#34;</span><span style="color:#b44">Initializing simple component. Transition nr %i</span><span style="color:#b62;font-weight:bold">\n</span><span style="color:#b44">&#34;</span>, cmp<span style="color:#666">-</span><span style="color:#666">&gt;</span>transitionCount<span style="color:#666">+</span><span style="color:#666">+</span>);
-    <span style="color:#a2f;font-weight:bold">return</span> <span style="color:#666">0</span>;
-}
-
-<span style="color:#a2f;font-weight:bold">static</span> <span style="color:#0b0;font-weight:bold">int</span> <span style="color:#00a000">simpleComponent_start</span>(simple_component_t<span style="color:#666">*</span> cmp) {
-    printf(<span style="color:#b44"></span><span style="color:#b44">&#34;</span><span style="color:#b44">Starting simple component. Transition nr %i</span><span style="color:#b62;font-weight:bold">\n</span><span style="color:#b44">&#34;</span>, cmp<span style="color:#666">-</span><span style="color:#666">&gt;</span>transitionCount<span style="color:#666">+</span><span style="color:#666">+</span>);
-    <span style="color:#a2f;font-weight:bold">return</span> <span style="color:#666">0</span>;
-}
-
-<span style="color:#a2f;font-weight:bold">static</span> <span style="color:#0b0;font-weight:bold">int</span> <span style="color:#00a000">simpleComponent_stop</span>(simple_component_t<span style="color:#666">*</span> cmp) {
-    printf(<span style="color:#b44"></span><span style="color:#b44">&#34;</span><span style="color:#b44">Stopping simple component. Transition nr %i</span><span style="color:#b62;font-weight:bold">\n</span><span style="color:#b44">&#34;</span>, cmp<span style="color:#666">-</span><span style="color:#666">&gt;</span>transitionCount<span style="color:#666">+</span><span style="color:#666">+</span>);
-    <span style="color:#a2f;font-weight:bold">return</span> <span style="color:#666">0</span>;
-}
-
-<span style="color:#a2f;font-weight:bold">static</span> <span style="color:#0b0;font-weight:bold">int</span> <span style="color:#00a000">simpleComponent_deinit</span>(simple_component_t<span style="color:#666">*</span> cmp) {
-    printf(<span style="color:#b44"></span><span style="color:#b44">&#34;</span><span style="color:#b44">De-initializing simple component. Transition nr %i</span><span style="color:#b62;font-weight:bold">\n</span><span style="color:#b44">&#34;</span>, cmp<span style="color:#666">-</span><span style="color:#666">&gt;</span>transitionCount<span style="color:#666">+</span><span style="color:#666">+</span>);
-    <span style="color:#a2f;font-weight:bold">return</span> <span style="color:#666">0</span>;
-}
-
-
-<span style="color:#080;font-style:italic">//********************* ACTIVATOR *******************************/
-</span><span style="color:#080;font-style:italic"></span>
-<span style="color:#a2f;font-weight:bold">typedef</span> <span style="color:#a2f;font-weight:bold">struct</span> simple_component_activator {
-    <span style="color:#080;font-style:italic">//nop
-</span><span style="color:#080;font-style:italic"></span>} simple_component_activator_t;
-
-<span style="color:#a2f;font-weight:bold">static</span> celix_status_t <span style="color:#00a000">simpleComponentActivator_start</span>(simple_component_activator_t <span style="color:#666">*</span>act, celix_bundle_context_t <span style="color:#666">*</span>ctx) {
-    <span style="color:#080;font-style:italic">//creating component
-</span><span style="color:#080;font-style:italic"></span>    simple_component_t<span style="color:#666">*</span> impl <span style="color:#666">=</span> simpleComponent_create(); <span style="color:#080;font-style:italic">// &lt;--------------------------------------------------------&lt;2&gt;
-</span><span style="color:#080;font-style:italic"></span>
-    <span style="color:#080;font-style:italic">//create and configuring component and its lifecycle callbacks using the Apache Celix Dependency Manager
-</span><span style="color:#080;font-style:italic"></span>    celix_dm_component_t<span style="color:#666">*</span> dmCmp <span style="color:#666">=</span> celix_dmComponent_create(ctx, <span style="color:#b44"></span><span style="color:#b44">&#34;</span><span style="color:#b44">simple_component_1</span><span style="color:#b44">&#34;</span>); <span style="color:#080;font-style:italic">// &lt;--------------------------&lt;3&gt;
-</span><span style="color:#080;font-style:italic"></span>    celix_dmComponent_setImplementation(dmCmp, impl); <span style="color:#080;font-style:italic">// &lt;-----------------------------------------------------------&lt;4&gt;
-</span><span style="color:#080;font-style:italic"></span>    CELIX_DM_COMPONENT_SET_CALLBACKS(
-            dmCmp,
-            simple_component_t,
-            simpleComponent_init,
-            simpleComponent_start,
-            simpleComponent_stop,
-            simpleComponent_deinit); <span style="color:#080;font-style:italic">// &lt;----------------------------------------------------------------------------&lt;5&gt;
-</span><span style="color:#080;font-style:italic"></span>    CELIX_DM_COMPONENT_SET_IMPLEMENTATION_DESTROY_FUNCTION(
-            dmCmp,
-            simple_component_t,
-            simpleComponent_destroy); <span style="color:#080;font-style:italic">// &lt;---------------------------------------------------------------------------&lt;6&gt;
-</span><span style="color:#080;font-style:italic"></span>
-    <span style="color:#080;font-style:italic">//Add dm component to the dm.
-</span><span style="color:#080;font-style:italic"></span>    celix_dependency_manager_t<span style="color:#666">*</span> dm <span style="color:#666">=</span> celix_bundleContext_getDependencyManager(ctx);
-    celix_dependencyManager_add(dm, dmCmp); <span style="color:#080;font-style:italic">// &lt;---------------------------------------------------------------------&lt;7&gt;
-</span><span style="color:#080;font-style:italic"></span>    <span style="color:#a2f;font-weight:bold">return</span> CELIX_SUCCESS;
-}
-
-CELIX_GEN_BUNDLE_ACTIVATOR(simple_component_activator_t, simpleComponentActivator_start, <span style="color:#a2f">NULL</span>) <span style="color:#080;font-style:italic">// &lt;------------------&lt;8&gt;
-</span></code></pre></div><h2 id="example-create-and-configure-components-lifecycle-callbacks-in-c-1">Example: Create and configure component&rsquo;s lifecycle callbacks in C++</h2>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C" data-lang="C"><span style="display:flex;"><span><span style="color:#080;font-style:italic">//src/simple_component_activator.c
+</span></span></span><span style="display:flex;"><span><span style="color:#080;font-style:italic"></span><span style="color:#080">#include</span> <span style="color:#080">&lt;stdio.h&gt;</span><span style="color:#080">
+</span></span></span><span style="display:flex;"><span><span style="color:#080">#include</span> <span style="color:#080">&lt;celix_api.h&gt;</span><span style="color:#080">
+</span></span></span><span style="display:flex;"><span><span style="color:#080"></span>
+</span></span><span style="display:flex;"><span><span style="color:#080;font-style:italic">//********************* COMPONENT *******************************/
+</span></span></span><span style="display:flex;"><span><span style="color:#080;font-style:italic"></span>
+</span></span><span style="display:flex;"><span><span style="color:#a2f;font-weight:bold">typedef</span> <span style="color:#a2f;font-weight:bold">struct</span> simple_component {
+</span></span><span style="display:flex;"><span>    <span style="color:#0b0;font-weight:bold">int</span> transitionCount; <span style="color:#080;font-style:italic">//not protected, only updated and read in the celix event thread.
+</span></span></span><span style="display:flex;"><span><span style="color:#080;font-style:italic"></span>} <span style="color:#0b0;font-weight:bold">simple_component_t</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a2f;font-weight:bold">static</span> <span style="color:#0b0;font-weight:bold">simple_component_t</span><span style="color:#666">*</span> <span style="color:#00a000">simpleComponent_create</span>() {
+</span></span><span style="display:flex;"><span>    <span style="color:#0b0;font-weight:bold">simple_component_t</span><span style="color:#666">*</span> cmp <span style="color:#666">=</span> <span style="color:#00a000">calloc</span>(<span style="color:#666">1</span>, <span style="color:#a2f;font-weight:bold">sizeof</span>(<span style="color:#666">*</span>cmp));
+</span></span><span style="display:flex;"><span>    cmp<span style="color:#666">-&gt;</span>transitionCount <span style="color:#666">=</span> <span style="color:#666">1</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#a2f;font-weight:bold">return</span> cmp;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a2f;font-weight:bold">static</span> <span style="color:#0b0;font-weight:bold">void</span> <span style="color:#00a000">simpleComponent_destroy</span>(<span style="color:#0b0;font-weight:bold">simple_component_t</span><span style="color:#666">*</span> cmp) {
+</span></span><span style="display:flex;"><span>    <span style="color:#00a000">free</span>(cmp);
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a2f;font-weight:bold">static</span> <span style="color:#0b0;font-weight:bold">int</span> <span style="color:#00a000">simpleComponent_init</span>(<span style="color:#0b0;font-weight:bold">simple_component_t</span><span style="color:#666">*</span> cmp) { <span style="color:#080;font-style:italic">// &lt;------------------------------------------------------&lt;1&gt;
+</span></span></span><span style="display:flex;"><span><span style="color:#080;font-style:italic"></span>    <span style="color:#00a000">printf</span>(<span style="color:#b44">&#34;Initializing simple component. Transition nr %i</span><span style="color:#b62;font-weight:bold">\n</span><span style="color:#b44">&#34;</span>, cmp<span style="color:#666">-&gt;</span>transitionCount<span style="color:#666">++</span>);
+</span></span><span style="display:flex;"><span>    <span style="color:#a2f;font-weight:bold">return</span> <span style="color:#666">0</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a2f;font-weight:bold">static</span> <span style="color:#0b0;font-weight:bold">int</span> <span style="color:#00a000">simpleComponent_start</span>(<span style="color:#0b0;font-weight:bold">simple_component_t</span><span style="color:#666">*</span> cmp) {
+</span></span><span style="display:flex;"><span>    <span style="color:#00a000">printf</span>(<span style="color:#b44">&#34;Starting simple component. Transition nr %i</span><span style="color:#b62;font-weight:bold">\n</span><span style="color:#b44">&#34;</span>, cmp<span style="color:#666">-&gt;</span>transitionCount<span style="color:#666">++</span>);
+</span></span><span style="display:flex;"><span>    <span style="color:#a2f;font-weight:bold">return</span> <span style="color:#666">0</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a2f;font-weight:bold">static</span> <span style="color:#0b0;font-weight:bold">int</span> <span style="color:#00a000">simpleComponent_stop</span>(<span style="color:#0b0;font-weight:bold">simple_component_t</span><span style="color:#666">*</span> cmp) {
+</span></span><span style="display:flex;"><span>    <span style="color:#00a000">printf</span>(<span style="color:#b44">&#34;Stopping simple component. Transition nr %i</span><span style="color:#b62;font-weight:bold">\n</span><span style="color:#b44">&#34;</span>, cmp<span style="color:#666">-&gt;</span>transitionCount<span style="color:#666">++</span>);
+</span></span><span style="display:flex;"><span>    <span style="color:#a2f;font-weight:bold">return</span> <span style="color:#666">0</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a2f;font-weight:bold">static</span> <span style="color:#0b0;font-weight:bold">int</span> <span style="color:#00a000">simpleComponent_deinit</span>(<span style="color:#0b0;font-weight:bold">simple_component_t</span><span style="color:#666">*</span> cmp) {
+</span></span><span style="display:flex;"><span>    <span style="color:#00a000">printf</span>(<span style="color:#b44">&#34;De-initializing simple component. Transition nr %i</span><span style="color:#b62;font-weight:bold">\n</span><span style="color:#b44">&#34;</span>, cmp<span style="color:#666">-&gt;</span>transitionCount<span style="color:#666">++</span>);
+</span></span><span style="display:flex;"><span>    <span style="color:#a2f;font-weight:bold">return</span> <span style="color:#666">0</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#080;font-style:italic">//********************* ACTIVATOR *******************************/
+</span></span></span><span style="display:flex;"><span><span style="color:#080;font-style:italic"></span>
+</span></span><span style="display:flex;"><span><span style="color:#a2f;font-weight:bold">typedef</span> <span style="color:#a2f;font-weight:bold">struct</span> simple_component_activator {
+</span></span><span style="display:flex;"><span>    <span style="color:#080;font-style:italic">//nop
+</span></span></span><span style="display:flex;"><span><span style="color:#080;font-style:italic"></span>} <span style="color:#0b0;font-weight:bold">simple_component_activator_t</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a2f;font-weight:bold">static</span> <span style="color:#0b0;font-weight:bold">celix_status_t</span> <span style="color:#00a000">simpleComponentActivator_start</span>(<span style="color:#0b0;font-weight:bold">simple_component_activator_t</span> <span style="color:#666">*</span>act, <span style="color:#0b0;font-weight:bold">celix_bundle_context_t</span> <span style="color:#666">*</span>ctx) {
+</span></span><span style="display:flex;"><span>    <span style="color:#080;font-style:italic">//creating component
+</span></span></span><span style="display:flex;"><span><span style="color:#080;font-style:italic"></span>    <span style="color:#0b0;font-weight:bold">simple_component_t</span><span style="color:#666">*</span> impl <span style="color:#666">=</span> <span style="color:#00a000">simpleComponent_create</span>(); <span style="color:#080;font-style:italic">// &lt;--------------------------------------------------------&lt;2&gt;
+</span></span></span><span style="display:flex;"><span><span style="color:#080;font-style:italic"></span>
+</span></span><span style="display:flex;"><span>    <span style="color:#080;font-style:italic">//create and configuring component and its lifecycle callbacks using the Apache Celix Dependency Manager
+</span></span></span><span style="display:flex;"><span><span style="color:#080;font-style:italic"></span>    <span style="color:#0b0;font-weight:bold">celix_dm_component_t</span><span style="color:#666">*</span> dmCmp <span style="color:#666">=</span> <span style="color:#00a000">celix_dmComponent_create</span>(ctx, <span style="color:#b44">&#34;simple_component_1&#34;</span>); <span style="color:#080;font-style:italic">// &lt;--------------------------&lt;3&gt;
+</span></span></span><span style="display:flex;"><span><span style="color:#080;font-style:italic"></span>    <span style="color:#00a000">celix_dmComponent_setImplementation</span>(dmCmp, impl); <span style="color:#080;font-style:italic">// &lt;-----------------------------------------------------------&lt;4&gt;
+</span></span></span><span style="display:flex;"><span><span style="color:#080;font-style:italic"></span>    <span style="color:#00a000">CELIX_DM_COMPONENT_SET_CALLBACKS</span>(
+</span></span><span style="display:flex;"><span>            dmCmp,
+</span></span><span style="display:flex;"><span>            <span style="color:#0b0;font-weight:bold">simple_component_t</span>,
+</span></span><span style="display:flex;"><span>            simpleComponent_init,
+</span></span><span style="display:flex;"><span>            simpleComponent_start,
+</span></span><span style="display:flex;"><span>            simpleComponent_stop,
+</span></span><span style="display:flex;"><span>            simpleComponent_deinit); <span style="color:#080;font-style:italic">// &lt;----------------------------------------------------------------------------&lt;5&gt;
+</span></span></span><span style="display:flex;"><span><span style="color:#080;font-style:italic"></span>    <span style="color:#00a000">CELIX_DM_COMPONENT_SET_IMPLEMENTATION_DESTROY_FUNCTION</span>(
+</span></span><span style="display:flex;"><span>            dmCmp,
+</span></span><span style="display:flex;"><span>            <span style="color:#0b0;font-weight:bold">simple_component_t</span>,
+</span></span><span style="display:flex;"><span>            simpleComponent_destroy); <span style="color:#080;font-style:italic">// &lt;---------------------------------------------------------------------------&lt;6&gt;
+</span></span></span><span style="display:flex;"><span><span style="color:#080;font-style:italic"></span>
+</span></span><span style="display:flex;"><span>    <span style="color:#080;font-style:italic">//Add dm component to the dm.
+</span></span></span><span style="display:flex;"><span><span style="color:#080;font-style:italic"></span>    <span style="color:#0b0;font-weight:bold">celix_dependency_manager_t</span><span style="color:#666">*</span> dm <span style="color:#666">=</span> <span style="color:#00a000">celix_bundleContext_getDependencyManager</span>(ctx);
+</span></span><span style="display:flex;"><span>    <span style="color:#00a000">celix_dependencyManager_add</span>(dm, dmCmp); <span style="color:#080;font-style:italic">// &lt;---------------------------------------------------------------------&lt;7&gt;
+</span></span></span><span style="display:flex;"><span><span style="color:#080;font-style:italic"></span>    <span style="color:#a2f;font-weight:bold">return</span> CELIX_SUCCESS;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#00a000">CELIX_GEN_BUNDLE_ACTIVATOR</span>(<span style="color:#0b0;font-weight:bold">simple_component_activator_t</span>, simpleComponentActivator_start, <span style="color:#a2f">NULL</span>) <span style="color:#080;font-style:italic">// &lt;------------------&lt;8&gt;
+</span></span></span></code></pre></div><h2 id="example-create-and-configure-components-lifecycle-callbacks-in-c-1">Example: Create and configure component&rsquo;s lifecycle callbacks in C++</h2>
 <p>The following example shows how a simple component can be created and managed with the DM in C++.
 For C++ the DM will manage the component and also ensures that component implementation is kept in scope for as
 long as the component is managed by the DM.</p>
@@ -344,46 +344,46 @@ The generated C++ bundle activator will also enable all components created durin
 done to ensure that the build behaviour is backwards compatible with previous released DM implementation.
 It is preferred that users explicitly build their components when they are completely configured.</li>
 </ol>
-<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-C++" data-lang="C++"><span style="color:#080;font-style:italic">//src/SimpleComponentActivator.cc
-</span><span style="color:#080;font-style:italic"></span><span style="color:#080">#</span><span style="color:#080">include</span> <span style="color:#080">&lt;celix/BundleActivator.h&gt;</span><span style="color:#080">
-</span><span style="color:#080"></span>
-<span style="color:#a2f;font-weight:bold">class</span> <span style="color:#00f">SimpleComponent</span> {
-<span style="color:#a2f;font-weight:bold">public</span><span style="color:#666">:</span>
-    <span style="color:#0b0;font-weight:bold">void</span> init() { <span style="color:#080;font-style:italic">// &lt;-----------------------------------------------------------------------------------------------&lt;1&gt;
-</span><span style="color:#080;font-style:italic"></span>        std<span style="color:#666">:</span><span style="color:#666">:</span>cout <span style="color:#666">&lt;</span><span style="color:#666">&lt;</span> <span style="color:#b44"></span><span style="color:#b44">&#34;</span><span style="color:#b44">Initializing simple component. Transition nr </span><span style="color:#b44">&#34;</span> <span style="color:#666">&lt;</span><span style="color:#666">&lt;</span> transitionCount<span style="color:#666">+</span><span style="color:#666">+</span> <span style="color:#666">&lt;</span><span style="color:#666">&lt;</span> std<span style="color:#666">:</span><span style="color:#666">:</span>endl;
-    }
-
-    <span style="color:#0b0;font-weight:bold">void</span> <span style="color:#00a000">start</span>() {
-        std<span style="color:#666">:</span><span style="color:#666">:</span>cout <span style="color:#666">&lt;</span><span style="color:#666">&lt;</span> <span style="color:#b44"></span><span style="color:#b44">&#34;</span><span style="color:#b44">starting simple component. Transition nr </span><span style="color:#b44">&#34;</span> <span style="color:#666">&lt;</span><span style="color:#666">&lt;</span> transitionCount<span style="color:#666">+</span><span style="color:#666">+</span> <span style="color:#666">&lt;</span><span style="color:#666">&lt;</span> std<span style="color:#666">:</span><span style="color:#666">:</span>endl;
-    }
-
-    <span style="color:#0b0;font-weight:bold">void</span> <span style="color:#00a000">stop</span>() {
-        std<span style="color:#666">:</span><span style="color:#666">:</span>cout <span style="color:#666">&lt;</span><span style="color:#666">&lt;</span> <span style="color:#b44"></span><span style="color:#b44">&#34;</span><span style="color:#b44">Stopping simple component. Transition nr </span><span style="color:#b44">&#34;</span> <span style="color:#666">&lt;</span><span style="color:#666">&lt;</span> transitionCount<span style="color:#666">+</span><span style="color:#666">+</span> <span style="color:#666">&lt;</span><span style="color:#666">&lt;</span> std<span style="color:#666">:</span><span style="color:#666">:</span>endl;
-    }
-
-    <span style="color:#0b0;font-weight:bold">void</span> <span style="color:#00a000">deinit</span>() {
-        std<span style="color:#666">:</span><span style="color:#666">:</span>cout <span style="color:#666">&lt;</span><span style="color:#666">&lt;</span> <span style="color:#b44"></span><span style="color:#b44">&#34;</span><span style="color:#b44">De-initializing simple component. Transition nr </span><span style="color:#b44">&#34;</span> <span style="color:#666">&lt;</span><span style="color:#666">&lt;</span> transitionCount<span style="color:#666">+</span><span style="color:#666">+</span> <span style="color:#666">&lt;</span><span style="color:#666">&lt;</span> std<span style="color:#666">:</span><span style="color:#666">:</span>endl;
-    }
-<span style="color:#a2f;font-weight:bold">private</span><span style="color:#666">:</span>
-    <span style="color:#0b0;font-weight:bold">int</span> transitionCount <span style="color:#666">=</span> <span style="color:#666">1</span>; <span style="color:#080;font-style:italic">//not protected, only updated and read in the celix event thread.
-</span><span style="color:#080;font-style:italic"></span>};
-
-<span style="color:#a2f;font-weight:bold">class</span> <span style="color:#00f">SimpleComponentActivator</span> {
-<span style="color:#a2f;font-weight:bold">public</span><span style="color:#666">:</span>
-    <span style="color:#a2f;font-weight:bold">explicit</span> SimpleComponentActivator(<span style="color:#a2f;font-weight:bold">const</span> std<span style="color:#666">:</span><span style="color:#666">:</span>shared_ptr<span style="color:#666">&lt;</span>celix<span style="color:#666">:</span><span style="color:#666">:</span>BundleContext<span style="color:#666">&gt;</span><span style="color:#666">&amp;</span> ctx) {
-        <span style="color:#a2f;font-weight:bold">auto</span> cmp <span style="color:#666">=</span> std<span style="color:#666">:</span><span style="color:#666">:</span>make_unique<span style="color:#666">&lt;</span>SimpleComponent<span style="color:#666">&gt;</span>(); <span style="color:#080;font-style:italic">// &lt;---------------------------------------------------------&lt;2&gt;
-</span><span style="color:#080;font-style:italic"></span>        ctx<span style="color:#666">-</span><span style="color:#666">&gt;</span>getDependencyManager()<span style="color:#666">-</span><span style="color:#666">&gt;</span>createComponent(std<span style="color:#666">:</span><span style="color:#666">:</span>move(cmp), <span style="color:#b44"></span><span style="color:#b44">&#34;</span><span style="color:#b44">SimpleComponent1</span><span style="color:#b44">&#34;</span>) <span style="color:#080;font-style:italic">// &lt;------------------------&lt;3&gt;
-</span><span style="color:#080;font-style:italic"></span>                .setCallbacks(
-                        <span style="color:#666">&amp;</span>SimpleComponent<span style="color:#666">:</span><span style="color:#666">:</span>init,
-                        <span style="color:#666">&amp;</span>SimpleComponent<span style="color:#666">:</span><span style="color:#666">:</span>start,
-                        <span style="color:#666">&amp;</span>SimpleComponent<span style="color:#666">:</span><span style="color:#666">:</span>stop,
-                        <span style="color:#666">&amp;</span>SimpleComponent<span style="color:#666">:</span><span style="color:#666">:</span>deinit) <span style="color:#080;font-style:italic">// &lt;---------------------------------------------------------------&lt;4&gt;
-</span><span style="color:#080;font-style:italic"></span>                .build(); <span style="color:#080;font-style:italic">// &lt;---------------------------------------------------------------------------------------&lt;5&gt;
-</span><span style="color:#080;font-style:italic"></span>    }
-};
-
-CELIX_GEN_CXX_BUNDLE_ACTIVATOR(SimpleComponentActivator)
-</code></pre></div><h1 id="components-provided-services">Component&rsquo;s Provided Services</h1>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C++" data-lang="C++"><span style="display:flex;"><span><span style="color:#080;font-style:italic">//src/SimpleComponentActivator.cc
+</span></span></span><span style="display:flex;"><span><span style="color:#080;font-style:italic"></span><span style="color:#080">#include</span> <span style="color:#080">&lt;celix/BundleActivator.h&gt;</span><span style="color:#080">
+</span></span></span><span style="display:flex;"><span><span style="color:#080"></span>
+</span></span><span style="display:flex;"><span><span style="color:#a2f;font-weight:bold">class</span> <span style="color:#00f">SimpleComponent</span> {
+</span></span><span style="display:flex;"><span><span style="color:#a2f;font-weight:bold">public</span><span style="color:#666">:</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#0b0;font-weight:bold">void</span> init() { <span style="color:#080;font-style:italic">// &lt;-----------------------------------------------------------------------------------------------&lt;1&gt;
+</span></span></span><span style="display:flex;"><span><span style="color:#080;font-style:italic"></span>        std<span style="color:#666">::</span>cout <span style="color:#666">&lt;&lt;</span> <span style="color:#b44">&#34;Initializing simple component. Transition nr &#34;</span> <span style="color:#666">&lt;&lt;</span> transitionCount<span style="color:#666">++</span> <span style="color:#666">&lt;&lt;</span> std<span style="color:#666">::</span>endl;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#0b0;font-weight:bold">void</span> <span style="color:#00a000">start</span>() {
+</span></span><span style="display:flex;"><span>        std<span style="color:#666">::</span>cout <span style="color:#666">&lt;&lt;</span> <span style="color:#b44">&#34;starting simple component. Transition nr &#34;</span> <span style="color:#666">&lt;&lt;</span> transitionCount<span style="color:#666">++</span> <span style="color:#666">&lt;&lt;</span> std<span style="color:#666">::</span>endl;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#0b0;font-weight:bold">void</span> <span style="color:#00a000">stop</span>() {
+</span></span><span style="display:flex;"><span>        std<span style="color:#666">::</span>cout <span style="color:#666">&lt;&lt;</span> <span style="color:#b44">&#34;Stopping simple component. Transition nr &#34;</span> <span style="color:#666">&lt;&lt;</span> transitionCount<span style="color:#666">++</span> <span style="color:#666">&lt;&lt;</span> std<span style="color:#666">::</span>endl;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#0b0;font-weight:bold">void</span> <span style="color:#00a000">deinit</span>() {
+</span></span><span style="display:flex;"><span>        std<span style="color:#666">::</span>cout <span style="color:#666">&lt;&lt;</span> <span style="color:#b44">&#34;De-initializing simple component. Transition nr &#34;</span> <span style="color:#666">&lt;&lt;</span> transitionCount<span style="color:#666">++</span> <span style="color:#666">&lt;&lt;</span> std<span style="color:#666">::</span>endl;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span><span style="color:#a2f;font-weight:bold">private</span><span style="color:#666">:</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#0b0;font-weight:bold">int</span> transitionCount <span style="color:#666">=</span> <span style="color:#666">1</span>; <span style="color:#080;font-style:italic">//not protected, only updated and read in the celix event thread.
+</span></span></span><span style="display:flex;"><span><span style="color:#080;font-style:italic"></span>};
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a2f;font-weight:bold">class</span> <span style="color:#00f">SimpleComponentActivator</span> {
+</span></span><span style="display:flex;"><span><span style="color:#a2f;font-weight:bold">public</span><span style="color:#666">:</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a2f;font-weight:bold">explicit</span> SimpleComponentActivator(<span style="color:#a2f;font-weight:bold">const</span> std<span style="color:#666">::</span>shared_ptr<span style="color:#666">&lt;</span>celix<span style="color:#666">::</span>BundleContext<span style="color:#666">&gt;&amp;</span> ctx) {
+</span></span><span style="display:flex;"><span>        <span style="color:#a2f;font-weight:bold">auto</span> cmp <span style="color:#666">=</span> std<span style="color:#666">::</span>make_unique<span style="color:#666">&lt;</span>SimpleComponent<span style="color:#666">&gt;</span>(); <span style="color:#080;font-style:italic">// &lt;---------------------------------------------------------&lt;2&gt;
+</span></span></span><span style="display:flex;"><span><span style="color:#080;font-style:italic"></span>        ctx<span style="color:#666">-&gt;</span>getDependencyManager()<span style="color:#666">-&gt;</span>createComponent(std<span style="color:#666">::</span>move(cmp), <span style="color:#b44">&#34;SimpleComponent1&#34;</span>) <span style="color:#080;font-style:italic">// &lt;------------------------&lt;3&gt;
+</span></span></span><span style="display:flex;"><span><span style="color:#080;font-style:italic"></span>                .setCallbacks(
+</span></span><span style="display:flex;"><span>                        <span style="color:#666">&amp;</span>SimpleComponent<span style="color:#666">::</span>init,
+</span></span><span style="display:flex;"><span>                        <span style="color:#666">&amp;</span>SimpleComponent<span style="color:#666">::</span>start,
+</span></span><span style="display:flex;"><span>                        <span style="color:#666">&amp;</span>SimpleComponent<span style="color:#666">::</span>stop,
+</span></span><span style="display:flex;"><span>                        <span style="color:#666">&amp;</span>SimpleComponent<span style="color:#666">::</span>deinit) <span style="color:#080;font-style:italic">// &lt;---------------------------------------------------------------&lt;4&gt;
+</span></span></span><span style="display:flex;"><span><span style="color:#080;font-style:italic"></span>                .build(); <span style="color:#080;font-style:italic">// &lt;---------------------------------------------------------------------------------------&lt;5&gt;
+</span></span></span><span style="display:flex;"><span><span style="color:#080;font-style:italic"></span>    }
+</span></span><span style="display:flex;"><span>};
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>CELIX_GEN_CXX_BUNDLE_ACTIVATOR(SimpleComponentActivator)
+</span></span></code></pre></div><h1 id="components-provided-services">Component&rsquo;s Provided Services</h1>
 <p>Components can be configured to provide services. These provided services will result in service registrations
 when a component is <code>Starting</code> or <code>Resuming</code> (i.e. when a component goes to the <code>Tracking Optional</code> state).</p>
 <p>If a component provide services, these services will have an additional automatically added service property - named &ldquo;component.uuid&rdquo; - next to its configured provided service properties. The &ldquo;component.uuid&rdquo; service property can be
@@ -400,78 +400,78 @@ is completely stopped.</li>
 <li>Configures a provided service (interface) for the component. The service will not directly be registered, but
 instead will be registered in the component states <code>Starting</code> and <code>Resuming</code>.</li>
 </ol>
-<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-C" data-lang="C"> <span style="color:#080;font-style:italic">//src/component_with_provided_service_activator.c
-</span><span style="color:#080;font-style:italic"></span><span style="color:#080">#</span><span style="color:#080">include</span> <span style="color:#080">&lt;stdlib.h&gt;</span><span style="color:#080">
-</span><span style="color:#080"></span><span style="color:#080">#</span><span style="color:#080">include</span> <span style="color:#080">&lt;celix_api.h&gt;</span><span style="color:#080">
-</span><span style="color:#080"></span><span style="color:#080">#</span><span style="color:#080">include</span> <span style="color:#080">&lt;celix_shell_command.h&gt;</span><span style="color:#080">
-</span><span style="color:#080"></span>
-<span style="color:#080;font-style:italic">//********************* COMPONENT *******************************/
-</span><span style="color:#080;font-style:italic"></span>
-<span style="color:#a2f;font-weight:bold">typedef</span> <span style="color:#a2f;font-weight:bold">struct</span> component_with_provided_service {
-    <span style="color:#0b0;font-weight:bold">int</span> callCount; <span style="color:#080;font-style:italic">//atomic
-</span><span style="color:#080;font-style:italic"></span>} component_with_provided_service_t;
-
-<span style="color:#a2f;font-weight:bold">static</span> component_with_provided_service_t<span style="color:#666">*</span> <span style="color:#00a000">componentWithProvidedService_create</span>() {
-    component_with_provided_service_t<span style="color:#666">*</span> cmp <span style="color:#666">=</span> calloc(<span style="color:#666">1</span>, <span style="color:#a2f;font-weight:bold">sizeof</span>(<span style="color:#666">*</span>cmp));
-    <span style="color:#a2f;font-weight:bold">return</span> cmp;
-}
-
-<span style="color:#a2f;font-weight:bold">static</span> <span style="color:#0b0;font-weight:bold">void</span> <span style="color:#00a000">componentWithProvidedService_destroy</span>(component_with_provided_service_t<span style="color:#666">*</span> cmp) {
-    free(cmp);
-}
-
-<span style="color:#a2f;font-weight:bold">static</span> <span style="color:#0b0;font-weight:bold">bool</span> <span style="color:#00a000">componentWithProvidedService_executeCommand</span>(
-        component_with_provided_service_t <span style="color:#666">*</span>cmp,
-        <span style="color:#a2f;font-weight:bold">const</span> <span style="color:#0b0;font-weight:bold">char</span> <span style="color:#666">*</span>commandLine,
-        FILE <span style="color:#666">*</span>outStream,
-        FILE <span style="color:#666">*</span>errorStream __attribute__((unused))) {
-    <span style="color:#0b0;font-weight:bold">int</span> count <span style="color:#666">=</span> __atomic_add_fetch(<span style="color:#666">&amp;</span>cmp<span style="color:#666">-</span><span style="color:#666">&gt;</span>callCount, <span style="color:#666">1</span>, __ATOMIC_SEQ_CST);
-    fprintf(outStream, <span style="color:#b44"></span><span style="color:#b44">&#34;</span><span style="color:#b44">Hello from cmp. command called %i times. commandLine: %s</span><span style="color:#b62;font-weight:bold">\n</span><span style="color:#b44">&#34;</span>, count, commandLine);
-    <span style="color:#a2f;font-weight:bold">return</span> <span style="color:#a2f">true</span>;
-}
-
-<span style="color:#080;font-style:italic">//********************* ACTIVATOR *******************************/
-</span><span style="color:#080;font-style:italic"></span>
-<span style="color:#a2f;font-weight:bold">typedef</span> <span style="color:#a2f;font-weight:bold">struct</span> component_with_provided_service_activator {
-    celix_shell_command_t shellCmd; <span style="color:#080;font-style:italic">// &lt;-----------------------------------------------------------------------------&lt;1&gt;
-</span><span style="color:#080;font-style:italic"></span>} component_with_provided_service_activator_t;
-
-<span style="color:#a2f;font-weight:bold">static</span> celix_status_t <span style="color:#00a000">componentWithProvidedServiceActivator_start</span>(component_with_provided_service_activator_t <span style="color:#666">*</span>act, celix_bundle_context_t <span style="color:#666">*</span>ctx) {
-    <span style="color:#080;font-style:italic">//creating component
-</span><span style="color:#080;font-style:italic"></span>    component_with_provided_service_t<span style="color:#666">*</span> impl <span style="color:#666">=</span> componentWithProvidedService_create();
-
-    <span style="color:#080;font-style:italic">//create and configuring component and its lifecycle callbacks using the Apache Celix Dependency Manager
-</span><span style="color:#080;font-style:italic"></span>    celix_dm_component_t<span style="color:#666">*</span> dmCmp <span style="color:#666">=</span> celix_dmComponent_create(ctx, <span style="color:#b44"></span><span style="color:#b44">&#34;</span><span style="color:#b44">component_with_provided_service_1</span><span style="color:#b44">&#34;</span>);
-    celix_dmComponent_setImplementation(dmCmp, impl);
-    CELIX_DM_COMPONENT_SET_IMPLEMENTATION_DESTROY_FUNCTION(
-            dmCmp,
-            component_with_provided_service_t,
-            componentWithProvidedService_destroy);
-
-    <span style="color:#080;font-style:italic">//configure provided service
-</span><span style="color:#080;font-style:italic"></span>    act<span style="color:#666">-</span><span style="color:#666">&gt;</span>shellCmd.handle <span style="color:#666">=</span> impl;
-    act<span style="color:#666">-</span><span style="color:#666">&gt;</span>shellCmd.executeCommand <span style="color:#666">=</span> (<span style="color:#0b0;font-weight:bold">void</span><span style="color:#666">*</span>)componentWithProvidedService_executeCommand;
-    celix_properties_t<span style="color:#666">*</span> props <span style="color:#666">=</span> celix_properties_create();
-    celix_properties_set(props, CELIX_SHELL_COMMAND_NAME, <span style="color:#b44"></span><span style="color:#b44">&#34;</span><span style="color:#b44">hello_component</span><span style="color:#b44">&#34;</span>);
-    celix_dmComponent_addInterface(
-            dmCmp,
-            CELIX_SHELL_COMMAND_SERVICE_NAME,
-            CELIX_SHELL_COMMAND_SERVICE_VERSION,
-            <span style="color:#666">&amp;</span>act<span style="color:#666">-</span><span style="color:#666">&gt;</span>shellCmd,
-            props); <span style="color:#080;font-style:italic">// &lt;---------------------------------------------------------------------------------------------&lt;2&gt;
-</span><span style="color:#080;font-style:italic"></span>
-
-    <span style="color:#080;font-style:italic">//Add dm component to the dm.
-</span><span style="color:#080;font-style:italic"></span>    celix_dependency_manager_t<span style="color:#666">*</span> dm <span style="color:#666">=</span> celix_bundleContext_getDependencyManager(ctx);
-    celix_dependencyManager_add(dm, dmCmp);
-    <span style="color:#a2f;font-weight:bold">return</span> CELIX_SUCCESS;
-}
-
-CELIX_GEN_BUNDLE_ACTIVATOR(
-        component_with_provided_service_activator_t,
-        componentWithProvidedServiceActivator_start,
-        <span style="color:#a2f">NULL</span>)
-</code></pre></div><h2 id="example-component-with-a-provided-service-in-c-1">Example: Component with a provided service in C++</h2>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C" data-lang="C"><span style="display:flex;"><span> <span style="color:#080;font-style:italic">//src/component_with_provided_service_activator.c
+</span></span></span><span style="display:flex;"><span><span style="color:#080;font-style:italic"></span><span style="color:#080">#include</span> <span style="color:#080">&lt;stdlib.h&gt;</span><span style="color:#080">
+</span></span></span><span style="display:flex;"><span><span style="color:#080">#include</span> <span style="color:#080">&lt;celix_api.h&gt;</span><span style="color:#080">
+</span></span></span><span style="display:flex;"><span><span style="color:#080">#include</span> <span style="color:#080">&lt;celix_shell_command.h&gt;</span><span style="color:#080">
+</span></span></span><span style="display:flex;"><span><span style="color:#080"></span>
+</span></span><span style="display:flex;"><span><span style="color:#080;font-style:italic">//********************* COMPONENT *******************************/
+</span></span></span><span style="display:flex;"><span><span style="color:#080;font-style:italic"></span>
+</span></span><span style="display:flex;"><span><span style="color:#a2f;font-weight:bold">typedef</span> <span style="color:#a2f;font-weight:bold">struct</span> component_with_provided_service {
+</span></span><span style="display:flex;"><span>    <span style="color:#0b0;font-weight:bold">int</span> callCount; <span style="color:#080;font-style:italic">//atomic
+</span></span></span><span style="display:flex;"><span><span style="color:#080;font-style:italic"></span>} <span style="color:#0b0;font-weight:bold">component_with_provided_service_t</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a2f;font-weight:bold">static</span> <span style="color:#0b0;font-weight:bold">component_with_provided_service_t</span><span style="color:#666">*</span> <span style="color:#00a000">componentWithProvidedService_create</span>() {
+</span></span><span style="display:flex;"><span>    <span style="color:#0b0;font-weight:bold">component_with_provided_service_t</span><span style="color:#666">*</span> cmp <span style="color:#666">=</span> <span style="color:#00a000">calloc</span>(<span style="color:#666">1</span>, <span style="color:#a2f;font-weight:bold">sizeof</span>(<span style="color:#666">*</span>cmp));
+</span></span><span style="display:flex;"><span>    <span style="color:#a2f;font-weight:bold">return</span> cmp;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a2f;font-weight:bold">static</span> <span style="color:#0b0;font-weight:bold">void</span> <span style="color:#00a000">componentWithProvidedService_destroy</span>(<span style="color:#0b0;font-weight:bold">component_with_provided_service_t</span><span style="color:#666">*</span> cmp) {
+</span></span><span style="display:flex;"><span>    <span style="color:#00a000">free</span>(cmp);
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a2f;font-weight:bold">static</span> <span style="color:#0b0;font-weight:bold">bool</span> <span style="color:#00a000">componentWithProvidedService_executeCommand</span>(
+</span></span><span style="display:flex;"><span>        <span style="color:#0b0;font-weight:bold">component_with_provided_service_t</span> <span style="color:#666">*</span>cmp,
+</span></span><span style="display:flex;"><span>        <span style="color:#a2f;font-weight:bold">const</span> <span style="color:#0b0;font-weight:bold">char</span> <span style="color:#666">*</span>commandLine,
+</span></span><span style="display:flex;"><span>        FILE <span style="color:#666">*</span>outStream,
+</span></span><span style="display:flex;"><span>        FILE <span style="color:#666">*</span>errorStream <span style="color:#00a000">__attribute__</span>((unused))) {
+</span></span><span style="display:flex;"><span>    <span style="color:#0b0;font-weight:bold">int</span> count <span style="color:#666">=</span> <span style="color:#00a000">__atomic_add_fetch</span>(<span style="color:#666">&amp;</span>cmp<span style="color:#666">-&gt;</span>callCount, <span style="color:#666">1</span>, __ATOMIC_SEQ_CST);
+</span></span><span style="display:flex;"><span>    <span style="color:#00a000">fprintf</span>(outStream, <span style="color:#b44">&#34;Hello from cmp. command called %i times. commandLine: %s</span><span style="color:#b62;font-weight:bold">\n</span><span style="color:#b44">&#34;</span>, count, commandLine);
+</span></span><span style="display:flex;"><span>    <span style="color:#a2f;font-weight:bold">return</span> <span style="color:#a2f">true</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#080;font-style:italic">//********************* ACTIVATOR *******************************/
+</span></span></span><span style="display:flex;"><span><span style="color:#080;font-style:italic"></span>
+</span></span><span style="display:flex;"><span><span style="color:#a2f;font-weight:bold">typedef</span> <span style="color:#a2f;font-weight:bold">struct</span> component_with_provided_service_activator {
+</span></span><span style="display:flex;"><span>    <span style="color:#0b0;font-weight:bold">celix_shell_command_t</span> shellCmd; <span style="color:#080;font-style:italic">// &lt;-----------------------------------------------------------------------------&lt;1&gt;
+</span></span></span><span style="display:flex;"><span><span style="color:#080;font-style:italic"></span>} <span style="color:#0b0;font-weight:bold">component_with_provided_service_activator_t</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a2f;font-weight:bold">static</span> <span style="color:#0b0;font-weight:bold">celix_status_t</span> <span style="color:#00a000">componentWithProvidedServiceActivator_start</span>(<span style="color:#0b0;font-weight:bold">component_with_provided_service_activator_t</span> <span style="color:#666">*</span>act, <span style="color:#0b0;font-weight:bold">celix_bundle_context_t</span> <span style="color:#666">*</span>ctx) {
+</span></span><span style="display:flex;"><span>    <span style="color:#080;font-style:italic">//creating component
+</span></span></span><span style="display:flex;"><span><span style="color:#080;font-style:italic"></span>    <span style="color:#0b0;font-weight:bold">component_with_provided_service_t</span><span style="color:#666">*</span> impl <span style="color:#666">=</span> <span style="color:#00a000">componentWithProvidedService_create</span>();
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#080;font-style:italic">//create and configuring component and its lifecycle callbacks using the Apache Celix Dependency Manager
+</span></span></span><span style="display:flex;"><span><span style="color:#080;font-style:italic"></span>    <span style="color:#0b0;font-weight:bold">celix_dm_component_t</span><span style="color:#666">*</span> dmCmp <span style="color:#666">=</span> <span style="color:#00a000">celix_dmComponent_create</span>(ctx, <span style="color:#b44">&#34;component_with_provided_service_1&#34;</span>);
+</span></span><span style="display:flex;"><span>    <span style="color:#00a000">celix_dmComponent_setImplementation</span>(dmCmp, impl);
+</span></span><span style="display:flex;"><span>    <span style="color:#00a000">CELIX_DM_COMPONENT_SET_IMPLEMENTATION_DESTROY_FUNCTION</span>(
+</span></span><span style="display:flex;"><span>            dmCmp,
+</span></span><span style="display:flex;"><span>            <span style="color:#0b0;font-weight:bold">component_with_provided_service_t</span>,
+</span></span><span style="display:flex;"><span>            componentWithProvidedService_destroy);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#080;font-style:italic">//configure provided service
+</span></span></span><span style="display:flex;"><span><span style="color:#080;font-style:italic"></span>    act<span style="color:#666">-&gt;</span>shellCmd.handle <span style="color:#666">=</span> impl;
+</span></span><span style="display:flex;"><span>    act<span style="color:#666">-&gt;</span>shellCmd.executeCommand <span style="color:#666">=</span> (<span style="color:#0b0;font-weight:bold">void</span><span style="color:#666">*</span>)componentWithProvidedService_executeCommand;
+</span></span><span style="display:flex;"><span>    <span style="color:#0b0;font-weight:bold">celix_properties_t</span><span style="color:#666">*</span> props <span style="color:#666">=</span> <span style="color:#00a000">celix_properties_create</span>();
+</span></span><span style="display:flex;"><span>    <span style="color:#00a000">celix_properties_set</span>(props, CELIX_SHELL_COMMAND_NAME, <span style="color:#b44">&#34;hello_component&#34;</span>);
+</span></span><span style="display:flex;"><span>    <span style="color:#00a000">celix_dmComponent_addInterface</span>(
+</span></span><span style="display:flex;"><span>            dmCmp,
+</span></span><span style="display:flex;"><span>            CELIX_SHELL_COMMAND_SERVICE_NAME,
+</span></span><span style="display:flex;"><span>            CELIX_SHELL_COMMAND_SERVICE_VERSION,
+</span></span><span style="display:flex;"><span>            <span style="color:#666">&amp;</span>act<span style="color:#666">-&gt;</span>shellCmd,
+</span></span><span style="display:flex;"><span>            props); <span style="color:#080;font-style:italic">// &lt;---------------------------------------------------------------------------------------------&lt;2&gt;
+</span></span></span><span style="display:flex;"><span><span style="color:#080;font-style:italic"></span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#080;font-style:italic">//Add dm component to the dm.
+</span></span></span><span style="display:flex;"><span><span style="color:#080;font-style:italic"></span>    <span style="color:#0b0;font-weight:bold">celix_dependency_manager_t</span><span style="color:#666">*</span> dm <span style="color:#666">=</span> <span style="color:#00a000">celix_bundleContext_getDependencyManager</span>(ctx);
+</span></span><span style="display:flex;"><span>    <span style="color:#00a000">celix_dependencyManager_add</span>(dm, dmCmp);
+</span></span><span style="display:flex;"><span>    <span style="color:#a2f;font-weight:bold">return</span> CELIX_SUCCESS;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#00a000">CELIX_GEN_BUNDLE_ACTIVATOR</span>(
+</span></span><span style="display:flex;"><span>        <span style="color:#0b0;font-weight:bold">component_with_provided_service_activator_t</span>,
+</span></span><span style="display:flex;"><span>        componentWithProvidedServiceActivator_start,
+</span></span><span style="display:flex;"><span>        <span style="color:#a2f">NULL</span>)
+</span></span></code></pre></div><h2 id="example-component-with-a-provided-service-in-c-1">Example: Component with a provided service in C++</h2>
 <p>The following example shows how a C++ component that provide a C++ <code>celix::IShellCommand</code> service
 and a C <code>celix_shell_command</code> service. For a C++ component it&rsquo;s possible to provide C and C++ services.</p>
 <p>Remarks for the C++ example:</p>
@@ -495,58 +495,58 @@ The service will not directly be registered, but instead will be registered in t
 <code>Resuming</code>.</li>
 <li>&ldquo;Build&rdquo; the component so the DM will manage the component.</li>
 </ol>
-<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-C++" data-lang="C++"><span style="color:#080;font-style:italic">//src/ComponentWithProvidedServiceActivator.cc
-</span><span style="color:#080;font-style:italic"></span><span style="color:#080">#</span><span style="color:#080">include</span> <span style="color:#080">&lt;celix/BundleActivator.h&gt;</span><span style="color:#080">
-</span><span style="color:#080"></span><span style="color:#080">#</span><span style="color:#080">include</span> <span style="color:#080">&lt;celix/IShellCommand.h&gt;</span><span style="color:#080">
-</span><span style="color:#080"></span><span style="color:#080">#</span><span style="color:#080">include</span> <span style="color:#080">&lt;celix_shell_command.h&gt;</span><span style="color:#080">
-</span><span style="color:#080"></span>
-<span style="color:#a2f;font-weight:bold">class</span> <span style="color:#00f">ComponentWithProvidedService</span> <span style="color:#666">:</span> <span style="color:#a2f;font-weight:bold">public</span> celix<span style="color:#666">:</span><span style="color:#666">:</span>IShellCommand { <span style="color:#080;font-style:italic">// &lt;----------------------------------------------&lt;1&gt;
-</span><span style="color:#080;font-style:italic"></span><span style="color:#a2f;font-weight:bold">public</span><span style="color:#666">:</span>
-    <span style="color:#666">~</span>ComponentWithProvidedService() <span style="color:#a2f;font-weight:bold">noexcept</span> <span style="color:#a2f;font-weight:bold">override</span> <span style="color:#666">=</span> <span style="color:#a2f;font-weight:bold">default</span>;
-
-    <span style="color:#0b0;font-weight:bold">void</span> <span style="color:#00a000">executeCommand</span>(
-            <span style="color:#a2f;font-weight:bold">const</span> std<span style="color:#666">:</span><span style="color:#666">:</span>string<span style="color:#666">&amp;</span> commandLine,
-            <span style="color:#a2f;font-weight:bold">const</span> std<span style="color:#666">:</span><span style="color:#666">:</span>vector<span style="color:#666">&lt;</span>std<span style="color:#666">:</span><span style="color:#666">:</span>string<span style="color:#666">&gt;</span><span style="color:#666">&amp;</span> <span style="color:#080;font-style:italic">/*commandArgs*/</span>,
-            FILE<span style="color:#666">*</span> outStream,
-            FILE<span style="color:#666">*</span> <span style="color:#080;font-style:italic">/*errorStream*/</span>) <span style="color:#a2f;font-weight:bold">override</span> {
-        fprintf(outStream, <span style="color:#b44"></span><span style="color:#b44">&#34;</span><span style="color:#b44">Hello from cmp. C++ command called %i times. commandLine is %s</span><span style="color:#b62;font-weight:bold">\n</span><span style="color:#b44">&#34;</span>, 
-                cxxCallCount<span style="color:#666">+</span><span style="color:#666">+</span>, commandLine.c_str());
-    } <span style="color:#080;font-style:italic">// &lt;-----------------------------------------------------------------------------------------------------------&lt;2&gt;
-</span><span style="color:#080;font-style:italic"></span>
-    <span style="color:#0b0;font-weight:bold">void</span> <span style="color:#00a000">executeCCommand</span>(<span style="color:#a2f;font-weight:bold">const</span> <span style="color:#0b0;font-weight:bold">char</span><span style="color:#666">*</span> commandLine, FILE<span style="color:#666">*</span> outStream) {
-        fprintf(outStream, <span style="color:#b44"></span><span style="color:#b44">&#34;</span><span style="color:#b44">Hello from cmp. C command called %i times. commandLine is %s</span><span style="color:#b62;font-weight:bold">\n</span><span style="color:#b44">&#34;</span>, cCallCount<span style="color:#666">+</span><span style="color:#666">+</span>, commandLine);
-    } <span style="color:#080;font-style:italic">// &lt;-----------------------------------------------------------------------------------------------------------&lt;3&gt;
-</span><span style="color:#080;font-style:italic"></span><span style="color:#a2f;font-weight:bold">private</span><span style="color:#666">:</span>
-    std<span style="color:#666">:</span><span style="color:#666">:</span>atomic<span style="color:#666">&lt;</span><span style="color:#0b0;font-weight:bold">int</span><span style="color:#666">&gt;</span> cxxCallCount{<span style="color:#666">1</span>};
-    std<span style="color:#666">:</span><span style="color:#666">:</span>atomic<span style="color:#666">&lt;</span><span style="color:#0b0;font-weight:bold">int</span><span style="color:#666">&gt;</span> cCallCount{<span style="color:#666">1</span>};
-};
-
-<span style="color:#a2f;font-weight:bold">class</span> <span style="color:#00f">ComponentWithProvidedServiceActivator</span> {
-<span style="color:#a2f;font-weight:bold">public</span><span style="color:#666">:</span>
-    <span style="color:#a2f;font-weight:bold">explicit</span> ComponentWithProvidedServiceActivator(<span style="color:#a2f;font-weight:bold">const</span> std<span style="color:#666">:</span><span style="color:#666">:</span>shared_ptr<span style="color:#666">&lt;</span>celix<span style="color:#666">:</span><span style="color:#666">:</span>BundleContext<span style="color:#666">&gt;</span><span style="color:#666">&amp;</span> ctx) {
-        <span style="color:#a2f;font-weight:bold">auto</span><span style="color:#666">&amp;</span> cmp <span style="color:#666">=</span> ctx<span style="color:#666">-</span><span style="color:#666">&gt;</span>getDependencyManager()<span style="color:#666">-</span><span style="color:#666">&gt;</span>createComponent<span style="color:#666">&lt;</span>ComponentWithProvidedService<span style="color:#666">&gt;</span>(); <span style="color:#080;font-style:italic">// &lt;---------------&lt;4&gt;
-</span><span style="color:#080;font-style:italic"></span>
-        cmp.createProvidedService<span style="color:#666">&lt;</span>celix<span style="color:#666">:</span><span style="color:#666">:</span>IShellCommand<span style="color:#666">&gt;</span>()
-                .addProperty(celix<span style="color:#666">:</span><span style="color:#666">:</span>IShellCommand<span style="color:#666">:</span><span style="color:#666">:</span>COMMAND_NAME, <span style="color:#b44"></span><span style="color:#b44">&#34;</span><span style="color:#b44">HelloComponent</span><span style="color:#b44">&#34;</span>); <span style="color:#080;font-style:italic">// &lt;-----------------------------&lt;5&gt;
-</span><span style="color:#080;font-style:italic"></span>
-        <span style="color:#a2f;font-weight:bold">auto</span> shellCmd <span style="color:#666">=</span> std<span style="color:#666">:</span><span style="color:#666">:</span>make_shared<span style="color:#666">&lt;</span>celix_shell_command_t<span style="color:#666">&gt;</span>();
-        shellCmd<span style="color:#666">-</span><span style="color:#666">&gt;</span>handle <span style="color:#666">=</span> <span style="color:#a2f;font-weight:bold">static_cast</span><span style="color:#666">&lt;</span><span style="color:#0b0;font-weight:bold">void</span><span style="color:#666">*</span><span style="color:#666">&gt;</span>(<span style="color:#666">&amp;</span>cmp.getInstance());
-        shellCmd<span style="color:#666">-</span><span style="color:#666">&gt;</span>executeCommand <span style="color:#666">=</span> [](<span style="color:#0b0;font-weight:bold">void</span><span style="color:#666">*</span> handle, <span style="color:#a2f;font-weight:bold">const</span> <span style="color:#0b0;font-weight:bold">char</span><span style="color:#666">*</span> commandLine, FILE<span style="color:#666">*</span> outStream, FILE<span style="color:#666">*</span>) <span style="color:#666">-</span><span style="color:#666">&gt;</span> <span style="color:#0b0;font-weight:bold">bool</span> {
-            <span style="color:#a2f;font-weight:bold">auto</span><span style="color:#666">*</span> impl <span style="color:#666">=</span> <span style="color:#a2f;font-weight:bold">static_cast</span><span style="color:#666">&lt;</span>ComponentWithProvidedService<span style="color:#666">*</span><span style="color:#666">&gt;</span>(handle);
-            impl<span style="color:#666">-</span><span style="color:#666">&gt;</span>executeCCommand(commandLine, outStream);
-            <span style="color:#a2f;font-weight:bold">return</span> <span style="color:#a2f">true</span>;
-        }; <span style="color:#080;font-style:italic">// &lt;------------------------------------------------------------------------------------------------------&lt;6&gt;
-</span><span style="color:#080;font-style:italic"></span>
-        cmp.createUnassociatedProvidedService(std<span style="color:#666">:</span><span style="color:#666">:</span>move(shell.html), CELIX_SHELL_COMMAND_SERVICE_NAME)
-                .addProperty(CELIX_SHELL_COMMAND_NAME, <span style="color:#b44"></span><span style="color:#b44">&#34;</span><span style="color:#b44">hello_component</span><span style="color:#b44">&#34;</span>); <span style="color:#080;font-style:italic">// &lt; -------------------------------------&lt;7&gt;
-</span><span style="color:#080;font-style:italic"></span>
-        cmp.build(); <span style="color:#080;font-style:italic">// &lt;--------------------------------------------------------------------------------------------&lt;8&gt;
-</span><span style="color:#080;font-style:italic"></span>    }
-<span style="color:#a2f;font-weight:bold">private</span><span style="color:#666">:</span>
-};
-
-CELIX_GEN_CXX_BUNDLE_ACTIVATOR(ComponentWithProvidedServiceActivator)
-</code></pre></div><h1 id="components-service-dependencies">Component&rsquo;s Service Dependencies</h1>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C++" data-lang="C++"><span style="display:flex;"><span><span style="color:#080;font-style:italic">//src/ComponentWithProvidedServiceActivator.cc
+</span></span></span><span style="display:flex;"><span><span style="color:#080;font-style:italic"></span><span style="color:#080">#include</span> <span style="color:#080">&lt;celix/BundleActivator.h&gt;</span><span style="color:#080">
+</span></span></span><span style="display:flex;"><span><span style="color:#080">#include</span> <span style="color:#080">&lt;celix/IShellCommand.h&gt;</span><span style="color:#080">
+</span></span></span><span style="display:flex;"><span><span style="color:#080">#include</span> <span style="color:#080">&lt;celix_shell_command.h&gt;</span><span style="color:#080">
+</span></span></span><span style="display:flex;"><span><span style="color:#080"></span>
+</span></span><span style="display:flex;"><span><span style="color:#a2f;font-weight:bold">class</span> <span style="color:#00f">ComponentWithProvidedService</span> <span style="color:#666">:</span> <span style="color:#a2f;font-weight:bold">public</span> celix<span style="color:#666">::</span>IShellCommand { <span style="color:#080;font-style:italic">// &lt;----------------------------------------------&lt;1&gt;
+</span></span></span><span style="display:flex;"><span><span style="color:#080;font-style:italic"></span><span style="color:#a2f;font-weight:bold">public</span><span style="color:#666">:</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#666">~</span>ComponentWithProvidedService() <span style="color:#a2f;font-weight:bold">noexcept</span> <span style="color:#a2f;font-weight:bold">override</span> <span style="color:#666">=</span> <span style="color:#a2f;font-weight:bold">default</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#0b0;font-weight:bold">void</span> <span style="color:#00a000">executeCommand</span>(
+</span></span><span style="display:flex;"><span>            <span style="color:#a2f;font-weight:bold">const</span> std<span style="color:#666">::</span>string<span style="color:#666">&amp;</span> commandLine,
+</span></span><span style="display:flex;"><span>            <span style="color:#a2f;font-weight:bold">const</span> std<span style="color:#666">::</span>vector<span style="color:#666">&lt;</span>std<span style="color:#666">::</span>string<span style="color:#666">&gt;&amp;</span> <span style="color:#080;font-style:italic">/*commandArgs*/</span>,
+</span></span><span style="display:flex;"><span>            FILE<span style="color:#666">*</span> outStream,
+</span></span><span style="display:flex;"><span>            FILE<span style="color:#666">*</span> <span style="color:#080;font-style:italic">/*errorStream*/</span>) <span style="color:#a2f;font-weight:bold">override</span> {
+</span></span><span style="display:flex;"><span>        fprintf(outStream, <span style="color:#b44">&#34;Hello from cmp. C++ command called %i times. commandLine is %s</span><span style="color:#b62;font-weight:bold">\n</span><span style="color:#b44">&#34;</span>, 
+</span></span><span style="display:flex;"><span>                cxxCallCount<span style="color:#666">++</span>, commandLine.c_str());
+</span></span><span style="display:flex;"><span>    } <span style="color:#080;font-style:italic">// &lt;-----------------------------------------------------------------------------------------------------------&lt;2&gt;
+</span></span></span><span style="display:flex;"><span><span style="color:#080;font-style:italic"></span>
+</span></span><span style="display:flex;"><span>    <span style="color:#0b0;font-weight:bold">void</span> <span style="color:#00a000">executeCCommand</span>(<span style="color:#a2f;font-weight:bold">const</span> <span style="color:#0b0;font-weight:bold">char</span><span style="color:#666">*</span> commandLine, FILE<span style="color:#666">*</span> outStream) {
+</span></span><span style="display:flex;"><span>        fprintf(outStream, <span style="color:#b44">&#34;Hello from cmp. C command called %i times. commandLine is %s</span><span style="color:#b62;font-weight:bold">\n</span><span style="color:#b44">&#34;</span>, cCallCount<span style="color:#666">++</span>, commandLine);
+</span></span><span style="display:flex;"><span>    } <span style="color:#080;font-style:italic">// &lt;-----------------------------------------------------------------------------------------------------------&lt;3&gt;
+</span></span></span><span style="display:flex;"><span><span style="color:#080;font-style:italic"></span><span style="color:#a2f;font-weight:bold">private</span><span style="color:#666">:</span>
+</span></span><span style="display:flex;"><span>    std<span style="color:#666">::</span>atomic<span style="color:#666">&lt;</span><span style="color:#0b0;font-weight:bold">int</span><span style="color:#666">&gt;</span> cxxCallCount{<span style="color:#666">1</span>};
+</span></span><span style="display:flex;"><span>    std<span style="color:#666">::</span>atomic<span style="color:#666">&lt;</span><span style="color:#0b0;font-weight:bold">int</span><span style="color:#666">&gt;</span> cCallCount{<span style="color:#666">1</span>};
+</span></span><span style="display:flex;"><span>};
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a2f;font-weight:bold">class</span> <span style="color:#00f">ComponentWithProvidedServiceActivator</span> {
+</span></span><span style="display:flex;"><span><span style="color:#a2f;font-weight:bold">public</span><span style="color:#666">:</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a2f;font-weight:bold">explicit</span> ComponentWithProvidedServiceActivator(<span style="color:#a2f;font-weight:bold">const</span> std<span style="color:#666">::</span>shared_ptr<span style="color:#666">&lt;</span>celix<span style="color:#666">::</span>BundleContext<span style="color:#666">&gt;&amp;</span> ctx) {
+</span></span><span style="display:flex;"><span>        <span style="color:#a2f;font-weight:bold">auto</span><span style="color:#666">&amp;</span> cmp <span style="color:#666">=</span> ctx<span style="color:#666">-&gt;</span>getDependencyManager()<span style="color:#666">-&gt;</span>createComponent<span style="color:#666">&lt;</span>ComponentWithProvidedService<span style="color:#666">&gt;</span>(); <span style="color:#080;font-style:italic">// &lt;---------------&lt;4&gt;
+</span></span></span><span style="display:flex;"><span><span style="color:#080;font-style:italic"></span>
+</span></span><span style="display:flex;"><span>        cmp.createProvidedService<span style="color:#666">&lt;</span>celix<span style="color:#666">::</span>IShellCommand<span style="color:#666">&gt;</span>()
+</span></span><span style="display:flex;"><span>                .addProperty(celix<span style="color:#666">::</span>IShellCommand<span style="color:#666">::</span>COMMAND_NAME, <span style="color:#b44">&#34;HelloComponent&#34;</span>); <span style="color:#080;font-style:italic">// &lt;-----------------------------&lt;5&gt;
+</span></span></span><span style="display:flex;"><span><span style="color:#080;font-style:italic"></span>
+</span></span><span style="display:flex;"><span>        <span style="color:#a2f;font-weight:bold">auto</span> shellCmd <span style="color:#666">=</span> std<span style="color:#666">::</span>make_shared<span style="color:#666">&lt;</span>celix_shell_command_t<span style="color:#666">&gt;</span>();
+</span></span><span style="display:flex;"><span>        shellCmd<span style="color:#666">-&gt;</span>handle <span style="color:#666">=</span> <span style="color:#a2f;font-weight:bold">static_cast</span><span style="color:#666">&lt;</span><span style="color:#0b0;font-weight:bold">void</span><span style="color:#666">*&gt;</span>(<span style="color:#666">&amp;</span>cmp.getInstance());
+</span></span><span style="display:flex;"><span>        shellCmd<span style="color:#666">-&gt;</span>executeCommand <span style="color:#666">=</span> [](<span style="color:#0b0;font-weight:bold">void</span><span style="color:#666">*</span> handle, <span style="color:#a2f;font-weight:bold">const</span> <span style="color:#0b0;font-weight:bold">char</span><span style="color:#666">*</span> commandLine, FILE<span style="color:#666">*</span> outStream, FILE<span style="color:#666">*</span>) <span style="color:#666">-&gt;</span> <span style="color:#0b0;font-weight:bold">bool</span> {
+</span></span><span style="display:flex;"><span>            <span style="color:#a2f;font-weight:bold">auto</span><span style="color:#666">*</span> impl <span style="color:#666">=</span> <span style="color:#a2f;font-weight:bold">static_cast</span><span style="color:#666">&lt;</span>ComponentWithProvidedService<span style="color:#666">*&gt;</span>(handle);
+</span></span><span style="display:flex;"><span>            impl<span style="color:#666">-&gt;</span>executeCCommand(commandLine, outStream);
+</span></span><span style="display:flex;"><span>            <span style="color:#a2f;font-weight:bold">return</span> <span style="color:#a2f">true</span>;
+</span></span><span style="display:flex;"><span>        }; <span style="color:#080;font-style:italic">// &lt;------------------------------------------------------------------------------------------------------&lt;6&gt;
+</span></span></span><span style="display:flex;"><span><span style="color:#080;font-style:italic"></span>
+</span></span><span style="display:flex;"><span>        cmp.createUnassociatedProvidedService(std<span style="color:#666">::</span>move(shell.html), CELIX_SHELL_COMMAND_SERVICE_NAME)
+</span></span><span style="display:flex;"><span>                .addProperty(CELIX_SHELL_COMMAND_NAME, <span style="color:#b44">&#34;hello_component&#34;</span>); <span style="color:#080;font-style:italic">// &lt; -------------------------------------&lt;7&gt;
+</span></span></span><span style="display:flex;"><span><span style="color:#080;font-style:italic"></span>
+</span></span><span style="display:flex;"><span>        cmp.build(); <span style="color:#080;font-style:italic">// &lt;--------------------------------------------------------------------------------------------&lt;8&gt;
+</span></span></span><span style="display:flex;"><span><span style="color:#080;font-style:italic"></span>    }
+</span></span><span style="display:flex;"><span><span style="color:#a2f;font-weight:bold">private</span><span style="color:#666">:</span>
+</span></span><span style="display:flex;"><span>};
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>CELIX_GEN_CXX_BUNDLE_ACTIVATOR(ComponentWithProvidedServiceActivator)
+</span></span></code></pre></div><h1 id="components-service-dependencies">Component&rsquo;s Service Dependencies</h1>
 <p>Components can be configured to have service dependencies. These service dependencies will influence the component&rsquo;s
 lifecycle. Components can have optional and required service dependencies. When service dependencies are required the
 component can only be active if all required dependencies are available; where available means at least 1 matching
@@ -607,111 +607,111 @@ service dependency callbacks.</li>
 <li>Configures the service dependency as an optional service dependency.</li>
 <li>Configures the <code>addWithProps</code> service dependency callback to <code>componentWithServiceDependency_addShellCommand</code>.</li>
 </ol>
-<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-C" data-lang="C"><span style="color:#080;font-style:italic">//src/component_with_service_dependency_activator.c
-</span><span style="color:#080;font-style:italic"></span><span style="color:#080">#</span><span style="color:#080">include</span> <span style="color:#080">&lt;stdlib.h&gt;</span><span style="color:#080">
-</span><span style="color:#080"></span><span style="color:#080">#</span><span style="color:#080">include</span> <span style="color:#080">&lt;celix_api.h&gt;</span><span style="color:#080">
-</span><span style="color:#080"></span><span style="color:#080">#</span><span style="color:#080">include</span> <span style="color:#080">&lt;celix_shell_command.h&gt;</span><span style="color:#080">
-</span><span style="color:#080"></span>
-<span style="color:#080;font-style:italic">//********************* COMPONENT *******************************/
-</span><span style="color:#080;font-style:italic"></span>
-<span style="color:#a2f;font-weight:bold">typedef</span> <span style="color:#a2f;font-weight:bold">struct</span> component_with_service_dependency {
-    celix_shell_command_t<span style="color:#666">*</span> highestRankingCmdShell; <span style="color:#080;font-style:italic">//only updated when component is not active or suspended
-</span><span style="color:#080;font-style:italic"></span>    celix_thread_mutex_t mutex; <span style="color:#080;font-style:italic">//protects cmdShells
-</span><span style="color:#080;font-style:italic"></span>    celix_array_list_t<span style="color:#666">*</span> cmdShells;
-} component_with_service_dependency_t;
-
-<span style="color:#a2f;font-weight:bold">static</span> component_with_service_dependency_t<span style="color:#666">*</span> <span style="color:#00a000">componentWithServiceDependency_create</span>() {
-    component_with_service_dependency_t<span style="color:#666">*</span> cmp <span style="color:#666">=</span> calloc(<span style="color:#666">1</span>, <span style="color:#a2f;font-weight:bold">sizeof</span>(<span style="color:#666">*</span>cmp));
-    celixThreadMutex_create(<span style="color:#666">&amp;</span>cmp<span style="color:#666">-</span><span style="color:#666">&gt;</span>mutex, <span style="color:#a2f">NULL</span>); <span style="color:#080;font-style:italic">// &lt;-----------------------------------------------------------------&lt;1&gt;
-</span><span style="color:#080;font-style:italic"></span>    cmp<span style="color:#666">-</span><span style="color:#666">&gt;</span>cmdShells <span style="color:#666">=</span> celix_arrayList_create();
-    <span style="color:#a2f;font-weight:bold">return</span> cmp;
-}
-
-<span style="color:#a2f;font-weight:bold">static</span> <span style="color:#0b0;font-weight:bold">void</span> <span style="color:#00a000">componentWithServiceDependency_destroy</span>(component_with_service_dependency_t<span style="color:#666">*</span> cmp) {
-    celix_arrayList_destroy(cmp<span style="color:#666">-</span><span style="color:#666">&gt;</span>cmdShells);
-    celixThreadMutex_destroy(<span style="color:#666">&amp;</span>cmp<span style="color:#666">-</span><span style="color:#666">&gt;</span>mutex);
-    free(cmp);
-}
-
-<span style="color:#a2f;font-weight:bold">static</span> <span style="color:#0b0;font-weight:bold">void</span> <span style="color:#00a000">componentWithServiceDependency_setHighestRankingShellCommand</span>(
-        component_with_service_dependency_t<span style="color:#666">*</span> cmp,
-        celix_shell_command_t<span style="color:#666">*</span> shell.html) {
-    printf(<span style="color:#b44"></span><span style="color:#b44">&#34;</span><span style="color:#b44">New highest ranking service (can be NULL): %p</span><span style="color:#b62;font-weight:bold">\n</span><span style="color:#b44">&#34;</span>, shell.html);
-    cmp<span style="color:#666">-</span><span style="color:#666">&gt;</span>highestRankingCmdShell <span style="color:#666">=</span> shellCmd; <span style="color:#080;font-style:italic">// &lt;---------------------------------------------------------------------&lt;2&gt;
-</span><span style="color:#080;font-style:italic"></span>}
-
-<span style="color:#a2f;font-weight:bold">static</span> <span style="color:#0b0;font-weight:bold">void</span> <span style="color:#00a000">componentWithServiceDependency_addShellCommand</span>(
-        component_with_service_dependency_t<span style="color:#666">*</span> cmp,
-        celix_shell_command_t<span style="color:#666">*</span> shellCmd,
-        <span style="color:#a2f;font-weight:bold">const</span> celix_properties_t<span style="color:#666">*</span> props) {
-    <span style="color:#0b0;font-weight:bold">long</span> id <span style="color:#666">=</span> celix_properties_getAsLong(props, CELIX_FRAMEWORK_SERVICE_ID, <span style="color:#666">-</span><span style="color:#666">1</span>);
-    printf(<span style="color:#b44"></span><span style="color:#b44">&#34;</span><span style="color:#b44">Adding shell command service with service.id %li</span><span style="color:#b62;font-weight:bold">\n</span><span style="color:#b44">&#34;</span>, id);
-    celixThreadMutex_lock(<span style="color:#666">&amp;</span>cmp<span style="color:#666">-</span><span style="color:#666">&gt;</span>mutex); <span style="color:#080;font-style:italic">// &lt;-------------------------------------------------------------------------&lt;3&gt;
-</span><span style="color:#080;font-style:italic"></span>    celix_arrayList_add(cmp<span style="color:#666">-</span><span style="color:#666">&gt;</span>cmdShells, shell.html);
-    celixThreadMutex_unlock(<span style="color:#666">&amp;</span>cmp<span style="color:#666">-</span><span style="color:#666">&gt;</span>mutex);
-}
-
-<span style="color:#a2f;font-weight:bold">static</span> <span style="color:#0b0;font-weight:bold">void</span> <span style="color:#00a000">componentWithServiceDependency_removeShellCommand</span>(
-        component_with_service_dependency_t<span style="color:#666">*</span> cmp,
-        celix_shell_command_t<span style="color:#666">*</span> shellCmd,
-        <span style="color:#a2f;font-weight:bold">const</span> celix_properties_t<span style="color:#666">*</span> props) {
-    <span style="color:#0b0;font-weight:bold">long</span> id <span style="color:#666">=</span> celix_properties_getAsLong(props, CELIX_FRAMEWORK_SERVICE_ID, <span style="color:#666">-</span><span style="color:#666">1</span>);
-    printf(<span style="color:#b44"></span><span style="color:#b44">&#34;</span><span style="color:#b44">Removing shell command service with service.id %li</span><span style="color:#b62;font-weight:bold">\n</span><span style="color:#b44">&#34;</span>, id);
-    celixThreadMutex_lock(<span style="color:#666">&amp;</span>cmp<span style="color:#666">-</span><span style="color:#666">&gt;</span>mutex);
-    celix_arrayList_remove(cmp<span style="color:#666">-</span><span style="color:#666">&gt;</span>cmdShells, shell.html);
-    celixThreadMutex_unlock(<span style="color:#666">&amp;</span>cmp<span style="color:#666">-</span><span style="color:#666">&gt;</span>mutex);
-}
-
-<span style="color:#080;font-style:italic">//********************* ACTIVATOR *******************************/
-</span><span style="color:#080;font-style:italic"></span>
-<span style="color:#a2f;font-weight:bold">typedef</span> <span style="color:#a2f;font-weight:bold">struct</span> component_with_service_dependency_activator {
-    <span style="color:#080;font-style:italic">//nop
-</span><span style="color:#080;font-style:italic"></span>} component_with_service_dependency_activator_t;
-
-<span style="color:#a2f;font-weight:bold">static</span> celix_status_t <span style="color:#00a000">componentWithServiceDependencyActivator_start</span>(component_with_service_dependency_activator_t <span style="color:#666">*</span>act, celix_bundle_context_t <span style="color:#666">*</span>ctx) {
-    <span style="color:#080;font-style:italic">//creating component
-</span><span style="color:#080;font-style:italic"></span>    component_with_service_dependency_t<span style="color:#666">*</span> impl <span style="color:#666">=</span> componentWithServiceDependency_create();
-
-    <span style="color:#080;font-style:italic">//create and configuring component and its lifecycle callbacks using the Apache Celix Dependency Manager
-</span><span style="color:#080;font-style:italic"></span>    celix_dm_component_t<span style="color:#666">*</span> dmCmp <span style="color:#666">=</span> celix_dmComponent_create(ctx, <span style="color:#b44"></span><span style="color:#b44">&#34;</span><span style="color:#b44">component_with_service_dependency_1</span><span style="color:#b44">&#34;</span>);
-    celix_dmComponent_setImplementation(dmCmp, impl);
-    CELIX_DM_COMPONENT_SET_IMPLEMENTATION_DESTROY_FUNCTION(
-            dmCmp,
-            component_with_service_dependency_t,
-            componentWithServiceDependency_destroy);
-
-    <span style="color:#080;font-style:italic">//create mandatory service dependency with cardinality one and with a suspend-strategy
-</span><span style="color:#080;font-style:italic"></span>    celix_dm_service_dependency_t<span style="color:#666">*</span> dep1 <span style="color:#666">=</span> celix_dmServiceDependency_create(); <span style="color:#080;font-style:italic">// &lt;-----------------------------------&lt;4&gt;
-</span><span style="color:#080;font-style:italic"></span>    celix_dmServiceDependency_setService(dep1, CELIX_SHELL_COMMAND_SERVICE_NAME, <span style="color:#a2f">NULL</span>, <span style="color:#a2f">NULL</span>); <span style="color:#080;font-style:italic">// &lt;-------------------&lt;5&gt;
-</span><span style="color:#080;font-style:italic"></span>    celix_dmServiceDependency_setStrategy(dep1, DM_SERVICE_DEPENDENCY_STRATEGY_SUSPEND); <span style="color:#080;font-style:italic">// &lt;------------------------&lt;6&gt;
-</span><span style="color:#080;font-style:italic"></span>    celix_dmServiceDependency_setRequired(dep1, <span style="color:#a2f">true</span>); <span style="color:#080;font-style:italic">// &lt;----------------------------------------------------------&lt;7&gt;
-</span><span style="color:#080;font-style:italic"></span>    celix_dm_service_dependency_callback_options_t opts1 <span style="color:#666">=</span> CELIX_EMPTY_DM_SERVICE_DEPENDENCY_CALLBACK_OPTIONS; <span style="color:#080;font-style:italic">// &lt;--&lt;8&gt;
-</span><span style="color:#080;font-style:italic"></span>    opts1.set <span style="color:#666">=</span> (<span style="color:#0b0;font-weight:bold">void</span><span style="color:#666">*</span>)componentWithServiceDependency_setHighestRankingShellCommand; <span style="color:#080;font-style:italic">// &lt;----------------------------&lt;9&gt;
-</span><span style="color:#080;font-style:italic"></span>    celix_dmServiceDependency_setCallbacksWithOptions(dep1, <span style="color:#666">&amp;</span>opts1); <span style="color:#080;font-style:italic">// &lt;-------------------------------------------&lt;10&gt;
-</span><span style="color:#080;font-style:italic"></span>    celix_dmComponent_addServiceDependency(dmCmp, dep1); <span style="color:#080;font-style:italic">// &lt;-------------------------------------------------------&lt;11&gt;
-</span><span style="color:#080;font-style:italic"></span>
-    <span style="color:#080;font-style:italic">//create optional service dependency with cardinality many and with a locking-strategy
-</span><span style="color:#080;font-style:italic"></span>    celix_dm_service_dependency_t<span style="color:#666">*</span> dep2 <span style="color:#666">=</span> celix_dmServiceDependency_create();
-    celix_dmServiceDependency_setService(dep2, CELIX_SHELL_COMMAND_SERVICE_NAME, <span style="color:#a2f">NULL</span>, <span style="color:#a2f">NULL</span>);
-    celix_dmServiceDependency_setStrategy(dep2, DM_SERVICE_DEPENDENCY_STRATEGY_LOCKING);  <span style="color:#080;font-style:italic">// &lt;----------------------&lt;12&gt;
-</span><span style="color:#080;font-style:italic"></span>    celix_dmServiceDependency_setRequired(dep2, <span style="color:#a2f">false</span>); <span style="color:#080;font-style:italic">// &lt;--------------------------------------------------------&lt;13&gt;
-</span><span style="color:#080;font-style:italic"></span>    celix_dm_service_dependency_callback_options_t opts2 <span style="color:#666">=</span> CELIX_EMPTY_DM_SERVICE_DEPENDENCY_CALLBACK_OPTIONS;
-    opts2.addWithProps <span style="color:#666">=</span> (<span style="color:#0b0;font-weight:bold">void</span><span style="color:#666">*</span>)componentWithServiceDependency_addShellCommand;  <span style="color:#080;font-style:italic">// &lt;-------------------------------&lt;14&gt;
-</span><span style="color:#080;font-style:italic"></span>    opts2.removeWithProps <span style="color:#666">=</span> (<span style="color:#0b0;font-weight:bold">void</span><span style="color:#666">*</span>)componentWithServiceDependency_removeShellCommand;
-    celix_dmServiceDependency_setCallbacksWithOptions(dep2, <span style="color:#666">&amp;</span>opts2);
-    celix_dmComponent_addServiceDependency(dmCmp, dep2);
-
-    <span style="color:#080;font-style:italic">//Add dm component to the dm.
-</span><span style="color:#080;font-style:italic"></span>    celix_dependency_manager_t<span style="color:#666">*</span> dm <span style="color:#666">=</span> celix_bundleContext_getDependencyManager(ctx);
-    celix_dependencyManager_add(dm, dmCmp);
-    <span style="color:#a2f;font-weight:bold">return</span> CELIX_SUCCESS;
-}
-
-CELIX_GEN_BUNDLE_ACTIVATOR(
-        component_with_service_dependency_activator_t,
-        componentWithServiceDependencyActivator_start,
-        <span style="color:#a2f">NULL</span>)
-</code></pre></div><h2 id="example-component-with-a-service-dependencies-in-c-1">Example: Component with a service dependencies in C++</h2>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C" data-lang="C"><span style="display:flex;"><span><span style="color:#080;font-style:italic">//src/component_with_service_dependency_activator.c
+</span></span></span><span style="display:flex;"><span><span style="color:#080;font-style:italic"></span><span style="color:#080">#include</span> <span style="color:#080">&lt;stdlib.h&gt;</span><span style="color:#080">
+</span></span></span><span style="display:flex;"><span><span style="color:#080">#include</span> <span style="color:#080">&lt;celix_api.h&gt;</span><span style="color:#080">
+</span></span></span><span style="display:flex;"><span><span style="color:#080">#include</span> <span style="color:#080">&lt;celix_shell_command.h&gt;</span><span style="color:#080">
+</span></span></span><span style="display:flex;"><span><span style="color:#080"></span>
+</span></span><span style="display:flex;"><span><span style="color:#080;font-style:italic">//********************* COMPONENT *******************************/
+</span></span></span><span style="display:flex;"><span><span style="color:#080;font-style:italic"></span>
+</span></span><span style="display:flex;"><span><span style="color:#a2f;font-weight:bold">typedef</span> <span style="color:#a2f;font-weight:bold">struct</span> component_with_service_dependency {
+</span></span><span style="display:flex;"><span>    <span style="color:#0b0;font-weight:bold">celix_shell_command_t</span><span style="color:#666">*</span> highestRankingCmdShell; <span style="color:#080;font-style:italic">//only updated when component is not active or suspended
+</span></span></span><span style="display:flex;"><span><span style="color:#080;font-style:italic"></span>    <span style="color:#0b0;font-weight:bold">celix_thread_mutex_t</span> mutex; <span style="color:#080;font-style:italic">//protects cmdShells
+</span></span></span><span style="display:flex;"><span><span style="color:#080;font-style:italic"></span>    <span style="color:#0b0;font-weight:bold">celix_array_list_t</span><span style="color:#666">*</span> cmdShells;
+</span></span><span style="display:flex;"><span>} <span style="color:#0b0;font-weight:bold">component_with_service_dependency_t</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a2f;font-weight:bold">static</span> <span style="color:#0b0;font-weight:bold">component_with_service_dependency_t</span><span style="color:#666">*</span> <span style="color:#00a000">componentWithServiceDependency_create</span>() {
+</span></span><span style="display:flex;"><span>    <span style="color:#0b0;font-weight:bold">component_with_service_dependency_t</span><span style="color:#666">*</span> cmp <span style="color:#666">=</span> <span style="color:#00a000">calloc</span>(<span style="color:#666">1</span>, <span style="color:#a2f;font-weight:bold">sizeof</span>(<span style="color:#666">*</span>cmp));
+</span></span><span style="display:flex;"><span>    <span style="color:#00a000">celixThreadMutex_create</span>(<span style="color:#666">&amp;</span>cmp<span style="color:#666">-&gt;</span>mutex, <span style="color:#a2f">NULL</span>); <span style="color:#080;font-style:italic">// &lt;-----------------------------------------------------------------&lt;1&gt;
+</span></span></span><span style="display:flex;"><span><span style="color:#080;font-style:italic"></span>    cmp<span style="color:#666">-&gt;</span>cmdShells <span style="color:#666">=</span> <span style="color:#00a000">celix_arrayList_create</span>();
+</span></span><span style="display:flex;"><span>    <span style="color:#a2f;font-weight:bold">return</span> cmp;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a2f;font-weight:bold">static</span> <span style="color:#0b0;font-weight:bold">void</span> <span style="color:#00a000">componentWithServiceDependency_destroy</span>(<span style="color:#0b0;font-weight:bold">component_with_service_dependency_t</span><span style="color:#666">*</span> cmp) {
+</span></span><span style="display:flex;"><span>    <span style="color:#00a000">celix_arrayList_destroy</span>(cmp<span style="color:#666">-&gt;</span>cmdShells);
+</span></span><span style="display:flex;"><span>    <span style="color:#00a000">celixThreadMutex_destroy</span>(<span style="color:#666">&amp;</span>cmp<span style="color:#666">-&gt;</span>mutex);
+</span></span><span style="display:flex;"><span>    <span style="color:#00a000">free</span>(cmp);
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a2f;font-weight:bold">static</span> <span style="color:#0b0;font-weight:bold">void</span> <span style="color:#00a000">componentWithServiceDependency_setHighestRankingShellCommand</span>(
+</span></span><span style="display:flex;"><span>        <span style="color:#0b0;font-weight:bold">component_with_service_dependency_t</span><span style="color:#666">*</span> cmp,
+</span></span><span style="display:flex;"><span>        <span style="color:#0b0;font-weight:bold">celix_shell_command_t</span><span style="color:#666">*</span> shell.html) {
+</span></span><span style="display:flex;"><span>    <span style="color:#00a000">printf</span>(<span style="color:#b44">&#34;New highest ranking service (can be NULL): %p</span><span style="color:#b62;font-weight:bold">\n</span><span style="color:#b44">&#34;</span>, shell.html);
+</span></span><span style="display:flex;"><span>    cmp<span style="color:#666">-&gt;</span>highestRankingCmdShell <span style="color:#666">=</span> shellCmd; <span style="color:#080;font-style:italic">// &lt;---------------------------------------------------------------------&lt;2&gt;
+</span></span></span><span style="display:flex;"><span><span style="color:#080;font-style:italic"></span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a2f;font-weight:bold">static</span> <span style="color:#0b0;font-weight:bold">void</span> <span style="color:#00a000">componentWithServiceDependency_addShellCommand</span>(
+</span></span><span style="display:flex;"><span>        <span style="color:#0b0;font-weight:bold">component_with_service_dependency_t</span><span style="color:#666">*</span> cmp,
+</span></span><span style="display:flex;"><span>        <span style="color:#0b0;font-weight:bold">celix_shell_command_t</span><span style="color:#666">*</span> shellCmd,
+</span></span><span style="display:flex;"><span>        <span style="color:#a2f;font-weight:bold">const</span> <span style="color:#0b0;font-weight:bold">celix_properties_t</span><span style="color:#666">*</span> props) {
+</span></span><span style="display:flex;"><span>    <span style="color:#0b0;font-weight:bold">long</span> id <span style="color:#666">=</span> <span style="color:#00a000">celix_properties_getAsLong</span>(props, CELIX_FRAMEWORK_SERVICE_ID, <span style="color:#666">-</span><span style="color:#666">1</span>);
+</span></span><span style="display:flex;"><span>    <span style="color:#00a000">printf</span>(<span style="color:#b44">&#34;Adding shell command service with service.id %li</span><span style="color:#b62;font-weight:bold">\n</span><span style="color:#b44">&#34;</span>, id);
+</span></span><span style="display:flex;"><span>    <span style="color:#00a000">celixThreadMutex_lock</span>(<span style="color:#666">&amp;</span>cmp<span style="color:#666">-&gt;</span>mutex); <span style="color:#080;font-style:italic">// &lt;-------------------------------------------------------------------------&lt;3&gt;
+</span></span></span><span style="display:flex;"><span><span style="color:#080;font-style:italic"></span>    <span style="color:#00a000">celix_arrayList_add</span>(cmp<span style="color:#666">-&gt;</span>cmdShells, shell.html);
+</span></span><span style="display:flex;"><span>    <span style="color:#00a000">celixThreadMutex_unlock</span>(<span style="color:#666">&amp;</span>cmp<span style="color:#666">-&gt;</span>mutex);
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a2f;font-weight:bold">static</span> <span style="color:#0b0;font-weight:bold">void</span> <span style="color:#00a000">componentWithServiceDependency_removeShellCommand</span>(
+</span></span><span style="display:flex;"><span>        <span style="color:#0b0;font-weight:bold">component_with_service_dependency_t</span><span style="color:#666">*</span> cmp,
+</span></span><span style="display:flex;"><span>        <span style="color:#0b0;font-weight:bold">celix_shell_command_t</span><span style="color:#666">*</span> shellCmd,
+</span></span><span style="display:flex;"><span>        <span style="color:#a2f;font-weight:bold">const</span> <span style="color:#0b0;font-weight:bold">celix_properties_t</span><span style="color:#666">*</span> props) {
+</span></span><span style="display:flex;"><span>    <span style="color:#0b0;font-weight:bold">long</span> id <span style="color:#666">=</span> <span style="color:#00a000">celix_properties_getAsLong</span>(props, CELIX_FRAMEWORK_SERVICE_ID, <span style="color:#666">-</span><span style="color:#666">1</span>);
+</span></span><span style="display:flex;"><span>    <span style="color:#00a000">printf</span>(<span style="color:#b44">&#34;Removing shell command service with service.id %li</span><span style="color:#b62;font-weight:bold">\n</span><span style="color:#b44">&#34;</span>, id);
+</span></span><span style="display:flex;"><span>    <span style="color:#00a000">celixThreadMutex_lock</span>(<span style="color:#666">&amp;</span>cmp<span style="color:#666">-&gt;</span>mutex);
+</span></span><span style="display:flex;"><span>    <span style="color:#00a000">celix_arrayList_remove</span>(cmp<span style="color:#666">-&gt;</span>cmdShells, shell.html);
+</span></span><span style="display:flex;"><span>    <span style="color:#00a000">celixThreadMutex_unlock</span>(<span style="color:#666">&amp;</span>cmp<span style="color:#666">-&gt;</span>mutex);
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#080;font-style:italic">//********************* ACTIVATOR *******************************/
+</span></span></span><span style="display:flex;"><span><span style="color:#080;font-style:italic"></span>
+</span></span><span style="display:flex;"><span><span style="color:#a2f;font-weight:bold">typedef</span> <span style="color:#a2f;font-weight:bold">struct</span> component_with_service_dependency_activator {
+</span></span><span style="display:flex;"><span>    <span style="color:#080;font-style:italic">//nop
+</span></span></span><span style="display:flex;"><span><span style="color:#080;font-style:italic"></span>} <span style="color:#0b0;font-weight:bold">component_with_service_dependency_activator_t</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a2f;font-weight:bold">static</span> <span style="color:#0b0;font-weight:bold">celix_status_t</span> <span style="color:#00a000">componentWithServiceDependencyActivator_start</span>(<span style="color:#0b0;font-weight:bold">component_with_service_dependency_activator_t</span> <span style="color:#666">*</span>act, <span style="color:#0b0;font-weight:bold">celix_bundle_context_t</span> <span style="color:#666">*</span>ctx) {
+</span></span><span style="display:flex;"><span>    <span style="color:#080;font-style:italic">//creating component
+</span></span></span><span style="display:flex;"><span><span style="color:#080;font-style:italic"></span>    <span style="color:#0b0;font-weight:bold">component_with_service_dependency_t</span><span style="color:#666">*</span> impl <span style="color:#666">=</span> <span style="color:#00a000">componentWithServiceDependency_create</span>();
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#080;font-style:italic">//create and configuring component and its lifecycle callbacks using the Apache Celix Dependency Manager
+</span></span></span><span style="display:flex;"><span><span style="color:#080;font-style:italic"></span>    <span style="color:#0b0;font-weight:bold">celix_dm_component_t</span><span style="color:#666">*</span> dmCmp <span style="color:#666">=</span> <span style="color:#00a000">celix_dmComponent_create</span>(ctx, <span style="color:#b44">&#34;component_with_service_dependency_1&#34;</span>);
+</span></span><span style="display:flex;"><span>    <span style="color:#00a000">celix_dmComponent_setImplementation</span>(dmCmp, impl);
+</span></span><span style="display:flex;"><span>    <span style="color:#00a000">CELIX_DM_COMPONENT_SET_IMPLEMENTATION_DESTROY_FUNCTION</span>(
+</span></span><span style="display:flex;"><span>            dmCmp,
+</span></span><span style="display:flex;"><span>            <span style="color:#0b0;font-weight:bold">component_with_service_dependency_t</span>,
+</span></span><span style="display:flex;"><span>            componentWithServiceDependency_destroy);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#080;font-style:italic">//create mandatory service dependency with cardinality one and with a suspend-strategy
+</span></span></span><span style="display:flex;"><span><span style="color:#080;font-style:italic"></span>    <span style="color:#0b0;font-weight:bold">celix_dm_service_dependency_t</span><span style="color:#666">*</span> dep1 <span style="color:#666">=</span> <span style="color:#00a000">celix_dmServiceDependency_create</span>(); <span style="color:#080;font-style:italic">// &lt;-----------------------------------&lt;4&gt;
+</span></span></span><span style="display:flex;"><span><span style="color:#080;font-style:italic"></span>    <span style="color:#00a000">celix_dmServiceDependency_setService</span>(dep1, CELIX_SHELL_COMMAND_SERVICE_NAME, <span style="color:#a2f">NULL</span>, <span style="color:#a2f">NULL</span>); <span style="color:#080;font-style:italic">// &lt;-------------------&lt;5&gt;
+</span></span></span><span style="display:flex;"><span><span style="color:#080;font-style:italic"></span>    <span style="color:#00a000">celix_dmServiceDependency_setStrategy</span>(dep1, DM_SERVICE_DEPENDENCY_STRATEGY_SUSPEND); <span style="color:#080;font-style:italic">// &lt;------------------------&lt;6&gt;
+</span></span></span><span style="display:flex;"><span><span style="color:#080;font-style:italic"></span>    <span style="color:#00a000">celix_dmServiceDependency_setRequired</span>(dep1, <span style="color:#a2f">true</span>); <span style="color:#080;font-style:italic">// &lt;----------------------------------------------------------&lt;7&gt;
+</span></span></span><span style="display:flex;"><span><span style="color:#080;font-style:italic"></span>    <span style="color:#0b0;font-weight:bold">celix_dm_service_dependency_callback_options_t</span> opts1 <span style="color:#666">=</span> CELIX_EMPTY_DM_SERVICE_DEPENDENCY_CALLBACK_OPTIONS; <span style="color:#080;font-style:italic">// &lt;--&lt;8&gt;
+</span></span></span><span style="display:flex;"><span><span style="color:#080;font-style:italic"></span>    opts1.set <span style="color:#666">=</span> (<span style="color:#0b0;font-weight:bold">void</span><span style="color:#666">*</span>)componentWithServiceDependency_setHighestRankingShellCommand; <span style="color:#080;font-style:italic">// &lt;----------------------------&lt;9&gt;
+</span></span></span><span style="display:flex;"><span><span style="color:#080;font-style:italic"></span>    <span style="color:#00a000">celix_dmServiceDependency_setCallbacksWithOptions</span>(dep1, <span style="color:#666">&amp;</span>opts1); <span style="color:#080;font-style:italic">// &lt;-------------------------------------------&lt;10&gt;
+</span></span></span><span style="display:flex;"><span><span style="color:#080;font-style:italic"></span>    <span style="color:#00a000">celix_dmComponent_addServiceDependency</span>(dmCmp, dep1); <span style="color:#080;font-style:italic">// &lt;-------------------------------------------------------&lt;11&gt;
+</span></span></span><span style="display:flex;"><span><span style="color:#080;font-style:italic"></span>
+</span></span><span style="display:flex;"><span>    <span style="color:#080;font-style:italic">//create optional service dependency with cardinality many and with a locking-strategy
+</span></span></span><span style="display:flex;"><span><span style="color:#080;font-style:italic"></span>    <span style="color:#0b0;font-weight:bold">celix_dm_service_dependency_t</span><span style="color:#666">*</span> dep2 <span style="color:#666">=</span> <span style="color:#00a000">celix_dmServiceDependency_create</span>();
+</span></span><span style="display:flex;"><span>    <span style="color:#00a000">celix_dmServiceDependency_setService</span>(dep2, CELIX_SHELL_COMMAND_SERVICE_NAME, <span style="color:#a2f">NULL</span>, <span style="color:#a2f">NULL</span>);
+</span></span><span style="display:flex;"><span>    <span style="color:#00a000">celix_dmServiceDependency_setStrategy</span>(dep2, DM_SERVICE_DEPENDENCY_STRATEGY_LOCKING);  <span style="color:#080;font-style:italic">// &lt;----------------------&lt;12&gt;
+</span></span></span><span style="display:flex;"><span><span style="color:#080;font-style:italic"></span>    <span style="color:#00a000">celix_dmServiceDependency_setRequired</span>(dep2, <span style="color:#a2f">false</span>); <span style="color:#080;font-style:italic">// &lt;--------------------------------------------------------&lt;13&gt;
+</span></span></span><span style="display:flex;"><span><span style="color:#080;font-style:italic"></span>    <span style="color:#0b0;font-weight:bold">celix_dm_service_dependency_callback_options_t</span> opts2 <span style="color:#666">=</span> CELIX_EMPTY_DM_SERVICE_DEPENDENCY_CALLBACK_OPTIONS;
+</span></span><span style="display:flex;"><span>    opts2.addWithProps <span style="color:#666">=</span> (<span style="color:#0b0;font-weight:bold">void</span><span style="color:#666">*</span>)componentWithServiceDependency_addShellCommand;  <span style="color:#080;font-style:italic">// &lt;-------------------------------&lt;14&gt;
+</span></span></span><span style="display:flex;"><span><span style="color:#080;font-style:italic"></span>    opts2.removeWithProps <span style="color:#666">=</span> (<span style="color:#0b0;font-weight:bold">void</span><span style="color:#666">*</span>)componentWithServiceDependency_removeShellCommand;
+</span></span><span style="display:flex;"><span>    <span style="color:#00a000">celix_dmServiceDependency_setCallbacksWithOptions</span>(dep2, <span style="color:#666">&amp;</span>opts2);
+</span></span><span style="display:flex;"><span>    <span style="color:#00a000">celix_dmComponent_addServiceDependency</span>(dmCmp, dep2);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#080;font-style:italic">//Add dm component to the dm.
+</span></span></span><span style="display:flex;"><span><span style="color:#080;font-style:italic"></span>    <span style="color:#0b0;font-weight:bold">celix_dependency_manager_t</span><span style="color:#666">*</span> dm <span style="color:#666">=</span> <span style="color:#00a000">celix_bundleContext_getDependencyManager</span>(ctx);
+</span></span><span style="display:flex;"><span>    <span style="color:#00a000">celix_dependencyManager_add</span>(dm, dmCmp);
+</span></span><span style="display:flex;"><span>    <span style="color:#a2f;font-weight:bold">return</span> CELIX_SUCCESS;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#00a000">CELIX_GEN_BUNDLE_ACTIVATOR</span>(
+</span></span><span style="display:flex;"><span>        <span style="color:#0b0;font-weight:bold">component_with_service_dependency_activator_t</span>,
+</span></span><span style="display:flex;"><span>        componentWithServiceDependencyActivator_start,
+</span></span><span style="display:flex;"><span>        <span style="color:#a2f">NULL</span>)
+</span></span></code></pre></div><h2 id="example-component-with-a-service-dependencies-in-c-1">Example: Component with a service dependencies in C++</h2>
 <p>The following example shows how a C++ component that has two service dependency. One
 service dependency for the C++ <code>celix::IShellCommand</code> service and one for the C <code>celix_shell_command_t</code> service.</p>
 <p>The <code>celix::IShellCommand</code> service dependency is a required dependency with a suspend-strategy and uses a
@@ -743,68 +743,68 @@ is called without provided a service name, the service name will be inferred usi
 to use (<code>CELIX_SHELL_COMMAND_SERVICE_NAME</code>).</li>
 <li>Builds the component and as result also builds the components&rsquo; service dependencies (i.e. marking them as complete).</li>
 </ol>
-<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-C++" data-lang="C++"><span style="color:#080;font-style:italic">//src/ComponentWithServiceDependencyActivator.cc
-</span><span style="color:#080;font-style:italic"></span><span style="color:#080">#</span><span style="color:#080">include</span> <span style="color:#080">&lt;celix/BundleActivator.h&gt;</span><span style="color:#080">
-</span><span style="color:#080"></span><span style="color:#080">#</span><span style="color:#080">include</span> <span style="color:#080">&lt;celix/IShellCommand.h&gt;</span><span style="color:#080">
-</span><span style="color:#080"></span><span style="color:#080">#</span><span style="color:#080">include</span> <span style="color:#080">&lt;celix_shell_command.h&gt;</span><span style="color:#080">
-</span><span style="color:#080"></span>
-<span style="color:#a2f;font-weight:bold">class</span> <span style="color:#00f">ComponentWithServiceDependency</span> {
-<span style="color:#a2f;font-weight:bold">public</span><span style="color:#666">:</span>
-    <span style="color:#0b0;font-weight:bold">void</span> setHighestRankingShellCommand(<span style="color:#a2f;font-weight:bold">const</span> std<span style="color:#666">:</span><span style="color:#666">:</span>shared_ptr<span style="color:#666">&lt;</span>celix<span style="color:#666">:</span><span style="color:#666">:</span>IShellCommand<span style="color:#666">&gt;</span><span style="color:#666">&amp;</span> cmdSvc) {
-        std<span style="color:#666">:</span><span style="color:#666">:</span>cout <span style="color:#666">&lt;</span><span style="color:#666">&lt;</span> <span style="color:#b44"></span><span style="color:#b44">&#34;</span><span style="color:#b44">New highest ranking service (can be NULL): </span><span style="color:#b44">&#34;</span> <span style="color:#666">&lt;</span><span style="color:#666">&lt;</span> (intptr_t)cmdSvc.get() <span style="color:#666">&lt;</span><span style="color:#666">&lt;</span> std<span style="color:#666">:</span><span style="color:#666">:</span>endl;
-        highestRankingShellCmd <span style="color:#666">=</span> cmdSvc; <span style="color:#080;font-style:italic">// &lt;------------------------------------------------------------------------&lt;2&gt;
-</span><span style="color:#080;font-style:italic"></span>    }
-
-    <span style="color:#0b0;font-weight:bold">void</span> <span style="color:#00a000">addCShellCmd</span>(
-            <span style="color:#a2f;font-weight:bold">const</span> std<span style="color:#666">:</span><span style="color:#666">:</span>shared_ptr<span style="color:#666">&lt;</span>celix_shell_command_t<span style="color:#666">&gt;</span><span style="color:#666">&amp;</span> cmdSvc,
-            <span style="color:#a2f;font-weight:bold">const</span> std<span style="color:#666">:</span><span style="color:#666">:</span>shared_ptr<span style="color:#666">&lt;</span><span style="color:#a2f;font-weight:bold">const</span> celix<span style="color:#666">:</span><span style="color:#666">:</span>Properties<span style="color:#666">&gt;</span><span style="color:#666">&amp;</span> props) {
-        <span style="color:#a2f;font-weight:bold">auto</span> id <span style="color:#666">=</span> props<span style="color:#666">-</span><span style="color:#666">&gt;</span>getAsLong(celix<span style="color:#666">:</span><span style="color:#666">:</span>SERVICE_ID, <span style="color:#666">-</span><span style="color:#666">1</span>);
-        std<span style="color:#666">:</span><span style="color:#666">:</span>cout <span style="color:#666">&lt;</span><span style="color:#666">&lt;</span> <span style="color:#b44"></span><span style="color:#b44">&#34;</span><span style="color:#b44">Adding shell command service with service.id: </span><span style="color:#b44">&#34;</span> <span style="color:#666">&lt;</span><span style="color:#666">&lt;</span> id <span style="color:#666">&lt;</span><span style="color:#666">&lt;</span> std<span style="color:#666">:</span><span style="color:#666">:</span>endl;
-        std<span style="color:#666">:</span><span style="color:#666">:</span>lock_guard lck{mutex}; <span style="color:#080;font-style:italic">// &lt;-----------------------------------------------------------------------------&lt;3&gt;
-</span><span style="color:#080;font-style:italic"></span>        shellCommands.emplace(id, cmdSvc);
-    }
-
-    <span style="color:#0b0;font-weight:bold">void</span> <span style="color:#00a000">removeCShellCmd</span>(
-            <span style="color:#a2f;font-weight:bold">const</span> std<span style="color:#666">:</span><span style="color:#666">:</span>shared_ptr<span style="color:#666">&lt;</span>celix_shell_command_t<span style="color:#666">&gt;</span><span style="color:#666">&amp;</span> <span style="color:#080;font-style:italic">/*cmdSvc*/</span>,
-            <span style="color:#a2f;font-weight:bold">const</span> std<span style="color:#666">:</span><span style="color:#666">:</span>shared_ptr<span style="color:#666">&lt;</span><span style="color:#a2f;font-weight:bold">const</span> celix<span style="color:#666">:</span><span style="color:#666">:</span>Properties<span style="color:#666">&gt;</span><span style="color:#666">&amp;</span> props) {
-        <span style="color:#a2f;font-weight:bold">auto</span> id <span style="color:#666">=</span> props<span style="color:#666">-</span><span style="color:#666">&gt;</span>getAsLong(celix<span style="color:#666">:</span><span style="color:#666">:</span>SERVICE_ID, <span style="color:#666">-</span><span style="color:#666">1</span>);
-        std<span style="color:#666">:</span><span style="color:#666">:</span>cout <span style="color:#666">&lt;</span><span style="color:#666">&lt;</span> <span style="color:#b44"></span><span style="color:#b44">&#34;</span><span style="color:#b44">Removing shell command service with service.id: </span><span style="color:#b44">&#34;</span> <span style="color:#666">&lt;</span><span style="color:#666">&lt;</span> id <span style="color:#666">&lt;</span><span style="color:#666">&lt;</span> std<span style="color:#666">:</span><span style="color:#666">:</span>endl;
-        std<span style="color:#666">:</span><span style="color:#666">:</span>lock_guard lck{mutex};
-        shellCommands.erase(id);
-    }
-<span style="color:#a2f;font-weight:bold">private</span><span style="color:#666">:</span>
-    std<span style="color:#666">:</span><span style="color:#666">:</span>shared_ptr<span style="color:#666">&lt;</span>celix<span style="color:#666">:</span><span style="color:#666">:</span>IShellCommand<span style="color:#666">&gt;</span> highestRankingShellCmd{};
-    std<span style="color:#666">:</span><span style="color:#666">:</span>mutex mutex{}; <span style="color:#080;font-style:italic">//protect shellCommands // &lt;-----------------------------------------------------------------&lt;1&gt;
-</span><span style="color:#080;font-style:italic"></span>    std<span style="color:#666">:</span><span style="color:#666">:</span>unordered_map<span style="color:#666">&lt;</span><span style="color:#0b0;font-weight:bold">long</span>, std<span style="color:#666">:</span><span style="color:#666">:</span>shared_ptr<span style="color:#666">&lt;</span>celix_shell_command_t<span style="color:#666">&gt;</span><span style="color:#666">&gt;</span> shellCommands{};
-};
-
-<span style="color:#a2f;font-weight:bold">class</span> <span style="color:#00f">ComponentWithServiceDependencyActivator</span> {
-<span style="color:#a2f;font-weight:bold">public</span><span style="color:#666">:</span>
-    <span style="color:#a2f;font-weight:bold">explicit</span> ComponentWithServiceDependencyActivator(<span style="color:#a2f;font-weight:bold">const</span> std<span style="color:#666">:</span><span style="color:#666">:</span>shared_ptr<span style="color:#666">&lt;</span>celix<span style="color:#666">:</span><span style="color:#666">:</span>BundleContext<span style="color:#666">&gt;</span><span style="color:#666">&amp;</span> ctx) {
-        <span style="color:#a2f;font-weight:bold">using</span> Cmp <span style="color:#666">=</span> ComponentWithServiceDependency;
-        <span style="color:#a2f;font-weight:bold">auto</span><span style="color:#666">&amp;</span> cmp <span style="color:#666">=</span> ctx<span style="color:#666">-</span><span style="color:#666">&gt;</span>getDependencyManager()<span style="color:#666">-</span><span style="color:#666">&gt;</span>createComponent<span style="color:#666">&lt;</span>Cmp<span style="color:#666">&gt;</span>(); 
-
-        cmp.createServiceDependency<span style="color:#666">&lt;</span>celix<span style="color:#666">:</span><span style="color:#666">:</span>IShellCommand<span style="color:#666">&gt;</span>() <span style="color:#080;font-style:italic">// &lt;-----------------------------------------------------&lt;4&gt;
-</span><span style="color:#080;font-style:italic"></span>                .setCallbacks(<span style="color:#666">&amp;</span>Cmp<span style="color:#666">:</span><span style="color:#666">:</span>setHighestRankingShellCommand) <span style="color:#080;font-style:italic">// &lt;----------------------------------------------&lt;5&gt;
-</span><span style="color:#080;font-style:italic"></span>                .setRequired(<span style="color:#a2f">true</span>) <span style="color:#080;font-style:italic">// &lt;------------------------------------------------------------------------------&lt;6&gt;
-</span><span style="color:#080;font-style:italic"></span>                .setStrategy(DependencyUpdateStrategy<span style="color:#666">:</span><span style="color:#666">:</span>suspend); <span style="color:#080;font-style:italic">// &lt;------------------------------------------------&lt;7&gt;
-</span><span style="color:#080;font-style:italic"></span>
-        cmp.createServiceDependency<span style="color:#666">&lt;</span>celix_shell_command_t<span style="color:#666">&gt;</span>(CELIX_SHELL_COMMAND_SERVICE_NAME) <span style="color:#080;font-style:italic">// &lt;--------------------&lt;8&gt;
-</span><span style="color:#080;font-style:italic"></span>                .setCallbacks(<span style="color:#666">&amp;</span>Cmp<span style="color:#666">:</span><span style="color:#666">:</span>addCShellCmd, <span style="color:#666">&amp;</span>Cmp<span style="color:#666">:</span><span style="color:#666">:</span>removeCShell.html) 
-                .setRequired(<span style="color:#a2f">false</span>)
-                .setStrategy(DependencyUpdateStrategy<span style="color:#666">:</span><span style="color:#666">:</span>locking);
-
-        cmp.build(); <span style="color:#080;font-style:italic">// &lt;--------------------------------------------------------------------------------------------&lt;9&gt;
-</span><span style="color:#080;font-style:italic"></span>    }
-};
-
-CELIX_GEN_CXX_BUNDLE_ACTIVATOR(ComponentWithServiceDependencyActivator)
-</code></pre></div><h1 id="when-will-a-component-be-suspended">When will a component be suspended</h1>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C++" data-lang="C++"><span style="display:flex;"><span><span style="color:#080;font-style:italic">//src/ComponentWithServiceDependencyActivator.cc
+</span></span></span><span style="display:flex;"><span><span style="color:#080;font-style:italic"></span><span style="color:#080">#include</span> <span style="color:#080">&lt;celix/BundleActivator.h&gt;</span><span style="color:#080">
+</span></span></span><span style="display:flex;"><span><span style="color:#080">#include</span> <span style="color:#080">&lt;celix/IShellCommand.h&gt;</span><span style="color:#080">
+</span></span></span><span style="display:flex;"><span><span style="color:#080">#include</span> <span style="color:#080">&lt;celix_shell_command.h&gt;</span><span style="color:#080">
+</span></span></span><span style="display:flex;"><span><span style="color:#080"></span>
+</span></span><span style="display:flex;"><span><span style="color:#a2f;font-weight:bold">class</span> <span style="color:#00f">ComponentWithServiceDependency</span> {
+</span></span><span style="display:flex;"><span><span style="color:#a2f;font-weight:bold">public</span><span style="color:#666">:</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#0b0;font-weight:bold">void</span> setHighestRankingShellCommand(<span style="color:#a2f;font-weight:bold">const</span> std<span style="color:#666">::</span>shared_ptr<span style="color:#666">&lt;</span>celix<span style="color:#666">::</span>IShellCommand<span style="color:#666">&gt;&amp;</span> cmdSvc) {
+</span></span><span style="display:flex;"><span>        std<span style="color:#666">::</span>cout <span style="color:#666">&lt;&lt;</span> <span style="color:#b44">&#34;New highest ranking service (can be NULL): &#34;</span> <span style="color:#666">&lt;&lt;</span> (intptr_t)cmdSvc.get() <span style="color:#666">&lt;&lt;</span> std<span style="color:#666">::</span>endl;
+</span></span><span style="display:flex;"><span>        highestRankingShellCmd <span style="color:#666">=</span> cmdSvc; <span style="color:#080;font-style:italic">// &lt;------------------------------------------------------------------------&lt;2&gt;
+</span></span></span><span style="display:flex;"><span><span style="color:#080;font-style:italic"></span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#0b0;font-weight:bold">void</span> <span style="color:#00a000">addCShellCmd</span>(
+</span></span><span style="display:flex;"><span>            <span style="color:#a2f;font-weight:bold">const</span> std<span style="color:#666">::</span>shared_ptr<span style="color:#666">&lt;</span>celix_shell_command_t<span style="color:#666">&gt;&amp;</span> cmdSvc,
+</span></span><span style="display:flex;"><span>            <span style="color:#a2f;font-weight:bold">const</span> std<span style="color:#666">::</span>shared_ptr<span style="color:#666">&lt;</span><span style="color:#a2f;font-weight:bold">const</span> celix<span style="color:#666">::</span>Properties<span style="color:#666">&gt;&amp;</span> props) {
+</span></span><span style="display:flex;"><span>        <span style="color:#a2f;font-weight:bold">auto</span> id <span style="color:#666">=</span> props<span style="color:#666">-&gt;</span>getAsLong(celix<span style="color:#666">::</span>SERVICE_ID, <span style="color:#666">-</span><span style="color:#666">1</span>);
+</span></span><span style="display:flex;"><span>        std<span style="color:#666">::</span>cout <span style="color:#666">&lt;&lt;</span> <span style="color:#b44">&#34;Adding shell command service with service.id: &#34;</span> <span style="color:#666">&lt;&lt;</span> id <span style="color:#666">&lt;&lt;</span> std<span style="color:#666">::</span>endl;
+</span></span><span style="display:flex;"><span>        std<span style="color:#666">::</span>lock_guard lck{mutex}; <span style="color:#080;font-style:italic">// &lt;-----------------------------------------------------------------------------&lt;3&gt;
+</span></span></span><span style="display:flex;"><span><span style="color:#080;font-style:italic"></span>        shellCommands.emplace(id, cmdSvc);
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#0b0;font-weight:bold">void</span> <span style="color:#00a000">removeCShellCmd</span>(
+</span></span><span style="display:flex;"><span>            <span style="color:#a2f;font-weight:bold">const</span> std<span style="color:#666">::</span>shared_ptr<span style="color:#666">&lt;</span>celix_shell_command_t<span style="color:#666">&gt;&amp;</span> <span style="color:#080;font-style:italic">/*cmdSvc*/</span>,
+</span></span><span style="display:flex;"><span>            <span style="color:#a2f;font-weight:bold">const</span> std<span style="color:#666">::</span>shared_ptr<span style="color:#666">&lt;</span><span style="color:#a2f;font-weight:bold">const</span> celix<span style="color:#666">::</span>Properties<span style="color:#666">&gt;&amp;</span> props) {
+</span></span><span style="display:flex;"><span>        <span style="color:#a2f;font-weight:bold">auto</span> id <span style="color:#666">=</span> props<span style="color:#666">-&gt;</span>getAsLong(celix<span style="color:#666">::</span>SERVICE_ID, <span style="color:#666">-</span><span style="color:#666">1</span>);
+</span></span><span style="display:flex;"><span>        std<span style="color:#666">::</span>cout <span style="color:#666">&lt;&lt;</span> <span style="color:#b44">&#34;Removing shell command service with service.id: &#34;</span> <span style="color:#666">&lt;&lt;</span> id <span style="color:#666">&lt;&lt;</span> std<span style="color:#666">::</span>endl;
+</span></span><span style="display:flex;"><span>        std<span style="color:#666">::</span>lock_guard lck{mutex};
+</span></span><span style="display:flex;"><span>        shellCommands.erase(id);
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span><span style="color:#a2f;font-weight:bold">private</span><span style="color:#666">:</span>
+</span></span><span style="display:flex;"><span>    std<span style="color:#666">::</span>shared_ptr<span style="color:#666">&lt;</span>celix<span style="color:#666">::</span>IShellCommand<span style="color:#666">&gt;</span> highestRankingShellCmd{};
+</span></span><span style="display:flex;"><span>    std<span style="color:#666">::</span>mutex mutex{}; <span style="color:#080;font-style:italic">//protect shellCommands // &lt;-----------------------------------------------------------------&lt;1&gt;
+</span></span></span><span style="display:flex;"><span><span style="color:#080;font-style:italic"></span>    std<span style="color:#666">::</span>unordered_map<span style="color:#666">&lt;</span><span style="color:#0b0;font-weight:bold">long</span>, std<span style="color:#666">::</span>shared_ptr<span style="color:#666">&lt;</span>celix_shell_command_t<span style="color:#666">&gt;&gt;</span> shellCommands{};
+</span></span><span style="display:flex;"><span>};
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a2f;font-weight:bold">class</span> <span style="color:#00f">ComponentWithServiceDependencyActivator</span> {
+</span></span><span style="display:flex;"><span><span style="color:#a2f;font-weight:bold">public</span><span style="color:#666">:</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a2f;font-weight:bold">explicit</span> ComponentWithServiceDependencyActivator(<span style="color:#a2f;font-weight:bold">const</span> std<span style="color:#666">::</span>shared_ptr<span style="color:#666">&lt;</span>celix<span style="color:#666">::</span>BundleContext<span style="color:#666">&gt;&amp;</span> ctx) {
+</span></span><span style="display:flex;"><span>        <span style="color:#a2f;font-weight:bold">using</span> Cmp <span style="color:#666">=</span> ComponentWithServiceDependency;
+</span></span><span style="display:flex;"><span>        <span style="color:#a2f;font-weight:bold">auto</span><span style="color:#666">&amp;</span> cmp <span style="color:#666">=</span> ctx<span style="color:#666">-&gt;</span>getDependencyManager()<span style="color:#666">-&gt;</span>createComponent<span style="color:#666">&lt;</span>Cmp<span style="color:#666">&gt;</span>(); 
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        cmp.createServiceDependency<span style="color:#666">&lt;</span>celix<span style="color:#666">::</span>IShellCommand<span style="color:#666">&gt;</span>() <span style="color:#080;font-style:italic">// &lt;-----------------------------------------------------&lt;4&gt;
+</span></span></span><span style="display:flex;"><span><span style="color:#080;font-style:italic"></span>                .setCallbacks(<span style="color:#666">&amp;</span>Cmp<span style="color:#666">::</span>setHighestRankingShellCommand) <span style="color:#080;font-style:italic">// &lt;----------------------------------------------&lt;5&gt;
+</span></span></span><span style="display:flex;"><span><span style="color:#080;font-style:italic"></span>                .setRequired(<span style="color:#a2f">true</span>) <span style="color:#080;font-style:italic">// &lt;------------------------------------------------------------------------------&lt;6&gt;
+</span></span></span><span style="display:flex;"><span><span style="color:#080;font-style:italic"></span>                .setStrategy(DependencyUpdateStrategy<span style="color:#666">::</span>suspend); <span style="color:#080;font-style:italic">// &lt;------------------------------------------------&lt;7&gt;
+</span></span></span><span style="display:flex;"><span><span style="color:#080;font-style:italic"></span>
+</span></span><span style="display:flex;"><span>        cmp.createServiceDependency<span style="color:#666">&lt;</span>celix_shell_command_t<span style="color:#666">&gt;</span>(CELIX_SHELL_COMMAND_SERVICE_NAME) <span style="color:#080;font-style:italic">// &lt;--------------------&lt;8&gt;
+</span></span></span><span style="display:flex;"><span><span style="color:#080;font-style:italic"></span>                .setCallbacks(<span style="color:#666">&amp;</span>Cmp<span style="color:#666">::</span>addCShellCmd, <span style="color:#666">&amp;</span>Cmp<span style="color:#666">::</span>removeCShell.html) 
+</span></span><span style="display:flex;"><span>                .setRequired(<span style="color:#a2f">false</span>)
+</span></span><span style="display:flex;"><span>                .setStrategy(DependencyUpdateStrategy<span style="color:#666">::</span>locking);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        cmp.build(); <span style="color:#080;font-style:italic">// &lt;--------------------------------------------------------------------------------------------&lt;9&gt;
+</span></span></span><span style="display:flex;"><span><span style="color:#080;font-style:italic"></span>    }
+</span></span><span style="display:flex;"><span>};
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>CELIX_GEN_CXX_BUNDLE_ACTIVATOR(ComponentWithServiceDependencyActivator)
+</span></span></code></pre></div><h1 id="when-will-a-component-be-suspended">When will a component be suspended</h1>
 <p>Components will only suspend if:</p>
 <ul>
 <li>The component is in the state <code>Tracking Optional</code>;</li>
 <li>The component has at least 1 service dependency where the update strategy is configured as suspend-strategy;</li>
-<li>There is a service update event ongoing, where the update service event matches 1 of the components&rsquo;
+<li>There is a service update event ongoing, where the update service event matches 1 of the components'
 suspend-strategy service dependencies;</li>
 <li>And least one of the component&rsquo;s matching suspend-strategy service dependency has a configured service injection/
 removal callback configured.</li>

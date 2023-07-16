@@ -176,14 +176,14 @@ a Celix package is properly installed in the local Conan cache. To this end, it 
 <li>Bundles are accessible to commands such as <code>add_celix_container</code>.</li>
 </ul>
 <p>To create a Celix package in the local cache with C++ support and verify that it&rsquo;s properly installed, run the following command in the Celix root directory:</p>
-<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-BASH" data-lang="BASH">conan create . celix/2.2.3@zhengpeng/testing -tf examples/conan_test_package/ -o celix:celix_cxx<span style="color:#666">=</span>True
-</code></pre></div><p>To verify a Celix package with C++ support is properly installed in the local cache, run the following command in the Celix root directory:</p>
-<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-BASH" data-lang="BASH">conan <span style="color:#a2f">test</span> examples/conan_test_package/ celix/2.2.3@zhengpeng/testing  -o celix:celix_cxx<span style="color:#666">=</span>True
-</code></pre></div><p>Though it might not be wise to spend time reading C/C++ codes in this folder, it&rsquo;s instructive to have a look at <code>conanfile.py</code> and <code>CMakeLists.txt</code>,
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-BASH" data-lang="BASH"><span style="display:flex;"><span>conan create . celix/2.2.3@zhengpeng/testing -tf examples/conan_test_package/ -o celix:celix_cxx<span style="color:#666">=</span>True
+</span></span></code></pre></div><p>To verify a Celix package with C++ support is properly installed in the local cache, run the following command in the Celix root directory:</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-BASH" data-lang="BASH"><span style="display:flex;"><span>conan <span style="color:#a2f">test</span> examples/conan_test_package/ celix/2.2.3@zhengpeng/testing  -o celix:celix_cxx<span style="color:#666">=</span>True
+</span></span></code></pre></div><p>Though it might not be wise to spend time reading C/C++ codes in this folder, it&rsquo;s instructive to have a look at <code>conanfile.py</code> and <code>CMakeLists.txt</code>,
 which illustrates a non-intrusive way of using Conan with CMake build system. Pay attention to our use of <code>cmake_paths</code> <code>cmake_find_package</code> generators
 and the following line:</p>
-<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">    cmake<span style="color:#666">.</span>definitions[<span style="color:#b44"></span><span style="color:#b44">&#34;</span><span style="color:#b44">CMAKE_PROJECT_test_package_INCLUDE</span><span style="color:#b44">&#34;</span>] <span style="color:#666">=</span> os<span style="color:#666">.</span>path<span style="color:#666">.</span>join(self<span style="color:#666">.</span>build_folder, <span style="color:#b44"></span><span style="color:#b44">&#34;</span><span style="color:#b44">conan_paths.cmake</span><span style="color:#b44">&#34;</span>)
-</code></pre></div>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>    cmake<span style="color:#666">.</span>definitions[<span style="color:#b44">&#34;CMAKE_PROJECT_test_package_INCLUDE&#34;</span>] <span style="color:#666">=</span> os<span style="color:#666">.</span>path<span style="color:#666">.</span>join(self<span style="color:#666">.</span>build_folder, <span style="color:#b44">&#34;conan_paths.cmake&#34;</span>)
+</span></span></code></pre></div>
 
                 </div>
             </div>

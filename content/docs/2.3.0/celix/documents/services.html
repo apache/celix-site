@@ -183,91 +183,91 @@ This struct ideally contains a handle pointer, a set of function pointers and sh
 form a well-defined service contract.</p>
 <p>A simple example of an Apache Celix C service is a shell command service.
 For C, the shell command header looks like:</p>
-<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-C" data-lang="C"><span style="color:#080;font-style:italic">//celix_shell_command.h
-</span><span style="color:#080;font-style:italic"></span>...
-<span style="color:#080">#</span><span style="color:#080">define CELIX_SHELL_COMMAND_NAME                &#34;command.name&#34;</span><span style="color:#080">
-</span><span style="color:#080"></span><span style="color:#080">#</span><span style="color:#080">define CELIX_SHELL_COMMAND_USAGE               &#34;command.usage&#34;</span><span style="color:#080">
-</span><span style="color:#080"></span><span style="color:#080">#</span><span style="color:#080">define CELIX_SHELL_COMMAND_DESCRIPTION         &#34;command.description&#34;</span><span style="color:#080">
-</span><span style="color:#080"></span>
-<span style="color:#080">#</span><span style="color:#080">define  CELIX_SHELL_COMMAND_SERVICE_NAME       &#34;celix_shell_command&#34;</span><span style="color:#080">
-</span><span style="color:#080"></span><span style="color:#080">#</span><span style="color:#080">define  CELIX_SHELL_COMMAND_SERVICE_VERSION    &#34;1.0.0&#34;</span><span style="color:#080">
-</span><span style="color:#080"></span>
-<span style="color:#a2f;font-weight:bold">typedef</span> <span style="color:#a2f;font-weight:bold">struct</span> celix_shell_command celix_shell_command_t;
-
-<span style="color:#080;font-style:italic">/**
-</span><span style="color:#080;font-style:italic"> * The shell command can be used to register additional shell commands.
-</span><span style="color:#080;font-style:italic"> * This service should be registered with the following properties:
-</span><span style="color:#080;font-style:italic"> *  - command.name: mandatory, name of the command e.g. &#39;lb&#39;
-</span><span style="color:#080;font-style:italic"> *  - command.usage: optional, string describing how tu use the command e.g. &#39;lb [-l | -s | -u]&#39;
-</span><span style="color:#080;font-style:italic"> *  - command.description: optional, string describing the command e.g. &#39;list bundles.&#39;
-</span><span style="color:#080;font-style:italic"> */</span>
-<span style="color:#a2f;font-weight:bold">struct</span> celix_shell_command {
-    <span style="color:#0b0;font-weight:bold">void</span> <span style="color:#666">*</span>handle;
-
-    <span style="color:#080;font-style:italic">/**
-</span><span style="color:#080;font-style:italic">     * Calls the shell command.
-</span><span style="color:#080;font-style:italic">     * @param handle        The shell command handle.
-</span><span style="color:#080;font-style:italic">     * @param commandLine   The complete provided cmd line (e.g. for a &#39;stop&#39; command -&gt; &#39;stop 42&#39;)
-</span><span style="color:#080;font-style:italic">     * @param outStream     The output stream, to use for printing normal flow info.
-</span><span style="color:#080;font-style:italic">     * @param errorStream   The error stream, to use for printing error flow info.
-</span><span style="color:#080;font-style:italic">     * @return              Whether a command is successfully executed.
-</span><span style="color:#080;font-style:italic">     */</span>
-    <span style="color:#0b0;font-weight:bold">bool</span> (<span style="color:#666">*</span>executeCommand)(<span style="color:#0b0;font-weight:bold">void</span> <span style="color:#666">*</span>handle, <span style="color:#a2f;font-weight:bold">const</span> <span style="color:#0b0;font-weight:bold">char</span> <span style="color:#666">*</span>commandLine, FILE <span style="color:#666">*</span>outStream, FILE <span style="color:#666">*</span>errorStream);
-};
-</code></pre></div><p>The service struct is documented, explains which service properties needs to be provided, contains a handle pointer and
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C" data-lang="C"><span style="display:flex;"><span><span style="color:#080;font-style:italic">//celix_shell_command.h
+</span></span></span><span style="display:flex;"><span><span style="color:#080;font-style:italic"></span>...
+</span></span><span style="display:flex;"><span><span style="color:#080">#define CELIX_SHELL_COMMAND_NAME                &#34;command.name&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#080">#define CELIX_SHELL_COMMAND_USAGE               &#34;command.usage&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#080">#define CELIX_SHELL_COMMAND_DESCRIPTION         &#34;command.description&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#080"></span>
+</span></span><span style="display:flex;"><span><span style="color:#080">#define  CELIX_SHELL_COMMAND_SERVICE_NAME       &#34;celix_shell_command&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#080">#define  CELIX_SHELL_COMMAND_SERVICE_VERSION    &#34;1.0.0&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#080"></span>
+</span></span><span style="display:flex;"><span><span style="color:#a2f;font-weight:bold">typedef</span> <span style="color:#a2f;font-weight:bold">struct</span> celix_shell_command <span style="color:#0b0;font-weight:bold">celix_shell_command_t</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#080;font-style:italic">/**
+</span></span></span><span style="display:flex;"><span><span style="color:#080;font-style:italic"> * The shell command can be used to register additional shell commands.
+</span></span></span><span style="display:flex;"><span><span style="color:#080;font-style:italic"> * This service should be registered with the following properties:
+</span></span></span><span style="display:flex;"><span><span style="color:#080;font-style:italic"> *  - command.name: mandatory, name of the command e.g. &#39;lb&#39;
+</span></span></span><span style="display:flex;"><span><span style="color:#080;font-style:italic"> *  - command.usage: optional, string describing how tu use the command e.g. &#39;lb [-l | -s | -u]&#39;
+</span></span></span><span style="display:flex;"><span><span style="color:#080;font-style:italic"> *  - command.description: optional, string describing the command e.g. &#39;list bundles.&#39;
+</span></span></span><span style="display:flex;"><span><span style="color:#080;font-style:italic"> */</span>
+</span></span><span style="display:flex;"><span><span style="color:#a2f;font-weight:bold">struct</span> celix_shell_command {
+</span></span><span style="display:flex;"><span>    <span style="color:#0b0;font-weight:bold">void</span> <span style="color:#666">*</span>handle;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#080;font-style:italic">/**
+</span></span></span><span style="display:flex;"><span><span style="color:#080;font-style:italic">     * Calls the shell command.
+</span></span></span><span style="display:flex;"><span><span style="color:#080;font-style:italic">     * @param handle        The shell command handle.
+</span></span></span><span style="display:flex;"><span><span style="color:#080;font-style:italic">     * @param commandLine   The complete provided cmd line (e.g. for a &#39;stop&#39; command -&gt; &#39;stop 42&#39;)
+</span></span></span><span style="display:flex;"><span><span style="color:#080;font-style:italic">     * @param outStream     The output stream, to use for printing normal flow info.
+</span></span></span><span style="display:flex;"><span><span style="color:#080;font-style:italic">     * @param errorStream   The error stream, to use for printing error flow info.
+</span></span></span><span style="display:flex;"><span><span style="color:#080;font-style:italic">     * @return              Whether a command is successfully executed.
+</span></span></span><span style="display:flex;"><span><span style="color:#080;font-style:italic">     */</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#0b0;font-weight:bold">bool</span> (<span style="color:#666">*</span>executeCommand)(<span style="color:#0b0;font-weight:bold">void</span> <span style="color:#666">*</span>handle, <span style="color:#a2f;font-weight:bold">const</span> <span style="color:#0b0;font-weight:bold">char</span> <span style="color:#666">*</span>commandLine, FILE <span style="color:#666">*</span>outStream, FILE <span style="color:#666">*</span>errorStream);
+</span></span><span style="display:flex;"><span>};
+</span></span></code></pre></div><p>The service struct is documented, explains which service properties needs to be provided, contains a handle pointer and
 a <code>executeCommand</code> function pointer.</p>
 <p>The <code>handle</code> field and the <code>handle</code> function argument should function as an opaque instance (<code>this</code> / <code>self</code>) handle
 and generally is unique for every service instance. Users of the service should forward the handle field when calling
 a service function, e.g.:</p>
-<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-C" data-lang="C">celix_shell_command_t<span style="color:#666">*</span> command <span style="color:#666">=</span> ...;
-command<span style="color:#666">-</span><span style="color:#666">&gt;</span>executeCommand(command<span style="color:#666">-</span><span style="color:#666">&gt;</span>handle, <span style="color:#b44"></span><span style="color:#b44">&#34;</span><span style="color:#b44">test 123</span><span style="color:#b44">&#34;</span>, stdout, stderr);
-</code></pre></div><h2 id="a-c-service-example-1">A C++ service example</h2>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C" data-lang="C"><span style="display:flex;"><span><span style="color:#0b0;font-weight:bold">celix_shell_command_t</span><span style="color:#666">*</span> command <span style="color:#666">=</span> ...;
+</span></span><span style="display:flex;"><span>command<span style="color:#666">-&gt;</span><span style="color:#00a000">executeCommand</span>(command<span style="color:#666">-&gt;</span>handle, <span style="color:#b44">&#34;test 123&#34;</span>, stdout, stderr);
+</span></span></code></pre></div><h2 id="a-c-service-example-1">A C++ service example</h2>
 <p>As mentioned an Apache Celix C++ service is a registered pointer to an object implementing an abstract class.
 The service class ideally should be well documented to form a well-defined service contract.</p>
 <p>A simple example of an Apache Celix C++ service is a C++ shell command.
 For C++, the shell command header looks like:</p>
-<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-C++" data-lang="C++"><span style="color:#080;font-style:italic">//celix/IShellCommand.h
-</span><span style="color:#080;font-style:italic"></span>...
-<span style="color:#a2f;font-weight:bold">namespace</span> celix {
-
-    <span style="color:#080;font-style:italic">/**
-</span><span style="color:#080;font-style:italic">     * The shell command interface can be used to register additional Celix shell commands.
-</span><span style="color:#080;font-style:italic">     * This service should be registered with the following properties:
-</span><span style="color:#080;font-style:italic">     *  - name: mandatory, name of the command e.g. &#39;celix::lb&#39;
-</span><span style="color:#080;font-style:italic">     *  - usage: optional, string describing how tu use the command e.g. &#39;celix::lb [-l | -s | -u]&#39;
-</span><span style="color:#080;font-style:italic">     *  - description: optional, string describing the command e.g. &#39;list bundles.&#39;
-</span><span style="color:#080;font-style:italic">     */</span>
-    <span style="color:#a2f;font-weight:bold">class</span> <span style="color:#00f">IShellCommand</span> {
-    <span style="color:#a2f;font-weight:bold">public</span><span style="color:#666">:</span>
-        <span style="color:#080;font-style:italic">/**
-</span><span style="color:#080;font-style:italic">         * The required name of the shell command service (service property)
-</span><span style="color:#080;font-style:italic">         */</span>
-        <span style="color:#a2f;font-weight:bold">static</span> <span style="color:#a2f;font-weight:bold">constexpr</span> <span style="color:#a2f;font-weight:bold">const</span> <span style="color:#0b0;font-weight:bold">char</span> <span style="color:#666">*</span> <span style="color:#a2f;font-weight:bold">const</span> COMMAND_NAME <span style="color:#666">=</span> <span style="color:#b44"></span><span style="color:#b44">&#34;</span><span style="color:#b44">name</span><span style="color:#b44">&#34;</span>;
-
-        <span style="color:#080;font-style:italic">/**
-</span><span style="color:#080;font-style:italic">         * The optional usage text of the shell command service (service property)
-</span><span style="color:#080;font-style:italic">         */</span>
-        <span style="color:#a2f;font-weight:bold">static</span> <span style="color:#a2f;font-weight:bold">constexpr</span> <span style="color:#a2f;font-weight:bold">const</span> <span style="color:#0b0;font-weight:bold">char</span> <span style="color:#666">*</span> <span style="color:#a2f;font-weight:bold">const</span> COMMAND_USAGE <span style="color:#666">=</span> <span style="color:#b44"></span><span style="color:#b44">&#34;</span><span style="color:#b44">usage</span><span style="color:#b44">&#34;</span>;
-
-        <span style="color:#080;font-style:italic">/**
-</span><span style="color:#080;font-style:italic">         * The optional description text of the shell command service (service property)
-</span><span style="color:#080;font-style:italic">         */</span>
-        <span style="color:#a2f;font-weight:bold">static</span> <span style="color:#a2f;font-weight:bold">constexpr</span> <span style="color:#a2f;font-weight:bold">const</span> <span style="color:#0b0;font-weight:bold">char</span> <span style="color:#666">*</span> <span style="color:#a2f;font-weight:bold">const</span> COMMAND_DESCRIPTION <span style="color:#666">=</span> <span style="color:#b44"></span><span style="color:#b44">&#34;</span><span style="color:#b44">description</span><span style="color:#b44">&#34;</span>;
-
-        <span style="color:#a2f;font-weight:bold">virtual</span> <span style="color:#666">~</span>IShellCommand() <span style="color:#666">=</span> <span style="color:#a2f;font-weight:bold">default</span>;
-
-        <span style="color:#080;font-style:italic">/**
-</span><span style="color:#080;font-style:italic">         * Calls the shell command.
-</span><span style="color:#080;font-style:italic">         * @param commandLine   The complete provided command line (e.g. for a &#39;stop&#39; command -&gt; &#39;stop 42&#39;). Only valid during the call.
-</span><span style="color:#080;font-style:italic">         * @param commandArgs   A list of the arguments for the command (e.g. for a &#34;stop 42 43&#34; commandLine -&gt; {&#34;42&#34;, &#34;43&#34;}). Only valid during the call.
-</span><span style="color:#080;font-style:italic">         * @param outStream     The C output stream, to use for printing normal flow info.
-</span><span style="color:#080;font-style:italic">         * @param errorStream   The C error stream, to use for printing error flow info.
-</span><span style="color:#080;font-style:italic">         * @return              Whether the command has been executed correctly.
-</span><span style="color:#080;font-style:italic">         */</span>
-        <span style="color:#a2f;font-weight:bold">virtual</span> <span style="color:#0b0;font-weight:bold">void</span> <span style="color:#00a000">executeCommand</span>(<span style="color:#a2f;font-weight:bold">const</span> std<span style="color:#666">:</span><span style="color:#666">:</span>string<span style="color:#666">&amp;</span> commandLine, <span style="color:#a2f;font-weight:bold">const</span> std<span style="color:#666">:</span><span style="color:#666">:</span>vector<span style="color:#666">&lt;</span>std<span style="color:#666">:</span><span style="color:#666">:</span>string<span style="color:#666">&gt;</span><span style="color:#666">&amp;</span> commandArgs, FILE<span style="color:#666">*</span> outStream, FILE<span style="color:#666">*</span> errorStream) <span style="color:#666">=</span> <span style="color:#666">0</span>;
-    };
-}
-</code></pre></div><p>As with the C shell command struct, the C++ service class is documented and explains which service properties needs to
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C++" data-lang="C++"><span style="display:flex;"><span><span style="color:#080;font-style:italic">//celix/IShellCommand.h
+</span></span></span><span style="display:flex;"><span><span style="color:#080;font-style:italic"></span>...
+</span></span><span style="display:flex;"><span><span style="color:#a2f;font-weight:bold">namespace</span> celix {
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#080;font-style:italic">/**
+</span></span></span><span style="display:flex;"><span><span style="color:#080;font-style:italic">     * The shell command interface can be used to register additional Celix shell commands.
+</span></span></span><span style="display:flex;"><span><span style="color:#080;font-style:italic">     * This service should be registered with the following properties:
+</span></span></span><span style="display:flex;"><span><span style="color:#080;font-style:italic">     *  - name: mandatory, name of the command e.g. &#39;celix::lb&#39;
+</span></span></span><span style="display:flex;"><span><span style="color:#080;font-style:italic">     *  - usage: optional, string describing how tu use the command e.g. &#39;celix::lb [-l | -s | -u]&#39;
+</span></span></span><span style="display:flex;"><span><span style="color:#080;font-style:italic">     *  - description: optional, string describing the command e.g. &#39;list bundles.&#39;
+</span></span></span><span style="display:flex;"><span><span style="color:#080;font-style:italic">     */</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a2f;font-weight:bold">class</span> <span style="color:#00f">IShellCommand</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#a2f;font-weight:bold">public</span><span style="color:#666">:</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#080;font-style:italic">/**
+</span></span></span><span style="display:flex;"><span><span style="color:#080;font-style:italic">         * The required name of the shell command service (service property)
+</span></span></span><span style="display:flex;"><span><span style="color:#080;font-style:italic">         */</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#a2f;font-weight:bold">static</span> <span style="color:#a2f;font-weight:bold">constexpr</span> <span style="color:#a2f;font-weight:bold">const</span> <span style="color:#0b0;font-weight:bold">char</span> <span style="color:#666">*</span> <span style="color:#a2f;font-weight:bold">const</span> COMMAND_NAME <span style="color:#666">=</span> <span style="color:#b44">&#34;name&#34;</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#080;font-style:italic">/**
+</span></span></span><span style="display:flex;"><span><span style="color:#080;font-style:italic">         * The optional usage text of the shell command service (service property)
+</span></span></span><span style="display:flex;"><span><span style="color:#080;font-style:italic">         */</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#a2f;font-weight:bold">static</span> <span style="color:#a2f;font-weight:bold">constexpr</span> <span style="color:#a2f;font-weight:bold">const</span> <span style="color:#0b0;font-weight:bold">char</span> <span style="color:#666">*</span> <span style="color:#a2f;font-weight:bold">const</span> COMMAND_USAGE <span style="color:#666">=</span> <span style="color:#b44">&#34;usage&#34;</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#080;font-style:italic">/**
+</span></span></span><span style="display:flex;"><span><span style="color:#080;font-style:italic">         * The optional description text of the shell command service (service property)
+</span></span></span><span style="display:flex;"><span><span style="color:#080;font-style:italic">         */</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#a2f;font-weight:bold">static</span> <span style="color:#a2f;font-weight:bold">constexpr</span> <span style="color:#a2f;font-weight:bold">const</span> <span style="color:#0b0;font-weight:bold">char</span> <span style="color:#666">*</span> <span style="color:#a2f;font-weight:bold">const</span> COMMAND_DESCRIPTION <span style="color:#666">=</span> <span style="color:#b44">&#34;description&#34;</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#a2f;font-weight:bold">virtual</span> <span style="color:#666">~</span>IShellCommand() <span style="color:#666">=</span> <span style="color:#a2f;font-weight:bold">default</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#080;font-style:italic">/**
+</span></span></span><span style="display:flex;"><span><span style="color:#080;font-style:italic">         * Calls the shell command.
+</span></span></span><span style="display:flex;"><span><span style="color:#080;font-style:italic">         * @param commandLine   The complete provided command line (e.g. for a &#39;stop&#39; command -&gt; &#39;stop 42&#39;). Only valid during the call.
+</span></span></span><span style="display:flex;"><span><span style="color:#080;font-style:italic">         * @param commandArgs   A list of the arguments for the command (e.g. for a &#34;stop 42 43&#34; commandLine -&gt; {&#34;42&#34;, &#34;43&#34;}). Only valid during the call.
+</span></span></span><span style="display:flex;"><span><span style="color:#080;font-style:italic">         * @param outStream     The C output stream, to use for printing normal flow info.
+</span></span></span><span style="display:flex;"><span><span style="color:#080;font-style:italic">         * @param errorStream   The C error stream, to use for printing error flow info.
+</span></span></span><span style="display:flex;"><span><span style="color:#080;font-style:italic">         * @return              Whether the command has been executed correctly.
+</span></span></span><span style="display:flex;"><span><span style="color:#080;font-style:italic">         */</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#a2f;font-weight:bold">virtual</span> <span style="color:#0b0;font-weight:bold">void</span> <span style="color:#00a000">executeCommand</span>(<span style="color:#a2f;font-weight:bold">const</span> std<span style="color:#666">::</span>string<span style="color:#666">&amp;</span> commandLine, <span style="color:#a2f;font-weight:bold">const</span> std<span style="color:#666">::</span>vector<span style="color:#666">&lt;</span>std<span style="color:#666">::</span>string<span style="color:#666">&gt;&amp;</span> commandArgs, FILE<span style="color:#666">*</span> outStream, FILE<span style="color:#666">*</span> errorStream) <span style="color:#666">=</span> <span style="color:#666">0</span>;
+</span></span><span style="display:flex;"><span>    };
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>As with the C shell command struct, the C++ service class is documented and explains which service properties needs to
 be provided. The <code>handle</code> construct is not needed for C++ services and using a C++ service function is just the same
 as calling a function member of any C++ object.</p>
 <h2 id="impact-of-dynamic-services">Impact of dynamic services</h2>
@@ -337,113 +337,113 @@ specifically:</p>
 <li><code>celix::ServiceRegistrationBuilder::setUnregisterAsync</code>. The default is asynchronized.</li>
 </ul>
 <h3 id="example-register-a-service-in-c">Example: Register a service in C</h3>
-<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-C" data-lang="C"><span style="color:#080;font-style:italic">//src/my_shell_command_provider_bundle_activator.c
-</span><span style="color:#080;font-style:italic"></span><span style="color:#080">#</span><span style="color:#080">include</span> <span style="color:#080">&lt;celix_api.h&gt;</span><span style="color:#080">
-</span><span style="color:#080"></span><span style="color:#080">#</span><span style="color:#080">include</span> <span style="color:#080">&lt;celix_shell_command.h&gt;</span><span style="color:#080">
-</span><span style="color:#080"></span>
-<span style="color:#a2f;font-weight:bold">typedef</span> <span style="color:#a2f;font-weight:bold">struct</span> my_shell_command_provider_activator_data {
-    celix_bundle_context_t<span style="color:#666">*</span> ctx;
-    celix_shell_command_t shellCmdSvc;
-    <span style="color:#0b0;font-weight:bold">long</span> shellCmdSvcId;
-} my_shell_command_provider_activator_data_t;
-
-<span style="color:#a2f;font-weight:bold">static</span> <span style="color:#0b0;font-weight:bold">bool</span> <span style="color:#00a000">my_shell_command_executeCommand</span>(<span style="color:#0b0;font-weight:bold">void</span> <span style="color:#666">*</span>handle, <span style="color:#a2f;font-weight:bold">const</span> <span style="color:#0b0;font-weight:bold">char</span> <span style="color:#666">*</span>commandLine, FILE <span style="color:#666">*</span>outStream, FILE <span style="color:#666">*</span>errorStream __attribute__((unused))) {
-    my_shell_command_provider_activator_data_t<span style="color:#666">*</span> data <span style="color:#666">=</span> handle;
-    celix_bundle_t<span style="color:#666">*</span> bnd <span style="color:#666">=</span> celix_bundleContext_getBundle(data<span style="color:#666">-</span><span style="color:#666">&gt;</span>ctx);
-    fprintf(outStream, <span style="color:#b44"></span><span style="color:#b44">&#34;</span><span style="color:#b44">Hello from bundle %s with command line &#39;%s&#39;</span><span style="color:#b62;font-weight:bold">\n</span><span style="color:#b44">&#34;</span>, celix_bundle_getName(bnd), commandLine);
-    <span style="color:#a2f;font-weight:bold">return</span> <span style="color:#a2f">true</span>;
-}
-
-<span style="color:#a2f;font-weight:bold">static</span> celix_status_t <span style="color:#00a000">my_shell_command_provider_bundle_start</span>(my_shell_command_provider_activator_data_t <span style="color:#666">*</span>data, celix_bundle_context_t <span style="color:#666">*</span>ctx) {
-    data<span style="color:#666">-</span><span style="color:#666">&gt;</span>ctx <span style="color:#666">=</span> ctx;
-    data<span style="color:#666">-</span><span style="color:#666">&gt;</span>shellCmdSvc.handle <span style="color:#666">=</span> data;
-    data<span style="color:#666">-</span><span style="color:#666">&gt;</span>shellCmdSvc.executeCommand <span style="color:#666">=</span> my_shell_command_executeCommand;
-    
-    celix_properties_t<span style="color:#666">*</span> props <span style="color:#666">=</span> celix_properties_create();
-    celix_properties_set(props, CELIX_SHELL_COMMAND_NAME, <span style="color:#b44"></span><span style="color:#b44">&#34;</span><span style="color:#b44">my_command</span><span style="color:#b44">&#34;</span>);
-    
-    data<span style="color:#666">-</span><span style="color:#666">&gt;</span>shellCmdSvcId <span style="color:#666">=</span> celix_bundleContext_registerServiceAsync(ctx, <span style="color:#666">&amp;</span>data<span style="color:#666">-</span><span style="color:#666">&gt;</span>shellCmdSvc, CELIX_SHELL_COMMAND_SERVICE_NAME, props);
-    <span style="color:#a2f;font-weight:bold">return</span> CELIX_SUCCESS;
-}
-
-<span style="color:#a2f;font-weight:bold">static</span> celix_status_t <span style="color:#00a000">my_shell_command_provider_bundle_stop</span>(my_shell_command_provider_activator_data_t <span style="color:#666">*</span>data, celix_bundle_context_t <span style="color:#666">*</span>ctx) {
-    celix_bundleContext_unregisterServiceAsync(ctx, data<span style="color:#666">-</span><span style="color:#666">&gt;</span>shellCmdSvcId, <span style="color:#a2f">NULL</span>, <span style="color:#a2f">NULL</span>);
-    <span style="color:#a2f;font-weight:bold">return</span> CELIX_SUCCESS;
-}
-
-CELIX_GEN_BUNDLE_ACTIVATOR(my_shell_command_provider_activator_data_t, my_shell_command_provider_bundle_start, my_shell_command_provider_bundle_stop)
-</code></pre></div><h3 id="example-register-a-c-service-in-c">Example: Register a C++ service in C++</h3>
-<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-C++" data-lang="C++"><span style="color:#080;font-style:italic">//src/MyShellCommandBundleActivator.cc
-</span><span style="color:#080;font-style:italic"></span><span style="color:#080">#</span><span style="color:#080">include</span> <span style="color:#080">&lt;celix/BundleActivator.h&gt;</span><span style="color:#080">
-</span><span style="color:#080"></span><span style="color:#080">#</span><span style="color:#080">include</span> <span style="color:#080">&lt;celix/IShellCommand.h&gt;</span><span style="color:#080">
-</span><span style="color:#080"></span>
-<span style="color:#a2f;font-weight:bold">class</span> <span style="color:#00f">MyCommand</span> <span style="color:#666">:</span> <span style="color:#a2f;font-weight:bold">public</span> celix<span style="color:#666">:</span><span style="color:#666">:</span>IShellCommand {
-<span style="color:#a2f;font-weight:bold">public</span><span style="color:#666">:</span>
-    <span style="color:#a2f;font-weight:bold">explicit</span> MyCommand(std<span style="color:#666">:</span><span style="color:#666">:</span>string_view _name) <span style="color:#666">:</span> name{_name} {}
-
-    <span style="color:#666">~</span>MyCommand() <span style="color:#a2f;font-weight:bold">noexcept</span> <span style="color:#a2f;font-weight:bold">override</span> <span style="color:#666">=</span> <span style="color:#a2f;font-weight:bold">default</span>;
-
-    <span style="color:#0b0;font-weight:bold">void</span> <span style="color:#00a000">executeCommand</span>(
-            <span style="color:#a2f;font-weight:bold">const</span> std<span style="color:#666">:</span><span style="color:#666">:</span>string<span style="color:#666">&amp;</span> commandLine,
-            <span style="color:#a2f;font-weight:bold">const</span> std<span style="color:#666">:</span><span style="color:#666">:</span>vector<span style="color:#666">&lt;</span>std<span style="color:#666">:</span><span style="color:#666">:</span>string<span style="color:#666">&gt;</span><span style="color:#666">&amp;</span> <span style="color:#080;font-style:italic">/*commandArgs*/</span>,
-            FILE<span style="color:#666">*</span> outStream,
-            FILE<span style="color:#666">*</span> <span style="color:#080;font-style:italic">/*errorStream*/</span>) <span style="color:#a2f;font-weight:bold">override</span> {
-        fprintf(outStream, <span style="color:#b44"></span><span style="color:#b44">&#34;</span><span style="color:#b44">Hello from bundle %s with command line &#39;%s&#39;</span><span style="color:#b62;font-weight:bold">\n</span><span style="color:#b44">&#34;</span>, name.c_str(), commandLine.c_str());
-    }
-<span style="color:#a2f;font-weight:bold">private</span><span style="color:#666">:</span>
-    <span style="color:#a2f;font-weight:bold">const</span> std<span style="color:#666">:</span><span style="color:#666">:</span>string name;
-};
-
-<span style="color:#a2f;font-weight:bold">class</span> <span style="color:#00f">MyShellCommandProviderBundleActivator</span> {
-<span style="color:#a2f;font-weight:bold">public</span><span style="color:#666">:</span>
-    <span style="color:#a2f;font-weight:bold">explicit</span> MyShellCommandProviderBundleActivator(<span style="color:#a2f;font-weight:bold">const</span> std<span style="color:#666">:</span><span style="color:#666">:</span>shared_ptr<span style="color:#666">&lt;</span>celix<span style="color:#666">:</span><span style="color:#666">:</span>BundleContext<span style="color:#666">&gt;</span><span style="color:#666">&amp;</span> ctx) {
-        <span style="color:#a2f;font-weight:bold">auto</span> svcObject <span style="color:#666">=</span> std<span style="color:#666">:</span><span style="color:#666">:</span>make_shared<span style="color:#666">&lt;</span>MyCommand<span style="color:#666">&gt;</span>(ctx<span style="color:#666">-</span><span style="color:#666">&gt;</span>getBundle().getName());
-        cmdShellRegistration <span style="color:#666">=</span> ctx<span style="color:#666">-</span><span style="color:#666">&gt;</span>registerService<span style="color:#666">&lt;</span>celix<span style="color:#666">:</span><span style="color:#666">:</span>IShellCommand<span style="color:#666">&gt;</span>(std<span style="color:#666">:</span><span style="color:#666">:</span>move(svcObject))
-                .addProperty(celix<span style="color:#666">:</span><span style="color:#666">:</span>IShellCommand<span style="color:#666">:</span><span style="color:#666">:</span>COMMAND_NAME, <span style="color:#b44"></span><span style="color:#b44">&#34;</span><span style="color:#b44">MyCommand</span><span style="color:#b44">&#34;</span>)
-                .build();
-    }
-
-    <span style="color:#666">~</span>MyShellCommandProvider() <span style="color:#a2f;font-weight:bold">noexcept</span> <span style="color:#666">=</span> <span style="color:#a2f;font-weight:bold">default</span>;
-<span style="color:#a2f;font-weight:bold">private</span><span style="color:#666">:</span>
-    <span style="color:#080;font-style:italic">//NOTE when celix::ServiceRegistration goes out of scope the underlining service will be un-registered
-</span><span style="color:#080;font-style:italic"></span>    std<span style="color:#666">:</span><span style="color:#666">:</span>shared_ptr<span style="color:#666">&lt;</span>celix<span style="color:#666">:</span><span style="color:#666">:</span>ServiceRegistration<span style="color:#666">&gt;</span> cmdShellRegistration{};
-};
-
-CELIX_GEN_CXX_BUNDLE_ACTIVATOR(MyShellCommandProviderBundleActivator)
-</code></pre></div><h3 id="example-register-a-c-service-in-c-1">Example: Register a C service in C++</h3>
-<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-C++" data-lang="C++"><span style="color:#080;font-style:italic">//src/MyCShellCommandProviderBundleActivator.cc
-</span><span style="color:#080;font-style:italic"></span><span style="color:#080">#</span><span style="color:#080">include</span> <span style="color:#080">&lt;celix/BundleActivator.h&gt;</span><span style="color:#080">
-</span><span style="color:#080"></span><span style="color:#080">#</span><span style="color:#080">include</span> <span style="color:#080">&lt;celix_shell_command.h&gt;</span><span style="color:#080">
-</span><span style="color:#080"></span>
-<span style="color:#a2f;font-weight:bold">struct</span> <span style="color:#00f">MyCShellCommand</span> <span style="color:#666">:</span> <span style="color:#a2f;font-weight:bold">public</span> celix_shell_command {
-    <span style="color:#a2f;font-weight:bold">explicit</span> <span style="color:#00a000">MyCShellCommand</span>(std<span style="color:#666">:</span><span style="color:#666">:</span>shared_ptr<span style="color:#666">&lt;</span>celix<span style="color:#666">:</span><span style="color:#666">:</span>BundleContext<span style="color:#666">&gt;</span> _ctx) <span style="color:#666">:</span> celix_shell_command(), ctx{std<span style="color:#666">:</span><span style="color:#666">:</span>move(_ctx)} {
-        handle <span style="color:#666">=</span> <span style="color:#a2f;font-weight:bold">this</span>;
-        executeCommand <span style="color:#666">=</span> [] (<span style="color:#0b0;font-weight:bold">void</span> <span style="color:#666">*</span>handle, <span style="color:#a2f;font-weight:bold">const</span> <span style="color:#0b0;font-weight:bold">char</span><span style="color:#666">*</span> commandLine, FILE<span style="color:#666">*</span> outStream, FILE<span style="color:#666">*</span> <span style="color:#080;font-style:italic">/*errorStream*/</span>) <span style="color:#666">-</span><span style="color:#666">&gt;</span> <span style="color:#0b0;font-weight:bold">bool</span> {
-            <span style="color:#a2f;font-weight:bold">auto</span><span style="color:#666">*</span> cmdProvider <span style="color:#666">=</span> <span style="color:#a2f;font-weight:bold">static_cast</span><span style="color:#666">&lt;</span>MyCShellCommand<span style="color:#666">*</span><span style="color:#666">&gt;</span>(handle);
-            fprintf(outStream, <span style="color:#b44"></span><span style="color:#b44">&#34;</span><span style="color:#b44">Hello from bundle %s with command line &#39;%s&#39;</span><span style="color:#b62;font-weight:bold">\n</span><span style="color:#b44">&#34;</span>, cmdProvider<span style="color:#666">-</span><span style="color:#666">&gt;</span>ctx<span style="color:#666">-</span><span style="color:#666">&gt;</span>getBundle().getName().c_str(), commandLine);
-            <span style="color:#a2f;font-weight:bold">return</span> <span style="color:#a2f">true</span>;
-        };
-    }
-
-    <span style="color:#a2f;font-weight:bold">const</span> std<span style="color:#666">:</span><span style="color:#666">:</span>shared_ptr<span style="color:#666">&lt;</span>celix<span style="color:#666">:</span><span style="color:#666">:</span>BundleContext<span style="color:#666">&gt;</span> ctx;
-};
-
-<span style="color:#a2f;font-weight:bold">class</span> <span style="color:#00f">MyCShellCommandProviderBundleActivator</span> {
-<span style="color:#a2f;font-weight:bold">public</span><span style="color:#666">:</span>
-    <span style="color:#a2f;font-weight:bold">explicit</span> MyCShellCommandProviderBundleActivator(<span style="color:#a2f;font-weight:bold">const</span> std<span style="color:#666">:</span><span style="color:#666">:</span>shared_ptr<span style="color:#666">&lt;</span>celix<span style="color:#666">:</span><span style="color:#666">:</span>BundleContext<span style="color:#666">&gt;</span><span style="color:#666">&amp;</span>  ctx) {
-        <span style="color:#a2f;font-weight:bold">auto</span> shellCmd <span style="color:#666">=</span> std<span style="color:#666">:</span><span style="color:#666">:</span>make_shared<span style="color:#666">&lt;</span>MyCShellCommand<span style="color:#666">&gt;</span>(ctx);
-        cmdShellRegistration <span style="color:#666">=</span> ctx<span style="color:#666">-</span><span style="color:#666">&gt;</span>registerService<span style="color:#666">&lt;</span>celix_shell_command<span style="color:#666">&gt;</span>(std<span style="color:#666">:</span><span style="color:#666">:</span>move(shell.html), CELIX_SHELL_COMMAND_SERVICE_NAME)
-                .addProperty(CELIX_SHELL_COMMAND_NAME, <span style="color:#b44"></span><span style="color:#b44">&#34;</span><span style="color:#b44">MyCCommand</span><span style="color:#b44">&#34;</span>)
-                .setUnregisterAsync(<span style="color:#a2f">false</span>)
-                .build();
-    }
-<span style="color:#a2f;font-weight:bold">private</span><span style="color:#666">:</span>
-    <span style="color:#080;font-style:italic">//NOTE when celix::ServiceRegistration goes out of scope the underlining service will be un-registered
-</span><span style="color:#080;font-style:italic"></span>    std<span style="color:#666">:</span><span style="color:#666">:</span>shared_ptr<span style="color:#666">&lt;</span>celix<span style="color:#666">:</span><span style="color:#666">:</span>ServiceRegistration<span style="color:#666">&gt;</span> cmdShellRegistration{};
-};
-
-CELIX_GEN_CXX_BUNDLE_ACTIVATOR(MyCShellCommandProviderBundleActivator)
-</code></pre></div><h3 id="sequence-diagrams-for-service-registration">Sequence diagrams for service registration</h3>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C" data-lang="C"><span style="display:flex;"><span><span style="color:#080;font-style:italic">//src/my_shell_command_provider_bundle_activator.c
+</span></span></span><span style="display:flex;"><span><span style="color:#080;font-style:italic"></span><span style="color:#080">#include</span> <span style="color:#080">&lt;celix_api.h&gt;</span><span style="color:#080">
+</span></span></span><span style="display:flex;"><span><span style="color:#080">#include</span> <span style="color:#080">&lt;celix_shell_command.h&gt;</span><span style="color:#080">
+</span></span></span><span style="display:flex;"><span><span style="color:#080"></span>
+</span></span><span style="display:flex;"><span><span style="color:#a2f;font-weight:bold">typedef</span> <span style="color:#a2f;font-weight:bold">struct</span> my_shell_command_provider_activator_data {
+</span></span><span style="display:flex;"><span>    <span style="color:#0b0;font-weight:bold">celix_bundle_context_t</span><span style="color:#666">*</span> ctx;
+</span></span><span style="display:flex;"><span>    <span style="color:#0b0;font-weight:bold">celix_shell_command_t</span> shellCmdSvc;
+</span></span><span style="display:flex;"><span>    <span style="color:#0b0;font-weight:bold">long</span> shellCmdSvcId;
+</span></span><span style="display:flex;"><span>} <span style="color:#0b0;font-weight:bold">my_shell_command_provider_activator_data_t</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a2f;font-weight:bold">static</span> <span style="color:#0b0;font-weight:bold">bool</span> <span style="color:#00a000">my_shell_command_executeCommand</span>(<span style="color:#0b0;font-weight:bold">void</span> <span style="color:#666">*</span>handle, <span style="color:#a2f;font-weight:bold">const</span> <span style="color:#0b0;font-weight:bold">char</span> <span style="color:#666">*</span>commandLine, FILE <span style="color:#666">*</span>outStream, FILE <span style="color:#666">*</span>errorStream <span style="color:#00a000">__attribute__</span>((unused))) {
+</span></span><span style="display:flex;"><span>    <span style="color:#0b0;font-weight:bold">my_shell_command_provider_activator_data_t</span><span style="color:#666">*</span> data <span style="color:#666">=</span> handle;
+</span></span><span style="display:flex;"><span>    <span style="color:#0b0;font-weight:bold">celix_bundle_t</span><span style="color:#666">*</span> bnd <span style="color:#666">=</span> <span style="color:#00a000">celix_bundleContext_getBundle</span>(data<span style="color:#666">-&gt;</span>ctx);
+</span></span><span style="display:flex;"><span>    <span style="color:#00a000">fprintf</span>(outStream, <span style="color:#b44">&#34;Hello from bundle %s with command line &#39;%s&#39;</span><span style="color:#b62;font-weight:bold">\n</span><span style="color:#b44">&#34;</span>, <span style="color:#00a000">celix_bundle_getName</span>(bnd), commandLine);
+</span></span><span style="display:flex;"><span>    <span style="color:#a2f;font-weight:bold">return</span> <span style="color:#a2f">true</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a2f;font-weight:bold">static</span> <span style="color:#0b0;font-weight:bold">celix_status_t</span> <span style="color:#00a000">my_shell_command_provider_bundle_start</span>(<span style="color:#0b0;font-weight:bold">my_shell_command_provider_activator_data_t</span> <span style="color:#666">*</span>data, <span style="color:#0b0;font-weight:bold">celix_bundle_context_t</span> <span style="color:#666">*</span>ctx) {
+</span></span><span style="display:flex;"><span>    data<span style="color:#666">-&gt;</span>ctx <span style="color:#666">=</span> ctx;
+</span></span><span style="display:flex;"><span>    data<span style="color:#666">-&gt;</span>shellCmdSvc.handle <span style="color:#666">=</span> data;
+</span></span><span style="display:flex;"><span>    data<span style="color:#666">-&gt;</span>shellCmdSvc.executeCommand <span style="color:#666">=</span> my_shell_command_executeCommand;
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#0b0;font-weight:bold">celix_properties_t</span><span style="color:#666">*</span> props <span style="color:#666">=</span> <span style="color:#00a000">celix_properties_create</span>();
+</span></span><span style="display:flex;"><span>    <span style="color:#00a000">celix_properties_set</span>(props, CELIX_SHELL_COMMAND_NAME, <span style="color:#b44">&#34;my_command&#34;</span>);
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    data<span style="color:#666">-&gt;</span>shellCmdSvcId <span style="color:#666">=</span> <span style="color:#00a000">celix_bundleContext_registerServiceAsync</span>(ctx, <span style="color:#666">&amp;</span>data<span style="color:#666">-&gt;</span>shellCmdSvc, CELIX_SHELL_COMMAND_SERVICE_NAME, props);
+</span></span><span style="display:flex;"><span>    <span style="color:#a2f;font-weight:bold">return</span> CELIX_SUCCESS;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a2f;font-weight:bold">static</span> <span style="color:#0b0;font-weight:bold">celix_status_t</span> <span style="color:#00a000">my_shell_command_provider_bundle_stop</span>(<span style="color:#0b0;font-weight:bold">my_shell_command_provider_activator_data_t</span> <span style="color:#666">*</span>data, <span style="color:#0b0;font-weight:bold">celix_bundle_context_t</span> <span style="color:#666">*</span>ctx) {
+</span></span><span style="display:flex;"><span>    <span style="color:#00a000">celix_bundleContext_unregisterServiceAsync</span>(ctx, data<span style="color:#666">-&gt;</span>shellCmdSvcId, <span style="color:#a2f">NULL</span>, <span style="color:#a2f">NULL</span>);
+</span></span><span style="display:flex;"><span>    <span style="color:#a2f;font-weight:bold">return</span> CELIX_SUCCESS;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#00a000">CELIX_GEN_BUNDLE_ACTIVATOR</span>(<span style="color:#0b0;font-weight:bold">my_shell_command_provider_activator_data_t</span>, my_shell_command_provider_bundle_start, my_shell_command_provider_bundle_stop)
+</span></span></code></pre></div><h3 id="example-register-a-c-service-in-c">Example: Register a C++ service in C++</h3>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C++" data-lang="C++"><span style="display:flex;"><span><span style="color:#080;font-style:italic">//src/MyShellCommandBundleActivator.cc
+</span></span></span><span style="display:flex;"><span><span style="color:#080;font-style:italic"></span><span style="color:#080">#include</span> <span style="color:#080">&lt;celix/BundleActivator.h&gt;</span><span style="color:#080">
+</span></span></span><span style="display:flex;"><span><span style="color:#080">#include</span> <span style="color:#080">&lt;celix/IShellCommand.h&gt;</span><span style="color:#080">
+</span></span></span><span style="display:flex;"><span><span style="color:#080"></span>
+</span></span><span style="display:flex;"><span><span style="color:#a2f;font-weight:bold">class</span> <span style="color:#00f">MyCommand</span> <span style="color:#666">:</span> <span style="color:#a2f;font-weight:bold">public</span> celix<span style="color:#666">::</span>IShellCommand {
+</span></span><span style="display:flex;"><span><span style="color:#a2f;font-weight:bold">public</span><span style="color:#666">:</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a2f;font-weight:bold">explicit</span> MyCommand(std<span style="color:#666">::</span>string_view _name) <span style="color:#666">:</span> name{_name} {}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#666">~</span>MyCommand() <span style="color:#a2f;font-weight:bold">noexcept</span> <span style="color:#a2f;font-weight:bold">override</span> <span style="color:#666">=</span> <span style="color:#a2f;font-weight:bold">default</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#0b0;font-weight:bold">void</span> <span style="color:#00a000">executeCommand</span>(
+</span></span><span style="display:flex;"><span>            <span style="color:#a2f;font-weight:bold">const</span> std<span style="color:#666">::</span>string<span style="color:#666">&amp;</span> commandLine,
+</span></span><span style="display:flex;"><span>            <span style="color:#a2f;font-weight:bold">const</span> std<span style="color:#666">::</span>vector<span style="color:#666">&lt;</span>std<span style="color:#666">::</span>string<span style="color:#666">&gt;&amp;</span> <span style="color:#080;font-style:italic">/*commandArgs*/</span>,
+</span></span><span style="display:flex;"><span>            FILE<span style="color:#666">*</span> outStream,
+</span></span><span style="display:flex;"><span>            FILE<span style="color:#666">*</span> <span style="color:#080;font-style:italic">/*errorStream*/</span>) <span style="color:#a2f;font-weight:bold">override</span> {
+</span></span><span style="display:flex;"><span>        fprintf(outStream, <span style="color:#b44">&#34;Hello from bundle %s with command line &#39;%s&#39;</span><span style="color:#b62;font-weight:bold">\n</span><span style="color:#b44">&#34;</span>, name.c_str(), commandLine.c_str());
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span><span style="color:#a2f;font-weight:bold">private</span><span style="color:#666">:</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a2f;font-weight:bold">const</span> std<span style="color:#666">::</span>string name;
+</span></span><span style="display:flex;"><span>};
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a2f;font-weight:bold">class</span> <span style="color:#00f">MyShellCommandProviderBundleActivator</span> {
+</span></span><span style="display:flex;"><span><span style="color:#a2f;font-weight:bold">public</span><span style="color:#666">:</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a2f;font-weight:bold">explicit</span> MyShellCommandProviderBundleActivator(<span style="color:#a2f;font-weight:bold">const</span> std<span style="color:#666">::</span>shared_ptr<span style="color:#666">&lt;</span>celix<span style="color:#666">::</span>BundleContext<span style="color:#666">&gt;&amp;</span> ctx) {
+</span></span><span style="display:flex;"><span>        <span style="color:#a2f;font-weight:bold">auto</span> svcObject <span style="color:#666">=</span> std<span style="color:#666">::</span>make_shared<span style="color:#666">&lt;</span>MyCommand<span style="color:#666">&gt;</span>(ctx<span style="color:#666">-&gt;</span>getBundle().getName());
+</span></span><span style="display:flex;"><span>        cmdShellRegistration <span style="color:#666">=</span> ctx<span style="color:#666">-&gt;</span>registerService<span style="color:#666">&lt;</span>celix<span style="color:#666">::</span>IShellCommand<span style="color:#666">&gt;</span>(std<span style="color:#666">::</span>move(svcObject))
+</span></span><span style="display:flex;"><span>                .addProperty(celix<span style="color:#666">::</span>IShellCommand<span style="color:#666">::</span>COMMAND_NAME, <span style="color:#b44">&#34;MyCommand&#34;</span>)
+</span></span><span style="display:flex;"><span>                .build();
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#666">~</span>MyShellCommandProvider() <span style="color:#a2f;font-weight:bold">noexcept</span> <span style="color:#666">=</span> <span style="color:#a2f;font-weight:bold">default</span>;
+</span></span><span style="display:flex;"><span><span style="color:#a2f;font-weight:bold">private</span><span style="color:#666">:</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#080;font-style:italic">//NOTE when celix::ServiceRegistration goes out of scope the underlining service will be un-registered
+</span></span></span><span style="display:flex;"><span><span style="color:#080;font-style:italic"></span>    std<span style="color:#666">::</span>shared_ptr<span style="color:#666">&lt;</span>celix<span style="color:#666">::</span>ServiceRegistration<span style="color:#666">&gt;</span> cmdShellRegistration{};
+</span></span><span style="display:flex;"><span>};
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>CELIX_GEN_CXX_BUNDLE_ACTIVATOR(MyShellCommandProviderBundleActivator)
+</span></span></code></pre></div><h3 id="example-register-a-c-service-in-c-1">Example: Register a C service in C++</h3>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C++" data-lang="C++"><span style="display:flex;"><span><span style="color:#080;font-style:italic">//src/MyCShellCommandProviderBundleActivator.cc
+</span></span></span><span style="display:flex;"><span><span style="color:#080;font-style:italic"></span><span style="color:#080">#include</span> <span style="color:#080">&lt;celix/BundleActivator.h&gt;</span><span style="color:#080">
+</span></span></span><span style="display:flex;"><span><span style="color:#080">#include</span> <span style="color:#080">&lt;celix_shell_command.h&gt;</span><span style="color:#080">
+</span></span></span><span style="display:flex;"><span><span style="color:#080"></span>
+</span></span><span style="display:flex;"><span><span style="color:#a2f;font-weight:bold">struct</span> <span style="color:#00f">MyCShellCommand</span> <span style="color:#666">:</span> <span style="color:#a2f;font-weight:bold">public</span> celix_shell_command {
+</span></span><span style="display:flex;"><span>    <span style="color:#a2f;font-weight:bold">explicit</span> <span style="color:#00a000">MyCShellCommand</span>(std<span style="color:#666">::</span>shared_ptr<span style="color:#666">&lt;</span>celix<span style="color:#666">::</span>BundleContext<span style="color:#666">&gt;</span> _ctx) <span style="color:#666">:</span> celix_shell_command(), ctx{std<span style="color:#666">::</span>move(_ctx)} {
+</span></span><span style="display:flex;"><span>        handle <span style="color:#666">=</span> <span style="color:#a2f;font-weight:bold">this</span>;
+</span></span><span style="display:flex;"><span>        executeCommand <span style="color:#666">=</span> [] (<span style="color:#0b0;font-weight:bold">void</span> <span style="color:#666">*</span>handle, <span style="color:#a2f;font-weight:bold">const</span> <span style="color:#0b0;font-weight:bold">char</span><span style="color:#666">*</span> commandLine, FILE<span style="color:#666">*</span> outStream, FILE<span style="color:#666">*</span> <span style="color:#080;font-style:italic">/*errorStream*/</span>) <span style="color:#666">-&gt;</span> <span style="color:#0b0;font-weight:bold">bool</span> {
+</span></span><span style="display:flex;"><span>            <span style="color:#a2f;font-weight:bold">auto</span><span style="color:#666">*</span> cmdProvider <span style="color:#666">=</span> <span style="color:#a2f;font-weight:bold">static_cast</span><span style="color:#666">&lt;</span>MyCShellCommand<span style="color:#666">*&gt;</span>(handle);
+</span></span><span style="display:flex;"><span>            fprintf(outStream, <span style="color:#b44">&#34;Hello from bundle %s with command line &#39;%s&#39;</span><span style="color:#b62;font-weight:bold">\n</span><span style="color:#b44">&#34;</span>, cmdProvider<span style="color:#666">-&gt;</span>ctx<span style="color:#666">-&gt;</span>getBundle().getName().c_str(), commandLine);
+</span></span><span style="display:flex;"><span>            <span style="color:#a2f;font-weight:bold">return</span> <span style="color:#a2f">true</span>;
+</span></span><span style="display:flex;"><span>        };
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a2f;font-weight:bold">const</span> std<span style="color:#666">::</span>shared_ptr<span style="color:#666">&lt;</span>celix<span style="color:#666">::</span>BundleContext<span style="color:#666">&gt;</span> ctx;
+</span></span><span style="display:flex;"><span>};
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a2f;font-weight:bold">class</span> <span style="color:#00f">MyCShellCommandProviderBundleActivator</span> {
+</span></span><span style="display:flex;"><span><span style="color:#a2f;font-weight:bold">public</span><span style="color:#666">:</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a2f;font-weight:bold">explicit</span> MyCShellCommandProviderBundleActivator(<span style="color:#a2f;font-weight:bold">const</span> std<span style="color:#666">::</span>shared_ptr<span style="color:#666">&lt;</span>celix<span style="color:#666">::</span>BundleContext<span style="color:#666">&gt;&amp;</span>  ctx) {
+</span></span><span style="display:flex;"><span>        <span style="color:#a2f;font-weight:bold">auto</span> shellCmd <span style="color:#666">=</span> std<span style="color:#666">::</span>make_shared<span style="color:#666">&lt;</span>MyCShellCommand<span style="color:#666">&gt;</span>(ctx);
+</span></span><span style="display:flex;"><span>        cmdShellRegistration <span style="color:#666">=</span> ctx<span style="color:#666">-&gt;</span>registerService<span style="color:#666">&lt;</span>celix_shell_command<span style="color:#666">&gt;</span>(std<span style="color:#666">::</span>move(shell.html), CELIX_SHELL_COMMAND_SERVICE_NAME)
+</span></span><span style="display:flex;"><span>                .addProperty(CELIX_SHELL_COMMAND_NAME, <span style="color:#b44">&#34;MyCCommand&#34;</span>)
+</span></span><span style="display:flex;"><span>                .setUnregisterAsync(<span style="color:#a2f">false</span>)
+</span></span><span style="display:flex;"><span>                .build();
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span><span style="color:#a2f;font-weight:bold">private</span><span style="color:#666">:</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#080;font-style:italic">//NOTE when celix::ServiceRegistration goes out of scope the underlining service will be un-registered
+</span></span></span><span style="display:flex;"><span><span style="color:#080;font-style:italic"></span>    std<span style="color:#666">::</span>shared_ptr<span style="color:#666">&lt;</span>celix<span style="color:#666">::</span>ServiceRegistration<span style="color:#666">&gt;</span> cmdShellRegistration{};
+</span></span><span style="display:flex;"><span>};
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>CELIX_GEN_CXX_BUNDLE_ACTIVATOR(MyCShellCommandProviderBundleActivator)
+</span></span></code></pre></div><h3 id="sequence-diagrams-for-service-registration">Sequence diagrams for service registration</h3>
 <p><img src="diagrams/services_register_service_async_seq.png" alt="Register Service Async">
 <em>An asynchronized service registration</em></p>
 <hr>
@@ -475,80 +475,80 @@ are found.</p>
 to ensure that services are prevented from removal while the services are still in use without forwarding
 this responsibility to the user; i.e. by adding an api to &ldquo;lock&rdquo; and &ldquo;unlock&rdquo; services for usage.</p>
 <h3 id="example-using-a-service-in-c">Example: Using a service in C</h3>
-<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-C" data-lang="C"><span style="color:#080">#</span><span style="color:#080">include</span> <span style="color:#080">&lt;stdio.h&gt;</span><span style="color:#080">
-</span><span style="color:#080"></span><span style="color:#080">#</span><span style="color:#080">include</span> <span style="color:#080">&lt;celix_api.h&gt;</span><span style="color:#080">
-</span><span style="color:#080"></span><span style="color:#080">#</span><span style="color:#080">include</span> <span style="color:#080">&lt;celix_shell_command.h&gt;</span><span style="color:#080">
-</span><span style="color:#080"></span>
-<span style="color:#a2f;font-weight:bold">typedef</span> <span style="color:#a2f;font-weight:bold">struct</span> use_command_service_example_data {
-    <span style="color:#080;font-style:italic">//nop
-</span><span style="color:#080;font-style:italic"></span>} use_command_service_example_data_t;
-
-<span style="color:#a2f;font-weight:bold">static</span> <span style="color:#0b0;font-weight:bold">void</span> <span style="color:#00a000">useShellCommandCallback</span>(<span style="color:#0b0;font-weight:bold">void</span> <span style="color:#666">*</span>handle __attribute__((unused)), <span style="color:#0b0;font-weight:bold">void</span> <span style="color:#666">*</span>svc) {
-    celix_shell_command_t<span style="color:#666">*</span> cmdSvc <span style="color:#666">=</span> (celix_shell_command_t<span style="color:#666">*</span>)svc;
-    cmdSvc<span style="color:#666">-</span><span style="color:#666">&gt;</span>executeCommand(cmdSvc<span style="color:#666">-</span><span style="color:#666">&gt;</span>handle, <span style="color:#b44"></span><span style="color:#b44">&#34;</span><span style="color:#b44">my_command test call from C</span><span style="color:#b44">&#34;</span>, stdout, stderr);
-}
-
-<span style="color:#a2f;font-weight:bold">static</span> celix_status_t <span style="color:#00a000">use_command_service_example_start</span>(use_command_service_example_data_t <span style="color:#666">*</span>data __attribute__((unused)), celix_bundle_context_t <span style="color:#666">*</span>ctx) {
-    celix_service_use_options_t opts <span style="color:#666">=</span> CELIX_EMPTY_SERVICE_USE_OPTIONS;
-    opts.callbackHandle <span style="color:#666">=</span> <span style="color:#a2f">NULL</span>;
-    opts.use <span style="color:#666">=</span> useShellCommandCallback;
-    opts.filter.serviceName <span style="color:#666">=</span> CELIX_SHELL_COMMAND_SERVICE_NAME;
-    opts.filter.filter <span style="color:#666">=</span> <span style="color:#b44"></span><span style="color:#b44">&#34;</span><span style="color:#b44">(command.name=my_command)</span><span style="color:#b44">&#34;</span>;
-    <span style="color:#0b0;font-weight:bold">bool</span> called <span style="color:#666">=</span> celix_bundleContext_useServicesWithOptions(ctx, <span style="color:#666">&amp;</span>opts);
-    <span style="color:#a2f;font-weight:bold">if</span> (<span style="color:#666">!</span>called) {
-        fprintf(stderr, <span style="color:#b44"></span><span style="color:#b44">&#34;</span><span style="color:#b44">%s: Command service not called!</span><span style="color:#b62;font-weight:bold">\n</span><span style="color:#b44">&#34;</span>, __PRETTY_FUNCTION__);
-    }
-    <span style="color:#a2f;font-weight:bold">return</span> CELIX_SUCCESS;
-}
-
-<span style="color:#a2f;font-weight:bold">static</span> celix_status_t <span style="color:#00a000">use_command_service_example_stop</span>(use_command_service_example_data_t <span style="color:#666">*</span>data __attribute__((unused)), celix_bundle_context_t <span style="color:#666">*</span>ctx __attribute__((unused))) {
-    <span style="color:#a2f;font-weight:bold">return</span> CELIX_SUCCESS;
-}
-
-CELIX_GEN_BUNDLE_ACTIVATOR(use_command_service_example_data_t, use_command_service_example_start, use_command_service_example_stop)
-</code></pre></div><h3 id="example-using-a-service-in-c-1">Example: Using a service in C++</h3>
-<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-C++" data-lang="C++"><span style="color:#080;font-style:italic">//src/UsingCommandServicesExample.cc
-</span><span style="color:#080;font-style:italic"></span><span style="color:#080">#</span><span style="color:#080">include</span> <span style="color:#080">&lt;celix/IShellCommand.h&gt;</span><span style="color:#080">
-</span><span style="color:#080"></span><span style="color:#080">#</span><span style="color:#080">include</span> <span style="color:#080">&lt;celix/BundleActivator.h&gt;</span><span style="color:#080">
-</span><span style="color:#080"></span><span style="color:#080">#</span><span style="color:#080">include</span> <span style="color:#080">&lt;celix_shell_command.h&gt;</span><span style="color:#080">
-</span><span style="color:#080"></span>
-<span style="color:#a2f;font-weight:bold">static</span> <span style="color:#0b0;font-weight:bold">void</span> <span style="color:#00a000">useCxxShellCommand</span>(<span style="color:#a2f;font-weight:bold">const</span> std<span style="color:#666">:</span><span style="color:#666">:</span>shared_ptr<span style="color:#666">&lt;</span>celix<span style="color:#666">:</span><span style="color:#666">:</span>BundleContext<span style="color:#666">&gt;</span><span style="color:#666">&amp;</span> ctx) {
-    <span style="color:#a2f;font-weight:bold">auto</span> called <span style="color:#666">=</span> ctx<span style="color:#666">-</span><span style="color:#666">&gt;</span>useService<span style="color:#666">&lt;</span>celix<span style="color:#666">:</span><span style="color:#666">:</span>IShellCommand<span style="color:#666">&gt;</span>()
-            .setFilter(<span style="color:#b44"></span><span style="color:#b44">&#34;</span><span style="color:#b44">(name=MyCommand)</span><span style="color:#b44">&#34;</span>)
-            .addUseCallback([](celix<span style="color:#666">:</span><span style="color:#666">:</span>IShellCommand<span style="color:#666">&amp;</span> cmdSvc) {
-                cmdSvc.executeCommand(<span style="color:#b44"></span><span style="color:#b44">&#34;</span><span style="color:#b44">MyCommand test call from C++</span><span style="color:#b44">&#34;</span>, {}, stdout, stderr);
-            })
-            .build();
-    <span style="color:#a2f;font-weight:bold">if</span> (<span style="color:#666">!</span>called) {
-        std<span style="color:#666">:</span><span style="color:#666">:</span>cerr <span style="color:#666">&lt;</span><span style="color:#666">&lt;</span> __PRETTY_FUNCTION__  <span style="color:#666">&lt;</span><span style="color:#666">&lt;</span> <span style="color:#b44"></span><span style="color:#b44">&#34;</span><span style="color:#b44">: Command service not called!</span><span style="color:#b44">&#34;</span> <span style="color:#666">&lt;</span><span style="color:#666">&lt;</span> std<span style="color:#666">:</span><span style="color:#666">:</span>endl;
-    }
-}
-
-<span style="color:#a2f;font-weight:bold">static</span> <span style="color:#0b0;font-weight:bold">void</span> <span style="color:#00a000">useCShellCommand</span>(<span style="color:#a2f;font-weight:bold">const</span> std<span style="color:#666">:</span><span style="color:#666">:</span>shared_ptr<span style="color:#666">&lt;</span>celix<span style="color:#666">:</span><span style="color:#666">:</span>BundleContext<span style="color:#666">&gt;</span><span style="color:#666">&amp;</span> ctx) {
-    <span style="color:#a2f;font-weight:bold">auto</span> calledCount <span style="color:#666">=</span> ctx<span style="color:#666">-</span><span style="color:#666">&gt;</span>useServices<span style="color:#666">&lt;</span>celix_shell_command<span style="color:#666">&gt;</span>(CELIX_SHELL_COMMAND_SERVICE_NAME)
-            <span style="color:#080;font-style:italic">//Note the filter should match 2 shell commands
-</span><span style="color:#080;font-style:italic"></span>            .setFilter(<span style="color:#b44"></span><span style="color:#b44">&#34;</span><span style="color:#b44">(|(command.name=MyCCommand)(command.name=my_command))</span><span style="color:#b44">&#34;</span>) 
-            .addUseCallback([](celix_shell_command<span style="color:#666">&amp;</span> cmdSvc) {
-                cmdSvc.executeCommand(cmdSvc.handle, <span style="color:#b44"></span><span style="color:#b44">&#34;</span><span style="color:#b44">MyCCommand test call from C++</span><span style="color:#b44">&#34;</span>, stdout, stderr);
-            })
-            .build();
-    <span style="color:#a2f;font-weight:bold">if</span> (calledCount <span style="color:#666">=</span><span style="color:#666">=</span> <span style="color:#666">0</span>) {
-        std<span style="color:#666">:</span><span style="color:#666">:</span>cerr <span style="color:#666">&lt;</span><span style="color:#666">&lt;</span> __PRETTY_FUNCTION__  <span style="color:#666">&lt;</span><span style="color:#666">&lt;</span> <span style="color:#b44"></span><span style="color:#b44">&#34;</span><span style="color:#b44">: Command service not called!</span><span style="color:#b44">&#34;</span> <span style="color:#666">&lt;</span><span style="color:#666">&lt;</span> std<span style="color:#666">:</span><span style="color:#666">:</span>endl;
-    }
-}
-
-<span style="color:#a2f;font-weight:bold">class</span> <span style="color:#00f">UsingCommandServicesExample</span> {
-<span style="color:#a2f;font-weight:bold">public</span><span style="color:#666">:</span>
-    <span style="color:#a2f;font-weight:bold">explicit</span> UsingCommandServicesExample(<span style="color:#a2f;font-weight:bold">const</span> std<span style="color:#666">:</span><span style="color:#666">:</span>shared_ptr<span style="color:#666">&lt;</span>celix<span style="color:#666">:</span><span style="color:#666">:</span>BundleContext<span style="color:#666">&gt;</span><span style="color:#666">&amp;</span> ctx) {
-        useCxxShellCommand(ctx);
-        useCShellCommand(ctx);
-    }
-
-    <span style="color:#666">~</span>UsingCommandServicesExample() <span style="color:#a2f;font-weight:bold">noexcept</span> <span style="color:#666">=</span> <span style="color:#a2f;font-weight:bold">default</span>;
-};
-
-CELIX_GEN_CXX_BUNDLE_ACTIVATOR(UsingCommandServicesExample)
-</code></pre></div><h2 id="tracking-services">Tracking services</h2>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C" data-lang="C"><span style="display:flex;"><span><span style="color:#080">#include</span> <span style="color:#080">&lt;stdio.h&gt;</span><span style="color:#080">
+</span></span></span><span style="display:flex;"><span><span style="color:#080">#include</span> <span style="color:#080">&lt;celix_api.h&gt;</span><span style="color:#080">
+</span></span></span><span style="display:flex;"><span><span style="color:#080">#include</span> <span style="color:#080">&lt;celix_shell_command.h&gt;</span><span style="color:#080">
+</span></span></span><span style="display:flex;"><span><span style="color:#080"></span>
+</span></span><span style="display:flex;"><span><span style="color:#a2f;font-weight:bold">typedef</span> <span style="color:#a2f;font-weight:bold">struct</span> use_command_service_example_data {
+</span></span><span style="display:flex;"><span>    <span style="color:#080;font-style:italic">//nop
+</span></span></span><span style="display:flex;"><span><span style="color:#080;font-style:italic"></span>} <span style="color:#0b0;font-weight:bold">use_command_service_example_data_t</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a2f;font-weight:bold">static</span> <span style="color:#0b0;font-weight:bold">void</span> <span style="color:#00a000">useShellCommandCallback</span>(<span style="color:#0b0;font-weight:bold">void</span> <span style="color:#666">*</span>handle <span style="color:#00a000">__attribute__</span>((unused)), <span style="color:#0b0;font-weight:bold">void</span> <span style="color:#666">*</span>svc) {
+</span></span><span style="display:flex;"><span>    <span style="color:#0b0;font-weight:bold">celix_shell_command_t</span><span style="color:#666">*</span> cmdSvc <span style="color:#666">=</span> (<span style="color:#0b0;font-weight:bold">celix_shell_command_t</span><span style="color:#666">*</span>)svc;
+</span></span><span style="display:flex;"><span>    cmdSvc<span style="color:#666">-&gt;</span><span style="color:#00a000">executeCommand</span>(cmdSvc<span style="color:#666">-&gt;</span>handle, <span style="color:#b44">&#34;my_command test call from C&#34;</span>, stdout, stderr);
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a2f;font-weight:bold">static</span> <span style="color:#0b0;font-weight:bold">celix_status_t</span> <span style="color:#00a000">use_command_service_example_start</span>(<span style="color:#0b0;font-weight:bold">use_command_service_example_data_t</span> <span style="color:#666">*</span>data <span style="color:#00a000">__attribute__</span>((unused)), <span style="color:#0b0;font-weight:bold">celix_bundle_context_t</span> <span style="color:#666">*</span>ctx) {
+</span></span><span style="display:flex;"><span>    <span style="color:#0b0;font-weight:bold">celix_service_use_options_t</span> opts <span style="color:#666">=</span> CELIX_EMPTY_SERVICE_USE_OPTIONS;
+</span></span><span style="display:flex;"><span>    opts.callbackHandle <span style="color:#666">=</span> <span style="color:#a2f">NULL</span>;
+</span></span><span style="display:flex;"><span>    opts.use <span style="color:#666">=</span> useShellCommandCallback;
+</span></span><span style="display:flex;"><span>    opts.filter.serviceName <span style="color:#666">=</span> CELIX_SHELL_COMMAND_SERVICE_NAME;
+</span></span><span style="display:flex;"><span>    opts.filter.filter <span style="color:#666">=</span> <span style="color:#b44">&#34;(command.name=my_command)&#34;</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#0b0;font-weight:bold">bool</span> called <span style="color:#666">=</span> <span style="color:#00a000">celix_bundleContext_useServicesWithOptions</span>(ctx, <span style="color:#666">&amp;</span>opts);
+</span></span><span style="display:flex;"><span>    <span style="color:#a2f;font-weight:bold">if</span> (<span style="color:#666">!</span>called) {
+</span></span><span style="display:flex;"><span>        <span style="color:#00a000">fprintf</span>(stderr, <span style="color:#b44">&#34;%s: Command service not called!</span><span style="color:#b62;font-weight:bold">\n</span><span style="color:#b44">&#34;</span>, __PRETTY_FUNCTION__);
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    <span style="color:#a2f;font-weight:bold">return</span> CELIX_SUCCESS;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a2f;font-weight:bold">static</span> <span style="color:#0b0;font-weight:bold">celix_status_t</span> <span style="color:#00a000">use_command_service_example_stop</span>(<span style="color:#0b0;font-weight:bold">use_command_service_example_data_t</span> <span style="color:#666">*</span>data <span style="color:#00a000">__attribute__</span>((unused)), <span style="color:#0b0;font-weight:bold">celix_bundle_context_t</span> <span style="color:#666">*</span>ctx <span style="color:#00a000">__attribute__</span>((unused))) {
+</span></span><span style="display:flex;"><span>    <span style="color:#a2f;font-weight:bold">return</span> CELIX_SUCCESS;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#00a000">CELIX_GEN_BUNDLE_ACTIVATOR</span>(<span style="color:#0b0;font-weight:bold">use_command_service_example_data_t</span>, use_command_service_example_start, use_command_service_example_stop)
+</span></span></code></pre></div><h3 id="example-using-a-service-in-c-1">Example: Using a service in C++</h3>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C++" data-lang="C++"><span style="display:flex;"><span><span style="color:#080;font-style:italic">//src/UsingCommandServicesExample.cc
+</span></span></span><span style="display:flex;"><span><span style="color:#080;font-style:italic"></span><span style="color:#080">#include</span> <span style="color:#080">&lt;celix/IShellCommand.h&gt;</span><span style="color:#080">
+</span></span></span><span style="display:flex;"><span><span style="color:#080">#include</span> <span style="color:#080">&lt;celix/BundleActivator.h&gt;</span><span style="color:#080">
+</span></span></span><span style="display:flex;"><span><span style="color:#080">#include</span> <span style="color:#080">&lt;celix_shell_command.h&gt;</span><span style="color:#080">
+</span></span></span><span style="display:flex;"><span><span style="color:#080"></span>
+</span></span><span style="display:flex;"><span><span style="color:#a2f;font-weight:bold">static</span> <span style="color:#0b0;font-weight:bold">void</span> <span style="color:#00a000">useCxxShellCommand</span>(<span style="color:#a2f;font-weight:bold">const</span> std<span style="color:#666">::</span>shared_ptr<span style="color:#666">&lt;</span>celix<span style="color:#666">::</span>BundleContext<span style="color:#666">&gt;&amp;</span> ctx) {
+</span></span><span style="display:flex;"><span>    <span style="color:#a2f;font-weight:bold">auto</span> called <span style="color:#666">=</span> ctx<span style="color:#666">-&gt;</span>useService<span style="color:#666">&lt;</span>celix<span style="color:#666">::</span>IShellCommand<span style="color:#666">&gt;</span>()
+</span></span><span style="display:flex;"><span>            .setFilter(<span style="color:#b44">&#34;(name=MyCommand)&#34;</span>)
+</span></span><span style="display:flex;"><span>            .addUseCallback([](celix<span style="color:#666">::</span>IShellCommand<span style="color:#666">&amp;</span> cmdSvc) {
+</span></span><span style="display:flex;"><span>                cmdSvc.executeCommand(<span style="color:#b44">&#34;MyCommand test call from C++&#34;</span>, {}, stdout, stderr);
+</span></span><span style="display:flex;"><span>            })
+</span></span><span style="display:flex;"><span>            .build();
+</span></span><span style="display:flex;"><span>    <span style="color:#a2f;font-weight:bold">if</span> (<span style="color:#666">!</span>called) {
+</span></span><span style="display:flex;"><span>        std<span style="color:#666">::</span>cerr <span style="color:#666">&lt;&lt;</span> __PRETTY_FUNCTION__  <span style="color:#666">&lt;&lt;</span> <span style="color:#b44">&#34;: Command service not called!&#34;</span> <span style="color:#666">&lt;&lt;</span> std<span style="color:#666">::</span>endl;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a2f;font-weight:bold">static</span> <span style="color:#0b0;font-weight:bold">void</span> <span style="color:#00a000">useCShellCommand</span>(<span style="color:#a2f;font-weight:bold">const</span> std<span style="color:#666">::</span>shared_ptr<span style="color:#666">&lt;</span>celix<span style="color:#666">::</span>BundleContext<span style="color:#666">&gt;&amp;</span> ctx) {
+</span></span><span style="display:flex;"><span>    <span style="color:#a2f;font-weight:bold">auto</span> calledCount <span style="color:#666">=</span> ctx<span style="color:#666">-&gt;</span>useServices<span style="color:#666">&lt;</span>celix_shell_command<span style="color:#666">&gt;</span>(CELIX_SHELL_COMMAND_SERVICE_NAME)
+</span></span><span style="display:flex;"><span>            <span style="color:#080;font-style:italic">//Note the filter should match 2 shell commands
+</span></span></span><span style="display:flex;"><span><span style="color:#080;font-style:italic"></span>            .setFilter(<span style="color:#b44">&#34;(|(command.name=MyCCommand)(command.name=my_command))&#34;</span>) 
+</span></span><span style="display:flex;"><span>            .addUseCallback([](celix_shell_command<span style="color:#666">&amp;</span> cmdSvc) {
+</span></span><span style="display:flex;"><span>                cmdSvc.executeCommand(cmdSvc.handle, <span style="color:#b44">&#34;MyCCommand test call from C++&#34;</span>, stdout, stderr);
+</span></span><span style="display:flex;"><span>            })
+</span></span><span style="display:flex;"><span>            .build();
+</span></span><span style="display:flex;"><span>    <span style="color:#a2f;font-weight:bold">if</span> (calledCount <span style="color:#666">==</span> <span style="color:#666">0</span>) {
+</span></span><span style="display:flex;"><span>        std<span style="color:#666">::</span>cerr <span style="color:#666">&lt;&lt;</span> __PRETTY_FUNCTION__  <span style="color:#666">&lt;&lt;</span> <span style="color:#b44">&#34;: Command service not called!&#34;</span> <span style="color:#666">&lt;&lt;</span> std<span style="color:#666">::</span>endl;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a2f;font-weight:bold">class</span> <span style="color:#00f">UsingCommandServicesExample</span> {
+</span></span><span style="display:flex;"><span><span style="color:#a2f;font-weight:bold">public</span><span style="color:#666">:</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a2f;font-weight:bold">explicit</span> UsingCommandServicesExample(<span style="color:#a2f;font-weight:bold">const</span> std<span style="color:#666">::</span>shared_ptr<span style="color:#666">&lt;</span>celix<span style="color:#666">::</span>BundleContext<span style="color:#666">&gt;&amp;</span> ctx) {
+</span></span><span style="display:flex;"><span>        useCxxShellCommand(ctx);
+</span></span><span style="display:flex;"><span>        useCShellCommand(ctx);
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#666">~</span>UsingCommandServicesExample() <span style="color:#a2f;font-weight:bold">noexcept</span> <span style="color:#666">=</span> <span style="color:#a2f;font-weight:bold">default</span>;
+</span></span><span style="display:flex;"><span>};
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>CELIX_GEN_CXX_BUNDLE_ACTIVATOR(UsingCommandServicesExample)
+</span></span></code></pre></div><h2 id="tracking-services">Tracking services</h2>
 <p>To monitor the coming and going of services, a service tracker can be used. Service trackers use - user provided -
 callbacks to handle matching services being added or removed. A service name and an optional LDAP filter is used
 to select which services to monitor. A service name <code>*</code> can be used to match services with any service name.
@@ -578,134 +578,134 @@ if the underlining ServiceTracker object goes out of scope, the service tracker 
 The closing is done synchronized so that users can be sure that after a <code>celix::ServiceTracker::close()</code> call the
 added callbacks will not be invoked anymore.</p>
 <h3 id="example-tracking-services-in-c">Example: Tracking services in C</h3>
-<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-C" data-lang="C"><span style="color:#080;font-style:italic">//src/track_command_services_example.c
-</span><span style="color:#080;font-style:italic"></span><span style="color:#080">#</span><span style="color:#080">include</span> <span style="color:#080">&lt;stdio.h&gt;</span><span style="color:#080">
-</span><span style="color:#080"></span><span style="color:#080">#</span><span style="color:#080">include</span> <span style="color:#080">&lt;celix_api.h&gt;</span><span style="color:#080">
-</span><span style="color:#080"></span><span style="color:#080">#</span><span style="color:#080">include</span> <span style="color:#080">&lt;celix_shell_command.h&gt;</span><span style="color:#080">
-</span><span style="color:#080"></span>
-<span style="color:#a2f;font-weight:bold">typedef</span> <span style="color:#a2f;font-weight:bold">struct</span> track_command_services_example_data {
-    <span style="color:#0b0;font-weight:bold">long</span> trackerId;
-    celix_thread_mutex_t mutex; <span style="color:#080;font-style:italic">//protects below
-</span><span style="color:#080;font-style:italic"></span>    celix_array_list_t<span style="color:#666">*</span> commandServices;
-} track_command_services_example_data_t;
-
-
-<span style="color:#a2f;font-weight:bold">static</span> <span style="color:#0b0;font-weight:bold">void</span> <span style="color:#00a000">addShellCommandService</span>(<span style="color:#0b0;font-weight:bold">void</span><span style="color:#666">*</span> data,<span style="color:#0b0;font-weight:bold">void</span><span style="color:#666">*</span> svc, <span style="color:#a2f;font-weight:bold">const</span> celix_properties_t <span style="color:#666">*</span> properties) {
-    track_command_services_example_data_t<span style="color:#666">*</span> activatorData <span style="color:#666">=</span> data;
-    celix_shell_command_t<span style="color:#666">*</span> cmdSvc <span style="color:#666">=</span> svc;
-
-    printf(<span style="color:#b44"></span><span style="color:#b44">&#34;</span><span style="color:#b44">Adding command service with svc id %li</span><span style="color:#b62;font-weight:bold">\n</span><span style="color:#b44">&#34;</span>, celix_properties_getAsLong(properties, CELIX_FRAMEWORK_SERVICE_ID, <span style="color:#666">-</span><span style="color:#666">1</span>));
-    celixThreadMutex_lock(<span style="color:#666">&amp;</span>activatorData<span style="color:#666">-</span><span style="color:#666">&gt;</span>mutex);
-    celix_arrayList_add(activatorData<span style="color:#666">-</span><span style="color:#666">&gt;</span>commandServices, cmdSvc);
-    printf(<span style="color:#b44"></span><span style="color:#b44">&#34;</span><span style="color:#b44">Nr of command service found: %i</span><span style="color:#b62;font-weight:bold">\n</span><span style="color:#b44">&#34;</span>, celix_arrayList_size(activatorData<span style="color:#666">-</span><span style="color:#666">&gt;</span>commandServices));
-    celixThreadMutex_unlock(<span style="color:#666">&amp;</span>activatorData<span style="color:#666">-</span><span style="color:#666">&gt;</span>mutex);
-}
-
-<span style="color:#a2f;font-weight:bold">static</span> <span style="color:#0b0;font-weight:bold">void</span> <span style="color:#00a000">removeShellCommandService</span>(<span style="color:#0b0;font-weight:bold">void</span><span style="color:#666">*</span> data,<span style="color:#0b0;font-weight:bold">void</span><span style="color:#666">*</span> svc, <span style="color:#a2f;font-weight:bold">const</span> celix_properties_t <span style="color:#666">*</span> properties) {
-    track_command_services_example_data_t<span style="color:#666">*</span> activatorData <span style="color:#666">=</span> data;
-    celix_shell_command_t<span style="color:#666">*</span> cmdSvc <span style="color:#666">=</span> svc;
-
-    printf(<span style="color:#b44"></span><span style="color:#b44">&#34;</span><span style="color:#b44">Removing command service with svc id %li</span><span style="color:#b62;font-weight:bold">\n</span><span style="color:#b44">&#34;</span>, celix_properties_getAsLong(properties, CELIX_FRAMEWORK_SERVICE_ID, <span style="color:#666">-</span><span style="color:#666">1</span>));
-    celixThreadMutex_lock(<span style="color:#666">&amp;</span>activatorData<span style="color:#666">-</span><span style="color:#666">&gt;</span>mutex);
-    celix_arrayList_remove(activatorData<span style="color:#666">-</span><span style="color:#666">&gt;</span>commandServices, cmdSvc);
-    printf(<span style="color:#b44"></span><span style="color:#b44">&#34;</span><span style="color:#b44">Nr of command service found: %i</span><span style="color:#b62;font-weight:bold">\n</span><span style="color:#b44">&#34;</span>, celix_arrayList_size(activatorData<span style="color:#666">-</span><span style="color:#666">&gt;</span>commandServices));
-    celixThreadMutex_unlock(<span style="color:#666">&amp;</span>activatorData<span style="color:#666">-</span><span style="color:#666">&gt;</span>mutex);
-}
-
-<span style="color:#a2f;font-weight:bold">static</span> celix_status_t <span style="color:#00a000">track_command_services_example_start</span>(track_command_services_example_data_t <span style="color:#666">*</span>data, celix_bundle_context_t <span style="color:#666">*</span>ctx) {
-    celixThreadMutex_create(<span style="color:#666">&amp;</span>data<span style="color:#666">-</span><span style="color:#666">&gt;</span>mutex, <span style="color:#a2f">NULL</span>);
-    data<span style="color:#666">-</span><span style="color:#666">&gt;</span>commandServices <span style="color:#666">=</span> celix_arrayList_create();
-
-    celix_service_tracking_options_t opts <span style="color:#666">=</span> CELIX_EMPTY_SERVICE_TRACKING_OPTIONS;
-    opts.filter.serviceName <span style="color:#666">=</span> CELIX_SHELL_COMMAND_SERVICE_NAME;
-    opts.filter.filter <span style="color:#666">=</span> <span style="color:#b44"></span><span style="color:#b44">&#34;</span><span style="color:#b44">(command.name=my_command)</span><span style="color:#b44">&#34;</span>;
-    opts.callbackHandle <span style="color:#666">=</span> data;
-    opts.addWithProperties <span style="color:#666">=</span> addShellCommandService;
-    opts.removeWithProperties <span style="color:#666">=</span> removeShellCommandService;
-    data<span style="color:#666">-</span><span style="color:#666">&gt;</span>trackerId <span style="color:#666">=</span> celix_bundleContext_trackServicesWithOptionsAsync(ctx, <span style="color:#666">&amp;</span>opts);
-    <span style="color:#a2f;font-weight:bold">return</span> CELIX_SUCCESS;
-}
-
-<span style="color:#a2f;font-weight:bold">static</span> celix_status_t <span style="color:#00a000">track_command_services_example_stop</span>(track_command_services_example_data_t <span style="color:#666">*</span>data, celix_bundle_context_t <span style="color:#666">*</span>ctx) {
-    celix_bundleContext_stopTracker(ctx, data<span style="color:#666">-</span><span style="color:#666">&gt;</span>trackerId);
-    celixThreadMutex_lock(<span style="color:#666">&amp;</span>data<span style="color:#666">-</span><span style="color:#666">&gt;</span>mutex);
-    celix_arrayList_destroy(data<span style="color:#666">-</span><span style="color:#666">&gt;</span>commandServices);
-    celixThreadMutex_unlock(<span style="color:#666">&amp;</span>data<span style="color:#666">-</span><span style="color:#666">&gt;</span>mutex);
-    <span style="color:#a2f;font-weight:bold">return</span> CELIX_SUCCESS;
-}
-
-CELIX_GEN_BUNDLE_ACTIVATOR(track_command_services_example_data_t, track_command_services_example_start, track_command_services_example_stop)
-</code></pre></div><h3 id="example-tracking-services-in-c-1">Example: Tracking services in C++</h3>
-<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-C++" data-lang="C++"><span style="color:#080;font-style:italic">//src/TrackingCommandServicesExample.cc
-</span><span style="color:#080;font-style:italic"></span><span style="color:#080">#</span><span style="color:#080">include</span> <span style="color:#080">&lt;unordered_map&gt;</span><span style="color:#080">
-</span><span style="color:#080"></span><span style="color:#080">#</span><span style="color:#080">include</span> <span style="color:#080">&lt;celix/IShellCommand.h&gt;</span><span style="color:#080">
-</span><span style="color:#080"></span><span style="color:#080">#</span><span style="color:#080">include</span> <span style="color:#080">&lt;celix/BundleActivator.h&gt;</span><span style="color:#080">
-</span><span style="color:#080"></span><span style="color:#080">#</span><span style="color:#080">include</span> <span style="color:#080">&lt;celix_shell_command.h&gt;</span><span style="color:#080">
-</span><span style="color:#080"></span>
-<span style="color:#a2f;font-weight:bold">class</span> <span style="color:#00f">TrackingCommandServicesExample</span> {
-<span style="color:#a2f;font-weight:bold">public</span><span style="color:#666">:</span>
-    <span style="color:#a2f;font-weight:bold">explicit</span> TrackingCommandServicesExample(<span style="color:#a2f;font-weight:bold">const</span> std<span style="color:#666">:</span><span style="color:#666">:</span>shared_ptr<span style="color:#666">&lt;</span>celix<span style="color:#666">:</span><span style="color:#666">:</span>BundleContext<span style="color:#666">&gt;</span><span style="color:#666">&amp;</span> ctx) {
-        <span style="color:#080;font-style:italic">//Tracking C++ IShellCommand services and filtering for services that have a &#34;name=MyCommand&#34; property.
-</span><span style="color:#080;font-style:italic"></span>        cxxCommandServiceTracker <span style="color:#666">=</span> ctx<span style="color:#666">-</span><span style="color:#666">&gt;</span>trackServices<span style="color:#666">&lt;</span>celix<span style="color:#666">:</span><span style="color:#666">:</span>IShellCommand<span style="color:#666">&gt;</span>()
-                .setFilter(<span style="color:#b44"></span><span style="color:#b44">&#34;</span><span style="color:#b44">(name=MyCommand)</span><span style="color:#b44">&#34;</span>)
-                .addAddWithPropertiesCallback([<span style="color:#a2f;font-weight:bold">this</span>](<span style="color:#a2f;font-weight:bold">const</span> <span style="color:#a2f;font-weight:bold">auto</span><span style="color:#666">&amp;</span> svc, <span style="color:#a2f;font-weight:bold">const</span> <span style="color:#a2f;font-weight:bold">auto</span><span style="color:#666">&amp;</span> properties) {
-                    <span style="color:#0b0;font-weight:bold">long</span> svcId <span style="color:#666">=</span> properties<span style="color:#666">-</span><span style="color:#666">&gt;</span>getAsLong(celix<span style="color:#666">:</span><span style="color:#666">:</span>SERVICE_ID, <span style="color:#666">-</span><span style="color:#666">1</span>);
-                    std<span style="color:#666">:</span><span style="color:#666">:</span>cout <span style="color:#666">&lt;</span><span style="color:#666">&lt;</span> <span style="color:#b44"></span><span style="color:#b44">&#34;</span><span style="color:#b44">Adding C++ command services with svc id</span><span style="color:#b44">&#34;</span> <span style="color:#666">&lt;</span><span style="color:#666">&lt;</span> svcId <span style="color:#666">&lt;</span><span style="color:#666">&lt;</span> std<span style="color:#666">:</span><span style="color:#666">:</span>endl;
-                    std<span style="color:#666">:</span><span style="color:#666">:</span>lock_guard lock{mutex};
-                    cxxCommandServices[svcId] <span style="color:#666">=</span> svc;
-                    std<span style="color:#666">:</span><span style="color:#666">:</span>cout <span style="color:#666">&lt;</span><span style="color:#666">&lt;</span> <span style="color:#b44"></span><span style="color:#b44">&#34;</span><span style="color:#b44">Nr of C++ command services found: </span><span style="color:#b44">&#34;</span> <span style="color:#666">&lt;</span><span style="color:#666">&lt;</span> cxxCommandServices.size() <span style="color:#666">&lt;</span><span style="color:#666">&lt;</span> std<span style="color:#666">:</span><span style="color:#666">:</span>endl;
-                })
-                .addRemWithPropertiesCallback([<span style="color:#a2f;font-weight:bold">this</span>](<span style="color:#a2f;font-weight:bold">const</span> <span style="color:#a2f;font-weight:bold">auto</span><span style="color:#666">&amp;</span> <span style="color:#080;font-style:italic">/*svc*/</span>, <span style="color:#a2f;font-weight:bold">const</span> <span style="color:#a2f;font-weight:bold">auto</span><span style="color:#666">&amp;</span> properties) {
-                    <span style="color:#0b0;font-weight:bold">long</span> svcId <span style="color:#666">=</span> properties<span style="color:#666">-</span><span style="color:#666">&gt;</span>getAsLong(celix<span style="color:#666">:</span><span style="color:#666">:</span>SERVICE_ID, <span style="color:#666">-</span><span style="color:#666">1</span>);
-                    std<span style="color:#666">:</span><span style="color:#666">:</span>cout <span style="color:#666">&lt;</span><span style="color:#666">&lt;</span> <span style="color:#b44"></span><span style="color:#b44">&#34;</span><span style="color:#b44">Removing C++ command services with svc id </span><span style="color:#b44">&#34;</span> <span style="color:#666">&lt;</span><span style="color:#666">&lt;</span> svcId <span style="color:#666">&lt;</span><span style="color:#666">&lt;</span> std<span style="color:#666">:</span><span style="color:#666">:</span>endl;
-                    std<span style="color:#666">:</span><span style="color:#666">:</span>lock_guard lock{mutex};
-                    <span style="color:#a2f;font-weight:bold">auto</span> it <span style="color:#666">=</span> cxxCommandServices.find(svcId);
-                    <span style="color:#a2f;font-weight:bold">if</span> (it <span style="color:#666">!</span><span style="color:#666">=</span> cxxCommandServices.end()) {
-                        cxxCommandServices.erase(it);
-                    }
-                    std<span style="color:#666">:</span><span style="color:#666">:</span>cout <span style="color:#666">&lt;</span><span style="color:#666">&lt;</span> <span style="color:#b44"></span><span style="color:#b44">&#34;</span><span style="color:#b44">Nr of C++ command services found: </span><span style="color:#b44">&#34;</span> <span style="color:#666">&lt;</span><span style="color:#666">&lt;</span> cxxCommandServices.size() <span style="color:#666">&lt;</span><span style="color:#666">&lt;</span> std<span style="color:#666">:</span><span style="color:#666">:</span>endl;
-                })
-                .build();
-
-        <span style="color:#080;font-style:italic">//Tracking C celix_shell_command services and filtering for services that have a &#34;command.name=MyCCommand&#34; or
-</span><span style="color:#080;font-style:italic"></span>        <span style="color:#080;font-style:italic">// &#34;command.name=my_command&#34; property.
-</span><span style="color:#080;font-style:italic"></span>        cCommandServiceTracker <span style="color:#666">=</span> ctx<span style="color:#666">-</span><span style="color:#666">&gt;</span>trackServices<span style="color:#666">&lt;</span>celix_shell_command<span style="color:#666">&gt;</span>()
-                .setFilter(<span style="color:#b44"></span><span style="color:#b44">&#34;</span><span style="color:#b44">(|(command.name=MyCCommand)(command.name=my_command))</span><span style="color:#b44">&#34;</span>)
-                .addAddWithPropertiesCallback([<span style="color:#a2f;font-weight:bold">this</span>](<span style="color:#a2f;font-weight:bold">const</span> <span style="color:#a2f;font-weight:bold">auto</span><span style="color:#666">&amp;</span> svc, <span style="color:#a2f;font-weight:bold">const</span> <span style="color:#a2f;font-weight:bold">auto</span><span style="color:#666">&amp;</span> properties) {
-                    <span style="color:#0b0;font-weight:bold">long</span> svcId <span style="color:#666">=</span> properties<span style="color:#666">-</span><span style="color:#666">&gt;</span>getAsLong(celix<span style="color:#666">:</span><span style="color:#666">:</span>SERVICE_ID, <span style="color:#666">-</span><span style="color:#666">1</span>);
-                    std<span style="color:#666">:</span><span style="color:#666">:</span>cout <span style="color:#666">&lt;</span><span style="color:#666">&lt;</span> <span style="color:#b44"></span><span style="color:#b44">&#34;</span><span style="color:#b44">Adding C command services with svc id </span><span style="color:#b44">&#34;</span> <span style="color:#666">&lt;</span><span style="color:#666">&lt;</span> svcId <span style="color:#666">&lt;</span><span style="color:#666">&lt;</span> std<span style="color:#666">:</span><span style="color:#666">:</span>endl;
-                    std<span style="color:#666">:</span><span style="color:#666">:</span>lock_guard lock{mutex};
-                    cCommandServices[svcId] <span style="color:#666">=</span> svc;
-                    std<span style="color:#666">:</span><span style="color:#666">:</span>cout <span style="color:#666">&lt;</span><span style="color:#666">&lt;</span> <span style="color:#b44"></span><span style="color:#b44">&#34;</span><span style="color:#b44">Nr of C command services found: </span><span style="color:#b44">&#34;</span> <span style="color:#666">&lt;</span><span style="color:#666">&lt;</span> cxxCommandServices.size() <span style="color:#666">&lt;</span><span style="color:#666">&lt;</span> std<span style="color:#666">:</span><span style="color:#666">:</span>endl;
-                })
-                .addRemWithPropertiesCallback([<span style="color:#a2f;font-weight:bold">this</span>](<span style="color:#a2f;font-weight:bold">const</span> <span style="color:#a2f;font-weight:bold">auto</span><span style="color:#666">&amp;</span> <span style="color:#080;font-style:italic">/*svc*/</span>, <span style="color:#a2f;font-weight:bold">const</span> <span style="color:#a2f;font-weight:bold">auto</span><span style="color:#666">&amp;</span> properties) {
-                    <span style="color:#0b0;font-weight:bold">long</span> svcId <span style="color:#666">=</span> properties<span style="color:#666">-</span><span style="color:#666">&gt;</span>getAsLong(celix<span style="color:#666">:</span><span style="color:#666">:</span>SERVICE_ID, <span style="color:#666">-</span><span style="color:#666">1</span>);
-                    std<span style="color:#666">:</span><span style="color:#666">:</span>cout <span style="color:#666">&lt;</span><span style="color:#666">&lt;</span> <span style="color:#b44"></span><span style="color:#b44">&#34;</span><span style="color:#b44">Removing C command services with svc id </span><span style="color:#b44">&#34;</span> <span style="color:#666">&lt;</span><span style="color:#666">&lt;</span> svcId <span style="color:#666">&lt;</span><span style="color:#666">&lt;</span> std<span style="color:#666">:</span><span style="color:#666">:</span>endl;
-                    std<span style="color:#666">:</span><span style="color:#666">:</span>lock_guard lock{mutex};
-                    <span style="color:#a2f;font-weight:bold">auto</span> it <span style="color:#666">=</span> cCommandServices.find(svcId);
-                    <span style="color:#a2f;font-weight:bold">if</span> (it <span style="color:#666">!</span><span style="color:#666">=</span> cCommandServices.end()) {
-                        cCommandServices.erase(it);
-                    }
-                    std<span style="color:#666">:</span><span style="color:#666">:</span>cout <span style="color:#666">&lt;</span><span style="color:#666">&lt;</span> <span style="color:#b44"></span><span style="color:#b44">&#34;</span><span style="color:#b44">Nr of C command services found: </span><span style="color:#b44">&#34;</span> <span style="color:#666">&lt;</span><span style="color:#666">&lt;</span> cxxCommandServices.size() <span style="color:#666">&lt;</span><span style="color:#666">&lt;</span> std<span style="color:#666">:</span><span style="color:#666">:</span>endl;
-                })
-                .build();
-    }
-
-    <span style="color:#666">~</span>TrackingCommandServicesExample() <span style="color:#a2f;font-weight:bold">noexcept</span> {
-        cxxCommandServiceTracker<span style="color:#666">-</span><span style="color:#666">&gt;</span>close();
-        cCommandServiceTracker<span style="color:#666">-</span><span style="color:#666">&gt;</span>close();
-    };
-<span style="color:#a2f;font-weight:bold">private</span><span style="color:#666">:</span>
-    std<span style="color:#666">:</span><span style="color:#666">:</span>mutex mutex; <span style="color:#080;font-style:italic">//protects cxxCommandServices and cCommandServices
-</span><span style="color:#080;font-style:italic"></span>    std<span style="color:#666">:</span><span style="color:#666">:</span>unordered_map<span style="color:#666">&lt;</span><span style="color:#0b0;font-weight:bold">long</span>, std<span style="color:#666">:</span><span style="color:#666">:</span>shared_ptr<span style="color:#666">&lt;</span>celix<span style="color:#666">:</span><span style="color:#666">:</span>IShellCommand<span style="color:#666">&gt;</span><span style="color:#666">&gt;</span> cxxCommandServices{};
-    std<span style="color:#666">:</span><span style="color:#666">:</span>unordered_map<span style="color:#666">&lt;</span><span style="color:#0b0;font-weight:bold">long</span>, std<span style="color:#666">:</span><span style="color:#666">:</span>shared_ptr<span style="color:#666">&lt;</span>celix_shell_command<span style="color:#666">&gt;</span><span style="color:#666">&gt;</span> cCommandServices{};
-
-    std<span style="color:#666">:</span><span style="color:#666">:</span>shared_ptr<span style="color:#666">&lt;</span>celix<span style="color:#666">:</span><span style="color:#666">:</span>ServiceTracker<span style="color:#666">&lt;</span>celix<span style="color:#666">:</span><span style="color:#666">:</span>IShellCommand<span style="color:#666">&gt;</span><span style="color:#666">&gt;</span> cxxCommandServiceTracker{};
-    std<span style="color:#666">:</span><span style="color:#666">:</span>shared_ptr<span style="color:#666">&lt;</span>celix<span style="color:#666">:</span><span style="color:#666">:</span>ServiceTracker<span style="color:#666">&lt;</span>celix_shell_command<span style="color:#666">&gt;</span><span style="color:#666">&gt;</span> cCommandServiceTracker{};
-};
-
-CELIX_GEN_CXX_BUNDLE_ACTIVATOR(TrackingCommandServicesExample)
-</code></pre></div><h3 id="sequence-diagrams-for-service-tracker-and-service-registration">Sequence diagrams for service tracker and service registration</h3>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C" data-lang="C"><span style="display:flex;"><span><span style="color:#080;font-style:italic">//src/track_command_services_example.c
+</span></span></span><span style="display:flex;"><span><span style="color:#080;font-style:italic"></span><span style="color:#080">#include</span> <span style="color:#080">&lt;stdio.h&gt;</span><span style="color:#080">
+</span></span></span><span style="display:flex;"><span><span style="color:#080">#include</span> <span style="color:#080">&lt;celix_api.h&gt;</span><span style="color:#080">
+</span></span></span><span style="display:flex;"><span><span style="color:#080">#include</span> <span style="color:#080">&lt;celix_shell_command.h&gt;</span><span style="color:#080">
+</span></span></span><span style="display:flex;"><span><span style="color:#080"></span>
+</span></span><span style="display:flex;"><span><span style="color:#a2f;font-weight:bold">typedef</span> <span style="color:#a2f;font-weight:bold">struct</span> track_command_services_example_data {
+</span></span><span style="display:flex;"><span>    <span style="color:#0b0;font-weight:bold">long</span> trackerId;
+</span></span><span style="display:flex;"><span>    <span style="color:#0b0;font-weight:bold">celix_thread_mutex_t</span> mutex; <span style="color:#080;font-style:italic">//protects below
+</span></span></span><span style="display:flex;"><span><span style="color:#080;font-style:italic"></span>    <span style="color:#0b0;font-weight:bold">celix_array_list_t</span><span style="color:#666">*</span> commandServices;
+</span></span><span style="display:flex;"><span>} <span style="color:#0b0;font-weight:bold">track_command_services_example_data_t</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a2f;font-weight:bold">static</span> <span style="color:#0b0;font-weight:bold">void</span> <span style="color:#00a000">addShellCommandService</span>(<span style="color:#0b0;font-weight:bold">void</span><span style="color:#666">*</span> data,<span style="color:#0b0;font-weight:bold">void</span><span style="color:#666">*</span> svc, <span style="color:#a2f;font-weight:bold">const</span> <span style="color:#0b0;font-weight:bold">celix_properties_t</span> <span style="color:#666">*</span> properties) {
+</span></span><span style="display:flex;"><span>    <span style="color:#0b0;font-weight:bold">track_command_services_example_data_t</span><span style="color:#666">*</span> activatorData <span style="color:#666">=</span> data;
+</span></span><span style="display:flex;"><span>    <span style="color:#0b0;font-weight:bold">celix_shell_command_t</span><span style="color:#666">*</span> cmdSvc <span style="color:#666">=</span> svc;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#00a000">printf</span>(<span style="color:#b44">&#34;Adding command service with svc id %li</span><span style="color:#b62;font-weight:bold">\n</span><span style="color:#b44">&#34;</span>, <span style="color:#00a000">celix_properties_getAsLong</span>(properties, CELIX_FRAMEWORK_SERVICE_ID, <span style="color:#666">-</span><span style="color:#666">1</span>));
+</span></span><span style="display:flex;"><span>    <span style="color:#00a000">celixThreadMutex_lock</span>(<span style="color:#666">&amp;</span>activatorData<span style="color:#666">-&gt;</span>mutex);
+</span></span><span style="display:flex;"><span>    <span style="color:#00a000">celix_arrayList_add</span>(activatorData<span style="color:#666">-&gt;</span>commandServices, cmdSvc);
+</span></span><span style="display:flex;"><span>    <span style="color:#00a000">printf</span>(<span style="color:#b44">&#34;Nr of command service found: %i</span><span style="color:#b62;font-weight:bold">\n</span><span style="color:#b44">&#34;</span>, <span style="color:#00a000">celix_arrayList_size</span>(activatorData<span style="color:#666">-&gt;</span>commandServices));
+</span></span><span style="display:flex;"><span>    <span style="color:#00a000">celixThreadMutex_unlock</span>(<span style="color:#666">&amp;</span>activatorData<span style="color:#666">-&gt;</span>mutex);
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a2f;font-weight:bold">static</span> <span style="color:#0b0;font-weight:bold">void</span> <span style="color:#00a000">removeShellCommandService</span>(<span style="color:#0b0;font-weight:bold">void</span><span style="color:#666">*</span> data,<span style="color:#0b0;font-weight:bold">void</span><span style="color:#666">*</span> svc, <span style="color:#a2f;font-weight:bold">const</span> <span style="color:#0b0;font-weight:bold">celix_properties_t</span> <span style="color:#666">*</span> properties) {
+</span></span><span style="display:flex;"><span>    <span style="color:#0b0;font-weight:bold">track_command_services_example_data_t</span><span style="color:#666">*</span> activatorData <span style="color:#666">=</span> data;
+</span></span><span style="display:flex;"><span>    <span style="color:#0b0;font-weight:bold">celix_shell_command_t</span><span style="color:#666">*</span> cmdSvc <span style="color:#666">=</span> svc;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#00a000">printf</span>(<span style="color:#b44">&#34;Removing command service with svc id %li</span><span style="color:#b62;font-weight:bold">\n</span><span style="color:#b44">&#34;</span>, <span style="color:#00a000">celix_properties_getAsLong</span>(properties, CELIX_FRAMEWORK_SERVICE_ID, <span style="color:#666">-</span><span style="color:#666">1</span>));
+</span></span><span style="display:flex;"><span>    <span style="color:#00a000">celixThreadMutex_lock</span>(<span style="color:#666">&amp;</span>activatorData<span style="color:#666">-&gt;</span>mutex);
+</span></span><span style="display:flex;"><span>    <span style="color:#00a000">celix_arrayList_remove</span>(activatorData<span style="color:#666">-&gt;</span>commandServices, cmdSvc);
+</span></span><span style="display:flex;"><span>    <span style="color:#00a000">printf</span>(<span style="color:#b44">&#34;Nr of command service found: %i</span><span style="color:#b62;font-weight:bold">\n</span><span style="color:#b44">&#34;</span>, <span style="color:#00a000">celix_arrayList_size</span>(activatorData<span style="color:#666">-&gt;</span>commandServices));
+</span></span><span style="display:flex;"><span>    <span style="color:#00a000">celixThreadMutex_unlock</span>(<span style="color:#666">&amp;</span>activatorData<span style="color:#666">-&gt;</span>mutex);
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a2f;font-weight:bold">static</span> <span style="color:#0b0;font-weight:bold">celix_status_t</span> <span style="color:#00a000">track_command_services_example_start</span>(<span style="color:#0b0;font-weight:bold">track_command_services_example_data_t</span> <span style="color:#666">*</span>data, <span style="color:#0b0;font-weight:bold">celix_bundle_context_t</span> <span style="color:#666">*</span>ctx) {
+</span></span><span style="display:flex;"><span>    <span style="color:#00a000">celixThreadMutex_create</span>(<span style="color:#666">&amp;</span>data<span style="color:#666">-&gt;</span>mutex, <span style="color:#a2f">NULL</span>);
+</span></span><span style="display:flex;"><span>    data<span style="color:#666">-&gt;</span>commandServices <span style="color:#666">=</span> <span style="color:#00a000">celix_arrayList_create</span>();
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#0b0;font-weight:bold">celix_service_tracking_options_t</span> opts <span style="color:#666">=</span> CELIX_EMPTY_SERVICE_TRACKING_OPTIONS;
+</span></span><span style="display:flex;"><span>    opts.filter.serviceName <span style="color:#666">=</span> CELIX_SHELL_COMMAND_SERVICE_NAME;
+</span></span><span style="display:flex;"><span>    opts.filter.filter <span style="color:#666">=</span> <span style="color:#b44">&#34;(command.name=my_command)&#34;</span>;
+</span></span><span style="display:flex;"><span>    opts.callbackHandle <span style="color:#666">=</span> data;
+</span></span><span style="display:flex;"><span>    opts.addWithProperties <span style="color:#666">=</span> addShellCommandService;
+</span></span><span style="display:flex;"><span>    opts.removeWithProperties <span style="color:#666">=</span> removeShellCommandService;
+</span></span><span style="display:flex;"><span>    data<span style="color:#666">-&gt;</span>trackerId <span style="color:#666">=</span> <span style="color:#00a000">celix_bundleContext_trackServicesWithOptionsAsync</span>(ctx, <span style="color:#666">&amp;</span>opts);
+</span></span><span style="display:flex;"><span>    <span style="color:#a2f;font-weight:bold">return</span> CELIX_SUCCESS;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a2f;font-weight:bold">static</span> <span style="color:#0b0;font-weight:bold">celix_status_t</span> <span style="color:#00a000">track_command_services_example_stop</span>(<span style="color:#0b0;font-weight:bold">track_command_services_example_data_t</span> <span style="color:#666">*</span>data, <span style="color:#0b0;font-weight:bold">celix_bundle_context_t</span> <span style="color:#666">*</span>ctx) {
+</span></span><span style="display:flex;"><span>    <span style="color:#00a000">celix_bundleContext_stopTracker</span>(ctx, data<span style="color:#666">-&gt;</span>trackerId);
+</span></span><span style="display:flex;"><span>    <span style="color:#00a000">celixThreadMutex_lock</span>(<span style="color:#666">&amp;</span>data<span style="color:#666">-&gt;</span>mutex);
+</span></span><span style="display:flex;"><span>    <span style="color:#00a000">celix_arrayList_destroy</span>(data<span style="color:#666">-&gt;</span>commandServices);
+</span></span><span style="display:flex;"><span>    <span style="color:#00a000">celixThreadMutex_unlock</span>(<span style="color:#666">&amp;</span>data<span style="color:#666">-&gt;</span>mutex);
+</span></span><span style="display:flex;"><span>    <span style="color:#a2f;font-weight:bold">return</span> CELIX_SUCCESS;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#00a000">CELIX_GEN_BUNDLE_ACTIVATOR</span>(<span style="color:#0b0;font-weight:bold">track_command_services_example_data_t</span>, track_command_services_example_start, track_command_services_example_stop)
+</span></span></code></pre></div><h3 id="example-tracking-services-in-c-1">Example: Tracking services in C++</h3>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C++" data-lang="C++"><span style="display:flex;"><span><span style="color:#080;font-style:italic">//src/TrackingCommandServicesExample.cc
+</span></span></span><span style="display:flex;"><span><span style="color:#080;font-style:italic"></span><span style="color:#080">#include</span> <span style="color:#080">&lt;unordered_map&gt;</span><span style="color:#080">
+</span></span></span><span style="display:flex;"><span><span style="color:#080">#include</span> <span style="color:#080">&lt;celix/IShellCommand.h&gt;</span><span style="color:#080">
+</span></span></span><span style="display:flex;"><span><span style="color:#080">#include</span> <span style="color:#080">&lt;celix/BundleActivator.h&gt;</span><span style="color:#080">
+</span></span></span><span style="display:flex;"><span><span style="color:#080">#include</span> <span style="color:#080">&lt;celix_shell_command.h&gt;</span><span style="color:#080">
+</span></span></span><span style="display:flex;"><span><span style="color:#080"></span>
+</span></span><span style="display:flex;"><span><span style="color:#a2f;font-weight:bold">class</span> <span style="color:#00f">TrackingCommandServicesExample</span> {
+</span></span><span style="display:flex;"><span><span style="color:#a2f;font-weight:bold">public</span><span style="color:#666">:</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a2f;font-weight:bold">explicit</span> TrackingCommandServicesExample(<span style="color:#a2f;font-weight:bold">const</span> std<span style="color:#666">::</span>shared_ptr<span style="color:#666">&lt;</span>celix<span style="color:#666">::</span>BundleContext<span style="color:#666">&gt;&amp;</span> ctx) {
+</span></span><span style="display:flex;"><span>        <span style="color:#080;font-style:italic">//Tracking C++ IShellCommand services and filtering for services that have a &#34;name=MyCommand&#34; property.
+</span></span></span><span style="display:flex;"><span><span style="color:#080;font-style:italic"></span>        cxxCommandServiceTracker <span style="color:#666">=</span> ctx<span style="color:#666">-&gt;</span>trackServices<span style="color:#666">&lt;</span>celix<span style="color:#666">::</span>IShellCommand<span style="color:#666">&gt;</span>()
+</span></span><span style="display:flex;"><span>                .setFilter(<span style="color:#b44">&#34;(name=MyCommand)&#34;</span>)
+</span></span><span style="display:flex;"><span>                .addAddWithPropertiesCallback([<span style="color:#a2f;font-weight:bold">this</span>](<span style="color:#a2f;font-weight:bold">const</span> <span style="color:#a2f;font-weight:bold">auto</span><span style="color:#666">&amp;</span> svc, <span style="color:#a2f;font-weight:bold">const</span> <span style="color:#a2f;font-weight:bold">auto</span><span style="color:#666">&amp;</span> properties) {
+</span></span><span style="display:flex;"><span>                    <span style="color:#0b0;font-weight:bold">long</span> svcId <span style="color:#666">=</span> properties<span style="color:#666">-&gt;</span>getAsLong(celix<span style="color:#666">::</span>SERVICE_ID, <span style="color:#666">-</span><span style="color:#666">1</span>);
+</span></span><span style="display:flex;"><span>                    std<span style="color:#666">::</span>cout <span style="color:#666">&lt;&lt;</span> <span style="color:#b44">&#34;Adding C++ command services with svc id&#34;</span> <span style="color:#666">&lt;&lt;</span> svcId <span style="color:#666">&lt;&lt;</span> std<span style="color:#666">::</span>endl;
+</span></span><span style="display:flex;"><span>                    std<span style="color:#666">::</span>lock_guard lock{mutex};
+</span></span><span style="display:flex;"><span>                    cxxCommandServices[svcId] <span style="color:#666">=</span> svc;
+</span></span><span style="display:flex;"><span>                    std<span style="color:#666">::</span>cout <span style="color:#666">&lt;&lt;</span> <span style="color:#b44">&#34;Nr of C++ command services found: &#34;</span> <span style="color:#666">&lt;&lt;</span> cxxCommandServices.size() <span style="color:#666">&lt;&lt;</span> std<span style="color:#666">::</span>endl;
+</span></span><span style="display:flex;"><span>                })
+</span></span><span style="display:flex;"><span>                .addRemWithPropertiesCallback([<span style="color:#a2f;font-weight:bold">this</span>](<span style="color:#a2f;font-weight:bold">const</span> <span style="color:#a2f;font-weight:bold">auto</span><span style="color:#666">&amp;</span> <span style="color:#080;font-style:italic">/*svc*/</span>, <span style="color:#a2f;font-weight:bold">const</span> <span style="color:#a2f;font-weight:bold">auto</span><span style="color:#666">&amp;</span> properties) {
+</span></span><span style="display:flex;"><span>                    <span style="color:#0b0;font-weight:bold">long</span> svcId <span style="color:#666">=</span> properties<span style="color:#666">-&gt;</span>getAsLong(celix<span style="color:#666">::</span>SERVICE_ID, <span style="color:#666">-</span><span style="color:#666">1</span>);
+</span></span><span style="display:flex;"><span>                    std<span style="color:#666">::</span>cout <span style="color:#666">&lt;&lt;</span> <span style="color:#b44">&#34;Removing C++ command services with svc id &#34;</span> <span style="color:#666">&lt;&lt;</span> svcId <span style="color:#666">&lt;&lt;</span> std<span style="color:#666">::</span>endl;
+</span></span><span style="display:flex;"><span>                    std<span style="color:#666">::</span>lock_guard lock{mutex};
+</span></span><span style="display:flex;"><span>                    <span style="color:#a2f;font-weight:bold">auto</span> it <span style="color:#666">=</span> cxxCommandServices.find(svcId);
+</span></span><span style="display:flex;"><span>                    <span style="color:#a2f;font-weight:bold">if</span> (it <span style="color:#666">!=</span> cxxCommandServices.end()) {
+</span></span><span style="display:flex;"><span>                        cxxCommandServices.erase(it);
+</span></span><span style="display:flex;"><span>                    }
+</span></span><span style="display:flex;"><span>                    std<span style="color:#666">::</span>cout <span style="color:#666">&lt;&lt;</span> <span style="color:#b44">&#34;Nr of C++ command services found: &#34;</span> <span style="color:#666">&lt;&lt;</span> cxxCommandServices.size() <span style="color:#666">&lt;&lt;</span> std<span style="color:#666">::</span>endl;
+</span></span><span style="display:flex;"><span>                })
+</span></span><span style="display:flex;"><span>                .build();
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#080;font-style:italic">//Tracking C celix_shell_command services and filtering for services that have a &#34;command.name=MyCCommand&#34; or
+</span></span></span><span style="display:flex;"><span><span style="color:#080;font-style:italic"></span>        <span style="color:#080;font-style:italic">// &#34;command.name=my_command&#34; property.
+</span></span></span><span style="display:flex;"><span><span style="color:#080;font-style:italic"></span>        cCommandServiceTracker <span style="color:#666">=</span> ctx<span style="color:#666">-&gt;</span>trackServices<span style="color:#666">&lt;</span>celix_shell_command<span style="color:#666">&gt;</span>()
+</span></span><span style="display:flex;"><span>                .setFilter(<span style="color:#b44">&#34;(|(command.name=MyCCommand)(command.name=my_command))&#34;</span>)
+</span></span><span style="display:flex;"><span>                .addAddWithPropertiesCallback([<span style="color:#a2f;font-weight:bold">this</span>](<span style="color:#a2f;font-weight:bold">const</span> <span style="color:#a2f;font-weight:bold">auto</span><span style="color:#666">&amp;</span> svc, <span style="color:#a2f;font-weight:bold">const</span> <span style="color:#a2f;font-weight:bold">auto</span><span style="color:#666">&amp;</span> properties) {
+</span></span><span style="display:flex;"><span>                    <span style="color:#0b0;font-weight:bold">long</span> svcId <span style="color:#666">=</span> properties<span style="color:#666">-&gt;</span>getAsLong(celix<span style="color:#666">::</span>SERVICE_ID, <span style="color:#666">-</span><span style="color:#666">1</span>);
+</span></span><span style="display:flex;"><span>                    std<span style="color:#666">::</span>cout <span style="color:#666">&lt;&lt;</span> <span style="color:#b44">&#34;Adding C command services with svc id &#34;</span> <span style="color:#666">&lt;&lt;</span> svcId <span style="color:#666">&lt;&lt;</span> std<span style="color:#666">::</span>endl;
+</span></span><span style="display:flex;"><span>                    std<span style="color:#666">::</span>lock_guard lock{mutex};
+</span></span><span style="display:flex;"><span>                    cCommandServices[svcId] <span style="color:#666">=</span> svc;
+</span></span><span style="display:flex;"><span>                    std<span style="color:#666">::</span>cout <span style="color:#666">&lt;&lt;</span> <span style="color:#b44">&#34;Nr of C command services found: &#34;</span> <span style="color:#666">&lt;&lt;</span> cxxCommandServices.size() <span style="color:#666">&lt;&lt;</span> std<span style="color:#666">::</span>endl;
+</span></span><span style="display:flex;"><span>                })
+</span></span><span style="display:flex;"><span>                .addRemWithPropertiesCallback([<span style="color:#a2f;font-weight:bold">this</span>](<span style="color:#a2f;font-weight:bold">const</span> <span style="color:#a2f;font-weight:bold">auto</span><span style="color:#666">&amp;</span> <span style="color:#080;font-style:italic">/*svc*/</span>, <span style="color:#a2f;font-weight:bold">const</span> <span style="color:#a2f;font-weight:bold">auto</span><span style="color:#666">&amp;</span> properties) {
+</span></span><span style="display:flex;"><span>                    <span style="color:#0b0;font-weight:bold">long</span> svcId <span style="color:#666">=</span> properties<span style="color:#666">-&gt;</span>getAsLong(celix<span style="color:#666">::</span>SERVICE_ID, <span style="color:#666">-</span><span style="color:#666">1</span>);
+</span></span><span style="display:flex;"><span>                    std<span style="color:#666">::</span>cout <span style="color:#666">&lt;&lt;</span> <span style="color:#b44">&#34;Removing C command services with svc id &#34;</span> <span style="color:#666">&lt;&lt;</span> svcId <span style="color:#666">&lt;&lt;</span> std<span style="color:#666">::</span>endl;
+</span></span><span style="display:flex;"><span>                    std<span style="color:#666">::</span>lock_guard lock{mutex};
+</span></span><span style="display:flex;"><span>                    <span style="color:#a2f;font-weight:bold">auto</span> it <span style="color:#666">=</span> cCommandServices.find(svcId);
+</span></span><span style="display:flex;"><span>                    <span style="color:#a2f;font-weight:bold">if</span> (it <span style="color:#666">!=</span> cCommandServices.end()) {
+</span></span><span style="display:flex;"><span>                        cCommandServices.erase(it);
+</span></span><span style="display:flex;"><span>                    }
+</span></span><span style="display:flex;"><span>                    std<span style="color:#666">::</span>cout <span style="color:#666">&lt;&lt;</span> <span style="color:#b44">&#34;Nr of C command services found: &#34;</span> <span style="color:#666">&lt;&lt;</span> cxxCommandServices.size() <span style="color:#666">&lt;&lt;</span> std<span style="color:#666">::</span>endl;
+</span></span><span style="display:flex;"><span>                })
+</span></span><span style="display:flex;"><span>                .build();
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#666">~</span>TrackingCommandServicesExample() <span style="color:#a2f;font-weight:bold">noexcept</span> {
+</span></span><span style="display:flex;"><span>        cxxCommandServiceTracker<span style="color:#666">-&gt;</span>close();
+</span></span><span style="display:flex;"><span>        cCommandServiceTracker<span style="color:#666">-&gt;</span>close();
+</span></span><span style="display:flex;"><span>    };
+</span></span><span style="display:flex;"><span><span style="color:#a2f;font-weight:bold">private</span><span style="color:#666">:</span>
+</span></span><span style="display:flex;"><span>    std<span style="color:#666">::</span>mutex mutex; <span style="color:#080;font-style:italic">//protects cxxCommandServices and cCommandServices
+</span></span></span><span style="display:flex;"><span><span style="color:#080;font-style:italic"></span>    std<span style="color:#666">::</span>unordered_map<span style="color:#666">&lt;</span><span style="color:#0b0;font-weight:bold">long</span>, std<span style="color:#666">::</span>shared_ptr<span style="color:#666">&lt;</span>celix<span style="color:#666">::</span>IShellCommand<span style="color:#666">&gt;&gt;</span> cxxCommandServices{};
+</span></span><span style="display:flex;"><span>    std<span style="color:#666">::</span>unordered_map<span style="color:#666">&lt;</span><span style="color:#0b0;font-weight:bold">long</span>, std<span style="color:#666">::</span>shared_ptr<span style="color:#666">&lt;</span>celix_shell_command<span style="color:#666">&gt;&gt;</span> cCommandServices{};
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    std<span style="color:#666">::</span>shared_ptr<span style="color:#666">&lt;</span>celix<span style="color:#666">::</span>ServiceTracker<span style="color:#666">&lt;</span>celix<span style="color:#666">::</span>IShellCommand<span style="color:#666">&gt;&gt;</span> cxxCommandServiceTracker{};
+</span></span><span style="display:flex;"><span>    std<span style="color:#666">::</span>shared_ptr<span style="color:#666">&lt;</span>celix<span style="color:#666">::</span>ServiceTracker<span style="color:#666">&lt;</span>celix_shell_command<span style="color:#666">&gt;&gt;</span> cCommandServiceTracker{};
+</span></span><span style="display:flex;"><span>};
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>CELIX_GEN_CXX_BUNDLE_ACTIVATOR(TrackingCommandServicesExample)
+</span></span></code></pre></div><h3 id="sequence-diagrams-for-service-tracker-and-service-registration">Sequence diagrams for service tracker and service registration</h3>
 <p><img src="diagrams/services_tracker_services_add_async_seq.png" alt="Register Service Async">
 <em>Service tracker callback with an asynchronized service registration</em></p>
 <hr>

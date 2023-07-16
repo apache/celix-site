@@ -168,7 +168,7 @@ limitations under the License.
 When a bundle is started the bundle context will be injected in the bundle activator.</p>
 <p>Apache Celix is a C framework with a C and C++ (C++11) API.</p>
 <h2 id="c-bundle-activator">C Bundle Activator</h2>
-<pre><code>#include &lt;celix_api.h&gt;
+<pre tabindex="0"><code>#include &lt;celix_api.h&gt;
 
 typedef struct activator_data {
     /*intentional empty*/
@@ -186,7 +186,7 @@ static celix_status_t activator_stop(activator_data_t *data, celix_bundle_contex
 
 CELIX_GEN_BUNDLE_ACTIVATOR(activator_data_t, activator_start, activator_stop)
 </code></pre><h2 id="c-bundle-activator-1">C++ Bundle Activator</h2>
-<pre><code>#include &lt;celix/BundleActivator.h&gt;
+<pre tabindex="0"><code>#include &lt;celix/BundleActivator.h&gt;
 
 class MyBundleActivator {
 public:

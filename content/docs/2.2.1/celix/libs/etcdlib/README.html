@@ -186,39 +186,39 @@ It uses the v2 (REST) api of etcd.</p>
 </ul>
 <h2 id="download-the-apache-celix-sources">Download the Apache Celix sources</h2>
 <p>To get started you first have to download the Apache Celix sources. This can be done by cloning the Apache Celix git repository:</p>
-<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#080;font-style:italic"># Create a new workspace to work in, e.g:</span>
-mkdir -p <span style="color:#b68;font-weight:bold">${</span><span style="color:#b8860b">HOME</span><span style="color:#b68;font-weight:bold">}</span>/workspace
-<span style="color:#a2f">export</span> <span style="color:#b8860b">WS</span><span style="color:#666">=</span><span style="color:#b68;font-weight:bold">${</span><span style="color:#b8860b">HOME</span><span style="color:#b68;font-weight:bold">}</span>/workspace
-<span style="color:#a2f">cd</span> <span style="color:#b68;font-weight:bold">${</span><span style="color:#b8860b">WS</span><span style="color:#b68;font-weight:bold">}</span>
-
-<span style="color:#080;font-style:italic"># clone the repro</span>
-git clone --single-branch --branch develop https://github.com/apache/celix.git
-</code></pre></div><h2 id="building">Building</h2>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#080;font-style:italic"># Create a new workspace to work in, e.g:</span>
+</span></span><span style="display:flex;"><span>mkdir -p <span style="color:#b68;font-weight:bold">${</span><span style="color:#b8860b">HOME</span><span style="color:#b68;font-weight:bold">}</span>/workspace
+</span></span><span style="display:flex;"><span><span style="color:#a2f">export</span> <span style="color:#b8860b">WS</span><span style="color:#666">=</span><span style="color:#b68;font-weight:bold">${</span><span style="color:#b8860b">HOME</span><span style="color:#b68;font-weight:bold">}</span>/workspace
+</span></span><span style="display:flex;"><span><span style="color:#a2f">cd</span> <span style="color:#b68;font-weight:bold">${</span><span style="color:#b8860b">WS</span><span style="color:#b68;font-weight:bold">}</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#080;font-style:italic"># clone the repro</span>
+</span></span><span style="display:flex;"><span>git clone --single-branch --branch develop https://github.com/apache/celix.git
+</span></span></code></pre></div><h2 id="building">Building</h2>
 <p>Etcdlib uses <a href="https://cmake.org">CMake</a> as build system. CMake can generate (among others) makefiles or ninja build files. Using ninja build files will result in a faster build.</p>
 <h3 id="building-using-cmake-and-makefiles">Building using CMake and makefiles:</h3>
-<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#a2f">cd</span> <span style="color:#b68;font-weight:bold">${</span><span style="color:#b8860b">WS</span><span style="color:#b68;font-weight:bold">}</span>/celix/etcdlib
-mkdir build
-<span style="color:#a2f">cd</span> build
-cmake .. 
-make 
-</code></pre></div><h3 id="building-using-cmake-and-ninja">Building using CMake and Ninja</h3>
-<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#a2f">cd</span> <span style="color:#b68;font-weight:bold">${</span><span style="color:#b8860b">WS</span><span style="color:#b68;font-weight:bold">}</span>/celix/etcdlib
-mkdir build
-<span style="color:#a2f">cd</span> build
-cmake -G Ninja ..
-ninja
-</code></pre></div><h2 id="editing-build-options">Editing Build options</h2>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#a2f">cd</span> <span style="color:#b68;font-weight:bold">${</span><span style="color:#b8860b">WS</span><span style="color:#b68;font-weight:bold">}</span>/celix/etcdlib
+</span></span><span style="display:flex;"><span>mkdir build
+</span></span><span style="display:flex;"><span><span style="color:#a2f">cd</span> build
+</span></span><span style="display:flex;"><span>cmake .. 
+</span></span><span style="display:flex;"><span>make 
+</span></span></code></pre></div><h3 id="building-using-cmake-and-ninja">Building using CMake and Ninja</h3>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#a2f">cd</span> <span style="color:#b68;font-weight:bold">${</span><span style="color:#b8860b">WS</span><span style="color:#b68;font-weight:bold">}</span>/celix/etcdlib
+</span></span><span style="display:flex;"><span>mkdir build
+</span></span><span style="display:flex;"><span><span style="color:#a2f">cd</span> build
+</span></span><span style="display:flex;"><span>cmake -G Ninja ..
+</span></span><span style="display:flex;"><span>ninja
+</span></span></code></pre></div><h2 id="editing-build-options">Editing Build options</h2>
 <p>With use of CMake, Etcdlib makes it possible to edit build options. This enabled users, among other options, to configure a install location.
 To edit the options use ccmake or cmake-gui. For cmake-gui an additional package install can be necessary (Fedora: <code>dnf install cmake-gui</code>).</p>
-<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#a2f">cd</span> <span style="color:#b68;font-weight:bold">${</span><span style="color:#b8860b">WS</span><span style="color:#b68;font-weight:bold">}</span>/celix/etcdlib/build
-ccmake .
-<span style="color:#080;font-style:italic"># Edit the CMAKE_INSTALL_PREFIX config to set the install location</span>
-</code></pre></div><p>For this guide we assume the CMAKE_INSTALL_PREFIX is <code>/usr/local</code>.</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#a2f">cd</span> <span style="color:#b68;font-weight:bold">${</span><span style="color:#b8860b">WS</span><span style="color:#b68;font-weight:bold">}</span>/celix/etcdlib/build
+</span></span><span style="display:flex;"><span>ccmake .
+</span></span><span style="display:flex;"><span><span style="color:#080;font-style:italic"># Edit the CMAKE_INSTALL_PREFIX config to set the install location</span>
+</span></span></code></pre></div><p>For this guide we assume the CMAKE_INSTALL_PREFIX is <code>/usr/local</code>.</p>
 <h2 id="installing-etcdlib">Installing Etcdlib</h2>
-<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#a2f">cd</span> <span style="color:#b68;font-weight:bold">${</span><span style="color:#b8860b">WS</span><span style="color:#b68;font-weight:bold">}</span>/celix/etcdlib/build
-make
-sudo make install
-</code></pre></div>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#a2f">cd</span> <span style="color:#b68;font-weight:bold">${</span><span style="color:#b8860b">WS</span><span style="color:#b68;font-weight:bold">}</span>/celix/etcdlib/build
+</span></span><span style="display:flex;"><span>make
+</span></span><span style="display:flex;"><span>sudo make install
+</span></span></code></pre></div>
 
                 </div>
             </div>

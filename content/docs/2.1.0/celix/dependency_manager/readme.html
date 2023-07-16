@@ -206,50 +206,50 @@ The <code>serviceDependency_setStrategy</code> function can be used to specify a
 <h3 id="snippets">Snippets</h3>
 <h4 id="dm-bundle-activator">DM Bundle Activator</h4>
 <p>The next snippet shows a dm bundle activator and how to add components to the dependency manager.</p>
-<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-C" data-lang="C">
-<span style="color:#080;font-style:italic">//exmpl_activator.c
-</span><span style="color:#080;font-style:italic"></span><span style="color:#080">#</span><span style="color:#080">include</span> <span style="color:#080">&lt;dm_activator.h&gt;</span><span style="color:#080">
-</span><span style="color:#080"></span><span style="color:#080">#</span><span style="color:#080">include</span> <span style="color:#080">&lt;stdlib.h&gt;</span><span style="color:#080">
-</span><span style="color:#080"></span>
-<span style="color:#a2f;font-weight:bold">struct</span> dm_exmpl_activator {
-    exmpl_t<span style="color:#666">*</span> exmpl;
-};
-
-celix_status_t <span style="color:#00a000">dm_create</span>(bundle_context_pt context, <span style="color:#0b0;font-weight:bold">void</span> <span style="color:#666">*</span><span style="color:#666">*</span>userData) {                                                                                                                                             
-    <span style="color:#666">*</span>userData <span style="color:#666">=</span> calloc(<span style="color:#666">1</span>, <span style="color:#a2f;font-weight:bold">sizeof</span>(<span style="color:#a2f;font-weight:bold">struct</span> dm_exmpl_activator));
-    <span style="color:#a2f;font-weight:bold">return</span> <span style="color:#666">*</span>userData <span style="color:#666">!</span><span style="color:#666">=</span> <span style="color:#a2f">NULL</span> <span style="color:#666">?</span> <span style="color:#a0a000">CELIX_SUCCESS</span> : CELIX_ENOMEM;
-}
-
-celix_status_t <span style="color:#00a000">dm_init</span>(<span style="color:#0b0;font-weight:bold">void</span> <span style="color:#666">*</span> userData, bundle_context_pt context, dm_dependency_manager_pt manager) {
-    celix_status_t status <span style="color:#666">=</span> CELIX_SUCCESS;
-    <span style="color:#a2f;font-weight:bold">struct</span> dm_exmpl_activator <span style="color:#666">*</span>act <span style="color:#666">=</span> (<span style="color:#a2f;font-weight:bold">struct</span> dm_exmpl_activator<span style="color:#666">*</span>)userData;
-
-    act<span style="color:#666">-</span><span style="color:#666">&gt;</span>exmpl <span style="color:#666">=</span> exmpl_create();
-    <span style="color:#a2f;font-weight:bold">if</span> (act<span style="color:#666">-</span><span style="color:#666">&gt;</span>exmpl <span style="color:#666">!</span><span style="color:#666">=</span> <span style="color:#a2f">NULL</span>) {
-        dm_component_pt cmp;
-        component_create(context, <span style="color:#b44"></span><span style="color:#b44">&#34;</span><span style="color:#b44">Example Component</span><span style="color:#b44">&#34;</span>, <span style="color:#666">&amp;</span>cmp);
-        component_setImplementation(cmp, act<span style="color:#666">-</span><span style="color:#666">&gt;</span>exmpl);
-
-        dependencyManager_add(manager, cmp);
-    } <span style="color:#a2f;font-weight:bold">else</span> {
-        status <span style="color:#666">=</span> CELIX_ENOMEM;
-    }
-
-    <span style="color:#a2f;font-weight:bold">return</span> status;
-}
-
-celix_status_t <span style="color:#00a000">dm_destroy</span>(<span style="color:#0b0;font-weight:bold">void</span> <span style="color:#666">*</span> userData, bundle_context_pt context, dm_dependency_manager_pt manager) {
-    celix_status_t status <span style="color:#666">=</span> CELIX_SUCCESS;
-    <span style="color:#a2f;font-weight:bold">struct</span> dm_exmpl_activator <span style="color:#666">*</span>act <span style="color:#666">=</span> (<span style="color:#a2f;font-weight:bold">struct</span> dm_exmpl_activator<span style="color:#666">*</span>)userData;
-
-    <span style="color:#a2f;font-weight:bold">if</span> (act<span style="color:#666">-</span><span style="color:#666">&gt;</span>exmpl <span style="color:#666">!</span><span style="color:#666">=</span> <span style="color:#a2f">NULL</span>) {
-        exmpl_destroy(act<span style="color:#666">-</span><span style="color:#666">&gt;</span>exmpl);
-    }
-    free(act);
-
-    <span style="color:#a2f;font-weight:bold">return</span> CELIX_SUCCESS;
-}  
-</code></pre></div><h3 id="dependency-manager-shell-support">Dependency Manager Shell support</h3>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C" data-lang="C"><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#080;font-style:italic">//exmpl_activator.c
+</span></span></span><span style="display:flex;"><span><span style="color:#080;font-style:italic"></span><span style="color:#080">#include</span> <span style="color:#080">&lt;dm_activator.h&gt;</span><span style="color:#080">
+</span></span></span><span style="display:flex;"><span><span style="color:#080">#include</span> <span style="color:#080">&lt;stdlib.h&gt;</span><span style="color:#080">
+</span></span></span><span style="display:flex;"><span><span style="color:#080"></span>
+</span></span><span style="display:flex;"><span><span style="color:#a2f;font-weight:bold">struct</span> dm_exmpl_activator {
+</span></span><span style="display:flex;"><span>    <span style="color:#0b0;font-weight:bold">exmpl_t</span><span style="color:#666">*</span> exmpl;
+</span></span><span style="display:flex;"><span>};
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#0b0;font-weight:bold">celix_status_t</span> <span style="color:#00a000">dm_create</span>(bundle_context_pt context, <span style="color:#0b0;font-weight:bold">void</span> <span style="color:#666">**</span>userData) {                                                                                                                                             
+</span></span><span style="display:flex;"><span>    <span style="color:#666">*</span>userData <span style="color:#666">=</span> <span style="color:#00a000">calloc</span>(<span style="color:#666">1</span>, <span style="color:#a2f;font-weight:bold">sizeof</span>(<span style="color:#a2f;font-weight:bold">struct</span> dm_exmpl_activator));
+</span></span><span style="display:flex;"><span>    <span style="color:#a2f;font-weight:bold">return</span> <span style="color:#666">*</span>userData <span style="color:#666">!=</span> <span style="color:#a2f">NULL</span> <span style="color:#666">?</span> <span style="color:#a0a000">CELIX_SUCCESS</span> : CELIX_ENOMEM;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#0b0;font-weight:bold">celix_status_t</span> <span style="color:#00a000">dm_init</span>(<span style="color:#0b0;font-weight:bold">void</span> <span style="color:#666">*</span> userData, bundle_context_pt context, dm_dependency_manager_pt manager) {
+</span></span><span style="display:flex;"><span>    <span style="color:#0b0;font-weight:bold">celix_status_t</span> status <span style="color:#666">=</span> CELIX_SUCCESS;
+</span></span><span style="display:flex;"><span>    <span style="color:#a2f;font-weight:bold">struct</span> dm_exmpl_activator <span style="color:#666">*</span>act <span style="color:#666">=</span> (<span style="color:#a2f;font-weight:bold">struct</span> dm_exmpl_activator<span style="color:#666">*</span>)userData;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    act<span style="color:#666">-&gt;</span>exmpl <span style="color:#666">=</span> <span style="color:#00a000">exmpl_create</span>();
+</span></span><span style="display:flex;"><span>    <span style="color:#a2f;font-weight:bold">if</span> (act<span style="color:#666">-&gt;</span>exmpl <span style="color:#666">!=</span> <span style="color:#a2f">NULL</span>) {
+</span></span><span style="display:flex;"><span>        dm_component_pt cmp;
+</span></span><span style="display:flex;"><span>        <span style="color:#00a000">component_create</span>(context, <span style="color:#b44">&#34;Example Component&#34;</span>, <span style="color:#666">&amp;</span>cmp);
+</span></span><span style="display:flex;"><span>        <span style="color:#00a000">component_setImplementation</span>(cmp, act<span style="color:#666">-&gt;</span>exmpl);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#00a000">dependencyManager_add</span>(manager, cmp);
+</span></span><span style="display:flex;"><span>    } <span style="color:#a2f;font-weight:bold">else</span> {
+</span></span><span style="display:flex;"><span>        status <span style="color:#666">=</span> CELIX_ENOMEM;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a2f;font-weight:bold">return</span> status;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#0b0;font-weight:bold">celix_status_t</span> <span style="color:#00a000">dm_destroy</span>(<span style="color:#0b0;font-weight:bold">void</span> <span style="color:#666">*</span> userData, bundle_context_pt context, dm_dependency_manager_pt manager) {
+</span></span><span style="display:flex;"><span>    <span style="color:#0b0;font-weight:bold">celix_status_t</span> status <span style="color:#666">=</span> CELIX_SUCCESS;
+</span></span><span style="display:flex;"><span>    <span style="color:#a2f;font-weight:bold">struct</span> dm_exmpl_activator <span style="color:#666">*</span>act <span style="color:#666">=</span> (<span style="color:#a2f;font-weight:bold">struct</span> dm_exmpl_activator<span style="color:#666">*</span>)userData;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a2f;font-weight:bold">if</span> (act<span style="color:#666">-&gt;</span>exmpl <span style="color:#666">!=</span> <span style="color:#a2f">NULL</span>) {
+</span></span><span style="display:flex;"><span>        <span style="color:#00a000">exmpl_destroy</span>(act<span style="color:#666">-&gt;</span>exmpl);
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    <span style="color:#00a000">free</span>(act);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a2f;font-weight:bold">return</span> CELIX_SUCCESS;
+</span></span><span style="display:flex;"><span>}  
+</span></span></code></pre></div><h3 id="dependency-manager-shell-support">Dependency Manager Shell support</h3>
 <p>There is support for retrieving information of the dm components with
 use of the <code>dm</code> command. This command will print all known dm component,
 their state, provided interfaces and required interfaces.</p>

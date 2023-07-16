@@ -168,53 +168,53 @@ limitations under the License.
 <h3 id="c-services">C++ Services</h3>
 <p>To start of, C++ service in Celix are just (abstract) classes.</p>
 <p>In the following example there also a projected default constructor and destructor to ensure no instantiation / deletion of the service is possible:</p>
-<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-C++" data-lang="C++"><span style="color:#080">#</span><span style="color:#080">ifndef IANOTHER_EXAMPLE_H</span><span style="color:#080">
-</span><span style="color:#080"></span><span style="color:#080">#</span><span style="color:#080">define IANOTHER_EXAMPLE_H</span><span style="color:#080">
-</span><span style="color:#080"></span>
-<span style="color:#080">#</span><span style="color:#080">define IANOTHER_EXAMPLE_VERSION &#34;1.0.0&#34;</span><span style="color:#080">
-</span><span style="color:#080"></span><span style="color:#080">#</span><span style="color:#080">define IANOTHER_EXAMPLE_CONSUMER_RANGE &#34;[1.0.0,2.0.0)&#34;</span><span style="color:#080">
-</span><span style="color:#080"></span>
-<span style="color:#a2f;font-weight:bold">class</span> <span style="color:#00f">IAnotherExample</span> {
-<span style="color:#a2f;font-weight:bold">protected</span><span style="color:#666">:</span>
-    IAnotherExample() <span style="color:#666">=</span> <span style="color:#a2f;font-weight:bold">default</span>;
-    <span style="color:#a2f;font-weight:bold">virtual</span> <span style="color:#666">~</span>IAnotherExample() <span style="color:#666">=</span> <span style="color:#a2f;font-weight:bold">default</span>;
-<span style="color:#a2f;font-weight:bold">public</span><span style="color:#666">:</span>
-    <span style="color:#a2f;font-weight:bold">virtual</span> <span style="color:#0b0;font-weight:bold">double</span> method(<span style="color:#0b0;font-weight:bold">int</span> arg1, <span style="color:#0b0;font-weight:bold">double</span> arg2) <span style="color:#666">=</span> <span style="color:#666">0</span>;
-};
-
-<span style="color:#080">#</span><span style="color:#080">endif </span><span style="color:#080;font-style:italic">//IANOTHER_EXAMPLE_H
-</span></code></pre></div><p>For a Celix service a service name, service provider version and service consumer range should be declared.
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C++" data-lang="C++"><span style="display:flex;"><span><span style="color:#080">#ifndef IANOTHER_EXAMPLE_H
+</span></span></span><span style="display:flex;"><span><span style="color:#080">#define IANOTHER_EXAMPLE_H
+</span></span></span><span style="display:flex;"><span><span style="color:#080"></span>
+</span></span><span style="display:flex;"><span><span style="color:#080">#define IANOTHER_EXAMPLE_VERSION &#34;1.0.0&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#080">#define IANOTHER_EXAMPLE_CONSUMER_RANGE &#34;[1.0.0,2.0.0)&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#080"></span>
+</span></span><span style="display:flex;"><span><span style="color:#a2f;font-weight:bold">class</span> <span style="color:#00f">IAnotherExample</span> {
+</span></span><span style="display:flex;"><span><span style="color:#a2f;font-weight:bold">protected</span><span style="color:#666">:</span>
+</span></span><span style="display:flex;"><span>    IAnotherExample() <span style="color:#666">=</span> <span style="color:#a2f;font-weight:bold">default</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#a2f;font-weight:bold">virtual</span> <span style="color:#666">~</span>IAnotherExample() <span style="color:#666">=</span> <span style="color:#a2f;font-weight:bold">default</span>;
+</span></span><span style="display:flex;"><span><span style="color:#a2f;font-weight:bold">public</span><span style="color:#666">:</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a2f;font-weight:bold">virtual</span> <span style="color:#0b0;font-weight:bold">double</span> method(<span style="color:#0b0;font-weight:bold">int</span> arg1, <span style="color:#0b0;font-weight:bold">double</span> arg2) <span style="color:#666">=</span> <span style="color:#666">0</span>;
+</span></span><span style="display:flex;"><span>};
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#080">#endif </span><span style="color:#080;font-style:italic">//IANOTHER_EXAMPLE_H
+</span></span></span></code></pre></div><p>For a Celix service a service name, service provider version and service consumer range should be declared.
 This is explicitly done with macros to prevent symbols so to that no linking dependencies are introduced.
 For C++ the service name can be inferred.</p>
 <h3 id="c-services-1">C Services</h3>
 <p>C services in Celix are just a pointer to a memory location registered in the service registry using a name and an optional set of key/value pairs.</p>
 <p>By convention use the following service layout:</p>
-<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-C" data-lang="C"><span style="color:#080;font-style:italic">//example.h
-</span><span style="color:#080;font-style:italic"></span><span style="color:#080">#</span><span style="color:#080">ifndef EXAMPLE_H_</span><span style="color:#080">
-</span><span style="color:#080"></span><span style="color:#080">#</span><span style="color:#080">define EXAMPLE_H_</span><span style="color:#080">
-</span><span style="color:#080"></span>
-<span style="color:#080">#</span><span style="color:#080">ifdef __cplusplus</span><span style="color:#080">
-</span><span style="color:#080"></span><span style="color:#a2f;font-weight:bold">extern</span> <span style="color:#b44"></span><span style="color:#b44">&#34;</span><span style="color:#b44">C</span><span style="color:#b44">&#34;</span> {
-<span style="color:#080">#</span><span style="color:#080">endif</span><span style="color:#080">
-</span><span style="color:#080"></span>
-<span style="color:#080">#</span><span style="color:#080">define EXAMPLE_NAME 			&#34;org.example&#34;</span><span style="color:#080">
-</span><span style="color:#080"></span><span style="color:#080">#</span><span style="color:#080">define EXAMPLE_VERSION 		&#34;1.0.0&#34;</span><span style="color:#080">
-</span><span style="color:#080"></span><span style="color:#080">#</span><span style="color:#080">define EXAMPLE_CONSUMER_RANGE   &#34;[1.0.0,2.0.0)&#34;</span><span style="color:#080">
-</span><span style="color:#080"></span>
-
-<span style="color:#a2f;font-weight:bold">struct</span> example_struct {
-	<span style="color:#0b0;font-weight:bold">void</span> <span style="color:#666">*</span>handle;
-	<span style="color:#0b0;font-weight:bold">int</span> (<span style="color:#666">*</span>method)(<span style="color:#0b0;font-weight:bold">void</span> <span style="color:#666">*</span>handle, <span style="color:#0b0;font-weight:bold">int</span> arg1, <span style="color:#0b0;font-weight:bold">double</span> arg2, <span style="color:#0b0;font-weight:bold">double</span> <span style="color:#666">*</span>result);
-} ;
-
-<span style="color:#a2f;font-weight:bold">typedef</span> <span style="color:#a2f;font-weight:bold">struct</span> example_struct example_t;
-
-<span style="color:#080">#</span><span style="color:#080">ifdef __cplusplus</span><span style="color:#080">
-</span><span style="color:#080"></span>}
-<span style="color:#080">#</span><span style="color:#080">endif</span><span style="color:#080">
-</span><span style="color:#080"></span>
-<span style="color:#080">#</span><span style="color:#080">endif </span><span style="color:#080;font-style:italic">/* EXAMPLE_H_ */</span><span style="color:#080">
-</span></code></pre></div><p>For C service a struct containing the function pointers needs to be declared.
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C" data-lang="C"><span style="display:flex;"><span><span style="color:#080;font-style:italic">//example.h
+</span></span></span><span style="display:flex;"><span><span style="color:#080;font-style:italic"></span><span style="color:#080">#ifndef EXAMPLE_H_
+</span></span></span><span style="display:flex;"><span><span style="color:#080">#define EXAMPLE_H_
+</span></span></span><span style="display:flex;"><span><span style="color:#080"></span>
+</span></span><span style="display:flex;"><span><span style="color:#080">#ifdef __cplusplus
+</span></span></span><span style="display:flex;"><span><span style="color:#080"></span><span style="color:#a2f;font-weight:bold">extern</span> <span style="color:#b44">&#34;C&#34;</span> {
+</span></span><span style="display:flex;"><span><span style="color:#080">#endif
+</span></span></span><span style="display:flex;"><span><span style="color:#080"></span>
+</span></span><span style="display:flex;"><span><span style="color:#080">#define EXAMPLE_NAME 			&#34;org.example&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#080">#define EXAMPLE_VERSION 		&#34;1.0.0&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#080">#define EXAMPLE_CONSUMER_RANGE   &#34;[1.0.0,2.0.0)&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#080"></span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a2f;font-weight:bold">struct</span> example_struct {
+</span></span><span style="display:flex;"><span>	<span style="color:#0b0;font-weight:bold">void</span> <span style="color:#666">*</span>handle;
+</span></span><span style="display:flex;"><span>	<span style="color:#0b0;font-weight:bold">int</span> (<span style="color:#666">*</span>method)(<span style="color:#0b0;font-weight:bold">void</span> <span style="color:#666">*</span>handle, <span style="color:#0b0;font-weight:bold">int</span> arg1, <span style="color:#0b0;font-weight:bold">double</span> arg2, <span style="color:#0b0;font-weight:bold">double</span> <span style="color:#666">*</span>result);
+</span></span><span style="display:flex;"><span>} ;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a2f;font-weight:bold">typedef</span> <span style="color:#a2f;font-weight:bold">struct</span> example_struct <span style="color:#0b0;font-weight:bold">example_t</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#080">#ifdef __cplusplus
+</span></span></span><span style="display:flex;"><span><span style="color:#080"></span>}
+</span></span><span style="display:flex;"><span><span style="color:#080">#endif
+</span></span></span><span style="display:flex;"><span><span style="color:#080"></span>
+</span></span><span style="display:flex;"><span><span style="color:#080">#endif </span><span style="color:#080;font-style:italic">/* EXAMPLE_H_ */</span><span style="color:#080">
+</span></span></span></code></pre></div><p>For C service a struct containing the function pointers needs to be declared.
 The first element of the service struct should be a handle which can be used to store the service context, as convention we keep this pointer a void pointer to explicitly make it opaque.
 Note that also an opaque struct could be used (e.g a declared but not defined struct), but this can become problematic concerning components registering multiple services.
 In that case explicit cast are needed to prevent warning and this can be confusing for the To prevent that issues void pointers are preferred.</p>
@@ -267,367 +267,367 @@ The complete example can be found <a href="../../examples/services_example_cxx">
 <p>The <code>BarActivator</code> is the entry point for a C++ bundle. It must implement the <code>DmActivator::create</code> method so that C++ Dependency manager can create a instance <code>DmActivator</code> without needing to known the subclass.
 It should also override the <code>DmActivator::init</code> to be able to declaratively program components and their provided service and service dependencies.</p>
 <p>The C++ Dependency Manager can use C++ member function pointers to control the component lifecycle (<code>init</code>, <code>start</code>, <code>stop</code> and <code>deinit</code>)</p>
-<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-C++" data-lang="C++"><span style="color:#080;font-style:italic">//Bar.h
-</span><span style="color:#080;font-style:italic"></span><span style="color:#080">#</span><span style="color:#080">ifndef BAR_H</span><span style="color:#080">
-</span><span style="color:#080"></span><span style="color:#080">#</span><span style="color:#080">define BAR_H</span><span style="color:#080">
-</span><span style="color:#080"></span>
-<span style="color:#080">#</span><span style="color:#080">include</span> <span style="color:#080">&#34;IAnotherExample.h&#34;</span><span style="color:#080">
-</span><span style="color:#080"></span>
-<span style="color:#a2f;font-weight:bold">class</span> <span style="color:#00f">Bar</span> <span style="color:#666">:</span> <span style="color:#a2f;font-weight:bold">public</span> IAnotherExample {
-    <span style="color:#a2f;font-weight:bold">const</span> <span style="color:#0b0;font-weight:bold">double</span> seed <span style="color:#666">=</span> <span style="color:#666">42</span>;
-<span style="color:#a2f;font-weight:bold">public</span><span style="color:#666">:</span>
-    Bar() <span style="color:#666">=</span> <span style="color:#a2f;font-weight:bold">default</span>;
-    <span style="color:#a2f;font-weight:bold">virtual</span> <span style="color:#666">~</span>Bar() <span style="color:#666">=</span> <span style="color:#a2f;font-weight:bold">default</span>;
-
-    <span style="color:#0b0;font-weight:bold">void</span> <span style="color:#00a000">init</span>();
-    <span style="color:#0b0;font-weight:bold">void</span> <span style="color:#00a000">start</span>();
-    <span style="color:#0b0;font-weight:bold">void</span> <span style="color:#00a000">stop</span>();
-    <span style="color:#0b0;font-weight:bold">void</span> <span style="color:#00a000">deinit</span>();
-
-    <span style="color:#a2f;font-weight:bold">virtual</span> <span style="color:#0b0;font-weight:bold">double</span> <span style="color:#00a000">method</span>(<span style="color:#0b0;font-weight:bold">int</span> arg1, <span style="color:#0b0;font-weight:bold">double</span> arg2) <span style="color:#a2f;font-weight:bold">override</span>; <span style="color:#080;font-style:italic">//implementation of IAnotherExample::method
-</span><span style="color:#080;font-style:italic"></span>    <span style="color:#0b0;font-weight:bold">int</span> <span style="color:#00a000">cMethod</span>(<span style="color:#0b0;font-weight:bold">int</span> arg1, <span style="color:#0b0;font-weight:bold">double</span> arg2, <span style="color:#0b0;font-weight:bold">double</span> <span style="color:#666">*</span>out); <span style="color:#080;font-style:italic">//implementation of example_t-&gt;method;
-</span><span style="color:#080;font-style:italic"></span>};
-
-<span style="color:#080">#</span><span style="color:#080">endif </span><span style="color:#080;font-style:italic">//BAR_H
-</span></code></pre></div><div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-C++" data-lang="C++"><span style="color:#080;font-style:italic">//BarActivator.h
-</span><span style="color:#080;font-style:italic"></span><span style="color:#080">#</span><span style="color:#080">ifndef BAR_ACTIVATOR_H</span><span style="color:#080">
-</span><span style="color:#080"></span><span style="color:#080">#</span><span style="color:#080">define BAR_ACTIVATOR_H</span><span style="color:#080">
-</span><span style="color:#080"></span>
-<span style="color:#080">#</span><span style="color:#080">include</span> <span style="color:#080">&#34;celix/dm/DmActivator.h&#34;</span><span style="color:#080">
-</span><span style="color:#080"></span><span style="color:#080">#</span><span style="color:#080">include</span> <span style="color:#080">&#34;example.h&#34;</span><span style="color:#080">
-</span><span style="color:#080"></span>
-<span style="color:#a2f;font-weight:bold">using</span> <span style="color:#a2f;font-weight:bold">namespace</span> celix<span style="color:#666">:</span><span style="color:#666">:</span>dm;
-
-<span style="color:#a2f;font-weight:bold">class</span> <span style="color:#00f">BarActivator</span> <span style="color:#666">:</span> <span style="color:#a2f;font-weight:bold">public</span> DmActivator {
-<span style="color:#a2f;font-weight:bold">private</span><span style="color:#666">:</span>
-    example_t cExample {<span style="color:#a2f;font-weight:bold">nullptr</span>, <span style="color:#a2f;font-weight:bold">nullptr</span>};
-<span style="color:#a2f;font-weight:bold">public</span><span style="color:#666">:</span>
-    BarActivator(DependencyManager<span style="color:#666">&amp;</span> mng) <span style="color:#666">:</span> DmActivator(mng) {}
-    <span style="color:#a2f;font-weight:bold">virtual</span> <span style="color:#0b0;font-weight:bold">void</span> <span style="color:#00a000">init</span>() <span style="color:#a2f;font-weight:bold">override</span>;
-};
-
-<span style="color:#080">#</span><span style="color:#080">endif </span><span style="color:#080;font-style:italic">//BAR_ACTIVATOR_H
-</span></code></pre></div><div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-C++" data-lang="C++"><span style="color:#080;font-style:italic">//Bar.cc
-</span><span style="color:#080;font-style:italic"></span><span style="color:#080">#</span><span style="color:#080">include</span> <span style="color:#080">&#34;Bar.h&#34;</span><span style="color:#080">
-</span><span style="color:#080"></span><span style="color:#080">#</span><span style="color:#080">include</span> <span style="color:#080">&lt;iostream&gt;</span><span style="color:#080">
-</span><span style="color:#080"></span>
-<span style="color:#0b0;font-weight:bold">void</span> Bar<span style="color:#666">:</span><span style="color:#666">:</span>init() {
-    std<span style="color:#666">:</span><span style="color:#666">:</span>cout <span style="color:#666">&lt;</span><span style="color:#666">&lt;</span> <span style="color:#b44"></span><span style="color:#b44">&#34;</span><span style="color:#b44">init Bar</span><span style="color:#b62;font-weight:bold">\n</span><span style="color:#b44">&#34;</span>;
-}
-
-<span style="color:#0b0;font-weight:bold">void</span> Bar<span style="color:#666">:</span><span style="color:#666">:</span>start() {
-    std<span style="color:#666">:</span><span style="color:#666">:</span>cout <span style="color:#666">&lt;</span><span style="color:#666">&lt;</span> <span style="color:#b44"></span><span style="color:#b44">&#34;</span><span style="color:#b44">start Bar</span><span style="color:#b62;font-weight:bold">\n</span><span style="color:#b44">&#34;</span>;
-}
-
-<span style="color:#0b0;font-weight:bold">void</span> Bar<span style="color:#666">:</span><span style="color:#666">:</span>stop() {
-    std<span style="color:#666">:</span><span style="color:#666">:</span>cout <span style="color:#666">&lt;</span><span style="color:#666">&lt;</span> <span style="color:#b44"></span><span style="color:#b44">&#34;</span><span style="color:#b44">stop Bar</span><span style="color:#b62;font-weight:bold">\n</span><span style="color:#b44">&#34;</span>;
-}
-
-<span style="color:#0b0;font-weight:bold">void</span> Bar<span style="color:#666">:</span><span style="color:#666">:</span>deinit() {
-    std<span style="color:#666">:</span><span style="color:#666">:</span>cout <span style="color:#666">&lt;</span><span style="color:#666">&lt;</span> <span style="color:#b44"></span><span style="color:#b44">&#34;</span><span style="color:#b44">deinit Bar</span><span style="color:#b62;font-weight:bold">\n</span><span style="color:#b44">&#34;</span>;
-}
-
-<span style="color:#0b0;font-weight:bold">double</span> Bar<span style="color:#666">:</span><span style="color:#666">:</span>method(<span style="color:#0b0;font-weight:bold">int</span> arg1, <span style="color:#0b0;font-weight:bold">double</span> arg2) {
-    <span style="color:#0b0;font-weight:bold">double</span> update <span style="color:#666">=</span> (<span style="color:#a2f;font-weight:bold">this</span><span style="color:#666">-</span><span style="color:#666">&gt;</span>seed <span style="color:#666">+</span> arg1) <span style="color:#666">*</span> arg2;
-    <span style="color:#a2f;font-weight:bold">return</span> update;
-}
-
-<span style="color:#0b0;font-weight:bold">int</span> Bar<span style="color:#666">:</span><span style="color:#666">:</span>cMethod(<span style="color:#0b0;font-weight:bold">int</span> arg1, <span style="color:#0b0;font-weight:bold">double</span> arg2, <span style="color:#0b0;font-weight:bold">double</span> <span style="color:#666">*</span>out) {
-    <span style="color:#0b0;font-weight:bold">double</span> r <span style="color:#666">=</span> <span style="color:#a2f;font-weight:bold">this</span><span style="color:#666">-</span><span style="color:#666">&gt;</span>method(arg1, arg2);
-    <span style="color:#666">*</span>out <span style="color:#666">=</span> r;
-    <span style="color:#a2f;font-weight:bold">return</span> <span style="color:#666">0</span>;
-}
-</code></pre></div><div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-C++" data-lang="C++"><span style="color:#080;font-style:italic">//BarActivator.cc
-</span><span style="color:#080;font-style:italic"></span><span style="color:#080">#</span><span style="color:#080">include</span> <span style="color:#080">&#34;Bar.h&#34;</span><span style="color:#080">
-</span><span style="color:#080"></span><span style="color:#080">#</span><span style="color:#080">include</span> <span style="color:#080">&#34;BarActivator.h&#34;</span><span style="color:#080">
-</span><span style="color:#080"></span>
-<span style="color:#a2f;font-weight:bold">using</span> <span style="color:#a2f;font-weight:bold">namespace</span> celix<span style="color:#666">:</span><span style="color:#666">:</span>dm;
-
-DmActivator<span style="color:#666">*</span> DmActivator<span style="color:#666">:</span><span style="color:#666">:</span>create(DependencyManager<span style="color:#666">&amp;</span> mng) {
-    <span style="color:#a2f;font-weight:bold">return</span> <span style="color:#a2f;font-weight:bold">new</span> <span style="color:#00a000">BarActivator</span>(mng);
-}
-
-<span style="color:#0b0;font-weight:bold">void</span> BarActivator<span style="color:#666">:</span><span style="color:#666">:</span>init() {
-    std<span style="color:#666">:</span><span style="color:#666">:</span>shared_ptr<span style="color:#666">&lt;</span>Bar<span style="color:#666">&gt;</span> bar <span style="color:#666">=</span> std<span style="color:#666">:</span><span style="color:#666">:</span>shared_ptr<span style="color:#666">&lt;</span>Bar<span style="color:#666">&gt;</span>{<span style="color:#a2f;font-weight:bold">new</span> Bar{}};
-
-    Properties props;
-    props[<span style="color:#b44"></span><span style="color:#b44">&#34;</span><span style="color:#b44">meta.info.key</span><span style="color:#b44">&#34;</span>] <span style="color:#666">=</span> <span style="color:#b44"></span><span style="color:#b44">&#34;</span><span style="color:#b44">meta.info.value</span><span style="color:#b44">&#34;</span>;
-
-    Properties cProps;
-    cProps[<span style="color:#b44"></span><span style="color:#b44">&#34;</span><span style="color:#b44">also.meta.info.key</span><span style="color:#b44">&#34;</span>] <span style="color:#666">=</span> <span style="color:#b44"></span><span style="color:#b44">&#34;</span><span style="color:#b44">also.meta.info.value</span><span style="color:#b44">&#34;</span>;
-
-    <span style="color:#a2f;font-weight:bold">this</span><span style="color:#666">-</span><span style="color:#666">&gt;</span>cExample.handle <span style="color:#666">=</span> bar.get();
-    <span style="color:#a2f;font-weight:bold">this</span><span style="color:#666">-</span><span style="color:#666">&gt;</span>cExample.method <span style="color:#666">=</span> [](<span style="color:#0b0;font-weight:bold">void</span> <span style="color:#666">*</span>handle, <span style="color:#0b0;font-weight:bold">int</span> arg1, <span style="color:#0b0;font-weight:bold">double</span> arg2, <span style="color:#0b0;font-weight:bold">double</span> <span style="color:#666">*</span>out) {
-        Bar<span style="color:#666">*</span> bar <span style="color:#666">=</span> <span style="color:#a2f;font-weight:bold">static_cast</span><span style="color:#666">&lt;</span>Bar<span style="color:#666">*</span><span style="color:#666">&gt;</span>(handle);
-        <span style="color:#a2f;font-weight:bold">return</span> bar<span style="color:#666">-</span><span style="color:#666">&gt;</span>cMethod(arg1, arg2, out);
-    };
-
-    mng.createComponent(bar)  <span style="color:#080;font-style:italic">//using a pointer a instance. Also supported is lazy initialization (default constructor needed) or a rvalue reference (move)
-</span><span style="color:#080;font-style:italic"></span>        .addInterface<span style="color:#666">&lt;</span>IAnotherExample<span style="color:#666">&gt;</span>(IANOTHER_EXAMPLE_VERSION, props)
-        .addCInterface(<span style="color:#666">&amp;</span><span style="color:#a2f;font-weight:bold">this</span><span style="color:#666">-</span><span style="color:#666">&gt;</span>cExample, EXAMPLE_NAME, EXAMPLE_VERSION, cProps)
-        .setCallbacks(<span style="color:#666">&amp;</span>Bar<span style="color:#666">:</span><span style="color:#666">:</span>init, <span style="color:#666">&amp;</span>Bar<span style="color:#666">:</span><span style="color:#666">:</span>start, <span style="color:#666">&amp;</span>Bar<span style="color:#666">:</span><span style="color:#666">:</span>stop, <span style="color:#666">&amp;</span>Bar<span style="color:#666">:</span><span style="color:#666">:</span>deinit);
-}
-</code></pre></div><h3 id="foo-example">Foo Example</h3>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C++" data-lang="C++"><span style="display:flex;"><span><span style="color:#080;font-style:italic">//Bar.h
+</span></span></span><span style="display:flex;"><span><span style="color:#080;font-style:italic"></span><span style="color:#080">#ifndef BAR_H
+</span></span></span><span style="display:flex;"><span><span style="color:#080">#define BAR_H
+</span></span></span><span style="display:flex;"><span><span style="color:#080"></span>
+</span></span><span style="display:flex;"><span><span style="color:#080">#include</span> <span style="color:#080">&#34;IAnotherExample.h&#34;</span><span style="color:#080">
+</span></span></span><span style="display:flex;"><span><span style="color:#080"></span>
+</span></span><span style="display:flex;"><span><span style="color:#a2f;font-weight:bold">class</span> <span style="color:#00f">Bar</span> <span style="color:#666">:</span> <span style="color:#a2f;font-weight:bold">public</span> IAnotherExample {
+</span></span><span style="display:flex;"><span>    <span style="color:#a2f;font-weight:bold">const</span> <span style="color:#0b0;font-weight:bold">double</span> seed <span style="color:#666">=</span> <span style="color:#666">42</span>;
+</span></span><span style="display:flex;"><span><span style="color:#a2f;font-weight:bold">public</span><span style="color:#666">:</span>
+</span></span><span style="display:flex;"><span>    Bar() <span style="color:#666">=</span> <span style="color:#a2f;font-weight:bold">default</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#a2f;font-weight:bold">virtual</span> <span style="color:#666">~</span>Bar() <span style="color:#666">=</span> <span style="color:#a2f;font-weight:bold">default</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#0b0;font-weight:bold">void</span> <span style="color:#00a000">init</span>();
+</span></span><span style="display:flex;"><span>    <span style="color:#0b0;font-weight:bold">void</span> <span style="color:#00a000">start</span>();
+</span></span><span style="display:flex;"><span>    <span style="color:#0b0;font-weight:bold">void</span> <span style="color:#00a000">stop</span>();
+</span></span><span style="display:flex;"><span>    <span style="color:#0b0;font-weight:bold">void</span> <span style="color:#00a000">deinit</span>();
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a2f;font-weight:bold">virtual</span> <span style="color:#0b0;font-weight:bold">double</span> <span style="color:#00a000">method</span>(<span style="color:#0b0;font-weight:bold">int</span> arg1, <span style="color:#0b0;font-weight:bold">double</span> arg2) <span style="color:#a2f;font-weight:bold">override</span>; <span style="color:#080;font-style:italic">//implementation of IAnotherExample::method
+</span></span></span><span style="display:flex;"><span><span style="color:#080;font-style:italic"></span>    <span style="color:#0b0;font-weight:bold">int</span> <span style="color:#00a000">cMethod</span>(<span style="color:#0b0;font-weight:bold">int</span> arg1, <span style="color:#0b0;font-weight:bold">double</span> arg2, <span style="color:#0b0;font-weight:bold">double</span> <span style="color:#666">*</span>out); <span style="color:#080;font-style:italic">//implementation of example_t-&gt;method;
+</span></span></span><span style="display:flex;"><span><span style="color:#080;font-style:italic"></span>};
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#080">#endif </span><span style="color:#080;font-style:italic">//BAR_H
+</span></span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C++" data-lang="C++"><span style="display:flex;"><span><span style="color:#080;font-style:italic">//BarActivator.h
+</span></span></span><span style="display:flex;"><span><span style="color:#080;font-style:italic"></span><span style="color:#080">#ifndef BAR_ACTIVATOR_H
+</span></span></span><span style="display:flex;"><span><span style="color:#080">#define BAR_ACTIVATOR_H
+</span></span></span><span style="display:flex;"><span><span style="color:#080"></span>
+</span></span><span style="display:flex;"><span><span style="color:#080">#include</span> <span style="color:#080">&#34;celix/dm/DmActivator.h&#34;</span><span style="color:#080">
+</span></span></span><span style="display:flex;"><span><span style="color:#080">#include</span> <span style="color:#080">&#34;example.h&#34;</span><span style="color:#080">
+</span></span></span><span style="display:flex;"><span><span style="color:#080"></span>
+</span></span><span style="display:flex;"><span><span style="color:#a2f;font-weight:bold">using</span> <span style="color:#a2f;font-weight:bold">namespace</span> celix<span style="color:#666">::</span>dm;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a2f;font-weight:bold">class</span> <span style="color:#00f">BarActivator</span> <span style="color:#666">:</span> <span style="color:#a2f;font-weight:bold">public</span> DmActivator {
+</span></span><span style="display:flex;"><span><span style="color:#a2f;font-weight:bold">private</span><span style="color:#666">:</span>
+</span></span><span style="display:flex;"><span>    example_t cExample {<span style="color:#a2f;font-weight:bold">nullptr</span>, <span style="color:#a2f;font-weight:bold">nullptr</span>};
+</span></span><span style="display:flex;"><span><span style="color:#a2f;font-weight:bold">public</span><span style="color:#666">:</span>
+</span></span><span style="display:flex;"><span>    BarActivator(DependencyManager<span style="color:#666">&amp;</span> mng) <span style="color:#666">:</span> DmActivator(mng) {}
+</span></span><span style="display:flex;"><span>    <span style="color:#a2f;font-weight:bold">virtual</span> <span style="color:#0b0;font-weight:bold">void</span> <span style="color:#00a000">init</span>() <span style="color:#a2f;font-weight:bold">override</span>;
+</span></span><span style="display:flex;"><span>};
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#080">#endif </span><span style="color:#080;font-style:italic">//BAR_ACTIVATOR_H
+</span></span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C++" data-lang="C++"><span style="display:flex;"><span><span style="color:#080;font-style:italic">//Bar.cc
+</span></span></span><span style="display:flex;"><span><span style="color:#080;font-style:italic"></span><span style="color:#080">#include</span> <span style="color:#080">&#34;Bar.h&#34;</span><span style="color:#080">
+</span></span></span><span style="display:flex;"><span><span style="color:#080">#include</span> <span style="color:#080">&lt;iostream&gt;</span><span style="color:#080">
+</span></span></span><span style="display:flex;"><span><span style="color:#080"></span>
+</span></span><span style="display:flex;"><span><span style="color:#0b0;font-weight:bold">void</span> Bar<span style="color:#666">::</span>init() {
+</span></span><span style="display:flex;"><span>    std<span style="color:#666">::</span>cout <span style="color:#666">&lt;&lt;</span> <span style="color:#b44">&#34;init Bar</span><span style="color:#b62;font-weight:bold">\n</span><span style="color:#b44">&#34;</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#0b0;font-weight:bold">void</span> Bar<span style="color:#666">::</span>start() {
+</span></span><span style="display:flex;"><span>    std<span style="color:#666">::</span>cout <span style="color:#666">&lt;&lt;</span> <span style="color:#b44">&#34;start Bar</span><span style="color:#b62;font-weight:bold">\n</span><span style="color:#b44">&#34;</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#0b0;font-weight:bold">void</span> Bar<span style="color:#666">::</span>stop() {
+</span></span><span style="display:flex;"><span>    std<span style="color:#666">::</span>cout <span style="color:#666">&lt;&lt;</span> <span style="color:#b44">&#34;stop Bar</span><span style="color:#b62;font-weight:bold">\n</span><span style="color:#b44">&#34;</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#0b0;font-weight:bold">void</span> Bar<span style="color:#666">::</span>deinit() {
+</span></span><span style="display:flex;"><span>    std<span style="color:#666">::</span>cout <span style="color:#666">&lt;&lt;</span> <span style="color:#b44">&#34;deinit Bar</span><span style="color:#b62;font-weight:bold">\n</span><span style="color:#b44">&#34;</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#0b0;font-weight:bold">double</span> Bar<span style="color:#666">::</span>method(<span style="color:#0b0;font-weight:bold">int</span> arg1, <span style="color:#0b0;font-weight:bold">double</span> arg2) {
+</span></span><span style="display:flex;"><span>    <span style="color:#0b0;font-weight:bold">double</span> update <span style="color:#666">=</span> (<span style="color:#a2f;font-weight:bold">this</span><span style="color:#666">-&gt;</span>seed <span style="color:#666">+</span> arg1) <span style="color:#666">*</span> arg2;
+</span></span><span style="display:flex;"><span>    <span style="color:#a2f;font-weight:bold">return</span> update;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#0b0;font-weight:bold">int</span> Bar<span style="color:#666">::</span>cMethod(<span style="color:#0b0;font-weight:bold">int</span> arg1, <span style="color:#0b0;font-weight:bold">double</span> arg2, <span style="color:#0b0;font-weight:bold">double</span> <span style="color:#666">*</span>out) {
+</span></span><span style="display:flex;"><span>    <span style="color:#0b0;font-weight:bold">double</span> r <span style="color:#666">=</span> <span style="color:#a2f;font-weight:bold">this</span><span style="color:#666">-&gt;</span>method(arg1, arg2);
+</span></span><span style="display:flex;"><span>    <span style="color:#666">*</span>out <span style="color:#666">=</span> r;
+</span></span><span style="display:flex;"><span>    <span style="color:#a2f;font-weight:bold">return</span> <span style="color:#666">0</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C++" data-lang="C++"><span style="display:flex;"><span><span style="color:#080;font-style:italic">//BarActivator.cc
+</span></span></span><span style="display:flex;"><span><span style="color:#080;font-style:italic"></span><span style="color:#080">#include</span> <span style="color:#080">&#34;Bar.h&#34;</span><span style="color:#080">
+</span></span></span><span style="display:flex;"><span><span style="color:#080">#include</span> <span style="color:#080">&#34;BarActivator.h&#34;</span><span style="color:#080">
+</span></span></span><span style="display:flex;"><span><span style="color:#080"></span>
+</span></span><span style="display:flex;"><span><span style="color:#a2f;font-weight:bold">using</span> <span style="color:#a2f;font-weight:bold">namespace</span> celix<span style="color:#666">::</span>dm;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>DmActivator<span style="color:#666">*</span> DmActivator<span style="color:#666">::</span>create(DependencyManager<span style="color:#666">&amp;</span> mng) {
+</span></span><span style="display:flex;"><span>    <span style="color:#a2f;font-weight:bold">return</span> <span style="color:#a2f;font-weight:bold">new</span> <span style="color:#00a000">BarActivator</span>(mng);
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#0b0;font-weight:bold">void</span> BarActivator<span style="color:#666">::</span>init() {
+</span></span><span style="display:flex;"><span>    std<span style="color:#666">::</span>shared_ptr<span style="color:#666">&lt;</span>Bar<span style="color:#666">&gt;</span> bar <span style="color:#666">=</span> std<span style="color:#666">::</span>shared_ptr<span style="color:#666">&lt;</span>Bar<span style="color:#666">&gt;</span>{<span style="color:#a2f;font-weight:bold">new</span> Bar{}};
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    Properties props;
+</span></span><span style="display:flex;"><span>    props[<span style="color:#b44">&#34;meta.info.key&#34;</span>] <span style="color:#666">=</span> <span style="color:#b44">&#34;meta.info.value&#34;</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    Properties cProps;
+</span></span><span style="display:flex;"><span>    cProps[<span style="color:#b44">&#34;also.meta.info.key&#34;</span>] <span style="color:#666">=</span> <span style="color:#b44">&#34;also.meta.info.value&#34;</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a2f;font-weight:bold">this</span><span style="color:#666">-&gt;</span>cExample.handle <span style="color:#666">=</span> bar.get();
+</span></span><span style="display:flex;"><span>    <span style="color:#a2f;font-weight:bold">this</span><span style="color:#666">-&gt;</span>cExample.method <span style="color:#666">=</span> [](<span style="color:#0b0;font-weight:bold">void</span> <span style="color:#666">*</span>handle, <span style="color:#0b0;font-weight:bold">int</span> arg1, <span style="color:#0b0;font-weight:bold">double</span> arg2, <span style="color:#0b0;font-weight:bold">double</span> <span style="color:#666">*</span>out) {
+</span></span><span style="display:flex;"><span>        Bar<span style="color:#666">*</span> bar <span style="color:#666">=</span> <span style="color:#a2f;font-weight:bold">static_cast</span><span style="color:#666">&lt;</span>Bar<span style="color:#666">*&gt;</span>(handle);
+</span></span><span style="display:flex;"><span>        <span style="color:#a2f;font-weight:bold">return</span> bar<span style="color:#666">-&gt;</span>cMethod(arg1, arg2, out);
+</span></span><span style="display:flex;"><span>    };
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    mng.createComponent(bar)  <span style="color:#080;font-style:italic">//using a pointer a instance. Also supported is lazy initialization (default constructor needed) or a rvalue reference (move)
+</span></span></span><span style="display:flex;"><span><span style="color:#080;font-style:italic"></span>        .addInterface<span style="color:#666">&lt;</span>IAnotherExample<span style="color:#666">&gt;</span>(IANOTHER_EXAMPLE_VERSION, props)
+</span></span><span style="display:flex;"><span>        .addCInterface(<span style="color:#666">&amp;</span><span style="color:#a2f;font-weight:bold">this</span><span style="color:#666">-&gt;</span>cExample, EXAMPLE_NAME, EXAMPLE_VERSION, cProps)
+</span></span><span style="display:flex;"><span>        .setCallbacks(<span style="color:#666">&amp;</span>Bar<span style="color:#666">::</span>init, <span style="color:#666">&amp;</span>Bar<span style="color:#666">::</span>start, <span style="color:#666">&amp;</span>Bar<span style="color:#666">::</span>stop, <span style="color:#666">&amp;</span>Bar<span style="color:#666">::</span>deinit);
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h3 id="foo-example">Foo Example</h3>
 <p>The <code>Foo</code> example has a dependency to the C++ and C services provider by the <code>Bar</code> component. Note that it depends on the services and not directly on the Bar component.</p>
-<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-C++" data-lang="C++"><span style="color:#080;font-style:italic">//Foo.h
-</span><span style="color:#080;font-style:italic"></span><span style="color:#080">#</span><span style="color:#080">ifndef FOO_H</span><span style="color:#080">
-</span><span style="color:#080"></span><span style="color:#080">#</span><span style="color:#080">define FOO_H</span><span style="color:#080">
-</span><span style="color:#080"></span>
-<span style="color:#080">#</span><span style="color:#080">include</span> <span style="color:#080">&#34;example.h&#34;</span><span style="color:#080">
-</span><span style="color:#080"></span><span style="color:#080">#</span><span style="color:#080">include</span> <span style="color:#080">&#34;IAnotherExample.h&#34;</span><span style="color:#080">
-</span><span style="color:#080"></span><span style="color:#080">#</span><span style="color:#080">include</span> <span style="color:#080">&lt;thread&gt;</span><span style="color:#080">
-</span><span style="color:#080"></span>
-<span style="color:#a2f;font-weight:bold">class</span> <span style="color:#00f">Foo</span>  {
-    IAnotherExample<span style="color:#666">*</span> example {<span style="color:#a2f;font-weight:bold">nullptr</span>};
-    <span style="color:#a2f;font-weight:bold">const</span> example_t<span style="color:#666">*</span> cExample {<span style="color:#a2f;font-weight:bold">nullptr</span>};
-    std<span style="color:#666">:</span><span style="color:#666">:</span><span style="color:#a2f;font-weight:bold">thread</span> pollThread {};
-    <span style="color:#0b0;font-weight:bold">bool</span> running <span style="color:#666">=</span> <span style="color:#a2f">false</span>;
-<span style="color:#a2f;font-weight:bold">public</span><span style="color:#666">:</span>
-    Foo() <span style="color:#666">=</span> <span style="color:#a2f;font-weight:bold">default</span>;
-    <span style="color:#a2f;font-weight:bold">virtual</span> <span style="color:#666">~</span>Foo() <span style="color:#666">=</span> <span style="color:#a2f;font-weight:bold">default</span>;
-
-    <span style="color:#0b0;font-weight:bold">void</span> <span style="color:#00a000">start</span>();
-    <span style="color:#0b0;font-weight:bold">void</span> <span style="color:#00a000">stop</span>();
-
-    <span style="color:#0b0;font-weight:bold">void</span> <span style="color:#00a000">setAnotherExample</span>(IAnotherExample<span style="color:#666">*</span> e);
-    <span style="color:#0b0;font-weight:bold">void</span> <span style="color:#00a000">setExample</span>(<span style="color:#a2f;font-weight:bold">const</span> example_t<span style="color:#666">*</span> e);
-
-    <span style="color:#0b0;font-weight:bold">void</span> <span style="color:#00a000">poll</span>();
-};
-
-<span style="color:#080">#</span><span style="color:#080">endif </span><span style="color:#080;font-style:italic">//FOO_H
-</span></code></pre></div><div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-C++" data-lang="C++"><span style="color:#080;font-style:italic">//FooActivator.h
-</span><span style="color:#080;font-style:italic"></span><span style="color:#080">#</span><span style="color:#080">ifndef FOO_ACTIVATOR_H</span><span style="color:#080">
-</span><span style="color:#080"></span><span style="color:#080">#</span><span style="color:#080">define FOO_ACTIVATOR_H</span><span style="color:#080">
-</span><span style="color:#080"></span>
-<span style="color:#080">#</span><span style="color:#080">include</span> <span style="color:#080">&#34;celix/dm/DmActivator.h&#34;</span><span style="color:#080">
-</span><span style="color:#080"></span>
-<span style="color:#a2f;font-weight:bold">using</span> <span style="color:#a2f;font-weight:bold">namespace</span> celix<span style="color:#666">:</span><span style="color:#666">:</span>dm;
-
-<span style="color:#a2f;font-weight:bold">class</span> <span style="color:#00f">FooActivator</span> <span style="color:#666">:</span> <span style="color:#a2f;font-weight:bold">public</span> DmActivator {
-<span style="color:#a2f;font-weight:bold">private</span><span style="color:#666">:</span>
-<span style="color:#a2f;font-weight:bold">public</span><span style="color:#666">:</span>
-    FooActivator(DependencyManager<span style="color:#666">&amp;</span> mng) <span style="color:#666">:</span> DmActivator(mng) {}
-    <span style="color:#a2f;font-weight:bold">virtual</span> <span style="color:#0b0;font-weight:bold">void</span> <span style="color:#00a000">init</span>() <span style="color:#a2f;font-weight:bold">override</span>;
-};
-
-<span style="color:#080">#</span><span style="color:#080">endif </span><span style="color:#080;font-style:italic">//FOO_ACTIVATOR_H
-</span></code></pre></div><div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-C++" data-lang="C++"><span style="color:#080;font-style:italic">//Foo.cc
-</span><span style="color:#080;font-style:italic"></span><span style="color:#080">#</span><span style="color:#080">include</span> <span style="color:#080">&#34;Foo.h&#34;</span><span style="color:#080">
-</span><span style="color:#080"></span><span style="color:#080">#</span><span style="color:#080">include</span> <span style="color:#080">&lt;iostream&gt;</span><span style="color:#080">
-</span><span style="color:#080"></span>
-<span style="color:#0b0;font-weight:bold">void</span> Foo<span style="color:#666">:</span><span style="color:#666">:</span>start() {
-    std<span style="color:#666">:</span><span style="color:#666">:</span>cout <span style="color:#666">&lt;</span><span style="color:#666">&lt;</span> <span style="color:#b44"></span><span style="color:#b44">&#34;</span><span style="color:#b44">start Foo</span><span style="color:#b62;font-weight:bold">\n</span><span style="color:#b44">&#34;</span>;
-    <span style="color:#a2f;font-weight:bold">this</span><span style="color:#666">-</span><span style="color:#666">&gt;</span>running <span style="color:#666">=</span> <span style="color:#a2f">true</span>;
-    pollThread <span style="color:#666">=</span> std<span style="color:#666">:</span><span style="color:#666">:</span><span style="color:#a2f;font-weight:bold">thread</span> {<span style="color:#666">&amp;</span>Foo<span style="color:#666">:</span><span style="color:#666">:</span>poll, <span style="color:#a2f;font-weight:bold">this</span>};
-}
-
-<span style="color:#0b0;font-weight:bold">void</span> Foo<span style="color:#666">:</span><span style="color:#666">:</span>stop() {
-    std<span style="color:#666">:</span><span style="color:#666">:</span>cout <span style="color:#666">&lt;</span><span style="color:#666">&lt;</span> <span style="color:#b44"></span><span style="color:#b44">&#34;</span><span style="color:#b44">stop Foo</span><span style="color:#b62;font-weight:bold">\n</span><span style="color:#b44">&#34;</span>;
-    <span style="color:#a2f;font-weight:bold">this</span><span style="color:#666">-</span><span style="color:#666">&gt;</span>running <span style="color:#666">=</span> <span style="color:#a2f">false</span>;
-    <span style="color:#a2f;font-weight:bold">this</span><span style="color:#666">-</span><span style="color:#666">&gt;</span>pollThread.join();
-}
-
-<span style="color:#0b0;font-weight:bold">void</span> Foo<span style="color:#666">:</span><span style="color:#666">:</span>setAnotherExample(IAnotherExample <span style="color:#666">*</span>e) {
-    <span style="color:#a2f;font-weight:bold">this</span><span style="color:#666">-</span><span style="color:#666">&gt;</span>example <span style="color:#666">=</span> e;
-}
-
-<span style="color:#0b0;font-weight:bold">void</span> Foo<span style="color:#666">:</span><span style="color:#666">:</span>setExample(<span style="color:#a2f;font-weight:bold">const</span> example_t <span style="color:#666">*</span>e) {
-    <span style="color:#a2f;font-weight:bold">this</span><span style="color:#666">-</span><span style="color:#666">&gt;</span>cExample <span style="color:#666">=</span> e;
-}
-
-<span style="color:#0b0;font-weight:bold">void</span> Foo<span style="color:#666">:</span><span style="color:#666">:</span>poll() {
-    <span style="color:#0b0;font-weight:bold">double</span> r1 <span style="color:#666">=</span> <span style="color:#666">1.0</span>;
-    <span style="color:#0b0;font-weight:bold">double</span> r2 <span style="color:#666">=</span> <span style="color:#666">1.0</span>;
-    <span style="color:#a2f;font-weight:bold">while</span> (<span style="color:#a2f;font-weight:bold">this</span><span style="color:#666">-</span><span style="color:#666">&gt;</span>running) {
-        <span style="color:#080;font-style:italic">//c++ service required -&gt; if component started always available
-</span><span style="color:#080;font-style:italic"></span>        r1 <span style="color:#666">=</span> <span style="color:#a2f;font-weight:bold">this</span><span style="color:#666">-</span><span style="color:#666">&gt;</span>example<span style="color:#666">-</span><span style="color:#666">&gt;</span>method(<span style="color:#666">3</span>, r1);
-        std<span style="color:#666">:</span><span style="color:#666">:</span>cout <span style="color:#666">&lt;</span><span style="color:#666">&lt;</span> <span style="color:#b44"></span><span style="color:#b44">&#34;</span><span style="color:#b44">Result IAnotherExample is </span><span style="color:#b44">&#34;</span> <span style="color:#666">&lt;</span><span style="color:#666">&lt;</span> r1 <span style="color:#666">&lt;</span><span style="color:#666">&lt;</span> <span style="color:#b44"></span><span style="color:#b44">&#34;</span><span style="color:#b62;font-weight:bold">\n</span><span style="color:#b44">&#34;</span>;
-
-        <span style="color:#080;font-style:italic">//c service is optional, can be nullptr
-</span><span style="color:#080;font-style:italic"></span>        <span style="color:#a2f;font-weight:bold">if</span> (<span style="color:#a2f;font-weight:bold">this</span><span style="color:#666">-</span><span style="color:#666">&gt;</span>cExample <span style="color:#666">!</span><span style="color:#666">=</span> <span style="color:#a2f;font-weight:bold">nullptr</span>) {
-            <span style="color:#0b0;font-weight:bold">double</span> out;
-            <span style="color:#a2f;font-weight:bold">this</span><span style="color:#666">-</span><span style="color:#666">&gt;</span>cExample<span style="color:#666">-</span><span style="color:#666">&gt;</span>method(<span style="color:#a2f;font-weight:bold">this</span><span style="color:#666">-</span><span style="color:#666">&gt;</span>cExample<span style="color:#666">-</span><span style="color:#666">&gt;</span>handle, <span style="color:#666">4</span>, r2, <span style="color:#666">&amp;</span>out);
-            r2 <span style="color:#666">=</span> out;
-            std<span style="color:#666">:</span><span style="color:#666">:</span>cout <span style="color:#666">&lt;</span><span style="color:#666">&lt;</span> <span style="color:#b44"></span><span style="color:#b44">&#34;</span><span style="color:#b44">Result example_t is </span><span style="color:#b44">&#34;</span> <span style="color:#666">&lt;</span><span style="color:#666">&lt;</span> r2 <span style="color:#666">&lt;</span><span style="color:#666">&lt;</span> <span style="color:#b44"></span><span style="color:#b44">&#34;</span><span style="color:#b62;font-weight:bold">\n</span><span style="color:#b44">&#34;</span>;
-        }
-        std<span style="color:#666">:</span><span style="color:#666">:</span>this_thread<span style="color:#666">:</span><span style="color:#666">:</span>sleep_for(std<span style="color:#666">:</span><span style="color:#666">:</span>chrono<span style="color:#666">:</span><span style="color:#666">:</span>milliseconds(<span style="color:#666">5000</span>));
-    }
-}
-</code></pre></div><div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-C++" data-lang="C++"><span style="color:#080;font-style:italic">//FooActivator.cc
-</span><span style="color:#080;font-style:italic"></span><span style="color:#080">#</span><span style="color:#080">include</span> <span style="color:#080">&#34;Foo.h&#34;</span><span style="color:#080">
-</span><span style="color:#080"></span><span style="color:#080">#</span><span style="color:#080">include</span> <span style="color:#080">&#34;FooActivator.h&#34;</span><span style="color:#080">
-</span><span style="color:#080"></span>
-<span style="color:#a2f;font-weight:bold">using</span> <span style="color:#a2f;font-weight:bold">namespace</span> celix<span style="color:#666">:</span><span style="color:#666">:</span>dm;
-
-DmActivator<span style="color:#666">*</span> DmActivator<span style="color:#666">:</span><span style="color:#666">:</span>create(DependencyManager<span style="color:#666">&amp;</span> mng) {
-    <span style="color:#a2f;font-weight:bold">return</span> <span style="color:#a2f;font-weight:bold">new</span> <span style="color:#00a000">FooActivator</span>(mng);
-}
-
-<span style="color:#0b0;font-weight:bold">void</span> FooActivator<span style="color:#666">:</span><span style="color:#666">:</span>init() {
-
-    Component<span style="color:#666">&lt;</span>Foo<span style="color:#666">&gt;</span><span style="color:#666">&amp;</span> cmp <span style="color:#666">=</span> mng.createComponent<span style="color:#666">&lt;</span>Foo<span style="color:#666">&gt;</span>()
-        .setCallbacks(<span style="color:#a2f;font-weight:bold">nullptr</span>, <span style="color:#666">&amp;</span>Foo<span style="color:#666">:</span><span style="color:#666">:</span>start, <span style="color:#666">&amp;</span>Foo<span style="color:#666">:</span><span style="color:#666">:</span>stop, <span style="color:#a2f;font-weight:bold">nullptr</span>);
-
-    cmp.createServiceDependency<span style="color:#666">&lt;</span>IAnotherExample<span style="color:#666">&gt;</span>()
-            .setRequired(<span style="color:#a2f">true</span>)
-            .setVersionRange(IANOTHER_EXAMPLE_CONSUMER_RANGE)
-            .setCallbacks(<span style="color:#666">&amp;</span>Foo<span style="color:#666">:</span><span style="color:#666">:</span>setAnotherExample);
-
-    cmp.createCServiceDependency<span style="color:#666">&lt;</span>example_t<span style="color:#666">&gt;</span>(EXAMPLE_NAME)
-            .setRequired(<span style="color:#a2f">false</span>)
-            .setVersionRange(EXAMPLE_CONSUMER_RANGE)
-            .setCallbacks(<span style="color:#666">&amp;</span>Foo<span style="color:#666">:</span><span style="color:#666">:</span>setExample);
-}
-</code></pre></div><h3 id="baz-example">Baz Example</h3>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C++" data-lang="C++"><span style="display:flex;"><span><span style="color:#080;font-style:italic">//Foo.h
+</span></span></span><span style="display:flex;"><span><span style="color:#080;font-style:italic"></span><span style="color:#080">#ifndef FOO_H
+</span></span></span><span style="display:flex;"><span><span style="color:#080">#define FOO_H
+</span></span></span><span style="display:flex;"><span><span style="color:#080"></span>
+</span></span><span style="display:flex;"><span><span style="color:#080">#include</span> <span style="color:#080">&#34;example.h&#34;</span><span style="color:#080">
+</span></span></span><span style="display:flex;"><span><span style="color:#080">#include</span> <span style="color:#080">&#34;IAnotherExample.h&#34;</span><span style="color:#080">
+</span></span></span><span style="display:flex;"><span><span style="color:#080">#include</span> <span style="color:#080">&lt;thread&gt;</span><span style="color:#080">
+</span></span></span><span style="display:flex;"><span><span style="color:#080"></span>
+</span></span><span style="display:flex;"><span><span style="color:#a2f;font-weight:bold">class</span> <span style="color:#00f">Foo</span>  {
+</span></span><span style="display:flex;"><span>    IAnotherExample<span style="color:#666">*</span> example {<span style="color:#a2f;font-weight:bold">nullptr</span>};
+</span></span><span style="display:flex;"><span>    <span style="color:#a2f;font-weight:bold">const</span> example_t<span style="color:#666">*</span> cExample {<span style="color:#a2f;font-weight:bold">nullptr</span>};
+</span></span><span style="display:flex;"><span>    std<span style="color:#666">::</span><span style="color:#a2f;font-weight:bold">thread</span> pollThread {};
+</span></span><span style="display:flex;"><span>    <span style="color:#0b0;font-weight:bold">bool</span> running <span style="color:#666">=</span> <span style="color:#a2f">false</span>;
+</span></span><span style="display:flex;"><span><span style="color:#a2f;font-weight:bold">public</span><span style="color:#666">:</span>
+</span></span><span style="display:flex;"><span>    Foo() <span style="color:#666">=</span> <span style="color:#a2f;font-weight:bold">default</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#a2f;font-weight:bold">virtual</span> <span style="color:#666">~</span>Foo() <span style="color:#666">=</span> <span style="color:#a2f;font-weight:bold">default</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#0b0;font-weight:bold">void</span> <span style="color:#00a000">start</span>();
+</span></span><span style="display:flex;"><span>    <span style="color:#0b0;font-weight:bold">void</span> <span style="color:#00a000">stop</span>();
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#0b0;font-weight:bold">void</span> <span style="color:#00a000">setAnotherExample</span>(IAnotherExample<span style="color:#666">*</span> e);
+</span></span><span style="display:flex;"><span>    <span style="color:#0b0;font-weight:bold">void</span> <span style="color:#00a000">setExample</span>(<span style="color:#a2f;font-weight:bold">const</span> example_t<span style="color:#666">*</span> e);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#0b0;font-weight:bold">void</span> <span style="color:#00a000">poll</span>();
+</span></span><span style="display:flex;"><span>};
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#080">#endif </span><span style="color:#080;font-style:italic">//FOO_H
+</span></span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C++" data-lang="C++"><span style="display:flex;"><span><span style="color:#080;font-style:italic">//FooActivator.h
+</span></span></span><span style="display:flex;"><span><span style="color:#080;font-style:italic"></span><span style="color:#080">#ifndef FOO_ACTIVATOR_H
+</span></span></span><span style="display:flex;"><span><span style="color:#080">#define FOO_ACTIVATOR_H
+</span></span></span><span style="display:flex;"><span><span style="color:#080"></span>
+</span></span><span style="display:flex;"><span><span style="color:#080">#include</span> <span style="color:#080">&#34;celix/dm/DmActivator.h&#34;</span><span style="color:#080">
+</span></span></span><span style="display:flex;"><span><span style="color:#080"></span>
+</span></span><span style="display:flex;"><span><span style="color:#a2f;font-weight:bold">using</span> <span style="color:#a2f;font-weight:bold">namespace</span> celix<span style="color:#666">::</span>dm;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a2f;font-weight:bold">class</span> <span style="color:#00f">FooActivator</span> <span style="color:#666">:</span> <span style="color:#a2f;font-weight:bold">public</span> DmActivator {
+</span></span><span style="display:flex;"><span><span style="color:#a2f;font-weight:bold">private</span><span style="color:#666">:</span>
+</span></span><span style="display:flex;"><span><span style="color:#a2f;font-weight:bold">public</span><span style="color:#666">:</span>
+</span></span><span style="display:flex;"><span>    FooActivator(DependencyManager<span style="color:#666">&amp;</span> mng) <span style="color:#666">:</span> DmActivator(mng) {}
+</span></span><span style="display:flex;"><span>    <span style="color:#a2f;font-weight:bold">virtual</span> <span style="color:#0b0;font-weight:bold">void</span> <span style="color:#00a000">init</span>() <span style="color:#a2f;font-weight:bold">override</span>;
+</span></span><span style="display:flex;"><span>};
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#080">#endif </span><span style="color:#080;font-style:italic">//FOO_ACTIVATOR_H
+</span></span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C++" data-lang="C++"><span style="display:flex;"><span><span style="color:#080;font-style:italic">//Foo.cc
+</span></span></span><span style="display:flex;"><span><span style="color:#080;font-style:italic"></span><span style="color:#080">#include</span> <span style="color:#080">&#34;Foo.h&#34;</span><span style="color:#080">
+</span></span></span><span style="display:flex;"><span><span style="color:#080">#include</span> <span style="color:#080">&lt;iostream&gt;</span><span style="color:#080">
+</span></span></span><span style="display:flex;"><span><span style="color:#080"></span>
+</span></span><span style="display:flex;"><span><span style="color:#0b0;font-weight:bold">void</span> Foo<span style="color:#666">::</span>start() {
+</span></span><span style="display:flex;"><span>    std<span style="color:#666">::</span>cout <span style="color:#666">&lt;&lt;</span> <span style="color:#b44">&#34;start Foo</span><span style="color:#b62;font-weight:bold">\n</span><span style="color:#b44">&#34;</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#a2f;font-weight:bold">this</span><span style="color:#666">-&gt;</span>running <span style="color:#666">=</span> <span style="color:#a2f">true</span>;
+</span></span><span style="display:flex;"><span>    pollThread <span style="color:#666">=</span> std<span style="color:#666">::</span><span style="color:#a2f;font-weight:bold">thread</span> {<span style="color:#666">&amp;</span>Foo<span style="color:#666">::</span>poll, <span style="color:#a2f;font-weight:bold">this</span>};
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#0b0;font-weight:bold">void</span> Foo<span style="color:#666">::</span>stop() {
+</span></span><span style="display:flex;"><span>    std<span style="color:#666">::</span>cout <span style="color:#666">&lt;&lt;</span> <span style="color:#b44">&#34;stop Foo</span><span style="color:#b62;font-weight:bold">\n</span><span style="color:#b44">&#34;</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#a2f;font-weight:bold">this</span><span style="color:#666">-&gt;</span>running <span style="color:#666">=</span> <span style="color:#a2f">false</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#a2f;font-weight:bold">this</span><span style="color:#666">-&gt;</span>pollThread.join();
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#0b0;font-weight:bold">void</span> Foo<span style="color:#666">::</span>setAnotherExample(IAnotherExample <span style="color:#666">*</span>e) {
+</span></span><span style="display:flex;"><span>    <span style="color:#a2f;font-weight:bold">this</span><span style="color:#666">-&gt;</span>example <span style="color:#666">=</span> e;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#0b0;font-weight:bold">void</span> Foo<span style="color:#666">::</span>setExample(<span style="color:#a2f;font-weight:bold">const</span> example_t <span style="color:#666">*</span>e) {
+</span></span><span style="display:flex;"><span>    <span style="color:#a2f;font-weight:bold">this</span><span style="color:#666">-&gt;</span>cExample <span style="color:#666">=</span> e;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#0b0;font-weight:bold">void</span> Foo<span style="color:#666">::</span>poll() {
+</span></span><span style="display:flex;"><span>    <span style="color:#0b0;font-weight:bold">double</span> r1 <span style="color:#666">=</span> <span style="color:#666">1.0</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#0b0;font-weight:bold">double</span> r2 <span style="color:#666">=</span> <span style="color:#666">1.0</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#a2f;font-weight:bold">while</span> (<span style="color:#a2f;font-weight:bold">this</span><span style="color:#666">-&gt;</span>running) {
+</span></span><span style="display:flex;"><span>        <span style="color:#080;font-style:italic">//c++ service required -&gt; if component started always available
+</span></span></span><span style="display:flex;"><span><span style="color:#080;font-style:italic"></span>        r1 <span style="color:#666">=</span> <span style="color:#a2f;font-weight:bold">this</span><span style="color:#666">-&gt;</span>example<span style="color:#666">-&gt;</span>method(<span style="color:#666">3</span>, r1);
+</span></span><span style="display:flex;"><span>        std<span style="color:#666">::</span>cout <span style="color:#666">&lt;&lt;</span> <span style="color:#b44">&#34;Result IAnotherExample is &#34;</span> <span style="color:#666">&lt;&lt;</span> r1 <span style="color:#666">&lt;&lt;</span> <span style="color:#b44">&#34;</span><span style="color:#b62;font-weight:bold">\n</span><span style="color:#b44">&#34;</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#080;font-style:italic">//c service is optional, can be nullptr
+</span></span></span><span style="display:flex;"><span><span style="color:#080;font-style:italic"></span>        <span style="color:#a2f;font-weight:bold">if</span> (<span style="color:#a2f;font-weight:bold">this</span><span style="color:#666">-&gt;</span>cExample <span style="color:#666">!=</span> <span style="color:#a2f;font-weight:bold">nullptr</span>) {
+</span></span><span style="display:flex;"><span>            <span style="color:#0b0;font-weight:bold">double</span> out;
+</span></span><span style="display:flex;"><span>            <span style="color:#a2f;font-weight:bold">this</span><span style="color:#666">-&gt;</span>cExample<span style="color:#666">-&gt;</span>method(<span style="color:#a2f;font-weight:bold">this</span><span style="color:#666">-&gt;</span>cExample<span style="color:#666">-&gt;</span>handle, <span style="color:#666">4</span>, r2, <span style="color:#666">&amp;</span>out);
+</span></span><span style="display:flex;"><span>            r2 <span style="color:#666">=</span> out;
+</span></span><span style="display:flex;"><span>            std<span style="color:#666">::</span>cout <span style="color:#666">&lt;&lt;</span> <span style="color:#b44">&#34;Result example_t is &#34;</span> <span style="color:#666">&lt;&lt;</span> r2 <span style="color:#666">&lt;&lt;</span> <span style="color:#b44">&#34;</span><span style="color:#b62;font-weight:bold">\n</span><span style="color:#b44">&#34;</span>;
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>        std<span style="color:#666">::</span>this_thread<span style="color:#666">::</span>sleep_for(std<span style="color:#666">::</span>chrono<span style="color:#666">::</span>milliseconds(<span style="color:#666">5000</span>));
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C++" data-lang="C++"><span style="display:flex;"><span><span style="color:#080;font-style:italic">//FooActivator.cc
+</span></span></span><span style="display:flex;"><span><span style="color:#080;font-style:italic"></span><span style="color:#080">#include</span> <span style="color:#080">&#34;Foo.h&#34;</span><span style="color:#080">
+</span></span></span><span style="display:flex;"><span><span style="color:#080">#include</span> <span style="color:#080">&#34;FooActivator.h&#34;</span><span style="color:#080">
+</span></span></span><span style="display:flex;"><span><span style="color:#080"></span>
+</span></span><span style="display:flex;"><span><span style="color:#a2f;font-weight:bold">using</span> <span style="color:#a2f;font-weight:bold">namespace</span> celix<span style="color:#666">::</span>dm;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>DmActivator<span style="color:#666">*</span> DmActivator<span style="color:#666">::</span>create(DependencyManager<span style="color:#666">&amp;</span> mng) {
+</span></span><span style="display:flex;"><span>    <span style="color:#a2f;font-weight:bold">return</span> <span style="color:#a2f;font-weight:bold">new</span> <span style="color:#00a000">FooActivator</span>(mng);
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#0b0;font-weight:bold">void</span> FooActivator<span style="color:#666">::</span>init() {
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    Component<span style="color:#666">&lt;</span>Foo<span style="color:#666">&gt;&amp;</span> cmp <span style="color:#666">=</span> mng.createComponent<span style="color:#666">&lt;</span>Foo<span style="color:#666">&gt;</span>()
+</span></span><span style="display:flex;"><span>        .setCallbacks(<span style="color:#a2f;font-weight:bold">nullptr</span>, <span style="color:#666">&amp;</span>Foo<span style="color:#666">::</span>start, <span style="color:#666">&amp;</span>Foo<span style="color:#666">::</span>stop, <span style="color:#a2f;font-weight:bold">nullptr</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    cmp.createServiceDependency<span style="color:#666">&lt;</span>IAnotherExample<span style="color:#666">&gt;</span>()
+</span></span><span style="display:flex;"><span>            .setRequired(<span style="color:#a2f">true</span>)
+</span></span><span style="display:flex;"><span>            .setVersionRange(IANOTHER_EXAMPLE_CONSUMER_RANGE)
+</span></span><span style="display:flex;"><span>            .setCallbacks(<span style="color:#666">&amp;</span>Foo<span style="color:#666">::</span>setAnotherExample);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    cmp.createCServiceDependency<span style="color:#666">&lt;</span>example_t<span style="color:#666">&gt;</span>(EXAMPLE_NAME)
+</span></span><span style="display:flex;"><span>            .setRequired(<span style="color:#a2f">false</span>)
+</span></span><span style="display:flex;"><span>            .setVersionRange(EXAMPLE_CONSUMER_RANGE)
+</span></span><span style="display:flex;"><span>            .setCallbacks(<span style="color:#666">&amp;</span>Foo<span style="color:#666">::</span>setExample);
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h3 id="baz-example">Baz Example</h3>
 <p>The <code>Baz</code> example has a dependency to the C++ and C services provider by the <code>Bar</code> component,
 but uses the add / remove callbacks instead of set and as result is able to depend on multiple instance of a declared service dependencies.</p>
-<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-C++" data-lang="C++"><span style="color:#080;font-style:italic">//Baz.h
-</span><span style="color:#080;font-style:italic"></span><span style="color:#080">#</span><span style="color:#080">ifndef BAZ_H</span><span style="color:#080">
-</span><span style="color:#080"></span><span style="color:#080">#</span><span style="color:#080">define BAZ_H</span><span style="color:#080">
-</span><span style="color:#080"></span>
-<span style="color:#080">#</span><span style="color:#080">include</span> <span style="color:#080">&#34;example.h&#34;</span><span style="color:#080">
-</span><span style="color:#080"></span><span style="color:#080">#</span><span style="color:#080">include</span> <span style="color:#080">&#34;IAnotherExample.h&#34;</span><span style="color:#080">
-</span><span style="color:#080"></span><span style="color:#080">#</span><span style="color:#080">include</span> <span style="color:#080">&lt;thread&gt;</span><span style="color:#080">
-</span><span style="color:#080"></span><span style="color:#080">#</span><span style="color:#080">include</span> <span style="color:#080">&lt;list&gt;</span><span style="color:#080">
-</span><span style="color:#080"></span><span style="color:#080">#</span><span style="color:#080">include</span> <span style="color:#080">&lt;mutex&gt;</span><span style="color:#080">
-</span><span style="color:#080"></span>
-<span style="color:#a2f;font-weight:bold">class</span> <span style="color:#00f">Baz</span>  {
-    std<span style="color:#666">:</span><span style="color:#666">:</span>list<span style="color:#666">&lt;</span>IAnotherExample<span style="color:#666">*</span><span style="color:#666">&gt;</span> examples {};
-    std<span style="color:#666">:</span><span style="color:#666">:</span>mutex lock_for_examples {};
-
-    std<span style="color:#666">:</span><span style="color:#666">:</span>list<span style="color:#666">&lt;</span><span style="color:#a2f;font-weight:bold">const</span> example_t<span style="color:#666">*</span><span style="color:#666">&gt;</span> cExamples {};
-    std<span style="color:#666">:</span><span style="color:#666">:</span>mutex lock_for_cExamples {};
-
-    std<span style="color:#666">:</span><span style="color:#666">:</span><span style="color:#a2f;font-weight:bold">thread</span> pollThread {};
-    <span style="color:#0b0;font-weight:bold">bool</span> running <span style="color:#666">=</span> <span style="color:#a2f">false</span>;
-<span style="color:#a2f;font-weight:bold">public</span><span style="color:#666">:</span>
-    Baz() <span style="color:#666">=</span> <span style="color:#a2f;font-weight:bold">default</span>;
-    <span style="color:#a2f;font-weight:bold">virtual</span> <span style="color:#666">~</span>Baz() <span style="color:#666">=</span> <span style="color:#a2f;font-weight:bold">default</span>;
-
-    <span style="color:#0b0;font-weight:bold">void</span> <span style="color:#00a000">start</span>();
-    <span style="color:#0b0;font-weight:bold">void</span> <span style="color:#00a000">stop</span>();
-
-    <span style="color:#0b0;font-weight:bold">void</span> <span style="color:#00a000">addAnotherExample</span>(IAnotherExample<span style="color:#666">*</span> e);
-    <span style="color:#0b0;font-weight:bold">void</span> <span style="color:#00a000">removeAnotherExample</span>(IAnotherExample<span style="color:#666">*</span> e);
-
-    <span style="color:#0b0;font-weight:bold">void</span> <span style="color:#00a000">addExample</span>(<span style="color:#a2f;font-weight:bold">const</span> example_t<span style="color:#666">*</span> e);
-    <span style="color:#0b0;font-weight:bold">void</span> <span style="color:#00a000">removeExample</span>(<span style="color:#a2f;font-weight:bold">const</span> example_t<span style="color:#666">*</span> e);
-
-    <span style="color:#0b0;font-weight:bold">void</span> <span style="color:#00a000">poll</span>();
-};
-
-<span style="color:#080">#</span><span style="color:#080">endif </span><span style="color:#080;font-style:italic">//BAZ_H
-</span></code></pre></div><div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-C++" data-lang="C++"><span style="color:#080;font-style:italic">//BazActivator.h
-</span><span style="color:#080;font-style:italic"></span><span style="color:#080">#</span><span style="color:#080">ifndef BAZ_ACTIVATOR_H</span><span style="color:#080">
-</span><span style="color:#080"></span><span style="color:#080">#</span><span style="color:#080">define BAZ_ACTIVATOR_H</span><span style="color:#080">
-</span><span style="color:#080"></span>
-<span style="color:#080">#</span><span style="color:#080">include</span> <span style="color:#080">&#34;celix/dm/DmActivator.h&#34;</span><span style="color:#080">
-</span><span style="color:#080"></span>
-<span style="color:#a2f;font-weight:bold">using</span> <span style="color:#a2f;font-weight:bold">namespace</span> celix<span style="color:#666">:</span><span style="color:#666">:</span>dm;
-
-<span style="color:#a2f;font-weight:bold">class</span> <span style="color:#00f">BazActivator</span> <span style="color:#666">:</span> <span style="color:#a2f;font-weight:bold">public</span> DmActivator {
-<span style="color:#a2f;font-weight:bold">private</span><span style="color:#666">:</span>
-<span style="color:#a2f;font-weight:bold">public</span><span style="color:#666">:</span>
-    BazActivator(DependencyManager<span style="color:#666">&amp;</span> mng) <span style="color:#666">:</span> DmActivator(mng) {}
-    <span style="color:#a2f;font-weight:bold">virtual</span> <span style="color:#0b0;font-weight:bold">void</span> <span style="color:#00a000">init</span>() <span style="color:#a2f;font-weight:bold">override</span>;
-};
-
-<span style="color:#080">#</span><span style="color:#080">endif </span><span style="color:#080;font-style:italic">//BAZ_ACTIVATOR_H
-</span></code></pre></div><div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-C++" data-lang="C++"><span style="color:#080;font-style:italic">//Baz.cc
-</span><span style="color:#080;font-style:italic"></span><span style="color:#080">#</span><span style="color:#080">include</span> <span style="color:#080">&#34;Baz.h&#34;</span><span style="color:#080">
-</span><span style="color:#080"></span><span style="color:#080">#</span><span style="color:#080">include</span> <span style="color:#080">&lt;iostream&gt;</span><span style="color:#080">
-</span><span style="color:#080"></span>
-<span style="color:#0b0;font-weight:bold">void</span> Baz<span style="color:#666">:</span><span style="color:#666">:</span>start() {
-    std<span style="color:#666">:</span><span style="color:#666">:</span>cout <span style="color:#666">&lt;</span><span style="color:#666">&lt;</span> <span style="color:#b44"></span><span style="color:#b44">&#34;</span><span style="color:#b44">start Baz</span><span style="color:#b62;font-weight:bold">\n</span><span style="color:#b44">&#34;</span>;
-    <span style="color:#a2f;font-weight:bold">this</span><span style="color:#666">-</span><span style="color:#666">&gt;</span>running <span style="color:#666">=</span> <span style="color:#a2f">true</span>;
-    pollThread <span style="color:#666">=</span> std<span style="color:#666">:</span><span style="color:#666">:</span><span style="color:#a2f;font-weight:bold">thread</span> {<span style="color:#666">&amp;</span>Baz<span style="color:#666">:</span><span style="color:#666">:</span>poll, <span style="color:#a2f;font-weight:bold">this</span>};
-}
-
-<span style="color:#0b0;font-weight:bold">void</span> Baz<span style="color:#666">:</span><span style="color:#666">:</span>stop() {
-    std<span style="color:#666">:</span><span style="color:#666">:</span>cout <span style="color:#666">&lt;</span><span style="color:#666">&lt;</span> <span style="color:#b44"></span><span style="color:#b44">&#34;</span><span style="color:#b44">stop Baz</span><span style="color:#b62;font-weight:bold">\n</span><span style="color:#b44">&#34;</span>;
-    <span style="color:#a2f;font-weight:bold">this</span><span style="color:#666">-</span><span style="color:#666">&gt;</span>running <span style="color:#666">=</span> <span style="color:#a2f">false</span>;
-    <span style="color:#a2f;font-weight:bold">this</span><span style="color:#666">-</span><span style="color:#666">&gt;</span>pollThread.join();
-}
-
-<span style="color:#0b0;font-weight:bold">void</span> Baz<span style="color:#666">:</span><span style="color:#666">:</span>addAnotherExample(IAnotherExample <span style="color:#666">*</span>e) {
-    std<span style="color:#666">:</span><span style="color:#666">:</span>lock_guard<span style="color:#666">&lt;</span>std<span style="color:#666">:</span><span style="color:#666">:</span>mutex<span style="color:#666">&gt;</span> lock(<span style="color:#a2f;font-weight:bold">this</span><span style="color:#666">-</span><span style="color:#666">&gt;</span>lock_for_examples);
-    <span style="color:#a2f;font-weight:bold">this</span><span style="color:#666">-</span><span style="color:#666">&gt;</span>examples.push_back(e);
-}
-
-<span style="color:#0b0;font-weight:bold">void</span> Baz<span style="color:#666">:</span><span style="color:#666">:</span>removeAnotherExample(IAnotherExample <span style="color:#666">*</span>e) {
-    std<span style="color:#666">:</span><span style="color:#666">:</span>lock_guard<span style="color:#666">&lt;</span>std<span style="color:#666">:</span><span style="color:#666">:</span>mutex<span style="color:#666">&gt;</span> lock(<span style="color:#a2f;font-weight:bold">this</span><span style="color:#666">-</span><span style="color:#666">&gt;</span>lock_for_examples);
-    <span style="color:#a2f;font-weight:bold">this</span><span style="color:#666">-</span><span style="color:#666">&gt;</span>examples.remove(e);
-}
-
-<span style="color:#0b0;font-weight:bold">void</span> Baz<span style="color:#666">:</span><span style="color:#666">:</span>addExample(<span style="color:#a2f;font-weight:bold">const</span> example_t <span style="color:#666">*</span>e) {
-    std<span style="color:#666">:</span><span style="color:#666">:</span>lock_guard<span style="color:#666">&lt;</span>std<span style="color:#666">:</span><span style="color:#666">:</span>mutex<span style="color:#666">&gt;</span> lock(<span style="color:#a2f;font-weight:bold">this</span><span style="color:#666">-</span><span style="color:#666">&gt;</span>lock_for_cExamples);
-    <span style="color:#a2f;font-weight:bold">this</span><span style="color:#666">-</span><span style="color:#666">&gt;</span>cExamples.push_back(e);
-}
-
-<span style="color:#0b0;font-weight:bold">void</span> Baz<span style="color:#666">:</span><span style="color:#666">:</span>removeExample(<span style="color:#a2f;font-weight:bold">const</span> example_t <span style="color:#666">*</span>e) {
-    std<span style="color:#666">:</span><span style="color:#666">:</span>lock_guard<span style="color:#666">&lt;</span>std<span style="color:#666">:</span><span style="color:#666">:</span>mutex<span style="color:#666">&gt;</span> lock(<span style="color:#a2f;font-weight:bold">this</span><span style="color:#666">-</span><span style="color:#666">&gt;</span>lock_for_cExamples);
-    <span style="color:#a2f;font-weight:bold">this</span><span style="color:#666">-</span><span style="color:#666">&gt;</span>cExamples.remove(e);
-}
-
-<span style="color:#0b0;font-weight:bold">void</span> Baz<span style="color:#666">:</span><span style="color:#666">:</span>poll() {
-    <span style="color:#0b0;font-weight:bold">double</span> r1 <span style="color:#666">=</span> <span style="color:#666">1.0</span>;
-    <span style="color:#0b0;font-weight:bold">double</span> r2 <span style="color:#666">=</span> <span style="color:#666">1.0</span>;
-    <span style="color:#a2f;font-weight:bold">while</span> (<span style="color:#a2f;font-weight:bold">this</span><span style="color:#666">-</span><span style="color:#666">&gt;</span>running) {
-        <span style="color:#080;font-style:italic">//c++ service required -&gt; if component started always available
-</span><span style="color:#080;font-style:italic"></span>
-        {
-            std<span style="color:#666">:</span><span style="color:#666">:</span>lock_guard<span style="color:#666">&lt;</span>std<span style="color:#666">:</span><span style="color:#666">:</span>mutex<span style="color:#666">&gt;</span> lock(<span style="color:#a2f;font-weight:bold">this</span><span style="color:#666">-</span><span style="color:#666">&gt;</span>lock_for_examples);
-            <span style="color:#0b0;font-weight:bold">int</span> index <span style="color:#666">=</span> <span style="color:#666">0</span>;
-            <span style="color:#a2f;font-weight:bold">for</span> (IAnotherExample <span style="color:#666">*</span><span style="color:#a0a000">e</span> : <span style="color:#a2f;font-weight:bold">this</span><span style="color:#666">-</span><span style="color:#666">&gt;</span>examples) {
-                r1 <span style="color:#666">=</span> e<span style="color:#666">-</span><span style="color:#666">&gt;</span>method(<span style="color:#666">3</span>, r1);
-                std<span style="color:#666">:</span><span style="color:#666">:</span>cout <span style="color:#666">&lt;</span><span style="color:#666">&lt;</span> <span style="color:#b44"></span><span style="color:#b44">&#34;</span><span style="color:#b44">Result IAnotherExample </span><span style="color:#b44">&#34;</span> <span style="color:#666">&lt;</span><span style="color:#666">&lt;</span> index<span style="color:#666">+</span><span style="color:#666">+</span> <span style="color:#666">&lt;</span><span style="color:#666">&lt;</span> <span style="color:#b44"></span><span style="color:#b44">&#34;</span><span style="color:#b44"> is </span><span style="color:#b44">&#34;</span> <span style="color:#666">&lt;</span><span style="color:#666">&lt;</span> r1 <span style="color:#666">&lt;</span><span style="color:#666">&lt;</span> <span style="color:#b44"></span><span style="color:#b44">&#34;</span><span style="color:#b62;font-weight:bold">\n</span><span style="color:#b44">&#34;</span>;
-            }
-        }
-
-
-        {
-            std<span style="color:#666">:</span><span style="color:#666">:</span>lock_guard<span style="color:#666">&lt;</span>std<span style="color:#666">:</span><span style="color:#666">:</span>mutex<span style="color:#666">&gt;</span> lock(<span style="color:#a2f;font-weight:bold">this</span><span style="color:#666">-</span><span style="color:#666">&gt;</span>lock_for_cExamples);
-            <span style="color:#0b0;font-weight:bold">int</span> index <span style="color:#666">=</span> <span style="color:#666">0</span>;
-            <span style="color:#a2f;font-weight:bold">for</span> (<span style="color:#a2f;font-weight:bold">const</span> example_t <span style="color:#666">*</span><span style="color:#a0a000">e</span> : <span style="color:#a2f;font-weight:bold">this</span><span style="color:#666">-</span><span style="color:#666">&gt;</span>cExamples) {
-                <span style="color:#0b0;font-weight:bold">double</span> out;
-                e<span style="color:#666">-</span><span style="color:#666">&gt;</span>method(e<span style="color:#666">-</span><span style="color:#666">&gt;</span>handle, <span style="color:#666">4</span>, r2, <span style="color:#666">&amp;</span>out);
-                r2 <span style="color:#666">=</span> out;
-                std<span style="color:#666">:</span><span style="color:#666">:</span>cout <span style="color:#666">&lt;</span><span style="color:#666">&lt;</span> <span style="color:#b44"></span><span style="color:#b44">&#34;</span><span style="color:#b44">Result example_t </span><span style="color:#b44">&#34;</span> <span style="color:#666">&lt;</span><span style="color:#666">&lt;</span> index<span style="color:#666">+</span><span style="color:#666">+</span> <span style="color:#666">&lt;</span><span style="color:#666">&lt;</span> <span style="color:#b44"></span><span style="color:#b44">&#34;</span><span style="color:#b44"> is </span><span style="color:#b44">&#34;</span> <span style="color:#666">&lt;</span><span style="color:#666">&lt;</span> r2 <span style="color:#666">&lt;</span><span style="color:#666">&lt;</span> <span style="color:#b44"></span><span style="color:#b44">&#34;</span><span style="color:#b62;font-weight:bold">\n</span><span style="color:#b44">&#34;</span>;
-            }
-        }
-
-        std<span style="color:#666">:</span><span style="color:#666">:</span>this_thread<span style="color:#666">:</span><span style="color:#666">:</span>sleep_for(std<span style="color:#666">:</span><span style="color:#666">:</span>chrono<span style="color:#666">:</span><span style="color:#666">:</span>milliseconds(<span style="color:#666">4000</span>));
-    }
-}
-</code></pre></div><div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-C++" data-lang="C++"><span style="color:#080;font-style:italic">//BazActivator.cc
-</span><span style="color:#080;font-style:italic"></span><span style="color:#080">#</span><span style="color:#080">include</span> <span style="color:#080">&#34;Baz.h&#34;</span><span style="color:#080">
-</span><span style="color:#080"></span><span style="color:#080">#</span><span style="color:#080">include</span> <span style="color:#080">&#34;BazActivator.h&#34;</span><span style="color:#080">
-</span><span style="color:#080"></span>
-<span style="color:#a2f;font-weight:bold">using</span> <span style="color:#a2f;font-weight:bold">namespace</span> celix<span style="color:#666">:</span><span style="color:#666">:</span>dm;
-
-DmActivator<span style="color:#666">*</span> DmActivator<span style="color:#666">:</span><span style="color:#666">:</span>create(DependencyManager<span style="color:#666">&amp;</span> mng) {
-    <span style="color:#a2f;font-weight:bold">return</span> <span style="color:#a2f;font-weight:bold">new</span> <span style="color:#00a000">BazActivator</span>(mng);
-}
-
-<span style="color:#0b0;font-weight:bold">void</span> BazActivator<span style="color:#666">:</span><span style="color:#666">:</span>init() {
-
-    Component<span style="color:#666">&lt;</span>Baz<span style="color:#666">&gt;</span><span style="color:#666">&amp;</span> cmp <span style="color:#666">=</span> mng.createComponent<span style="color:#666">&lt;</span>Baz<span style="color:#666">&gt;</span>()
-        .setCallbacks(<span style="color:#a2f;font-weight:bold">nullptr</span>, <span style="color:#666">&amp;</span>Baz<span style="color:#666">:</span><span style="color:#666">:</span>start, <span style="color:#666">&amp;</span>Baz<span style="color:#666">:</span><span style="color:#666">:</span>stop, <span style="color:#a2f;font-weight:bold">nullptr</span>);
-
-    cmp.createServiceDependency<span style="color:#666">&lt;</span>IAnotherExample<span style="color:#666">&gt;</span>()
-            .setRequired(<span style="color:#a2f">true</span>)
-            .setStrategy(DependencyUpdateStrategy<span style="color:#666">:</span><span style="color:#666">:</span>locking)
-            .setVersionRange(IANOTHER_EXAMPLE_CONSUMER_RANGE)
-            .setCallbacks(<span style="color:#666">&amp;</span>Baz<span style="color:#666">:</span><span style="color:#666">:</span>addAnotherExample, <span style="color:#666">&amp;</span>Baz<span style="color:#666">:</span><span style="color:#666">:</span>removeAnotherExample);
-
-    cmp.createCServiceDependency<span style="color:#666">&lt;</span>example_t<span style="color:#666">&gt;</span>(EXAMPLE_NAME)
-            .setRequired(<span style="color:#a2f">false</span>)
-            .setStrategy(DependencyUpdateStrategy<span style="color:#666">:</span><span style="color:#666">:</span>locking)
-            .setVersionRange(EXAMPLE_CONSUMER_RANGE)
-            .setCallbacks(<span style="color:#666">&amp;</span>Baz<span style="color:#666">:</span><span style="color:#666">:</span>addExample, <span style="color:#666">&amp;</span>Baz<span style="color:#666">:</span><span style="color:#666">:</span>removeExample);
-}
-</code></pre></div><h2 id="locking-and-suspending">Locking and Suspending</h2>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C++" data-lang="C++"><span style="display:flex;"><span><span style="color:#080;font-style:italic">//Baz.h
+</span></span></span><span style="display:flex;"><span><span style="color:#080;font-style:italic"></span><span style="color:#080">#ifndef BAZ_H
+</span></span></span><span style="display:flex;"><span><span style="color:#080">#define BAZ_H
+</span></span></span><span style="display:flex;"><span><span style="color:#080"></span>
+</span></span><span style="display:flex;"><span><span style="color:#080">#include</span> <span style="color:#080">&#34;example.h&#34;</span><span style="color:#080">
+</span></span></span><span style="display:flex;"><span><span style="color:#080">#include</span> <span style="color:#080">&#34;IAnotherExample.h&#34;</span><span style="color:#080">
+</span></span></span><span style="display:flex;"><span><span style="color:#080">#include</span> <span style="color:#080">&lt;thread&gt;</span><span style="color:#080">
+</span></span></span><span style="display:flex;"><span><span style="color:#080">#include</span> <span style="color:#080">&lt;list&gt;</span><span style="color:#080">
+</span></span></span><span style="display:flex;"><span><span style="color:#080">#include</span> <span style="color:#080">&lt;mutex&gt;</span><span style="color:#080">
+</span></span></span><span style="display:flex;"><span><span style="color:#080"></span>
+</span></span><span style="display:flex;"><span><span style="color:#a2f;font-weight:bold">class</span> <span style="color:#00f">Baz</span>  {
+</span></span><span style="display:flex;"><span>    std<span style="color:#666">::</span>list<span style="color:#666">&lt;</span>IAnotherExample<span style="color:#666">*&gt;</span> examples {};
+</span></span><span style="display:flex;"><span>    std<span style="color:#666">::</span>mutex lock_for_examples {};
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    std<span style="color:#666">::</span>list<span style="color:#666">&lt;</span><span style="color:#a2f;font-weight:bold">const</span> example_t<span style="color:#666">*&gt;</span> cExamples {};
+</span></span><span style="display:flex;"><span>    std<span style="color:#666">::</span>mutex lock_for_cExamples {};
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    std<span style="color:#666">::</span><span style="color:#a2f;font-weight:bold">thread</span> pollThread {};
+</span></span><span style="display:flex;"><span>    <span style="color:#0b0;font-weight:bold">bool</span> running <span style="color:#666">=</span> <span style="color:#a2f">false</span>;
+</span></span><span style="display:flex;"><span><span style="color:#a2f;font-weight:bold">public</span><span style="color:#666">:</span>
+</span></span><span style="display:flex;"><span>    Baz() <span style="color:#666">=</span> <span style="color:#a2f;font-weight:bold">default</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#a2f;font-weight:bold">virtual</span> <span style="color:#666">~</span>Baz() <span style="color:#666">=</span> <span style="color:#a2f;font-weight:bold">default</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#0b0;font-weight:bold">void</span> <span style="color:#00a000">start</span>();
+</span></span><span style="display:flex;"><span>    <span style="color:#0b0;font-weight:bold">void</span> <span style="color:#00a000">stop</span>();
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#0b0;font-weight:bold">void</span> <span style="color:#00a000">addAnotherExample</span>(IAnotherExample<span style="color:#666">*</span> e);
+</span></span><span style="display:flex;"><span>    <span style="color:#0b0;font-weight:bold">void</span> <span style="color:#00a000">removeAnotherExample</span>(IAnotherExample<span style="color:#666">*</span> e);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#0b0;font-weight:bold">void</span> <span style="color:#00a000">addExample</span>(<span style="color:#a2f;font-weight:bold">const</span> example_t<span style="color:#666">*</span> e);
+</span></span><span style="display:flex;"><span>    <span style="color:#0b0;font-weight:bold">void</span> <span style="color:#00a000">removeExample</span>(<span style="color:#a2f;font-weight:bold">const</span> example_t<span style="color:#666">*</span> e);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#0b0;font-weight:bold">void</span> <span style="color:#00a000">poll</span>();
+</span></span><span style="display:flex;"><span>};
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#080">#endif </span><span style="color:#080;font-style:italic">//BAZ_H
+</span></span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C++" data-lang="C++"><span style="display:flex;"><span><span style="color:#080;font-style:italic">//BazActivator.h
+</span></span></span><span style="display:flex;"><span><span style="color:#080;font-style:italic"></span><span style="color:#080">#ifndef BAZ_ACTIVATOR_H
+</span></span></span><span style="display:flex;"><span><span style="color:#080">#define BAZ_ACTIVATOR_H
+</span></span></span><span style="display:flex;"><span><span style="color:#080"></span>
+</span></span><span style="display:flex;"><span><span style="color:#080">#include</span> <span style="color:#080">&#34;celix/dm/DmActivator.h&#34;</span><span style="color:#080">
+</span></span></span><span style="display:flex;"><span><span style="color:#080"></span>
+</span></span><span style="display:flex;"><span><span style="color:#a2f;font-weight:bold">using</span> <span style="color:#a2f;font-weight:bold">namespace</span> celix<span style="color:#666">::</span>dm;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a2f;font-weight:bold">class</span> <span style="color:#00f">BazActivator</span> <span style="color:#666">:</span> <span style="color:#a2f;font-weight:bold">public</span> DmActivator {
+</span></span><span style="display:flex;"><span><span style="color:#a2f;font-weight:bold">private</span><span style="color:#666">:</span>
+</span></span><span style="display:flex;"><span><span style="color:#a2f;font-weight:bold">public</span><span style="color:#666">:</span>
+</span></span><span style="display:flex;"><span>    BazActivator(DependencyManager<span style="color:#666">&amp;</span> mng) <span style="color:#666">:</span> DmActivator(mng) {}
+</span></span><span style="display:flex;"><span>    <span style="color:#a2f;font-weight:bold">virtual</span> <span style="color:#0b0;font-weight:bold">void</span> <span style="color:#00a000">init</span>() <span style="color:#a2f;font-weight:bold">override</span>;
+</span></span><span style="display:flex;"><span>};
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#080">#endif </span><span style="color:#080;font-style:italic">//BAZ_ACTIVATOR_H
+</span></span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C++" data-lang="C++"><span style="display:flex;"><span><span style="color:#080;font-style:italic">//Baz.cc
+</span></span></span><span style="display:flex;"><span><span style="color:#080;font-style:italic"></span><span style="color:#080">#include</span> <span style="color:#080">&#34;Baz.h&#34;</span><span style="color:#080">
+</span></span></span><span style="display:flex;"><span><span style="color:#080">#include</span> <span style="color:#080">&lt;iostream&gt;</span><span style="color:#080">
+</span></span></span><span style="display:flex;"><span><span style="color:#080"></span>
+</span></span><span style="display:flex;"><span><span style="color:#0b0;font-weight:bold">void</span> Baz<span style="color:#666">::</span>start() {
+</span></span><span style="display:flex;"><span>    std<span style="color:#666">::</span>cout <span style="color:#666">&lt;&lt;</span> <span style="color:#b44">&#34;start Baz</span><span style="color:#b62;font-weight:bold">\n</span><span style="color:#b44">&#34;</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#a2f;font-weight:bold">this</span><span style="color:#666">-&gt;</span>running <span style="color:#666">=</span> <span style="color:#a2f">true</span>;
+</span></span><span style="display:flex;"><span>    pollThread <span style="color:#666">=</span> std<span style="color:#666">::</span><span style="color:#a2f;font-weight:bold">thread</span> {<span style="color:#666">&amp;</span>Baz<span style="color:#666">::</span>poll, <span style="color:#a2f;font-weight:bold">this</span>};
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#0b0;font-weight:bold">void</span> Baz<span style="color:#666">::</span>stop() {
+</span></span><span style="display:flex;"><span>    std<span style="color:#666">::</span>cout <span style="color:#666">&lt;&lt;</span> <span style="color:#b44">&#34;stop Baz</span><span style="color:#b62;font-weight:bold">\n</span><span style="color:#b44">&#34;</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#a2f;font-weight:bold">this</span><span style="color:#666">-&gt;</span>running <span style="color:#666">=</span> <span style="color:#a2f">false</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#a2f;font-weight:bold">this</span><span style="color:#666">-&gt;</span>pollThread.join();
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#0b0;font-weight:bold">void</span> Baz<span style="color:#666">::</span>addAnotherExample(IAnotherExample <span style="color:#666">*</span>e) {
+</span></span><span style="display:flex;"><span>    std<span style="color:#666">::</span>lock_guard<span style="color:#666">&lt;</span>std<span style="color:#666">::</span>mutex<span style="color:#666">&gt;</span> lock(<span style="color:#a2f;font-weight:bold">this</span><span style="color:#666">-&gt;</span>lock_for_examples);
+</span></span><span style="display:flex;"><span>    <span style="color:#a2f;font-weight:bold">this</span><span style="color:#666">-&gt;</span>examples.push_back(e);
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#0b0;font-weight:bold">void</span> Baz<span style="color:#666">::</span>removeAnotherExample(IAnotherExample <span style="color:#666">*</span>e) {
+</span></span><span style="display:flex;"><span>    std<span style="color:#666">::</span>lock_guard<span style="color:#666">&lt;</span>std<span style="color:#666">::</span>mutex<span style="color:#666">&gt;</span> lock(<span style="color:#a2f;font-weight:bold">this</span><span style="color:#666">-&gt;</span>lock_for_examples);
+</span></span><span style="display:flex;"><span>    <span style="color:#a2f;font-weight:bold">this</span><span style="color:#666">-&gt;</span>examples.remove(e);
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#0b0;font-weight:bold">void</span> Baz<span style="color:#666">::</span>addExample(<span style="color:#a2f;font-weight:bold">const</span> example_t <span style="color:#666">*</span>e) {
+</span></span><span style="display:flex;"><span>    std<span style="color:#666">::</span>lock_guard<span style="color:#666">&lt;</span>std<span style="color:#666">::</span>mutex<span style="color:#666">&gt;</span> lock(<span style="color:#a2f;font-weight:bold">this</span><span style="color:#666">-&gt;</span>lock_for_cExamples);
+</span></span><span style="display:flex;"><span>    <span style="color:#a2f;font-weight:bold">this</span><span style="color:#666">-&gt;</span>cExamples.push_back(e);
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#0b0;font-weight:bold">void</span> Baz<span style="color:#666">::</span>removeExample(<span style="color:#a2f;font-weight:bold">const</span> example_t <span style="color:#666">*</span>e) {
+</span></span><span style="display:flex;"><span>    std<span style="color:#666">::</span>lock_guard<span style="color:#666">&lt;</span>std<span style="color:#666">::</span>mutex<span style="color:#666">&gt;</span> lock(<span style="color:#a2f;font-weight:bold">this</span><span style="color:#666">-&gt;</span>lock_for_cExamples);
+</span></span><span style="display:flex;"><span>    <span style="color:#a2f;font-weight:bold">this</span><span style="color:#666">-&gt;</span>cExamples.remove(e);
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#0b0;font-weight:bold">void</span> Baz<span style="color:#666">::</span>poll() {
+</span></span><span style="display:flex;"><span>    <span style="color:#0b0;font-weight:bold">double</span> r1 <span style="color:#666">=</span> <span style="color:#666">1.0</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#0b0;font-weight:bold">double</span> r2 <span style="color:#666">=</span> <span style="color:#666">1.0</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#a2f;font-weight:bold">while</span> (<span style="color:#a2f;font-weight:bold">this</span><span style="color:#666">-&gt;</span>running) {
+</span></span><span style="display:flex;"><span>        <span style="color:#080;font-style:italic">//c++ service required -&gt; if component started always available
+</span></span></span><span style="display:flex;"><span><span style="color:#080;font-style:italic"></span>
+</span></span><span style="display:flex;"><span>        {
+</span></span><span style="display:flex;"><span>            std<span style="color:#666">::</span>lock_guard<span style="color:#666">&lt;</span>std<span style="color:#666">::</span>mutex<span style="color:#666">&gt;</span> lock(<span style="color:#a2f;font-weight:bold">this</span><span style="color:#666">-&gt;</span>lock_for_examples);
+</span></span><span style="display:flex;"><span>            <span style="color:#0b0;font-weight:bold">int</span> index <span style="color:#666">=</span> <span style="color:#666">0</span>;
+</span></span><span style="display:flex;"><span>            <span style="color:#a2f;font-weight:bold">for</span> (IAnotherExample <span style="color:#666">*</span><span style="color:#a0a000">e</span> : <span style="color:#a2f;font-weight:bold">this</span><span style="color:#666">-&gt;</span>examples) {
+</span></span><span style="display:flex;"><span>                r1 <span style="color:#666">=</span> e<span style="color:#666">-&gt;</span>method(<span style="color:#666">3</span>, r1);
+</span></span><span style="display:flex;"><span>                std<span style="color:#666">::</span>cout <span style="color:#666">&lt;&lt;</span> <span style="color:#b44">&#34;Result IAnotherExample &#34;</span> <span style="color:#666">&lt;&lt;</span> index<span style="color:#666">++</span> <span style="color:#666">&lt;&lt;</span> <span style="color:#b44">&#34; is &#34;</span> <span style="color:#666">&lt;&lt;</span> r1 <span style="color:#666">&lt;&lt;</span> <span style="color:#b44">&#34;</span><span style="color:#b62;font-weight:bold">\n</span><span style="color:#b44">&#34;</span>;
+</span></span><span style="display:flex;"><span>            }
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        {
+</span></span><span style="display:flex;"><span>            std<span style="color:#666">::</span>lock_guard<span style="color:#666">&lt;</span>std<span style="color:#666">::</span>mutex<span style="color:#666">&gt;</span> lock(<span style="color:#a2f;font-weight:bold">this</span><span style="color:#666">-&gt;</span>lock_for_cExamples);
+</span></span><span style="display:flex;"><span>            <span style="color:#0b0;font-weight:bold">int</span> index <span style="color:#666">=</span> <span style="color:#666">0</span>;
+</span></span><span style="display:flex;"><span>            <span style="color:#a2f;font-weight:bold">for</span> (<span style="color:#a2f;font-weight:bold">const</span> example_t <span style="color:#666">*</span><span style="color:#a0a000">e</span> : <span style="color:#a2f;font-weight:bold">this</span><span style="color:#666">-&gt;</span>cExamples) {
+</span></span><span style="display:flex;"><span>                <span style="color:#0b0;font-weight:bold">double</span> out;
+</span></span><span style="display:flex;"><span>                e<span style="color:#666">-&gt;</span>method(e<span style="color:#666">-&gt;</span>handle, <span style="color:#666">4</span>, r2, <span style="color:#666">&amp;</span>out);
+</span></span><span style="display:flex;"><span>                r2 <span style="color:#666">=</span> out;
+</span></span><span style="display:flex;"><span>                std<span style="color:#666">::</span>cout <span style="color:#666">&lt;&lt;</span> <span style="color:#b44">&#34;Result example_t &#34;</span> <span style="color:#666">&lt;&lt;</span> index<span style="color:#666">++</span> <span style="color:#666">&lt;&lt;</span> <span style="color:#b44">&#34; is &#34;</span> <span style="color:#666">&lt;&lt;</span> r2 <span style="color:#666">&lt;&lt;</span> <span style="color:#b44">&#34;</span><span style="color:#b62;font-weight:bold">\n</span><span style="color:#b44">&#34;</span>;
+</span></span><span style="display:flex;"><span>            }
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        std<span style="color:#666">::</span>this_thread<span style="color:#666">::</span>sleep_for(std<span style="color:#666">::</span>chrono<span style="color:#666">::</span>milliseconds(<span style="color:#666">4000</span>));
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C++" data-lang="C++"><span style="display:flex;"><span><span style="color:#080;font-style:italic">//BazActivator.cc
+</span></span></span><span style="display:flex;"><span><span style="color:#080;font-style:italic"></span><span style="color:#080">#include</span> <span style="color:#080">&#34;Baz.h&#34;</span><span style="color:#080">
+</span></span></span><span style="display:flex;"><span><span style="color:#080">#include</span> <span style="color:#080">&#34;BazActivator.h&#34;</span><span style="color:#080">
+</span></span></span><span style="display:flex;"><span><span style="color:#080"></span>
+</span></span><span style="display:flex;"><span><span style="color:#a2f;font-weight:bold">using</span> <span style="color:#a2f;font-weight:bold">namespace</span> celix<span style="color:#666">::</span>dm;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>DmActivator<span style="color:#666">*</span> DmActivator<span style="color:#666">::</span>create(DependencyManager<span style="color:#666">&amp;</span> mng) {
+</span></span><span style="display:flex;"><span>    <span style="color:#a2f;font-weight:bold">return</span> <span style="color:#a2f;font-weight:bold">new</span> <span style="color:#00a000">BazActivator</span>(mng);
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#0b0;font-weight:bold">void</span> BazActivator<span style="color:#666">::</span>init() {
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    Component<span style="color:#666">&lt;</span>Baz<span style="color:#666">&gt;&amp;</span> cmp <span style="color:#666">=</span> mng.createComponent<span style="color:#666">&lt;</span>Baz<span style="color:#666">&gt;</span>()
+</span></span><span style="display:flex;"><span>        .setCallbacks(<span style="color:#a2f;font-weight:bold">nullptr</span>, <span style="color:#666">&amp;</span>Baz<span style="color:#666">::</span>start, <span style="color:#666">&amp;</span>Baz<span style="color:#666">::</span>stop, <span style="color:#a2f;font-weight:bold">nullptr</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    cmp.createServiceDependency<span style="color:#666">&lt;</span>IAnotherExample<span style="color:#666">&gt;</span>()
+</span></span><span style="display:flex;"><span>            .setRequired(<span style="color:#a2f">true</span>)
+</span></span><span style="display:flex;"><span>            .setStrategy(DependencyUpdateStrategy<span style="color:#666">::</span>locking)
+</span></span><span style="display:flex;"><span>            .setVersionRange(IANOTHER_EXAMPLE_CONSUMER_RANGE)
+</span></span><span style="display:flex;"><span>            .setCallbacks(<span style="color:#666">&amp;</span>Baz<span style="color:#666">::</span>addAnotherExample, <span style="color:#666">&amp;</span>Baz<span style="color:#666">::</span>removeAnotherExample);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    cmp.createCServiceDependency<span style="color:#666">&lt;</span>example_t<span style="color:#666">&gt;</span>(EXAMPLE_NAME)
+</span></span><span style="display:flex;"><span>            .setRequired(<span style="color:#a2f">false</span>)
+</span></span><span style="display:flex;"><span>            .setStrategy(DependencyUpdateStrategy<span style="color:#666">::</span>locking)
+</span></span><span style="display:flex;"><span>            .setVersionRange(EXAMPLE_CONSUMER_RANGE)
+</span></span><span style="display:flex;"><span>            .setCallbacks(<span style="color:#666">&amp;</span>Baz<span style="color:#666">::</span>addExample, <span style="color:#666">&amp;</span>Baz<span style="color:#666">::</span>removeExample);
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h2 id="locking-and-suspending">Locking and Suspending</h2>
 <p>As you may notice, the Baz example uses locks.
 In principle, locking is necessary in order to ensure coherence in case service dependencies are removed/added/changed; on the other hands, locking increases latency and, when misused, can lead to poor performance.
 For this reason, the serviceDependency interface gives the possibility to choose between a locking and suspend (a non-locking) strategy through the serviceDependency_setStrategy function, as is used in the Foo2 example.</p>

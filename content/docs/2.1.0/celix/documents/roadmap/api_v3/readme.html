@@ -278,83 +278,82 @@ celix_moduleRegister call should be the same as the module name used
 in the CMake commnands.
 If no module name is set using the celix_module_name CMake command,
 the module name is equal to the name target.</p>
-<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-CMake" data-lang="CMake"><span style="">
-</span><span style=""></span><span style="color:#a2f">celix_module_name</span>(<span style="color:#b44">&lt;module_target&gt;</span> <span style="color:#b44">&lt;module_name&gt;</span>)<span style="">
-</span><span style=""></span><span style="">
-</span><span style=""></span><span style="color:#a2f">celix_module_files</span>(<span style="color:#b44">&lt;bundle_or_module_target&gt;</span>
-    <span style="color:#b44">files...</span> <span style="color:#b44">DESTINATION</span> <span style="color:#b44">&lt;dir&gt;</span>
-    <span style="color:#b44">[FILE_PERMISSIONS</span> <span style="color:#b44">permissions...]</span>
-    <span style="color:#b44">[DIRECTORY_PERMISSIONS</span> <span style="color:#b44">permissions...]</span>
-    <span style="color:#b44">[NO_SOURCE_PERMISSIONS]</span> <span style="color:#b44">[USE_SOURCE_PERMISSIONS]</span>
-    <span style="color:#b44">[FILES_MATCHING]</span>
-    <span style="color:#b44">[[PATTERN</span> <span style="color:#b44">&lt;pattern&gt;</span> <span style="color:#b44">|</span> <span style="color:#b44">REGEX</span> <span style="color:#b44">&lt;regex&gt;]</span>
-    <span style="color:#b44">[EXCLUDE]</span> <span style="color:#b44">[PERMISSIONS</span> <span style="color:#b44">permissions...]]</span> <span style="color:#b44">[...]</span>)<span style="">
-</span><span style=""></span><span style="">)</span><span style="">
-</span></code></pre></div><div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-C" data-lang="C"><span style="color:#080;font-style:italic">/**
-</span><span style="color:#080;font-style:italic"> * Registers the module for all current framework and future framework that are created.
-</span><span style="color:#080;font-style:italic"> * If no name is provided, the module will not be registered and an error will be logged.
-</span><span style="color:#080;font-style:italic"> *
-</span><span style="color:#080;font-style:italic"> * When initializing the module, the framework will look for a &lt;module_name&gt;_resourceEntry and
-</span><span style="color:#080;font-style:italic"> * &lt;module_name&gt;_resourceEntrySize symbol. If found, the content is assumed to be an embedded zip (or tar?) file.
-</span><span style="color:#080;font-style:italic"> * the celix_modules_files CMake command will ensure that these symbols are created and linked to the module library.
-</span><span style="color:#080;font-style:italic"> *
-</span><span style="color:#080;font-style:italic"> * @param moduleName The name of the module.
-</span><span style="color:#080;font-style:italic"> * @param moduleVersion Optional, the version of the module.
-</span><span style="color:#080;font-style:italic"> * @startFp Optional the start function which will be called if the module is going to be added and ready to start.
-</span><span style="color:#080;font-style:italic"> * @startFp Optional the stop function which will be called if the module going to be removed and ready to start.
-</span><span style="color:#080;font-style:italic"> * @opts Optional the additional options. The options will only be used during the registerModule call.
-</span><span style="color:#080;font-style:italic"> * @return 0 if successful
-</span><span style="color:#080;font-style:italic"> */</span>
-<span style="color:#0b0;font-weight:bold">int</span> <span style="color:#00a000">celix_moduleRegistration_registerModule</span>(
-        <span style="color:#a2f;font-weight:bold">const</span> <span style="color:#0b0;font-weight:bold">char</span><span style="color:#666">*</span> moduleName,
-        <span style="color:#a2f;font-weight:bold">const</span> <span style="color:#0b0;font-weight:bold">char</span><span style="color:#666">*</span> moduleVersion,
-        celix_module_registration_startModule_fp startFp,
-        celix_module_registration_stopModule_fp stopFp,
-        <span style="color:#a2f;font-weight:bold">const</span> celix_module_registration_options<span style="color:#666">*</span> opts);
-</code></pre></div><h3 id="bundles">Bundles</h3>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-CMake" data-lang="CMake"><span style="display:flex;"><span><span style="">
+</span></span></span><span style="display:flex;"><span><span style=""></span><span style="color:#a2f">celix_module_name</span>(<span style="color:#b44">&lt;module_target&gt;</span> <span style="color:#b44">&lt;module_name&gt;</span>)<span style="">
+</span></span></span><span style="display:flex;"><span><span style="">
+</span></span></span><span style="display:flex;"><span><span style=""></span><span style="color:#a2f">celix_module_files</span>(<span style="color:#b44">&lt;bundle_or_module_target&gt;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#b44">files...</span> <span style="color:#b44">DESTINATION</span> <span style="color:#b44">&lt;dir&gt;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#b44">[FILE_PERMISSIONS</span> <span style="color:#b44">permissions...]</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#b44">[DIRECTORY_PERMISSIONS</span> <span style="color:#b44">permissions...]</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#b44">[NO_SOURCE_PERMISSIONS]</span> <span style="color:#b44">[USE_SOURCE_PERMISSIONS]</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#b44">[FILES_MATCHING]</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#b44">[[PATTERN</span> <span style="color:#b44">&lt;pattern&gt;</span> <span style="color:#b44">|</span> <span style="color:#b44">REGEX</span> <span style="color:#b44">&lt;regex&gt;]</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#b44">[EXCLUDE]</span> <span style="color:#b44">[PERMISSIONS</span> <span style="color:#b44">permissions...]]</span> <span style="color:#b44">[...]</span>)<span style="">
+</span></span></span><span style="display:flex;"><span><span style="">)
+</span></span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C" data-lang="C"><span style="display:flex;"><span><span style="color:#080;font-style:italic">/**
+</span></span></span><span style="display:flex;"><span><span style="color:#080;font-style:italic"> * Registers the module for all current framework and future framework that are created.
+</span></span></span><span style="display:flex;"><span><span style="color:#080;font-style:italic"> * If no name is provided, the module will not be registered and an error will be logged.
+</span></span></span><span style="display:flex;"><span><span style="color:#080;font-style:italic"> *
+</span></span></span><span style="display:flex;"><span><span style="color:#080;font-style:italic"> * When initializing the module, the framework will look for a &lt;module_name&gt;_resourceEntry and
+</span></span></span><span style="display:flex;"><span><span style="color:#080;font-style:italic"> * &lt;module_name&gt;_resourceEntrySize symbol. If found, the content is assumed to be an embedded zip (or tar?) file.
+</span></span></span><span style="display:flex;"><span><span style="color:#080;font-style:italic"> * the celix_modules_files CMake command will ensure that these symbols are created and linked to the module library.
+</span></span></span><span style="display:flex;"><span><span style="color:#080;font-style:italic"> *
+</span></span></span><span style="display:flex;"><span><span style="color:#080;font-style:italic"> * @param moduleName The name of the module.
+</span></span></span><span style="display:flex;"><span><span style="color:#080;font-style:italic"> * @param moduleVersion Optional, the version of the module.
+</span></span></span><span style="display:flex;"><span><span style="color:#080;font-style:italic"> * @startFp Optional the start function which will be called if the module is going to be added and ready to start.
+</span></span></span><span style="display:flex;"><span><span style="color:#080;font-style:italic"> * @startFp Optional the stop function which will be called if the module going to be removed and ready to start.
+</span></span></span><span style="display:flex;"><span><span style="color:#080;font-style:italic"> * @opts Optional the additional options. The options will only be used during the registerModule call.
+</span></span></span><span style="display:flex;"><span><span style="color:#080;font-style:italic"> * @return 0 if successful
+</span></span></span><span style="display:flex;"><span><span style="color:#080;font-style:italic"> */</span>
+</span></span><span style="display:flex;"><span><span style="color:#0b0;font-weight:bold">int</span> <span style="color:#00a000">celix_moduleRegistration_registerModule</span>(
+</span></span><span style="display:flex;"><span>        <span style="color:#a2f;font-weight:bold">const</span> <span style="color:#0b0;font-weight:bold">char</span><span style="color:#666">*</span> moduleName,
+</span></span><span style="display:flex;"><span>        <span style="color:#a2f;font-weight:bold">const</span> <span style="color:#0b0;font-weight:bold">char</span><span style="color:#666">*</span> moduleVersion,
+</span></span><span style="display:flex;"><span>        celix_module_registration_startModule_fp startFp,
+</span></span><span style="display:flex;"><span>        celix_module_registration_stopModule_fp stopFp,
+</span></span><span style="display:flex;"><span>        <span style="color:#a2f;font-weight:bold">const</span> celix_module_registration_options<span style="color:#666">*</span> opts);
+</span></span></code></pre></div><h3 id="bundles">Bundles</h3>
 <p>Bundles are ZIP files which bundle one module.
 The CMake commands for add_bundle commands are not changed with exception of the
 added celix_ prefix. The other command are renamed to module and a celix_ is added
 (e.g bundle_name -&gt; celix_module_name)</p>
-<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-CMake" data-lang="CMake"><span style="color:#a2f">celix_add_bundle</span>(<span style="color:#b44">&lt;bundle_target_name&gt;</span>
-    <span style="color:#b44">SOURCES</span> <span style="color:#b44">source1</span> <span style="color:#b44">source2</span> <span style="color:#b44">...</span>
-    <span style="color:#b44">[NAME</span> <span style="color:#b44">bundle_name]</span>
-    <span style="color:#b44">[SYMBOLIC_NAME</span> <span style="color:#b44">bundle_symbolic_name]</span>
-    <span style="color:#b44">[DESCRIPTION</span> <span style="color:#b44">bundle_description]</span>
-    <span style="color:#b44">[VERSION</span> <span style="color:#b44">bundle_version]</span>
-    <span style="color:#b44">[PRIVATE_LIBRARIES</span> <span style="color:#b44">private_lib1</span> <span style="color:#b44">private_lib2</span> <span style="color:#b44">...]</span>
-    <span style="color:#b44">[EXPORT_LIBRARIES</span> <span style="color:#b44">export_lib1</span> <span style="color:#b44">export_lib2</span> <span style="color:#b44">...]</span>
-    <span style="color:#b44">[IMPORT_LIBRARIES</span> <span style="color:#b44">import_lib1</span> <span style="color:#b44">import_lib2</span> <span style="color:#b44">...]</span>
-    <span style="color:#b44">[HEADERS</span> <span style="color:#b44">&#34;header1: header1_value&#34;</span> <span style="color:#b44">&#34;header2: header2_value&#34;</span> <span style="color:#b44">...]</span>
-)<span style="">
-</span><span style=""></span><span style="">
-</span><span style=""></span><span style="color:#a2f">celix_add_bundle</span>(<span style="color:#b44">&lt;bundle_target_name&gt;</span>
-    <span style="color:#b44">ACTIVATOR</span> <span style="color:#b44">&lt;activator_lib&gt;</span>
-    <span style="color:#b44">[NAME</span> <span style="color:#b44">bundle_name]</span>
-    <span style="color:#b44">[SYMBOLIC_NAME</span> <span style="color:#b44">bundle_symbolic_name]</span>
-    <span style="color:#b44">[DESCRIPTION</span> <span style="color:#b44">bundle_description]</span>
-    <span style="color:#b44">[VERSION</span> <span style="color:#b44">bundle_version]</span>
-    <span style="color:#b44">[PRIVATE_LIBRARIES</span> <span style="color:#b44">private_lib1</span> <span style="color:#b44">private_lib2</span> <span style="color:#b44">...]</span>
-    <span style="color:#b44">[EXPORT_LIBRARIES</span> <span style="color:#b44">export_lib1</span> <span style="color:#b44">export_lib2</span> <span style="color:#b44">...]</span>
-    <span style="color:#b44">[IMPORT_LIBRARIES</span> <span style="color:#b44">import_lib1</span> <span style="color:#b44">import_lib2</span> <span style="color:#b44">...]</span>
-    <span style="color:#b44">[HEADERS</span> <span style="color:#b44">&#34;header1: header1_value&#34;</span> <span style="color:#b44">&#34;header2: header2_value&#34;</span> <span style="color:#b44">...]</span>
-)<span style="">
-</span><span style=""></span><span style="">
-</span><span style=""></span><span style="color:#a2f">celix_add_bundle</span>(<span style="color:#b44">&lt;bundle_target_name&gt;</span>
-    <span style="color:#b44">[NAME</span> <span style="color:#b44">bundle_name]</span>
-    <span style="color:#b44">[SYMBOLIC_NAME</span> <span style="color:#b44">bundle_symbolic_name]</span>
-    <span style="color:#b44">[DESCRIPTION</span> <span style="color:#b44">bundle_description]</span>
-    <span style="color:#b44">[VERSION</span> <span style="color:#b44">bundle_version]</span>
-    <span style="color:#b44">[PRIVATE_LIBRARIES</span> <span style="color:#b44">private_lib1</span> <span style="color:#b44">private_lib2</span> <span style="color:#b44">...]</span>
-    <span style="color:#b44">[EXPORT_LIBRARIES</span> <span style="color:#b44">export_lib1</span> <span style="color:#b44">export_lib2</span> <span style="color:#b44">...]</span>
-    <span style="color:#b44">[IMPORT_LIBRARIES</span> <span style="color:#b44">import_lib1</span> <span style="color:#b44">import_lib2</span> <span style="color:#b44">...]</span>
-    <span style="color:#b44">[HEADERS</span> <span style="color:#b44">&#34;header1: header1_value&#34;</span> <span style="color:#b44">&#34;header2: header2_value&#34;</span> <span style="color:#b44">...]</span>
-)<span style="">
-</span><span style=""></span><span style="">
-</span></code></pre></div><h3 id="descriptors">Descriptors</h3>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-CMake" data-lang="CMake"><span style="display:flex;"><span><span style="color:#a2f">celix_add_bundle</span>(<span style="color:#b44">&lt;bundle_target_name&gt;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#b44">SOURCES</span> <span style="color:#b44">source1</span> <span style="color:#b44">source2</span> <span style="color:#b44">...</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#b44">[NAME</span> <span style="color:#b44">bundle_name]</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#b44">[SYMBOLIC_NAME</span> <span style="color:#b44">bundle_symbolic_name]</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#b44">[DESCRIPTION</span> <span style="color:#b44">bundle_description]</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#b44">[VERSION</span> <span style="color:#b44">bundle_version]</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#b44">[PRIVATE_LIBRARIES</span> <span style="color:#b44">private_lib1</span> <span style="color:#b44">private_lib2</span> <span style="color:#b44">...]</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#b44">[EXPORT_LIBRARIES</span> <span style="color:#b44">export_lib1</span> <span style="color:#b44">export_lib2</span> <span style="color:#b44">...]</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#b44">[IMPORT_LIBRARIES</span> <span style="color:#b44">import_lib1</span> <span style="color:#b44">import_lib2</span> <span style="color:#b44">...]</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#b44">[HEADERS</span> <span style="color:#b44">&#34;header1: header1_value&#34;</span> <span style="color:#b44">&#34;header2: header2_value&#34;</span> <span style="color:#b44">...]</span>
+</span></span><span style="display:flex;"><span>)<span style="">
+</span></span></span><span style="display:flex;"><span><span style="">
+</span></span></span><span style="display:flex;"><span><span style=""></span><span style="color:#a2f">celix_add_bundle</span>(<span style="color:#b44">&lt;bundle_target_name&gt;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#b44">ACTIVATOR</span> <span style="color:#b44">&lt;activator_lib&gt;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#b44">[NAME</span> <span style="color:#b44">bundle_name]</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#b44">[SYMBOLIC_NAME</span> <span style="color:#b44">bundle_symbolic_name]</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#b44">[DESCRIPTION</span> <span style="color:#b44">bundle_description]</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#b44">[VERSION</span> <span style="color:#b44">bundle_version]</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#b44">[PRIVATE_LIBRARIES</span> <span style="color:#b44">private_lib1</span> <span style="color:#b44">private_lib2</span> <span style="color:#b44">...]</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#b44">[EXPORT_LIBRARIES</span> <span style="color:#b44">export_lib1</span> <span style="color:#b44">export_lib2</span> <span style="color:#b44">...]</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#b44">[IMPORT_LIBRARIES</span> <span style="color:#b44">import_lib1</span> <span style="color:#b44">import_lib2</span> <span style="color:#b44">...]</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#b44">[HEADERS</span> <span style="color:#b44">&#34;header1: header1_value&#34;</span> <span style="color:#b44">&#34;header2: header2_value&#34;</span> <span style="color:#b44">...]</span>
+</span></span><span style="display:flex;"><span>)<span style="">
+</span></span></span><span style="display:flex;"><span><span style="">
+</span></span></span><span style="display:flex;"><span><span style=""></span><span style="color:#a2f">celix_add_bundle</span>(<span style="color:#b44">&lt;bundle_target_name&gt;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#b44">[NAME</span> <span style="color:#b44">bundle_name]</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#b44">[SYMBOLIC_NAME</span> <span style="color:#b44">bundle_symbolic_name]</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#b44">[DESCRIPTION</span> <span style="color:#b44">bundle_description]</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#b44">[VERSION</span> <span style="color:#b44">bundle_version]</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#b44">[PRIVATE_LIBRARIES</span> <span style="color:#b44">private_lib1</span> <span style="color:#b44">private_lib2</span> <span style="color:#b44">...]</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#b44">[EXPORT_LIBRARIES</span> <span style="color:#b44">export_lib1</span> <span style="color:#b44">export_lib2</span> <span style="color:#b44">...]</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#b44">[IMPORT_LIBRARIES</span> <span style="color:#b44">import_lib1</span> <span style="color:#b44">import_lib2</span> <span style="color:#b44">...]</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#b44">[HEADERS</span> <span style="color:#b44">&#34;header1: header1_value&#34;</span> <span style="color:#b44">&#34;header2: header2_value&#34;</span> <span style="color:#b44">...]</span>
+</span></span><span style="display:flex;"><span>)<span style="">
+</span></span></span></code></pre></div><h3 id="descriptors">Descriptors</h3>
 <p>Descriptors are files which describe interfaces or messages which can be
 parsed by the dynamic function interface (dfi) library.
-The dfi library can be used for runtime &lsquo;type introspection&rsquo;.
+The dfi library can be used for runtime &rsquo;type introspection&rsquo;.
 The descriptor files are a bit cryptic for human eyes, but relatively easy to parse.</p>
 <p>With these descriptors the Celix framework can runtime compare if
 services and/or messages provider consumer combinations are compatible
@@ -365,23 +364,23 @@ resources (under META-INF/descriptors/interfaces and
 META-INF/descriptors/messages).</p>
 <p>The Celix project will have a <code>dfi-gen</code> target which will be used to
 generate the descriptors from the header files.</p>
-<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-CMake" data-lang="CMake"><span style="">
-</span><span style=""></span><span style="color:#a2f">celix_module_descriptor</span>(<span style="color:#b44">&lt;bundle_or_module_target&gt;</span>
-    <span style="color:#b44">header_file1</span> <span style="color:#b44">header_file2</span> <span style="color:#b44">...</span>
-)<span style="">
-</span></code></pre></div><h3 id="deployment">Deployment</h3>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-CMake" data-lang="CMake"><span style="display:flex;"><span><span style="">
+</span></span></span><span style="display:flex;"><span><span style=""></span><span style="color:#a2f">celix_module_descriptor</span>(<span style="color:#b44">&lt;bundle_or_module_target&gt;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#b44">header_file1</span> <span style="color:#b44">header_file2</span> <span style="color:#b44">...</span>
+</span></span><span style="display:flex;"><span>)<span style="">
+</span></span></span></code></pre></div><h3 id="deployment">Deployment</h3>
 <p>The <code>add_deploy</code> will be changed to <code>celix_add_deploy</code> and will accept
 library modules and bundle modules.</p>
-<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-CMake" data-lang="CMake"><span style="color:#a2f">celix_add_deploy</span>(<span style="color:#b44">&lt;deploy_target_name&gt;</span>
-    <span style="color:#b44">[COPY]</span>
-    <span style="color:#b44">[GROUP</span> <span style="color:#b44">group_name]</span>
-    <span style="color:#b44">[NAME</span> <span style="color:#b44">deploy_name]</span>
-    <span style="color:#b44">[LAUNCHER</span> <span style="color:#b44">launcher]</span>
-    <span style="color:#b44">[DIR</span> <span style="color:#b44">dir]</span>
-    <span style="color:#b44">[MODULES</span> <span style="color:#b44">&lt;module_or_bundle1&gt;</span> <span style="color:#b44">&lt;module_or_bundle2&gt;</span> <span style="color:#b44">...]</span>
-    <span style="color:#b44">[PROPERTIES</span> <span style="color:#b44">&#34;prop1=val1&#34;</span> <span style="color:#b44">&#34;prop2=val2&#34;</span> <span style="color:#b44">...]</span>
-)<span style="">
-</span></code></pre></div>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-CMake" data-lang="CMake"><span style="display:flex;"><span><span style="color:#a2f">celix_add_deploy</span>(<span style="color:#b44">&lt;deploy_target_name&gt;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#b44">[COPY]</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#b44">[GROUP</span> <span style="color:#b44">group_name]</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#b44">[NAME</span> <span style="color:#b44">deploy_name]</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#b44">[LAUNCHER</span> <span style="color:#b44">launcher]</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#b44">[DIR</span> <span style="color:#b44">dir]</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#b44">[MODULES</span> <span style="color:#b44">&lt;module_or_bundle1&gt;</span> <span style="color:#b44">&lt;module_or_bundle2&gt;</span> <span style="color:#b44">...]</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#b44">[PROPERTIES</span> <span style="color:#b44">&#34;prop1=val1&#34;</span> <span style="color:#b44">&#34;prop2=val2&#34;</span> <span style="color:#b44">...]</span>
+</span></span><span style="display:flex;"><span>)<span style="">
+</span></span></span></code></pre></div>
 
                 </div>
             </div>
