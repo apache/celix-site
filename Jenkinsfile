@@ -49,6 +49,8 @@ pipeline {
                     env.OUT_DIR = "${env.TMP_DIR}/content"
                     sh "mkdir -p ${env.OUT_DIR}"
                     
+                    // Setup directory for Gitbox checkout
+                    env.GITBOX_REPO = sh(script:'mktemp -d', returnStdout: true).trim()
                 }
             }
         }
@@ -69,29 +71,28 @@ pipeline {
             }
             steps {
                 script {
-                    // Checkout branch with generated content
-                    sh """
-                        git checkout ${DEPLOY_BRANCH}
-                        git pull origin ${DEPLOY_BRANCH}
-                    """
-                    
-                    // Remove the content of the target branch and replace it with the content of the temp folder
-                    sh """
-                        rm -rf ${WORKSPACE}/content
-                        git rm -r --cached content/*
-                        mkdir -p ${WORKSPACE}/content
-                        cp -rT ${env.TMP_DIR}/* ${WORKSPACE}/content
-                    """
-                    
-                    // Commit the changes to the target branch
-                    env.COMMIT_MESSAGE = "Updated site from ${BRANCH_NAME} (${env.LAST_SHA})"
-                    sh """
-                        git add -A
-                        git commit -m "${env.COMMIT_MESSAGE}" | true
-                    """
-                    
-                    // Push the generated content for deployment
-                    sh "git push -u origin ${DEPLOY_BRANCH}"
+                    // Clone the Gitbox repo because that allows deployment to the asf-site branch
+                    sh "git clone -b asf-site https://gitbox.apache.org/repos/asf/celix-site.git ${env.GITBOX_REPO}"
+
+                    dir("${env.GITBOX_REPO}") {
+                        // Remove the content of the target branch and replace it with the content of the temp folder
+                        sh """
+                            rm -rf ${env.GITBOX_REPO}/content
+                            git rm -r --cached content/*
+                            mkdir -p ${env.GITBOX_REPO}/content
+                            cp -rT ${env.TMP_DIR}/* ${env.GITBOX_REPO}/content
+                        """
+
+                        // Commit the changes to the target branch
+                        env.COMMIT_MESSAGE = "Updated site from ${BRANCH_NAME} (${env.LAST_SHA})"
+                        sh """
+                            git add -A
+                            git commit -m "${env.COMMIT_MESSAGE}" | true
+                        """
+
+                        // Push the generated content for deployment
+                        sh "git push -u origin ${DEPLOY_BRANCH}"
+                    }
                 }
             }
         }
@@ -103,6 +104,7 @@ pipeline {
                 sh """
                     rm -rf ${env.HUGO_DIR}
                     rm -rf ${env.TMP_DIR}
+                    rm -rf ${env.GITBOX_REPO}
                 """
             }
             deleteDir() /* clean up our workspace */
