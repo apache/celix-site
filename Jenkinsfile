@@ -23,7 +23,8 @@ pipeline {
     }
    
     environment {
-        HUGO_VERSION = '0.63.2'
+        HUGO_VERSION = '0.111.3'
+        HUGO_HASH = 'b382aacb522a470455ab771d0e8296e42488d3ea4e61fe49c11c32ec7fb6ee8b'
         DEPLOY_BRANCH = 'asf-site'
     }
 
@@ -34,35 +35,38 @@ pipeline {
                     // Capture last commit hash for final commit message
                     env.LAST_SHA = sh(script:'git log -n 1 --pretty=format:\'%H\'', returnStdout: true).trim()
 
-                    // Setup Hugo
+                    // Download Hugo
                     env.HUGO_DIR = sh(script:'mktemp -d', returnStdout: true).trim()
-                    sh """
-                        mkdir -p ${env.HUGO_DIR}/bin
-                        cd ${env.HUGO_DIR}
-                        wget --no-verbose -O hugo.tar.gz https://github.com/gohugoio/hugo/releases/download/v${HUGO_VERSION}/hugo_extended_${HUGO_VERSION}_Linux-64bit.tar.gz
-                        tar xfzv hugo.tar.gz
-                        mv hugo ${env.HUGO_DIR}/bin/
-                    """
+                    sh "mkdir -p ${env.HUGO_DIR}/bin"
+                    sh "wget --no-verbose -O ${env.HUGO_DIR}/hugo.tar.gz https://github.com/gohugoio/hugo/releases/download/v${HUGO_VERSION}/hugo_extended_${HUGO_VERSION}_Linux-64bit.tar.gz"
+                    // Verify the checksum
+                    def hugo_hash = sha256 file: "${env.HUGO_DIR}/hugo.tar.gz"
+                    assert hugo_hash == "${HUGO_HASH}"
+                    // Unpack Hugo
+                    sh "tar -C ${env.HUGO_DIR}/bin -xkf ${env.HUGO_DIR}/hugo.tar.gz"
 
                     // Setup directory structure for generated content
                     env.TMP_DIR = sh(script:'mktemp -d', returnStdout: true).trim()
                     env.OUT_DIR = "${env.TMP_DIR}/content"
                     sh "mkdir -p ${env.OUT_DIR}"
-                    
+
                     // Setup directory for Gitbox checkout
                     env.GITBOX_REPO = sh(script:'mktemp -d', returnStdout: true).trim()
                 }
             }
         }
+
         stage('Build') {
             steps {
                 script {
                     withEnv(["PATH+HUGO=${env.HUGO_DIR}/bin"]) {
+                        sh 'hugo version'
                         sh "hugo --destination ${env.OUT_DIR}"
                     }
                 }
             }
         }
+
         stage('Deploy') {
             when {
                 anyOf {
@@ -111,4 +115,3 @@ pipeline {
         }
     }
 }
-
