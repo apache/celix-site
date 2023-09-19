@@ -56,12 +56,22 @@ For every release the related files must be updated. The following files are rel
   - If needed, add any new license related information to this file.
 
 Besides this information, the version needs to be bumped. Even though every bundle has its own version, a release is made with one 
-overall version. This version is defined in the top-level CMakeLists.txt file. Update the following pieces:
+overall version. This version is defined in the top-level CMakeLists.txt file and conanfile.py. Update the following pieces:
 
 ```C
+#top level CMakeList.txt
 set(CELIX_MAJOR "X")
 set(CELIX_MINOR "Y")
 set(CELIX_MICRO "Z")
+```
+
+```Python
+#conanfile.py
+...
+class CelixConan(ConanFile):
+    name = "celix"
+    version = "X.Y.Z"
+...
 ```
 
 <p class="alert alert-primary">Note: The DEFAULT_VERSION property is used as default version for new bundles and as 
@@ -119,14 +129,21 @@ Since Celix only releases source artifacts, creating the artifact is simple and 
 First verify that all changes are committed to the release branch and the branch is pushed to GitHub.
 
 ```bash
+# Checkout a clean celix repo (to prevent accidential adding IDE and/or build files)
+$ git clone --branch release-X.Y.Z --single-branch https://github.com/apache/celix.git
+
 # Create symbolic link so the archive has a directory with version information
 $ ln -s celix celix-X.Y.Z
 
-# Create GZip archive
-$ tar --exclude=".*" -hczf celix-X.Y.Z.tar.gz celix-X.Y.Z
+# Create GZip archive, exluding the git, github and asf.yaml files.
+$ tar --exclude-vcs --exclude-vcs-ignores --exclude=".github" --exclude=".asf.yaml" -hczf celix-X.Y.Z.tar.gz celix-X.Y.Z
 
 # The create symbolic link can be removed
 $ unlink celix-X.Y.Z
+
+# Test the created tarball using conan
+$ tar xzf celix-X.Y.Z.tar.gz
+$ conan create celix-X.Y.Z --build missing -o build_all=True 
 ```
 
 After creating the artifact, the file has to be signed. More information about signing can be found at 
@@ -152,11 +169,13 @@ The first vote has to be done on the public [mailing list](/support/mailing-list
 
 ```text
 To: dev@celix.apache.org
-Subject: [VOTE] Release Celix version X.Y.Z
+Subject: [VOTE] Release Apache Celix version X.Y.Z
 
 This is the release vote for Apache Celix, version X.Y.Z.
 
-It fixes the following issues:
+It includes the following changes:
+https://github.com/apache/celix/tree/COMMITID/CHANGES.md
+
 
 Source files:
 https://dist.apache.org/repos/dist/dev/celix/celix-X.Y.Z/
@@ -167,7 +186,7 @@ COMMIT ID
 https://github.com/apache/celix/tree/COMMITID
 
 Celix's keys can be found at:
-https://dist.apache.org/repos/dist/dev/celix/KEYS
+https://dist.apache.org/repos/dist/release/celix/KEYS
 
 Information for voting on a release can be found at:
 https://www.apache.org/legal/release-policy.html#approving-a-release
