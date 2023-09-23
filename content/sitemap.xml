@@ -3,7 +3,7 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>https://celix.apache.org/</loc>
-    <lastmod>2022-12-05T18:41:13+08:00</lastmod>
+    <lastmod>2023-09-19T22:09:16+02:00</lastmod>
   </url><url>
     <loc>https://celix.apache.org/docs/2.3.0/celix/documents/bundles.html</loc>
     <lastmod>2022-07-17T19:34:47+02:00</lastmod>
@@ -108,7 +108,7 @@
     <lastmod>2022-07-14T18:57:22+02:00</lastmod>
   </url><url>
     <loc>https://celix.apache.org/contributing.html</loc>
-    <lastmod>2022-12-05T18:41:13+08:00</lastmod>
+    <lastmod>2023-09-19T22:09:16+02:00</lastmod>
   </url><url>
     <loc>https://celix.apache.org/docs/2.1.0/celix/documents/getting_started/creating_a_simple_bundle.html</loc>
     <lastmod>2020-02-03T15:43:09+01:00</lastmod>
@@ -315,7 +315,7 @@
     <lastmod>2022-07-14T18:57:22+02:00</lastmod>
   </url><url>
     <loc>https://celix.apache.org/contributing/releasing.html</loc>
-    <lastmod>2022-07-17T19:58:57+02:00</lastmod>
+    <lastmod>2023-09-19T22:09:16+02:00</lastmod>
   </url><url>
     <loc>https://celix.apache.org/docs/2.1.0/celix/remote_services/remote_service_admin/README.html</loc>
     <lastmod>2020-02-03T15:43:09+01:00</lastmod>

@@ -195,10 +195,17 @@ information. This updated file needs to be uploaded to SVN at the following loca
 </li>
 </ul>
 <p>Besides this information, the version needs to be bumped. Even though every bundle has its own version, a release is made with one
-overall version. This version is defined in the top-level CMakeLists.txt file. Update the following pieces:</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C" data-lang="C"><span style="display:flex;"><span><span style="color:#00a000">set</span>(CELIX_MAJOR <span style="color:#b44">&#34;X&#34;</span>)
+overall version. This version is defined in the top-level CMakeLists.txt file and conanfile.py. Update the following pieces:</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C" data-lang="C"><span style="display:flex;"><span><span style="color:#080">#top level CMakeList.txt
+</span></span></span><span style="display:flex;"><span><span style="color:#080"></span><span style="color:#00a000">set</span>(CELIX_MAJOR <span style="color:#b44">&#34;X&#34;</span>)
 </span></span><span style="display:flex;"><span><span style="color:#00a000">set</span>(CELIX_MINOR <span style="color:#b44">&#34;Y&#34;</span>)
 </span></span><span style="display:flex;"><span><span style="color:#00a000">set</span>(CELIX_MICRO <span style="color:#b44">&#34;Z&#34;</span>)
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-Python" data-lang="Python"><span style="display:flex;"><span><span style="color:#080;font-style:italic">#conanfile.py</span>
+</span></span><span style="display:flex;"><span><span style="color:#666">...</span>
+</span></span><span style="display:flex;"><span><span style="color:#a2f;font-weight:bold">class</span> <span style="color:#00f">CelixConan</span>(ConanFile):
+</span></span><span style="display:flex;"><span>    name <span style="color:#666">=</span> <span style="color:#b44">&#34;celix&#34;</span>
+</span></span><span style="display:flex;"><span>    version <span style="color:#666">=</span> <span style="color:#b44">&#34;X.Y.Z&#34;</span>
+</span></span><span style="display:flex;"><span><span style="color:#666">...</span>
 </span></span></code></pre></div><p class="alert alert-primary">Note: The DEFAULT_VERSION property is used as default version for new bundles and as 
 such does not need to be updated when making a release.</p>
 <h2 id="compile-and-test">Compile and test</h2>
@@ -236,14 +243,21 @@ licenses may need to be mentioned in the NOTICE file.</p>
 <h2 id="create-sign-and-publish-artifacts">Create, sign and publish artifacts</h2>
 <p>Since Celix only releases source artifacts, creating the artifact is simple and straightforward.
 First verify that all changes are committed to the release branch and the branch is pushed to GitHub.</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#080;font-style:italic"># Create symbolic link so the archive has a directory with version information</span>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#080;font-style:italic"># Checkout a clean celix repo (to prevent accidential adding IDE and/or build files)</span>
+</span></span><span style="display:flex;"><span>$ git clone --branch release-X.Y.Z --single-branch https://github.com/apache/celix.git
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#080;font-style:italic"># Create symbolic link so the archive has a directory with version information</span>
 </span></span><span style="display:flex;"><span>$ ln -s celix celix-X.Y.Z
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#080;font-style:italic"># Create GZip archive</span>
-</span></span><span style="display:flex;"><span>$ tar --exclude<span style="color:#666">=</span><span style="color:#b44">&#34;.*&#34;</span> -hczf celix-X.Y.Z.tar.gz celix-X.Y.Z
+</span></span><span style="display:flex;"><span><span style="color:#080;font-style:italic"># Create GZip archive, exluding the git, github and asf.yaml files.</span>
+</span></span><span style="display:flex;"><span>$ tar --exclude-vcs --exclude-vcs-ignores --exclude<span style="color:#666">=</span><span style="color:#b44">&#34;.github&#34;</span> --exclude<span style="color:#666">=</span><span style="color:#b44">&#34;.asf.yaml&#34;</span> -hczf celix-X.Y.Z.tar.gz celix-X.Y.Z
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#080;font-style:italic"># The create symbolic link can be removed</span>
 </span></span><span style="display:flex;"><span>$ unlink celix-X.Y.Z
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#080;font-style:italic"># Test the created tarball using conan</span>
+</span></span><span style="display:flex;"><span>$ tar xzf celix-X.Y.Z.tar.gz
+</span></span><span style="display:flex;"><span>$ conan create celix-X.Y.Z --build missing -o <span style="color:#b8860b">build_all</span><span style="color:#666">=</span>True 
 </span></span></code></pre></div><p>After creating the artifact, the file has to be signed. More information about signing can be found at
 <a href="https://infra.apache.org/release-signing.html">Release signing</a>.</p>
 <div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#080;font-style:italic"># Generate SHA512 checksum</span>
@@ -257,11 +271,13 @@ First verify that all changes are committed to the release branch and the branch
 <p>Before a release is official a vote has to be held. More information on voting can be found on <a href="https://www.apache.org/foundation/voting.html">Apache Voting Process</a>.</p>
 <p>The first vote has to be done on the public <a href="/support/mailing-list.html">mailing list</a> of the project. The following template must be used for this vote:</p>
 <div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>To: dev@celix.apache.org
-</span></span><span style="display:flex;"><span>Subject: [VOTE] Release Celix version X.Y.Z
+</span></span><span style="display:flex;"><span>Subject: [VOTE] Release Apache Celix version X.Y.Z
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>This is the release vote for Apache Celix, version X.Y.Z.
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>It fixes the following issues:
+</span></span><span style="display:flex;"><span>It includes the following changes:
+</span></span><span style="display:flex;"><span>https://github.com/apache/celix/tree/COMMITID/CHANGES.md
+</span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>Source files:
 </span></span><span style="display:flex;"><span>https://dist.apache.org/repos/dist/dev/celix/celix-X.Y.Z/
@@ -272,7 +288,7 @@ First verify that all changes are committed to the release branch and the branch
 </span></span><span style="display:flex;"><span>https://github.com/apache/celix/tree/COMMITID
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>Celix&#39;s keys can be found at:
-</span></span><span style="display:flex;"><span>https://dist.apache.org/repos/dist/dev/celix/KEYS
+</span></span><span style="display:flex;"><span>https://dist.apache.org/repos/dist/release/celix/KEYS
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>Information for voting on a release can be found at:
 </span></span><span style="display:flex;"><span>https://www.apache.org/legal/release-policy.html#approving-a-release
