@@ -43,3 +43,6 @@ You may also consult the [complete list of mirrors](https://www.apache.org/mirro
 [ [PGP](https://downloads.apache.org/celix/celix-{{< param "latestVersion" >}}/celix-{{< param "latestVersion" >}}.tar.gz.asc) ]
 [ [SHA512](https://downloads.apache.org/celix/celix-{{< param "latestVersion" >}}/celix-{{< param "latestVersion" >}}.tar.gz.sha512) ]
 
+### Verify the downloaded release
+
+Following the steps described <a href="https://www.apache.org/dyn/closer.cgi#verify">here</a> if you want to verify the integrity and provenance of the software.
