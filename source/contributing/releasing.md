@@ -224,8 +224,9 @@ The vote has passed with the following result:
 +1 Name of Approvers (not binding)
 ...
 
-The released artifact will be moved to the release area for mirroring. The
-release branch will be merged with master and a 2.1.0 tag will be created.
+The released artifact will be moved to the release area for mirroring. 
+The X.Y.Z tag will be created on the release branch and 
+the release branch will be merged with the master branch.
 
 After the mirroring period the news & downloads of the website will be
 updated and the release will be announced.
@@ -254,7 +255,7 @@ A tag - named like rel/celix-X.Y.Z - needs to created and the release branch nee
 $ git config --global user.signingkey E43F742E
 
 # Create the tag
-$ git tag -s rel/celix-X.Y.Z -m 'Celix release X.Y.Z'
+$ git tag -s rel/celix-X.Y.Z -m 'Apache Celix Release X.Y.Z'
 
 # Next thing to do is pushing the tag to the remote
 $ git push origin rel/celix-X.Y.Z
@@ -263,6 +264,18 @@ $ git checkout master
 $ git merge release-X.Y.Z
 $ git push origin master
 ```
+
+### Move release artifacts from "dev" to "release" area
+
+First remove the previous release from the "release" area.
+
+Then use the following svn command to move the release artifacts from "dev" to "release":
+```bash
+svn move https://dist.apache.org/repos/dist/dev/celix/celix-X.Y.Z https://dist.apache.org/repos/dist/release/celix/
+```
+
+Note that a svn move ensures that the voted released artifacts are moved as-is.
+
 
 ### Roll out release artifacts
 
