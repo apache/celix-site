@@ -331,16 +331,18 @@ The following template must be used:
 To: announce@apache.org, dev@celix.apache.org
 Subject: [ANNOUNCE] Apache Celix X.Y.Z released
 
-The Apache Celix team is pleased to announce the release of Celix X.Y.Z.
 
-Celix is an implementation of the OSGi specification adapted to C. It will follow the API as close as possible, but since the OSGi specification is written primarily for Java, there will be differences. An important aspect of the implementation is interoperability between Java and C. This interoperability is achieved by porting and implementing the Remote Services specification in Celix.
+The Apache Celix team is pleased to announce the release of Celix 2.4.0.
+
+Apache Celix is an implementation of the OSGi specification adapted to C and C++. 
+It is a framework to develop (dynamic) modular software applications using component and service-oriented programming.
 
 This new release focuses on .... {add additional information for this release}
 
 The release is available here:
 https://celix.apache.org/download.cgi
 
-The full change log is available here:
+The full change log is available here: {add link to CHANGES.md}
 
 We welcome your help and feedback. For more information on how to report problems, and to get involved, visit the project website at https://celix.apache.org/
 
@@ -348,3 +350,4 @@ The Apache Celix Team
 ```
 
 <p class="alert alert-primary">Note: the email must be sent from an @apache.org address</p>
+
