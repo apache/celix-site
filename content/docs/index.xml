@@ -99,6 +99,17 @@ The add_celix_container Apache Celix CMake command eventually uses the CMake add
     </item>
     
     <item>
+      <title>Apache Celix Events</title>
+      <link>https://celix.apache.org/docs/2.4.0/celix/documents/scheduled_events.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://celix.apache.org/docs/2.4.0/celix/documents/scheduled_events.html</guid>
+      <description>Apache Celix Scheduled Events Apache Celix provides supports to schedule events on the Apache Celix Event Thread. This allows users to reuse the existing Apache Celix events thread to do tasks on the event thread.
+Scheduled events will be called repeatedly using a provided interval or once if only an initial delay is provided. For the interval time, a monotonic clock is used.
+The event callback should be relatively fast, and the scheduled event interval should be relatively high; otherwise, the framework event queue will be blocked, and the framework will not function properly.</description>
+    </item>
+    
+    <item>
       <title>Apache Celix Framework</title>
       <link>https://celix.apache.org/docs/2.3.0/celix/documents/framework.html</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
