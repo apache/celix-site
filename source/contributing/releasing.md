@@ -332,7 +332,7 @@ To: announce@apache.org, dev@celix.apache.org
 Subject: [ANNOUNCE] Apache Celix X.Y.Z released
 
 
-The Apache Celix team is pleased to announce the release of Celix 2.4.0.
+The Apache Celix team is pleased to announce the release of Apache Celix X.Y.Z.
 
 Apache Celix is an implementation of the OSGi specification adapted to C and C++. 
 It is a framework to develop (dynamic) modular software applications using component and service-oriented programming.
