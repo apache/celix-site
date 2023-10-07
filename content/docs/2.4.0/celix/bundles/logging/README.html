@@ -1,0 +1,234 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Logging Facilities / Apache Celix</title>
+
+    
+    <link rel="icon" href="/assets/img/favicon.ico">
+
+    
+    <link href="/assets/css/bootstrap.min.css" rel="stylesheet">
+
+    
+    <link href="/assets/css/style.css" rel="stylesheet">
+
+    <style>
+         
+         
+        .card-body img {
+            max-width: 100%;
+            width: 100%;
+            height: auto;
+        }
+
+         
+        .card-body img + em {
+            text-decoration: underline;
+        }
+    </style>
+
+    
+<script>
+  var _paq = window._paq = window._paq || [];
+   
+  _paq.push(['disableCookies']);
+   
+  _paq.push(['trackPageView']);
+  _paq.push(['enableLinkTracking']);
+  (function() {
+    var u="https://analytics.apache.org/";
+    _paq.push(['setTrackerUrl', u+'matomo.php']);
+    _paq.push(['setSiteId', '9']);
+    var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+    g.async=true; g.src=u+'matomo.js'; s.parentNode.insertBefore(g,s);
+  })();
+</script>
+
+
+</head>
+<body class="light-grey">
+
+<a href="https://github.com/apache/celix" class="github-ribbon">
+    <img src="/assets/img/forkme_right_red_aa0000.png" alt="Fork me on GitHub">
+</a>
+
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top">
+    <div class="container">
+        <a class="navbar-brand" href="/">
+            <img src="/assets/img/celix-white.svg" height="40" class="d-inline-block align-top" alt="Celix Logo">
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="/">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/download.cgi">Download</a>
+                </li>
+                <li class="nav-item dropdown active">
+                    <a class="nav-link dropdown-toggle" href="#" id="ddDocs" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Docs
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="ddDocs">
+                        <a class="dropdown-item" href="/docs/2.4.0/docs.html">2.4.0 (latest)</a>
+                        <a class="dropdown-item" href="/docs/2.2.1/docs.html">2.2.1</a>
+                        <a class="dropdown-item" href="/docs/2.1.0/docs.html">2.1.0</a>
+                    </div>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="ddContributing" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Contributing
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="ddContributing">
+                        <a class="dropdown-item" href="/contributing/youatcelix.html">You at Celix</a>
+                        <a class="dropdown-item" href="/contributing/submitting-patches.html">Submitting patches</a>
+                        <a class="dropdown-item" href="/contributing/source-and-builds.html">Source code and builds</a>
+                        <hr>
+                        <a class="dropdown-item" href="/contributing/releasing.html">Releasing</a>
+                        <a class="dropdown-item" href="/contributing/volunteers.html">Volunteers</a>
+                        <a class="dropdown-item" href="https://whimsy.apache.org/board/minutes/Celix.html">Board Reports</a>
+                    </div>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="ddSupport" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Support
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="ddSupport">
+                        <a class="dropdown-item" href="/support/mailing-list.html">Mailing Lists</a>
+                        <a class="dropdown-item" href="/support/issue-tracking.html">Issue Tracking</a>
+                    </div>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="ddFoundation" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        ASF
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="ddFoundation">
+                        <a class="dropdown-item" href="https://www.apache.org/">ASF Home</a>
+                        <a class="dropdown-item" href="https://www.apache.org/foundation/how-it-works.html">How it works</a>
+                        <a class="dropdown-item" href="https://www.apache.org/licenses/">License</a>
+                        <a class="dropdown-item" href="https://www.apache.org/foundation/sponsorship.html">Sponsorship</a>
+                        <a class="dropdown-item" href="https://www.apache.org/foundation/thanks.html">Thanks</a>
+                        <a class="dropdown-item" href="https://www.apache.org/security/">Security</a>
+                        <a class="dropdown-item" href="https://www.apache.org/foundation/policies/conduct">Code of Conduct</a>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+
+<div class="section">
+    <div class="container">
+        <div class="row py-4">
+            <div class="col-sm-12 card">
+                <div class="card-body pt-5">
+                    
+                    
+                        
+                        
+                            <a class="edit-on-gh" href="https://github.com/apache/celix/edit/master/bundles/logging/README.md" title="Edit this page on GitHub">Edit on GitHub</a>
+                        
+                    
+
+                    
+                        
+                        <a href="/docs/2.4.0/docs.html" title="back to documentation">&lt;&lt; back to documentation</a>
+                    
+
+                    
+	<h1 id="celix-logging-facilities">Celix Logging Facilities</h1>
+<p>The Celix Logging facility is service oriented and logging technology-agnostic logging solution.</p>
+<p>Bundles can request (services on demand) and use <code>celix_log_service_t</code> services to log events.
+Logging support the following log levels: <code>trace</code>, <code>debug</code>, <code>info</code>, <code>error</code>, <code>fatal</code>.</p>
+<p>Bundles can provide <code>celix_log_sink_t</code> services to sink log message to different logging backends (e.g. syslog, log4c, etc)</p>
+<p>The <code>Celix::log_admin</code> bundle facilitates the <code>celix_log_service_t</code> services and &lsquo;connects&rsquo; these to the available
+<code>celix_log_sink_t</code> services. If there is no <code>celix_log_sink_t</code> service available, log messages will be
+printed on stdout/stderr.</p>
+<p>The Celix shell command <code>celix::log_admin</code> can be used to view the existing log services and sinks,
+change the active log level per logger, switch loggers between detailed and brief mode, and enable/disable log sinks.</p>
+<p>For example:</p>
+<ul>
+<li><code>celix::log_admin</code> list the available log services and log sinks.</li>
+<li><code>celix::log_admin log error</code> Set the active log level for all log services to <code>error</code>.</li>
+<li><code>celix::log_admin log celix_ trace</code> Set the active log level for all log services starting with &lsquo;celix_&rsquo; to <code>trace</code>.</li>
+<li><code>celix::log_admin detail false</code> Set all log services to brief mode.</li>
+<li><code>celix::log_admin detail celix_ true</code> Set all log services starting with &lsquo;celix_&rsquo; to detailed mode.</li>
+<li><code>celix::log_admin sink false</code> Disables all available log sinks.</li>
+<li><code>celix::log_admin sink celix_syslog true</code> Enables all log sinks starting with &lsquo;celix_syslog&rsquo;.</li>
+</ul>
+<p>The <code>Celix::log_helper</code> static library can be used to more easily request a <code>celix_log_service_t</code>.
+An additional benefit of the <code>Celix:log_helper</code> is that if the <code>Celix::log_admin</code> is not installed,
+log messages will be printed on stdout/stderr.</p>
+<h2 id="logging-properties">Logging Properties</h2>
+<p>Properties shared among the logging bundles</p>
+<pre><code>CELIX_LOGGING_DEFAULT_ACTIVE_LOG_LEVEL The default active log level for created log services. Default is &quot;info&quot;.
+</code></pre>
+<h2 id="log-admin-properties">Log Admin Properties</h2>
+<p>Properties specific for the Celix Log Admin (<code>Celix::log_admin</code> bundle)</p>
+<pre><code>CELIX_LOG_ADMIN_FALLBACK_TO_STDOUT If set to true, the log admin will log to stdout/stderr if no celix log writers are available. Default is true
+CELIX_LOG_ADMIN_ALWAYS_USE_STDOUT If set to true, the log admin will always log to stdout/stderr after forwaring log statements to the available celix log writers. Default is false.
+CELIX_LOG_ADMIN_LOG_SINKS_DEFAULT_ENABLED Whether discovered log sink are default enabled. Default is true.
+</code></pre>
+<h2 id="cmake-option">CMake option</h2>
+<pre><code>BUILD_LOG_SERVICE=ON
+</code></pre>
+<h2 id="using-info">Using info</h2>
+<p>If the Celix Log Service is installed, &lsquo;find_package(Celix)&rsquo; will set:</p>
+<ul>
+<li>The <code>Celix::log_service_api</code> interface (i.e. header only) library target (v2 and v3 api)</li>
+<li>The <code>Celix::log_admin</code> bundle target. The log admin will create log services on demand and forward log message to the available log sinks.</li>
+<li>The <code>Celix::log_helper</code> static library target. Helper library with common logger functionality and helpers to setup logging</li>
+<li>The <code>Celix::log_writer_syslog</code> bundle target. A bundle which provides a <code>celix_log_sink_t</code> service for syslog.</li>
+</ul>
+<p>Also the following deprecated bundle will be set:</p>
+<ul>
+<li>The <code>Celix::log_service</code> bundle target. The log service bundle. Deprecated, use Celix::log_admin instead.</li>
+<li>The <code>Celix::syslog_writer</code> bundle target. Deprecated bundle. Logging to stdout is now an integral part of the log admin.</li>
+</ul>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<footer class="py-3 bg-secondary">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8 text-center">
+                <p class="m-0 text-white">
+                    Copyright &copy; 2023 The Apache Software Foundation, Licensed under
+                    the <a href="https://www.apache.org/licenses/LICENSE-2.0">Apache License, Version 2.0</a>.
+                    <br>
+                    Apache Celix, Celix, Apache, the Apache feather logo and the Apache Celix logo are trademarks of The Apache Software Foundation.
+                </p>
+            </div>
+            <div class="col-md-4 text-center">
+                <a href="https://www.apache.org/events/current-event.html" target="_blank">
+                    <img src="https://www.apache.org/events/current-event-234x60.png" title="Apache Event" width="234" height="60" border="0">
+                </a>
+            </div>
+        </div>
+    </div>
+</footer>
+
+
+<script src="/assets/js/jquery.min.js"></script>
+<script src="/assets/js/bootstrap.bundle.min.js"></script>
+
+
+</body>
+</html>

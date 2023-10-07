@@ -1,0 +1,286 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>README.md / Apache Celix</title>
+
+    
+    <link rel="icon" href="/assets/img/favicon.ico">
+
+    
+    <link href="/assets/css/bootstrap.min.css" rel="stylesheet">
+
+    
+    <link href="/assets/css/style.css" rel="stylesheet">
+
+    <style>
+         
+         
+        .card-body img {
+            max-width: 100%;
+            width: 100%;
+            height: auto;
+        }
+
+         
+        .card-body img + em {
+            text-decoration: underline;
+        }
+    </style>
+
+    
+<script>
+  var _paq = window._paq = window._paq || [];
+   
+  _paq.push(['disableCookies']);
+   
+  _paq.push(['trackPageView']);
+  _paq.push(['enableLinkTracking']);
+  (function() {
+    var u="https://analytics.apache.org/";
+    _paq.push(['setTrackerUrl', u+'matomo.php']);
+    _paq.push(['setSiteId', '9']);
+    var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+    g.async=true; g.src=u+'matomo.js'; s.parentNode.insertBefore(g,s);
+  })();
+</script>
+
+
+</head>
+<body class="light-grey">
+
+<a href="https://github.com/apache/celix" class="github-ribbon">
+    <img src="/assets/img/forkme_right_red_aa0000.png" alt="Fork me on GitHub">
+</a>
+
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top">
+    <div class="container">
+        <a class="navbar-brand" href="/">
+            <img src="/assets/img/celix-white.svg" height="40" class="d-inline-block align-top" alt="Celix Logo">
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="/">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/download.cgi">Download</a>
+                </li>
+                <li class="nav-item dropdown active">
+                    <a class="nav-link dropdown-toggle" href="#" id="ddDocs" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Docs
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="ddDocs">
+                        <a class="dropdown-item" href="/docs/2.4.0/docs.html">2.4.0 (latest)</a>
+                        <a class="dropdown-item" href="/docs/2.2.1/docs.html">2.2.1</a>
+                        <a class="dropdown-item" href="/docs/2.1.0/docs.html">2.1.0</a>
+                    </div>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="ddContributing" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Contributing
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="ddContributing">
+                        <a class="dropdown-item" href="/contributing/youatcelix.html">You at Celix</a>
+                        <a class="dropdown-item" href="/contributing/submitting-patches.html">Submitting patches</a>
+                        <a class="dropdown-item" href="/contributing/source-and-builds.html">Source code and builds</a>
+                        <hr>
+                        <a class="dropdown-item" href="/contributing/releasing.html">Releasing</a>
+                        <a class="dropdown-item" href="/contributing/volunteers.html">Volunteers</a>
+                        <a class="dropdown-item" href="https://whimsy.apache.org/board/minutes/Celix.html">Board Reports</a>
+                    </div>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="ddSupport" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Support
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="ddSupport">
+                        <a class="dropdown-item" href="/support/mailing-list.html">Mailing Lists</a>
+                        <a class="dropdown-item" href="/support/issue-tracking.html">Issue Tracking</a>
+                    </div>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="ddFoundation" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        ASF
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="ddFoundation">
+                        <a class="dropdown-item" href="https://www.apache.org/">ASF Home</a>
+                        <a class="dropdown-item" href="https://www.apache.org/foundation/how-it-works.html">How it works</a>
+                        <a class="dropdown-item" href="https://www.apache.org/licenses/">License</a>
+                        <a class="dropdown-item" href="https://www.apache.org/foundation/sponsorship.html">Sponsorship</a>
+                        <a class="dropdown-item" href="https://www.apache.org/foundation/thanks.html">Thanks</a>
+                        <a class="dropdown-item" href="https://www.apache.org/security/">Security</a>
+                        <a class="dropdown-item" href="https://www.apache.org/foundation/policies/conduct">Code of Conduct</a>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+
+<div class="section">
+    <div class="container">
+        <div class="row py-4">
+            <div class="col-sm-12 card">
+                <div class="card-body pt-5">
+                    
+                    
+                        
+                        
+                            <a class="edit-on-gh" href="https://github.com/apache/celix/edit/master/bundles/remote_services/remote_service_admin_shm_v2/shm_pool/src/tlsf/README.md" title="Edit this page on GitHub">Edit on GitHub</a>
+                        
+                    
+
+                    
+                        
+                        <a href="/docs/2.4.0/docs.html" title="back to documentation">&lt;&lt; back to documentation</a>
+                    
+
+                    
+	<h1 id="tlsf">tlsf</h1>
+<p>Two-Level Segregated Fit memory allocator implementation.
+Written by Matthew Conte (<a href="mailto:matt@baisoku.org">matt@baisoku.org</a>).
+Released under the BSD license.</p>
+<h2 id="features">Features</h2>
+<ul>
+<li>O(1) cost for malloc, free, realloc, memalign</li>
+<li>Extremely low overhead per allocation (4 bytes)</li>
+<li>Low overhead per TLSF management of pools (~3kB)</li>
+<li>Low fragmentation</li>
+<li>Compiles to only a few kB of code and data</li>
+<li>Support for adding and removing memory pool regions on the fly</li>
+</ul>
+<h2 id="caveats">Caveats</h2>
+<ul>
+<li>Currently, assumes architecture can make 4-byte aligned accesses</li>
+<li>Not designed to be thread safe; the user must provide this</li>
+</ul>
+<h2 id="notes">Notes</h2>
+<p>This code was based on the TLSF 1.4 spec and documentation found at:</p>
+<pre><code>http://www.gii.upv.es/tlsf/main/docs
+</code></pre>
+<p>It also leverages the TLSF 2.0 improvement to shrink the per-block overhead from 8 to 4 bytes.</p>
+<h2 id="history">History</h2>
+<p>2016/04/10 - v3.1</p>
+<ul>
+<li>Code moved to github</li>
+<li>tlsfbits.h rolled into tlsf.c</li>
+<li>License changed to BSD</li>
+</ul>
+<p>2014/02/08 - v3.0</p>
+<ul>
+<li>This version is based on improvements from 3DInteractive GmbH</li>
+<li>Interface changed to allow more than one memory pool</li>
+<li>Separated pool handling from control structure (adding, removing, debugging)</li>
+<li>Control structure and pools can still be constructed in the same memory block</li>
+<li>Memory blocks for control structure and pools are checked for alignment</li>
+<li>Added functions to retrieve control structure size, alignment size, min and max block size, overhead of pool structure, and overhead of a single allocation</li>
+<li>Minimal Pool size is tlsf_block_size_min() + tlsf_pool_overhead()</li>
+<li>Pool must be empty when it is removed, in order to allow O(1) removal</li>
+</ul>
+<p>2011/10/20 - v2.0</p>
+<ul>
+<li>64-bit support</li>
+<li>More compiler intrinsics for ffs/fls</li>
+<li>ffs/fls verification during TLSF creation in debug builds</li>
+</ul>
+<p>2008/04/04 - v1.9</p>
+<ul>
+<li>Add tlsf_heap_check, a heap integrity check</li>
+<li>Support a predefined tlsf_assert macro</li>
+<li>Fix realloc case where block should shrink; if adjacent block is in use, execution would go down the slow path</li>
+</ul>
+<p>2007/02/08 - v1.8</p>
+<ul>
+<li>Fix for unnecessary reallocation in tlsf_realloc</li>
+</ul>
+<p>2007/02/03 - v1.7</p>
+<ul>
+<li>tlsf_heap_walk takes a callback</li>
+<li>tlsf_realloc now returns NULL on failure</li>
+<li>tlsf_memalign optimization for 4-byte alignment</li>
+<li>Usage of size_t where appropriate</li>
+</ul>
+<p>2006/11/21 - v1.6</p>
+<ul>
+<li>ffs/fls broken out into tlsfbits.h</li>
+<li>tlsf_overhead queries per-pool overhead</li>
+</ul>
+<p>2006/11/07 - v1.5</p>
+<ul>
+<li>Smart realloc implementation</li>
+<li>Smart memalign implementation</li>
+</ul>
+<p>2006/10/11 - v1.4</p>
+<ul>
+<li>Add some ffs/fls implementations</li>
+<li>Minor code footprint reduction</li>
+</ul>
+<p>2006/09/14 - v1.3</p>
+<ul>
+<li>Profiling indicates heavy use of blocks of size 1-128, so implement small block handling</li>
+<li>Reduce pool overhead by about 1kb</li>
+<li>Reduce minimum block size from 32 to 12 bytes</li>
+<li>Realloc bug fix</li>
+</ul>
+<p>2006/09/09 - v1.2</p>
+<ul>
+<li>Add tlsf_block_size</li>
+<li>Static assertion mechanism for invariants</li>
+<li>Minor bugfixes</li>
+</ul>
+<p>2006/09/01 - v1.1</p>
+<ul>
+<li>Add tlsf_realloc</li>
+<li>Add tlsf_walk_heap</li>
+</ul>
+<p>2006/08/25 - v1.0</p>
+<ul>
+<li>First release</li>
+</ul>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<footer class="py-3 bg-secondary">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8 text-center">
+                <p class="m-0 text-white">
+                    Copyright &copy; 2023 The Apache Software Foundation, Licensed under
+                    the <a href="https://www.apache.org/licenses/LICENSE-2.0">Apache License, Version 2.0</a>.
+                    <br>
+                    Apache Celix, Celix, Apache, the Apache feather logo and the Apache Celix logo are trademarks of The Apache Software Foundation.
+                </p>
+            </div>
+            <div class="col-md-4 text-center">
+                <a href="https://www.apache.org/events/current-event.html" target="_blank">
+                    <img src="https://www.apache.org/events/current-event-234x60.png" title="Apache Event" width="234" height="60" border="0">
+                </a>
+            </div>
+        </div>
+    </div>
+</footer>
+
+
+<script src="/assets/js/jquery.min.js"></script>
+<script src="/assets/js/bootstrap.bundle.min.js"></script>
+
+
+</body>
+</html>

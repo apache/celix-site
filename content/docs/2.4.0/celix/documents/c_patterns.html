@@ -1,0 +1,255 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Introduction / Apache Celix</title>
+
+    
+    <link rel="icon" href="/assets/img/favicon.ico">
+
+    
+    <link href="/assets/css/bootstrap.min.css" rel="stylesheet">
+
+    
+    <link href="/assets/css/style.css" rel="stylesheet">
+
+    <style>
+         
+         
+        .card-body img {
+            max-width: 100%;
+            width: 100%;
+            height: auto;
+        }
+
+         
+        .card-body img + em {
+            text-decoration: underline;
+        }
+    </style>
+
+    
+<script>
+  var _paq = window._paq = window._paq || [];
+   
+  _paq.push(['disableCookies']);
+   
+  _paq.push(['trackPageView']);
+  _paq.push(['enableLinkTracking']);
+  (function() {
+    var u="https://analytics.apache.org/";
+    _paq.push(['setTrackerUrl', u+'matomo.php']);
+    _paq.push(['setSiteId', '9']);
+    var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+    g.async=true; g.src=u+'matomo.js'; s.parentNode.insertBefore(g,s);
+  })();
+</script>
+
+
+</head>
+<body class="light-grey">
+
+<a href="https://github.com/apache/celix" class="github-ribbon">
+    <img src="/assets/img/forkme_right_red_aa0000.png" alt="Fork me on GitHub">
+</a>
+
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top">
+    <div class="container">
+        <a class="navbar-brand" href="/">
+            <img src="/assets/img/celix-white.svg" height="40" class="d-inline-block align-top" alt="Celix Logo">
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="/">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/download.cgi">Download</a>
+                </li>
+                <li class="nav-item dropdown active">
+                    <a class="nav-link dropdown-toggle" href="#" id="ddDocs" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Docs
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="ddDocs">
+                        <a class="dropdown-item" href="/docs/2.4.0/docs.html">2.4.0 (latest)</a>
+                        <a class="dropdown-item" href="/docs/2.2.1/docs.html">2.2.1</a>
+                        <a class="dropdown-item" href="/docs/2.1.0/docs.html">2.1.0</a>
+                    </div>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="ddContributing" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Contributing
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="ddContributing">
+                        <a class="dropdown-item" href="/contributing/youatcelix.html">You at Celix</a>
+                        <a class="dropdown-item" href="/contributing/submitting-patches.html">Submitting patches</a>
+                        <a class="dropdown-item" href="/contributing/source-and-builds.html">Source code and builds</a>
+                        <hr>
+                        <a class="dropdown-item" href="/contributing/releasing.html">Releasing</a>
+                        <a class="dropdown-item" href="/contributing/volunteers.html">Volunteers</a>
+                        <a class="dropdown-item" href="https://whimsy.apache.org/board/minutes/Celix.html">Board Reports</a>
+                    </div>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="ddSupport" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Support
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="ddSupport">
+                        <a class="dropdown-item" href="/support/mailing-list.html">Mailing Lists</a>
+                        <a class="dropdown-item" href="/support/issue-tracking.html">Issue Tracking</a>
+                    </div>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="ddFoundation" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        ASF
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="ddFoundation">
+                        <a class="dropdown-item" href="https://www.apache.org/">ASF Home</a>
+                        <a class="dropdown-item" href="https://www.apache.org/foundation/how-it-works.html">How it works</a>
+                        <a class="dropdown-item" href="https://www.apache.org/licenses/">License</a>
+                        <a class="dropdown-item" href="https://www.apache.org/foundation/sponsorship.html">Sponsorship</a>
+                        <a class="dropdown-item" href="https://www.apache.org/foundation/thanks.html">Thanks</a>
+                        <a class="dropdown-item" href="https://www.apache.org/security/">Security</a>
+                        <a class="dropdown-item" href="https://www.apache.org/foundation/policies/conduct">Code of Conduct</a>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+
+<div class="section">
+    <div class="container">
+        <div class="row py-4">
+            <div class="col-sm-12 card">
+                <div class="card-body pt-5">
+                    
+                    
+                        
+                        
+                            <a class="edit-on-gh" href="https://github.com/apache/celix/edit/master/documents/c_patterns.md" title="Edit this page on GitHub">Edit on GitHub</a>
+                        
+                    
+
+                    
+                        
+                        <a href="/docs/2.4.0/docs.html" title="back to documentation">&lt;&lt; back to documentation</a>
+                    
+
+                    
+	<!--
+Licensed to the Apache Software Foundation (ASF) under one or more
+contributor license agreements.  See the NOTICE file distributed with
+this work for additional information regarding copyright ownership.
+The ASF licenses this file to You under the Apache License, Version 2.0
+(the "License"); you may not use this file except in compliance with
+the License.  You may obtain a copy of the License at
+   
+    http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+-->
+<h1 id="apache-celix-c-patterns">Apache Celix C Patterns</h1>
+<p>The core of Apache Celix is written in C, as C can serve as a common denominator for many languages. However, C lacks
+the concept of classes and objects, scope-based resource management - for concepts like RAII -, and other modern C++
+features. To somewhat overcome this, Apache Celix employs several patterns.</p>
+<p>It&rsquo;s important to note that ideally, all Apache Celix C code follows the patterns described in this section, but this
+isn&rsquo;t always the case. Particularly, older code may not always adhere to these patterns.</p>
+<h2 id="apache-celix-c-objects">Apache Celix C Objects</h2>
+<p>The first pattern is the Apache Celix C object pattern. This pattern is used to create, destroy, and manage objects in
+a C manner. A C object is implemented using an opaque pointer to a struct, which contains object details invisible to
+the object&rsquo;s user. The C object should provide C functions to create, destroy, and manipulate the object.</p>
+<p>The naming scheme used for the object struct is <code>&lt;celix_object_name&gt;</code>, typically with a typedef to
+<code>&lt;celix_object_name&gt;_t</code>. For the object functions, the following naming scheme is
+used: <code>&lt;celix_objectName&gt;_&lt;functionName&gt;</code>. Note the camelCase for the object name and function name.</p>
+<p>An Apache Celix C object should always have a constructor and a destructor. If memory allocation is involved,
+a <code>celix_&lt;objectName&gt;_create</code> function is used to create and return a new object, and a <code>celix_&lt;objectName&gt;_destroy</code>
+function is used to destroy the object and free the object&rsquo;s memory. Otherwise, use a <code>celix_&lt;objectName&gt;_init</code> function
+with <code>celix_status_t</code> return value to initialize the object&rsquo;s provided memory and use a <code>celix_&lt;objectName&gt;_deinit</code>
+function to deinitialize the object. The <code>celix_&lt;objectName&gt;_deinit</code> function should not free the object&rsquo;s memory.</p>
+<p>An Apache Celix C object can also have additional functions to access object information or to manipulate the object.
+If an object contains properties, it should provide a getter and setter function for each property.</p>
+<h2 id="apache-celix-c-container-types">Apache Celix C Container Types</h2>
+<p>Apache Celix provides several container types: <code>celix_array_list</code>, <code>celix_properties</code>, <code>celix_string_hash_map</code>,
+and <code>celix_long_hash_map</code>. Although these containers are not type-safe, they offer additional functions to handle
+different element types. Refer to the header files for more information.</p>
+<h2 id="apache-celix-c-scope-based-resource-management">Apache Celix C Scope-Based Resource Management</h2>
+<p>Apache Celix offers several macros to add support for scope-based resource management (SBRM) to existing types.
+These macros are inspired by <a href="https://lwn.net/Articles/934838/">Scoped-based Resource Management for the Kernel</a>.</p>
+<p>The main macros used for SBRM are:</p>
+<ul>
+<li><code>celix_autofree</code>: Automatically frees memory with <code>free</code> when the variable goes out of scope.</li>
+<li><code>celix_auto</code>: Automatically calls a value-based cleanup function when the variable goes out of scope.</li>
+<li><code>celix_autoptr</code>: Automatically calls a pointer-based cleanup function when the variable goes out of scope.</li>
+<li><code>celix_steal_ptr</code>: Used to &ldquo;steal&rdquo; a pointer from a variable to prevent automatic cleanup when the variable goes
+out of scope.</li>
+</ul>
+<p>These macros can be found in the Apache Celix utils headers <code>celix_cleanup.h</code> and <code>celix_stdlib_cleanup.h</code>.</p>
+<p>In Apache Celix, C objects must opt into SBRM. This is done by using a <code>CELIX_DEFINE_AUTO</code> macro, which determines the
+expected C functions to clean up the object.</p>
+<h2 id="support-for-resource-allocation-is-initialization-raii-like-structures">Support for Resource Allocation Is Initialization (RAII)-like Structures</h2>
+<p>Based on the previously mentioned SBRM, Apache Celix also offers support for structures that resemble RAII.
+These can be used to guard locks, manage service registration, etc. These guards should follow the naming convention
+<code>celix_&lt;obj_to_guard&gt;_guard_t</code>. Support for RAII-like structures is facilitated by providing
+additional cleanup functions that work with either the <code>celix_auto</code> or <code>celix_autoptr</code> macros.</p>
+<p>Examples include:</p>
+<ul>
+<li><code>celix_mutex_lock_guard_t</code></li>
+<li><code>celix_service_registration_guard_t</code></li>
+</ul>
+<p>Special effort is made to ensure that these constructs do not require additional allocation and should provide minimal
+to no additional overhead.</p>
+<h2 id="polymorphism-in-apache-celix">Polymorphism in Apache Celix</h2>
+<p>It&rsquo;s worth mentioning that the above-mentioned patterns and additions do not add support for polymorphism.
+Although this could be a welcome addition, Apache Celix primarily handles polymorphism through the use of services,
+both for itself and its users. Refer to the &ldquo;Apache Celix Services&rdquo; section for more information.</p>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<footer class="py-3 bg-secondary">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8 text-center">
+                <p class="m-0 text-white">
+                    Copyright &copy; 2023 The Apache Software Foundation, Licensed under
+                    the <a href="https://www.apache.org/licenses/LICENSE-2.0">Apache License, Version 2.0</a>.
+                    <br>
+                    Apache Celix, Celix, Apache, the Apache feather logo and the Apache Celix logo are trademarks of The Apache Software Foundation.
+                </p>
+            </div>
+            <div class="col-md-4 text-center">
+                <a href="https://www.apache.org/events/current-event.html" target="_blank">
+                    <img src="https://www.apache.org/events/current-event-234x60.png" title="Apache Event" width="234" height="60" border="0">
+                </a>
+            </div>
+        </div>
+    </div>
+</footer>
+
+
+<script src="/assets/js/jquery.min.js"></script>
+<script src="/assets/js/bootstrap.bundle.min.js"></script>
+
+
+</body>
+</html>

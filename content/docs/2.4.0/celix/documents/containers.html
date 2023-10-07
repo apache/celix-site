@@ -1,0 +1,280 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Apache Celix Containers / Apache Celix</title>
+
+    
+    <link rel="icon" href="/assets/img/favicon.ico">
+
+    
+    <link href="/assets/css/bootstrap.min.css" rel="stylesheet">
+
+    
+    <link href="/assets/css/style.css" rel="stylesheet">
+
+    <style>
+         
+         
+        .card-body img {
+            max-width: 100%;
+            width: 100%;
+            height: auto;
+        }
+
+         
+        .card-body img + em {
+            text-decoration: underline;
+        }
+    </style>
+
+    
+<script>
+  var _paq = window._paq = window._paq || [];
+   
+  _paq.push(['disableCookies']);
+   
+  _paq.push(['trackPageView']);
+  _paq.push(['enableLinkTracking']);
+  (function() {
+    var u="https://analytics.apache.org/";
+    _paq.push(['setTrackerUrl', u+'matomo.php']);
+    _paq.push(['setSiteId', '9']);
+    var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+    g.async=true; g.src=u+'matomo.js'; s.parentNode.insertBefore(g,s);
+  })();
+</script>
+
+
+</head>
+<body class="light-grey">
+
+<a href="https://github.com/apache/celix" class="github-ribbon">
+    <img src="/assets/img/forkme_right_red_aa0000.png" alt="Fork me on GitHub">
+</a>
+
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top">
+    <div class="container">
+        <a class="navbar-brand" href="/">
+            <img src="/assets/img/celix-white.svg" height="40" class="d-inline-block align-top" alt="Celix Logo">
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="/">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/download.cgi">Download</a>
+                </li>
+                <li class="nav-item dropdown active">
+                    <a class="nav-link dropdown-toggle" href="#" id="ddDocs" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Docs
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="ddDocs">
+                        <a class="dropdown-item" href="/docs/2.4.0/docs.html">2.4.0 (latest)</a>
+                        <a class="dropdown-item" href="/docs/2.2.1/docs.html">2.2.1</a>
+                        <a class="dropdown-item" href="/docs/2.1.0/docs.html">2.1.0</a>
+                    </div>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="ddContributing" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Contributing
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="ddContributing">
+                        <a class="dropdown-item" href="/contributing/youatcelix.html">You at Celix</a>
+                        <a class="dropdown-item" href="/contributing/submitting-patches.html">Submitting patches</a>
+                        <a class="dropdown-item" href="/contributing/source-and-builds.html">Source code and builds</a>
+                        <hr>
+                        <a class="dropdown-item" href="/contributing/releasing.html">Releasing</a>
+                        <a class="dropdown-item" href="/contributing/volunteers.html">Volunteers</a>
+                        <a class="dropdown-item" href="https://whimsy.apache.org/board/minutes/Celix.html">Board Reports</a>
+                    </div>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="ddSupport" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Support
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="ddSupport">
+                        <a class="dropdown-item" href="/support/mailing-list.html">Mailing Lists</a>
+                        <a class="dropdown-item" href="/support/issue-tracking.html">Issue Tracking</a>
+                    </div>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="ddFoundation" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        ASF
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="ddFoundation">
+                        <a class="dropdown-item" href="https://www.apache.org/">ASF Home</a>
+                        <a class="dropdown-item" href="https://www.apache.org/foundation/how-it-works.html">How it works</a>
+                        <a class="dropdown-item" href="https://www.apache.org/licenses/">License</a>
+                        <a class="dropdown-item" href="https://www.apache.org/foundation/sponsorship.html">Sponsorship</a>
+                        <a class="dropdown-item" href="https://www.apache.org/foundation/thanks.html">Thanks</a>
+                        <a class="dropdown-item" href="https://www.apache.org/security/">Security</a>
+                        <a class="dropdown-item" href="https://www.apache.org/foundation/policies/conduct">Code of Conduct</a>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+
+<div class="section">
+    <div class="container">
+        <div class="row py-4">
+            <div class="col-sm-12 card">
+                <div class="card-body pt-5">
+                    
+                    
+                        
+                        
+                            <a class="edit-on-gh" href="https://github.com/apache/celix/edit/master/documents/containers.md" title="Edit this page on GitHub">Edit on GitHub</a>
+                        
+                    
+
+                    
+                        
+                        <a href="/docs/2.4.0/docs.html" title="back to documentation">&lt;&lt; back to documentation</a>
+                    
+
+                    
+	<!--
+Licensed to the Apache Software Foundation (ASF) under one or more
+contributor license agreements.  See the NOTICE file distributed with
+this work for additional information regarding copyright ownership.
+The ASF licenses this file to You under the Apache License, Version 2.0
+(the "License"); you may not use this file except in compliance with
+the License.  You may obtain a copy of the License at
+   
+    http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+-->
+<h1 id="apache-celix-containers">Apache Celix Containers</h1>
+<p>Apache Celix containers are executables which starts an Apache Celix framework, with an embedded set of properties
+and an embedded set of bundles.
+Although it is also possible to create and start an Apache Celix framework in code, the benefit of an Apache Celix
+Container is that this can be done with a single <code>add_celix_container</code> Apache Celix CMake command.</p>
+<p>The <code>add_celix_container</code> Apache Celix CMake command eventually uses the CMake <code>add_executable</code> with the same
+target name.  As result, it is possible to handle an Apache Celix Container as a normal CMake executable
+(e.g. use <code>target_link_libraries</code>) and also ensures that the CLion IDE detects the containers as an executable.</p>
+<p>For a complete list of options the <code>add_celix_container</code> Apache Celix CMake command supports, see the
+<a href="cmake_commands">Apache Celix CMake Commands documentation</a></p>
+<h2 id="generated-main-source-files">Generated main source files</h2>
+<p>The main purpose of the <code>add_celix_container</code> Apache Celix CMake command is to generate a main source file
+which starts an Apache Celix framework with a set of preconfigured properties and set of preconfigured bundles.</p>
+<p>For example the following (empty) Apache Celix Container:</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-CMake" data-lang="CMake"><span style="display:flex;"><span><span style="color:#a2f">add_celix_container</span>(<span style="color:#b44">my_empty_container</span>)<span style="">
+</span></span></span></code></pre></div><p>will create the following main source file (note: reformatted for display purpose):</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C++" data-lang="C++"><span style="display:flex;"><span><span style="color:#080;font-style:italic">//${CMAKE_BINARY_DIR}/celix/gen/containers/my_empty_container/main.cc
+</span></span></span><span style="display:flex;"><span><span style="color:#080;font-style:italic"></span><span style="color:#080">#include</span> <span style="color:#080">&lt;celix_launcher.h&gt;</span><span style="color:#080">
+</span></span></span><span style="display:flex;"><span><span style="color:#080"></span><span style="color:#0b0;font-weight:bold">int</span> <span style="color:#00a000">main</span>(<span style="color:#0b0;font-weight:bold">int</span> argc, <span style="color:#0b0;font-weight:bold">char</span> <span style="color:#666">*</span>argv[]) {
+</span></span><span style="display:flex;"><span>    <span style="color:#a2f;font-weight:bold">const</span> <span style="color:#0b0;font-weight:bold">char</span> <span style="color:#666">*</span> config <span style="color:#666">=</span> <span style="color:#b44">&#34;\
+</span></span></span><span style="display:flex;"><span><span style="color:#b44">CELIX_CONTAINER_NAME=my_empty_container</span><span style="color:#b62;font-weight:bold">\n</span><span style="color:#b44">\
+</span></span></span><span style="display:flex;"><span><span style="color:#b44">CELIX_BUNDLES_PATH=bundles</span><span style="color:#b62;font-weight:bold">\n</span><span style="color:#b44">\
+</span></span></span><span style="display:flex;"><span><span style="color:#b44">&#34;</span>;
+</span></span><span style="display:flex;"><span>    celix_properties_t <span style="color:#666">*</span>embeddedProps <span style="color:#666">=</span> celix_properties_loadFromString(config);
+</span></span><span style="display:flex;"><span>    <span style="color:#a2f;font-weight:bold">return</span> celixLauncher_launchAndWaitForShutdown(argc, argv, embeddedProps);
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>Note that because the source file is a C++ source file (.cc extension) the executable will be compiled with a C++
+compiler.</p>
+<p>To create C Apache Celix Containers, use the <code>C</code> option in the <code>add_celix_container</code> Apache Celix CMake command;
+This will generate a <code>main.c</code> instead of <code>main.cc</code> source file:</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-CMake" data-lang="CMake"><span style="display:flex;"><span><span style="color:#a2f">add_celix_container</span>(<span style="color:#b44">my_empty_container</span> <span style="color:#b44">C</span>)<span style="">
+</span></span></span></code></pre></div><p>When an Apache Celix Container is also configured with framework properties and/or auto start of bundles, the
+generated main source file will add these properties as embedded framework properties.</p>
+<p>For example the following <code>add_celix_container</code> Apache Celix CMake command:</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-CMake" data-lang="CMake"><span style="display:flex;"><span><span style="color:#a2f">add_celix_container</span>(<span style="color:#b44">my_web_shell_container</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#b44">BUNDLES</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#b44">Celix::http_admin</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#b44">Celix::shell</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#b44">Celix::shell_wui</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#b44">PROPERTIES</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#b44">CELIX_LOGGING_DEFAULT_ACTIVE_LOG_LEVEL=debug</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#b44">CELIX_HTTP_ADMIN_LISTENING_PORTS=8888</span>
+</span></span><span style="display:flex;"><span>)<span style="">
+</span></span></span></code></pre></div><p>will create the following main source file (note: reformatted for display purpose):</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C++" data-lang="C++"><span style="display:flex;"><span><span style="color:#080">#include</span> <span style="color:#080">&lt;celix_launcher.h&gt;</span><span style="color:#080">
+</span></span></span><span style="display:flex;"><span><span style="color:#080"></span><span style="color:#0b0;font-weight:bold">int</span> <span style="color:#00a000">main</span>(<span style="color:#0b0;font-weight:bold">int</span> argc, <span style="color:#0b0;font-weight:bold">char</span> <span style="color:#666">*</span>argv[]) {
+</span></span><span style="display:flex;"><span>    <span style="color:#a2f;font-weight:bold">const</span> <span style="color:#0b0;font-weight:bold">char</span> <span style="color:#666">*</span> config <span style="color:#666">=</span> <span style="color:#b44">&#34;\
+</span></span></span><span style="display:flex;"><span><span style="color:#b44">CELIX_CONTAINER_NAME=my_web_shell_container</span><span style="color:#b62;font-weight:bold">\n</span><span style="color:#b44">\
+</span></span></span><span style="display:flex;"><span><span style="color:#b44">CELIX_BUNDLES_PATH=bundles</span><span style="color:#b62;font-weight:bold">\n</span><span style="color:#b44">\
+</span></span></span><span style="display:flex;"><span><span style="color:#b44">CELIX_AUTO_START_3=celix_http_admin-Debug.zip celix_shell-Debug.zip celix_shell_wui-Debug.zip</span><span style="color:#b62;font-weight:bold">\n</span><span style="color:#b44">\
+</span></span></span><span style="display:flex;"><span><span style="color:#b44">CELIX_LOGGING_DEFAULT_ACTIVE_LOG_LEVEL=debug</span><span style="color:#b62;font-weight:bold">\n</span><span style="color:#b44">\
+</span></span></span><span style="display:flex;"><span><span style="color:#b44">CELIX_HTTP_ADMIN_LISTENING_PORTS=8888&#34;</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    celix_properties_t <span style="color:#666">*</span>embeddedProps <span style="color:#666">=</span> celix_properties_loadFromString(config);
+</span></span><span style="display:flex;"><span>    <span style="color:#a2f;font-weight:bold">return</span> celixLauncher_launchAndWaitForShutdown(argc, argv, embeddedProps);
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h2 id="installing-celix-container">Installing Celix container</h2>
+<p>Currently, installing Apache Celix containers (i.e. using <code>make install</code> on a Celix Container) is not supported.</p>
+<p>The reason behind this is that an Apache Celix container depends on the location of bundles and there is currently no
+reliable way to find bundles in a system. For this to work Apache Celix should support something like:</p>
+<ul>
+<li>A bundle search path concept like <code>LD_LIBRARY_PATH</code></li>
+<li>Support for embedded bundles in an executable so that Apache Celix containers can be self containing</li>
+<li>Bundles as shared libraries (instead of zip) so that the normal shared libraries concepts
+(installation, <code>LD_LIBRARY_PATH</code>, etc ) can be reused.</li>
+</ul>
+<p>There is an exception when an installation of an Apache Celix containers works: If all used bundles are based on already
+installed bundles and are added to the Apache Celix container with an absolute path (default).</p>
+<h2 id="launching-apache-celix-containers">Launching Apache Celix Containers</h2>
+<p>Apache Celix containers can be launched in the same way as normal executables and also supports some command line
+options.</p>
+<h3 id="command-line-options">Command line options</h3>
+<p>The following command line options are supported by Apache Celix containers:</p>
+<ul>
+<li><code>--help</code> or <code>-h</code>: Print the help message, include the supported command line options.</li>
+<li><code>--props</code> or <code>-p</code>: Show the embedded and runtime properties for the Celix container and exit.</li>
+<li><code>--create-bundle-cache</code> or <code>-c</code>: Create the bundle cache for the Celix container and exit.</li>
+<li><code>--embedded_bundles</code>: how the embedded bundles for the Celix container and exit.</li>
+</ul>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<footer class="py-3 bg-secondary">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8 text-center">
+                <p class="m-0 text-white">
+                    Copyright &copy; 2023 The Apache Software Foundation, Licensed under
+                    the <a href="https://www.apache.org/licenses/LICENSE-2.0">Apache License, Version 2.0</a>.
+                    <br>
+                    Apache Celix, Celix, Apache, the Apache feather logo and the Apache Celix logo are trademarks of The Apache Software Foundation.
+                </p>
+            </div>
+            <div class="col-md-4 text-center">
+                <a href="https://www.apache.org/events/current-event.html" target="_blank">
+                    <img src="https://www.apache.org/events/current-event-234x60.png" title="Apache Event" width="234" height="60" border="0">
+                </a>
+            </div>
+        </div>
+    </div>
+</footer>
+
+
+<script src="/assets/js/jquery.min.js"></script>
+<script src="/assets/js/bootstrap.bundle.min.js"></script>
+
+
+</body>
+</html>

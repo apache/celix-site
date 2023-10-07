@@ -1,0 +1,809 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Apache Celix Coding Conventions / Apache Celix</title>
+
+    
+    <link rel="icon" href="/assets/img/favicon.ico">
+
+    
+    <link href="/assets/css/bootstrap.min.css" rel="stylesheet">
+
+    
+    <link href="/assets/css/style.css" rel="stylesheet">
+
+    <style>
+         
+         
+        .card-body img {
+            max-width: 100%;
+            width: 100%;
+            height: auto;
+        }
+
+         
+        .card-body img + em {
+            text-decoration: underline;
+        }
+    </style>
+
+    
+<script>
+  var _paq = window._paq = window._paq || [];
+   
+  _paq.push(['disableCookies']);
+   
+  _paq.push(['trackPageView']);
+  _paq.push(['enableLinkTracking']);
+  (function() {
+    var u="https://analytics.apache.org/";
+    _paq.push(['setTrackerUrl', u+'matomo.php']);
+    _paq.push(['setSiteId', '9']);
+    var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+    g.async=true; g.src=u+'matomo.js'; s.parentNode.insertBefore(g,s);
+  })();
+</script>
+
+
+</head>
+<body class="light-grey">
+
+<a href="https://github.com/apache/celix" class="github-ribbon">
+    <img src="/assets/img/forkme_right_red_aa0000.png" alt="Fork me on GitHub">
+</a>
+
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top">
+    <div class="container">
+        <a class="navbar-brand" href="/">
+            <img src="/assets/img/celix-white.svg" height="40" class="d-inline-block align-top" alt="Celix Logo">
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="/">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/download.cgi">Download</a>
+                </li>
+                <li class="nav-item dropdown active">
+                    <a class="nav-link dropdown-toggle" href="#" id="ddDocs" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Docs
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="ddDocs">
+                        <a class="dropdown-item" href="/docs/2.4.0/docs.html">2.4.0 (latest)</a>
+                        <a class="dropdown-item" href="/docs/2.2.1/docs.html">2.2.1</a>
+                        <a class="dropdown-item" href="/docs/2.1.0/docs.html">2.1.0</a>
+                    </div>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="ddContributing" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Contributing
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="ddContributing">
+                        <a class="dropdown-item" href="/contributing/youatcelix.html">You at Celix</a>
+                        <a class="dropdown-item" href="/contributing/submitting-patches.html">Submitting patches</a>
+                        <a class="dropdown-item" href="/contributing/source-and-builds.html">Source code and builds</a>
+                        <hr>
+                        <a class="dropdown-item" href="/contributing/releasing.html">Releasing</a>
+                        <a class="dropdown-item" href="/contributing/volunteers.html">Volunteers</a>
+                        <a class="dropdown-item" href="https://whimsy.apache.org/board/minutes/Celix.html">Board Reports</a>
+                    </div>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="ddSupport" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Support
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="ddSupport">
+                        <a class="dropdown-item" href="/support/mailing-list.html">Mailing Lists</a>
+                        <a class="dropdown-item" href="/support/issue-tracking.html">Issue Tracking</a>
+                    </div>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="ddFoundation" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        ASF
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="ddFoundation">
+                        <a class="dropdown-item" href="https://www.apache.org/">ASF Home</a>
+                        <a class="dropdown-item" href="https://www.apache.org/foundation/how-it-works.html">How it works</a>
+                        <a class="dropdown-item" href="https://www.apache.org/licenses/">License</a>
+                        <a class="dropdown-item" href="https://www.apache.org/foundation/sponsorship.html">Sponsorship</a>
+                        <a class="dropdown-item" href="https://www.apache.org/foundation/thanks.html">Thanks</a>
+                        <a class="dropdown-item" href="https://www.apache.org/security/">Security</a>
+                        <a class="dropdown-item" href="https://www.apache.org/foundation/policies/conduct">Code of Conduct</a>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+
+<div class="section">
+    <div class="container">
+        <div class="row py-4">
+            <div class="col-sm-12 card">
+                <div class="card-body pt-5">
+                    
+                    
+                        
+                        
+                            <a class="edit-on-gh" href="https://github.com/apache/celix/edit/master/documents/development/README.md" title="Edit this page on GitHub">Edit on GitHub</a>
+                        
+                    
+
+                    
+                        
+                        <a href="/docs/2.4.0/docs.html" title="back to documentation">&lt;&lt; back to documentation</a>
+                    
+
+                    
+	<!--
+Licensed to the Apache Software Foundation (ASF) under one or more
+contributor license agreements.  See the NOTICE file distributed with
+this work for additional information regarding copyright ownership.
+The ASF licenses this file to You under the Apache License, Version 2.0
+(the "License"); you may not use this file except in compliance with
+the License.  You may obtain a copy of the License at
+   
+    http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+-->
+<h1 id="apache-celix-coding-conventions">Apache Celix Coding Conventions</h1>
+<p>Adhering to consistent and meaningful coding conventions is crucial for maintaining readable and maintainable code.
+This document outlines the recommended coding conventions for Apache Celix development, including naming conventions,
+formatting, comments, control structures, functions and error handling.</p>
+<p>Note that not all existing code adheres to these conventions.
+New code should adhere to these conventions and when possible, existing code should be updated to adhere to these
+conventions.</p>
+<h2 id="naming-conventions">Naming Conventions</h2>
+<h3 id="cc-variables">C/C++ Variables</h3>
+<ul>
+<li>Use <code>camelCase</code> for variable names.</li>
+<li>Use descriptive names for variables.</li>
+<li>Use <code>celix_</code> prefix or <code>celix::</code> (sub)namespace for global variables.</li>
+<li>Asterisks <code>*</code> and ampersands <code>&amp;</code> should be placed on the variable type name.</li>
+</ul>
+<h3 id="c-structures">C Structures</h3>
+<ul>
+<li>Use <code>snake_case</code> for structure names.</li>
+<li>Add a typedef for the structure.</li>
+<li>Use a <code>_t</code> postfix for structure typedef.</li>
+<li>Use <code>celix_</code> prefix for structure names.</li>
+<li>For C objects, use typedef of an opaque struct. E.g. <code>typedef struct celix_&lt;obj&gt; celix_&lt;obj&gt;_t;</code>
+<ul>
+<li>This way the implementation details can be hidden from the user.</li>
+</ul>
+</li>
+</ul>
+<h3 id="c-functions">C Functions</h3>
+<ul>
+<li>Use descriptive names for functions.</li>
+<li>Use a <code>celix_</code> prefix.</li>
+<li>Use a <code>_&lt;obj&gt;_</code> camelCase infix for the object/module name.</li>
+<li>Use a postfix <code>camelCase</code> for the function name.</li>
+<li>Asterisks <code>*</code> should be placed on the variable type name.</li>
+<li>Use verb as function names when a function has a side effect.</li>
+<li>Use nouns or getter/setter as function names when a function does not have a side effect.</li>
+<li>Use getters/setters naming convention for functions which get/set a value:
+<ul>
+<li><code>celix_&lt;obj&gt;_is&lt;Value&gt;</code> and <code>celix_&lt;obj&gt;_set&lt;Value&gt;</code> for boolean values</li>
+<li><code>celix_&lt;obj&gt;_get&lt;Value&gt;</code> and <code>celix_&lt;obj&gt;_set&lt;Value&gt;</code> for other values</li>
+</ul>
+</li>
+<li>For C objects:
+<ul>
+<li>Use a (opaque) object pointer as the first argument of the function.</li>
+<li>Ensure that object can be created using a <code>celix_&lt;obj&gt;_create</code> function and destroyed using
+a <code>celix_&lt;obj&gt;_destroy</code> function.</li>
+<li>The <code>celix_&lt;obj&gt;_create</code> function should return a pointer to the object.</li>
+<li>The <code>celix_&lt;obj&gt;_destroy</code> function should return a <code>void</code> and should be able to handle a NULL pointer.
+<ul>
+<li>By being able to handle a NULL pointer, the <code>celix_&lt;obj&gt;_destroy</code> function can be more easily used in
+error handling code.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>Examples:</p>
+<ul>
+<li><code>long celix_bundleContext_installBundle(celix_bundle_context_t* ctx, const char* bundleUrl, bool autoStart)</code></li>
+<li><code>bool celix_utils_stringEquals(const char* a, const char* b)</code></li>
+<li><code>celix_status_t celix_utils_createDirectory(const char* path, bool failIfPresent, const char** errorOut)</code></li>
+</ul>
+<h3 id="c-constants">C Constants</h3>
+<ul>
+<li>Use <code>SNAKE_CASE</code> for constant names.</li>
+<li>Use a <code>CELIX_</code> prefix for constant names.</li>
+<li>Use <code>#define</code> for constants.</li>
+</ul>
+<h3 id="c-enums">C Enums</h3>
+<ul>
+<li>Use <code>snake_case</code> for enum type names.</li>
+<li>Use a <code>celix_</code> prefix for enum type names.</li>
+<li>Use <code>SNAKE_CASE</code> for enum value names.</li>
+<li>Use a <code>CELIX_</code> prefix for enum value names.</li>
+<li>Add a typedef - with a <code>_e</code> postfix - for the enum</li>
+</ul>
+<p>Example:</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c" data-lang="c"><span style="display:flex;"><span><span style="color:#a2f;font-weight:bold">typedef</span> <span style="color:#a2f;font-weight:bold">enum</span> celix_hash_map_key_type {
+</span></span><span style="display:flex;"><span>    CELIX_HASH_MAP_STRING_KEY,
+</span></span><span style="display:flex;"><span>    CELIX_HASH_MAP_LONG_KEY
+</span></span><span style="display:flex;"><span>} celix_hash_map_key_type_e;
+</span></span></code></pre></div><h3 id="macros">Macros</h3>
+<ul>
+<li>Use all caps <code>SNAKE_CASE</code> for macro names.</li>
+<li>Use a <code>CELIX_</code> prefix for macro names.</li>
+</ul>
+<h3 id="c-files-and-directories">C files and directories</h3>
+<ul>
+<li>Use <code>snake_case</code> for file names.</li>
+<li>Name header files with a <code>.h</code> extension and source files with a <code>.c</code> extension.</li>
+<li>Organize files in directories according to their purpose.
+<ul>
+<li>Public headers files in a <code>include</code>, <code>api</code> or <code>spi</code> directory.</li>
+<li>Private header files in a <code>private</code> and <code>src</code> directory.</li>
+<li>Source files in a <code>src</code> directory.</li>
+</ul>
+</li>
+<li>Google test files should be placed in a <code>gtest</code> directory with its own <code>CMakeLists.txt</code> file and <code>src</code> directory.</li>
+<li>Use <code>celix_</code> prefix for header file names.</li>
+<li>Use a header guard.</li>
+<li>Use a C++ &ldquo;extern C&rdquo; block in headers file to ensure C headers are usable in C++.</li>
+</ul>
+<h3 id="c-libraries">C Libraries</h3>
+<ul>
+<li>Target names should be <code>snake_case</code>.</li>
+<li>There should be <code>celix::</code> prefixed aliases for the library.</li>
+<li>C Shared libraries should configure an output name with a <code>celix_</code> prefix.</li>
+</ul>
+<h3 id="c-services">C Services</h3>
+<ul>
+<li>Service headers should be made available through a CMake INTERFACE header-only api/spi library (i.e. <code>celix::shell_api</code>)</li>
+<li>C service should be C struct, where the first member is the service handle (<code>void* handle;</code>) and the rest of the members are
+function pointers.</li>
+<li>The first argument of the service functions should be the service handle.</li>
+<li>If memory allocation is needed or another error can occur in a service function, ensure that the return value can
+be used to check for errors. This can be done by:
+<ul>
+<li>Returning a <code>celix_status_t</code> and if needed using an out parameter.</li>
+<li>Returning a NULL pointer if the function returns a pointer type.</li>
+<li>Returning a boolean value, where <code>true</code> indicates success and <code>false</code> indicates failure.</li>
+</ul>
+</li>
+<li>In the same header as the C service struct, there should be defines for the service name and version.</li>
+<li>The service name macro  should be all caps <code>SNAKE_CASE</code>, prefixed with <code>CELIX_</code> and postfixed with <code>_NAME</code>.</li>
+<li>The service version macro should be all caps <code>SNAKE_CASE</code>, prefixed with <code>CELIX_</code> and postfixed with <code>_VERSION</code>.</li>
+<li>The value of the service name macro should be the service struct (so without a <code>_t</code> postfix</li>
+<li>The value of the service version macro should be the version of the service.</li>
+</ul>
+<p>Example:</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c" data-lang="c"><span style="display:flex;"><span><span style="color:#080;font-style:italic">//celix_foo.h
+</span></span></span><span style="display:flex;"><span><span style="color:#080;font-style:italic"></span><span style="color:#080">#include</span> <span style="color:#080">&#34;celix_errno.h&#34;</span><span style="color:#080">
+</span></span></span><span style="display:flex;"><span><span style="color:#080"></span>
+</span></span><span style="display:flex;"><span><span style="color:#080">#define CELIX_FOO_NAME &#34;celix_foo&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#080">#define CELIX_FOO_VERSION 1.0.0
+</span></span></span><span style="display:flex;"><span><span style="color:#080"></span>
+</span></span><span style="display:flex;"><span><span style="color:#a2f;font-weight:bold">typedef</span> <span style="color:#a2f;font-weight:bold">struct</span> celix_foo {
+</span></span><span style="display:flex;"><span>    <span style="color:#0b0;font-weight:bold">void</span><span style="color:#666">*</span> handle;
+</span></span><span style="display:flex;"><span>    <span style="color:#0b0;font-weight:bold">celix_status_t</span> (<span style="color:#666">*</span>doFoo)(<span style="color:#0b0;font-weight:bold">void</span><span style="color:#666">*</span> handle, <span style="color:#0b0;font-weight:bold">char</span><span style="color:#666">**</span> outMsg);
+</span></span><span style="display:flex;"><span>} <span style="color:#0b0;font-weight:bold">celix_foo_t</span>;
+</span></span></code></pre></div><h3 id="c-bundles">C Bundles</h3>
+<ul>
+<li>Use <code>snake_case</code> for C bundle target names.</li>
+<li>Do <em>not</em> use a <code>celix_</code> prefix for C bundle target names.</li>
+<li>Use <code>celix::</code> prefixed aliases for C bundle targets.</li>
+<li>Use <code>snake_case</code> for C bundle symbolic names.</li>
+<li>Configure at least SYMBOLIC_NAME, NAME, FILENAME, VERSION and GROUP for C bundle targets.</li>
+<li>Use <code>apache_celix_</code> prefix for C bundle symbolic names.</li>
+<li>Use <code>Apache Celix </code> prefix for C bundle names.</li>
+<li>Use a <code>celix_</code> prefix for C bundle filenames.</li>
+<li>Use a group name starting with <code>celix/</code> for C bundle groups.</li>
+</ul>
+<p>Examples:</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cmake" data-lang="cmake"><span style="display:flex;"><span><span style="color:#a2f">add_celix_bundle</span>(<span style="color:#b44">my_bundle</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#b44">SOURCES</span> <span style="color:#b44">src/my_bundle.c</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#b44">SYMBOLIC_NAME</span> <span style="color:#b44">&#34;apache_celix_my_bundle&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#b44">NAME</span> <span style="color:#b44">&#34;Apache Celix My Bundle&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#b44">FILENAME</span> <span style="color:#b44">&#34;celix_my_bundle&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#b44">VERSION</span> <span style="color:#b44">&#34;1.0.0&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#b44">GROUP</span> <span style="color:#b44">&#34;celix/my_bundle_group&#34;</span>
+</span></span><span style="display:flex;"><span>)<span style="">
+</span></span></span><span style="display:flex;"><span><span style=""></span><span style="color:#a2f">add_library</span>(<span style="color:#b44">celix::my_bundle</span> <span style="color:#b44">ALIAS</span> <span style="color:#b44">my_bundle</span>)<span style="">
+</span></span></span></code></pre></div><h3 id="c-namespaces">C++ Namespaces</h3>
+<ul>
+<li>Use <code>snake_case</code> for namespace names.</li>
+<li>All namespaces should be part of the <code>celix</code> namespace.</li>
+<li>Aim for a max of 3 levels of namespaces.</li>
+<li>Use a namespace ending with <code>detail</code> for implementation details.</li>
+</ul>
+<h3 id="c-classes">C++ Classes</h3>
+<ul>
+<li>Use <code>CamelCase</code> (starting with a capital) for class names.</li>
+<li>Use descriptive names for classes.</li>
+<li>Classes should be part of a <code>celix::</code> namespace or sub <code>celix::</code> namespace.</li>
+</ul>
+<h3 id="c-functions-1">C++ Functions</h3>
+<ul>
+<li>Use <code>camelCase</code> for function names.</li>
+<li>If a function is not part of a class/struct, it should be part of a <code>celix::</code> namespace or sub <code>celix::</code> namespace.</li>
+<li>Asterisks <code>*</code> and ampersands <code>&amp;</code> should be placed on the variable type name.</li>
+<li>Use verb as function names when a function has a side effect.</li>
+<li>Use nouns or getter/setter as function names when a function does not have a side effect.</li>
+<li>Use getters/setters naming convention for functions which get/set a value.</li>
+</ul>
+<h3 id="c-constants-1">C++ Constants</h3>
+<ul>
+<li>Use <code>SNAKE_CASE</code> for constants.</li>
+<li>Use constexpr for constants.</li>
+<li>Place constants in a <code>celix::</code> namespace or sub <code>celix::</code> namespace.</li>
+</ul>
+<p>example:</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c++" data-lang="c++"><span style="display:flex;"><span><span style="color:#a2f;font-weight:bold">namespace</span> celix {
+</span></span><span style="display:flex;"><span>    <span style="color:#a2f;font-weight:bold">constexpr</span> <span style="color:#0b0;font-weight:bold">long</span> FRAMEWORK_BUNDLE_ID <span style="color:#666">=</span> <span style="color:#666">0</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#a2f;font-weight:bold">constexpr</span> <span style="color:#a2f;font-weight:bold">const</span> <span style="color:#0b0;font-weight:bold">char</span><span style="color:#666">*</span> <span style="color:#a2f;font-weight:bold">const</span> SERVICE_ID <span style="color:#666">=</span> <span style="color:#b44">&#34;service.id&#34;</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h3 id="c-enums-1">C++ Enums</h3>
+<ul>
+<li>Use <code>CamelCase</code> (starting with a capital) for enum types names.</li>
+<li>Use <code>enum class</code> instead of <code>enum</code> and if possible use <code>std::int8_t</code> as base type.</li>
+<li>Use <code>SNAKE_CASE</code> for enum values without a celix/class prefix. Note that for enum values no prefix is required
+because enum class values are scoped.</li>
+</ul>
+<p>Example:</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c++" data-lang="c++"><span style="display:flex;"><span><span style="color:#a2f;font-weight:bold">namespace</span> celix {
+</span></span><span style="display:flex;"><span>    <span style="color:#a2f;font-weight:bold">enum</span> <span style="color:#a2f;font-weight:bold">class</span> <span style="color:#00f">ServiceRegistrationState</span> {
+</span></span><span style="display:flex;"><span>        REGISTERING,
+</span></span><span style="display:flex;"><span>        REGISTERED,
+</span></span><span style="display:flex;"><span>        UNREGISTERING,
+</span></span><span style="display:flex;"><span>        UNREGISTERED
+</span></span><span style="display:flex;"><span>    };
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h3 id="c-files-and-directories-1">C++ files and directories</h3>
+<ul>
+<li>Use <code>CamelCase</code> (starting with a capital) for file names.</li>
+<li>Name header files with a <code>.h</code> extension and source files with a <code>.cc</code> extension.</li>
+<li>Place header files in a directory based on the namespace (e.g. <code>celix/Bundle.h</code>, <code>celix/dm/Component.h</code>).</li>
+<li>Organize files in directories according to their purpose.
+<ul>
+<li>Public headers files in a <code>include</code>, <code>api</code> or <code>spi</code> directory.</li>
+<li>Private header files in a <code>private</code> and <code>src</code> directory.</li>
+<li>Source files in a <code>src</code> directory.</li>
+</ul>
+</li>
+<li>Use a <code>#pragma once</code> header guard.</li>
+</ul>
+<h3 id="c-libraries-1">C++ Libraries</h3>
+<ul>
+<li>Target name should be <code>CamelCase</code> (starting with a capital).</li>
+<li>There should be <code>celix::</code> prefixed aliases for the library.</li>
+<li>C++ Libraries should support C++14.
+<ul>
+<li>Exception are <code>celix::Promises</code> and <code>celix::PushStreams</code> which requires C++17.</li>
+</ul>
+</li>
+<li>The Apache Celix framework library (<code>Celix::framework</code>) and the Apache Celix utils library (<code>Celix::utils</code>) can only
+use header-only C++ files. This ensure that the framework and utils library can be used in C only projects and do
+not introduce a C++ ABI.</li>
+<li>For other libraries, header-only C++ libraries are preferred but not required.</li>
+<li>Header-only C++ libraries do not need an export header and do not need to configure symbol visibility.</li>
+<li>C++ shared libraries (lib with C++ sources), should configure an output name with a <code>celix_</code> prefix.</li>
+<li>C++ shared libraries (lib with C++ sources), should use an export header and configure symbol visibility.
+<ul>
+<li>See the C Libraries section for more information.</li>
+</ul>
+</li>
+</ul>
+<h3 id="c-services-1">C++ Services</h3>
+<ul>
+<li>Use <code>CamelCase</code> (starting with a capital) for service names.</li>
+<li>Add a &lsquo;I&rsquo; prefix to the service interface name.</li>
+<li>Place service classes in a <code>celix::</code> namespace or sub <code>celix::</code> namespace.</li>
+<li>Add a <code>static constexpr const char* const NAME</code> to the service class, for the service name.</li>
+<li>Add a <code>static constexpr const char* const VERSION</code> to the service class, for the service version.</li>
+</ul>
+<h3 id="c-bundles-1">C++ Bundles</h3>
+<ul>
+<li>Use <code>CamelCase</code> for C++ bundle target names.</li>
+<li>Do <em>not</em> use a <code>Celix</code> prefix for C++ bundle target names.</li>
+<li>Use <code>celix::</code> prefixed aliases for C++ bundle targets.</li>
+<li>Use <code>CamelCase</code> for C++ bundle symbolic names.</li>
+<li>Configure at least SYMBOLIC_NAME, NAME, FILENAME, VERSION and GROUP for C++ bundle targets.</li>
+<li>Use <code>Apache_Celix_</code> prefix for C++ bundle symbolic names.</li>
+<li>Use <code>Apache Celix </code> prefix for C++ bundle names.</li>
+<li>Use a <code>celix_</code> prefix for C++ bundle filenames.</li>
+<li>Use a group name starting with <code>celix/</code> for C++ bundle groups.</li>
+</ul>
+<p>Examples:</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cmake" data-lang="cmake"><span style="display:flex;"><span><span style="color:#a2f">add_celix_bundle</span>(<span style="color:#b44">MyBundle</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#b44">SOURCES</span> <span style="color:#b44">src/MyBundle.cc</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#b44">SYMBOLIC_NAME</span> <span style="color:#b44">&#34;Apache_Celix_MyBundle&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#b44">NAME</span> <span style="color:#b44">&#34;Apache Celix My Bundle&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#b44">FILENAME</span> <span style="color:#b44">&#34;celix_MyBundle&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#b44">VERSION</span> <span style="color:#b44">&#34;1.0.0&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#b44">GROUP</span> <span style="color:#b44">&#34;celix/MyBundleGroup&#34;</span>
+</span></span><span style="display:flex;"><span>)<span style="">
+</span></span></span><span style="display:flex;"><span><span style=""></span><span style="color:#a2f">add_library</span>(<span style="color:#b44">celix::MyBundle</span> <span style="color:#b44">ALIAS</span> <span style="color:#b44">MyBundle</span>)<span style="">
+</span></span></span></code></pre></div><h3 id="unit-tests-naming">Unit Tests Naming</h3>
+<ul>
+<li>The test fixture should have a<code>TestSuite</code> postfix.</li>
+<li>The source file should be named after the test fixture name and use a <code>.cc</code> extension.</li>
+<li>Testcase names should use <code>CamelCase</code> (starting with a capital) and have a <code>Test</code> postfix.</li>
+<li>When using error injection (one of the <code>error_injector</code> libraries) a separate test suite should be used.
+<ul>
+<li>A <code>ErrorInjectionTestSuite</code> postfix should be used for the test fixture.</li>
+<li>The error injection setup should be reset on the <code>TearDown</code> function or destructor of the test fixture.</li>
+</ul>
+</li>
+</ul>
+<h2 id="comments-and-documentation">Comments and Documentation</h2>
+<ul>
+<li>Use Doxygen documentation, except for inline comments.</li>
+<li>Write comments that explain the purpose of the code, focusing on the &ldquo;why&rdquo; rather than the &ldquo;how&rdquo;.</li>
+<li>Apply doxygen documentation to all public API&rsquo;s.</li>
+<li>Use the javadoc style for doxygen documentation.</li>
+<li>Use <code>@</code> instead of <code>\</code> for doxygen commands.</li>
+<li>Start with a <code>@brief</code> command and a short description.</li>
+<li>For <code>@param</code> commands also provide in, out, or in/out information.</li>
+<li>For <code>@return</code> commands also provide a description of the return value.</li>
+<li>If a function can return multiple error codes, use a errors section (<code>@section errors_section Errors</code>) to document the
+possible errors. Use <code>man 2 write</code> as an example for a good errors section.</li>
+</ul>
+<h2 id="formatting-and-indentation">Formatting and Indentation</h2>
+<ul>
+<li>Use spaces for indentation and use 4 spaces per indentation level.</li>
+<li>Keep line lengths under 120 characters, if possible, to enhance readability.</li>
+<li>Place opening braces on the same line as the control statement or function definition,<br>
+and closing braces on a new line aligned with the control statement or function definition.</li>
+<li>Use a single space before and after operators and around assignment statements.</li>
+<li>Add a space after control keywords (<code>if</code>, <code>for</code>, <code>while</code>, etc.) that are followed by a parenthesis.</li>
+<li>Always use braces ({ }) for control structures, even for single-statement blocks, to prevent errors.</li>
+<li>Add a space after control keywords (<code>else</code>, <code>do</code>, etc) that are followed by a brace.</li>
+<li>Do not add a space after the function name and the opening parenthesis.</li>
+<li>For new files apply clang-format using the project .clang-format file.
+<ul>
+<li>Note that this can be done using a plugin for your IDE or by running <code>clang-format -i &lt;file&gt;</code>.</li>
+</ul>
+</li>
+</ul>
+<h2 id="control-structures">Control Structures</h2>
+<ul>
+<li>Use <code>if</code>, <code>else if</code>, and <code>else</code> statements to handle multiple conditions.</li>
+<li>Use <code>switch</code> statements for multiple conditions with a default case.</li>
+<li>Use <code>while</code> statements for loops that may not execute.</li>
+<li>Use <code>do</code>/<code>while</code> statements for loops that must execute at least once.</li>
+<li>Use <code>for</code> statements for loops with a known number of iterations.</li>
+<li>The use of <code>goto</code> is not allowed, except for error handling in C (for C++ use RAII).</li>
+<li>For C, try to prevent deeply nested control structures and prefer early returns or error handling <code>goto</code> statements.
+<ul>
+<li>To prevent deeply nested control structures, the <code>CELIX_DO_IF</code>, <code>CELIX_GOTO_IF_NULL</code> and <code>CELIX_GOTO_IF_ERR</code>
+macros can also be used.</li>
+</ul>
+</li>
+</ul>
+<h2 id="functions-and-methods">Functions and Methods</h2>
+<ul>
+<li>Limit functions to a single responsibility or purpose, following the Single Responsibility Principle (SRP).</li>
+<li>Keep functions short and focused, aiming for a length of fewer than 50 lines.</li>
+<li>Ensure const correctness.</li>
+<li>For C functions with a lot of different parameters, consider using an options struct.
+<ul>
+<li>An options struct combined with a EMPTY_OPTIONS macro can be used to provide default values and a such
+options struct can be updated backwards compatible.</li>
+<li>An options struct ensure that a lot of parameters can be configured, but also direct set on creation.</li>
+</ul>
+</li>
+<li>For C++ functions with a lot of different parameters, consider using a builder pattern.
+<ul>
+<li>A builder pattern can be updated backwards compatible.</li>
+<li>A builder pattern ensure that a lot of parameters can be configured, but also direct set on construction.</li>
+</ul>
+</li>
+</ul>
+<h2 id="error-handling-and-logging">Error Handling and Logging</h2>
+<ul>
+<li>For C++, throw an exception when an error occurs and use RAII to ensure that resources are freed.</li>
+<li>For C, if memory allocation is needed or another error can occur, ensure that a function returns a value
+than can be used to check for errors. This can be done by:
+<ul>
+<li>Returning a <code>celix_status_t</code> and if needed using an out parameter.</li>
+<li>Returning a NULL pointer if the function returns a pointer.</li>
+<li>Returning a boolean value, where <code>true</code> indicates success and <code>false</code> indicates failure.</li>
+</ul>
+</li>
+<li>Use consistent error handling techniques, such as returning error codes or using designated error handling functions.</li>
+<li>Log errors, warnings, and other important events using the Apache Celix log helper functions or - for libraries -
+the <code>celix_err</code> functionality.</li>
+<li>Always check for errors and log them.</li>
+<li>Error handling should free resources in the reverse order of their allocation/creation.</li>
+<li>Ensure error handling is correct, using test suite with error injection.</li>
+</ul>
+<p>For log levels use the following guidelines:</p>
+<ul>
+<li>trace: Use this level for very detailed that you would only want to have while diagnosing problems.</li>
+<li>debug: This level should be used for information that might be helpful in diagnosing problems or understanding
+what&rsquo;s going on, but is too verbose to be enabled by default.</li>
+<li>info: Use this level for general operational messages that aren&rsquo;t tied to any specific problem or error condition.
+They provide insight into the normal behavior of the system. Examples include startup/shutdown messages,
+configuration assumptions, etc.</li>
+<li>warning: Use this level to report an issue from which the system can recover, but which might indicate a potential
+problem.</li>
+<li>error: This level should be used to report issues that need immediate attention and might prevent the system from
+functioning correctly. These are problems that are unexpected and affect functionality, but not so severe that the
+process needs to stop. Examples include runtime errors, inability to connect to a service, etc.</li>
+<li>fatal: Use this level to report severe errors that prevent the program from continuing to run.
+After logging a fatal error, the program will typically terminate.</li>
+</ul>
+<p>Example of error handling and logging:</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c" data-lang="c"><span style="display:flex;"><span><span style="color:#0b0;font-weight:bold">celix_foo_t</span><span style="color:#666">*</span> <span style="color:#00a000">celix_foo_create</span>(<span style="color:#0b0;font-weight:bold">celix_log_helper_t</span><span style="color:#666">*</span> logHelper) {
+</span></span><span style="display:flex;"><span>    <span style="color:#0b0;font-weight:bold">celix_foo_t</span><span style="color:#666">*</span> foo <span style="color:#666">=</span> <span style="color:#00a000">calloc</span>(<span style="color:#666">1</span>, <span style="color:#a2f;font-weight:bold">sizeof</span>(<span style="color:#666">*</span>foo));
+</span></span><span style="display:flex;"><span>    <span style="color:#a2f;font-weight:bold">if</span> (<span style="color:#666">!</span>foo) {
+</span></span><span style="display:flex;"><span>        <span style="color:#a2f;font-weight:bold">goto</span> create_enomem_err;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#00a000">CELIX_GOTO_IF_ERR</span>(create_mutex_err, <span style="color:#00a000">celixThreadMutex_create</span>(<span style="color:#666">&amp;</span>foo<span style="color:#666">-&gt;</span>mutex, <span style="color:#a2f">NULL</span>));
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    foo<span style="color:#666">-&gt;</span>list <span style="color:#666">=</span> <span style="color:#00a000">celix_arrayList_create</span>();
+</span></span><span style="display:flex;"><span>    foo<span style="color:#666">-&gt;</span>map <span style="color:#666">=</span> <span style="color:#00a000">celix_longHashMap_create</span>();
+</span></span><span style="display:flex;"><span>    <span style="color:#a2f;font-weight:bold">if</span> (<span style="color:#666">!</span>foo<span style="color:#666">-&gt;</span>list <span style="color:#666">||</span>  <span style="color:#666">!</span>foo<span style="color:#666">-&gt;</span>map) {
+</span></span><span style="display:flex;"><span>        <span style="color:#a2f;font-weight:bold">goto</span> create_enomem_err;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>  <span style="color:#a2f;font-weight:bold">return</span> foo;
+</span></span><span style="display:flex;"><span><span style="color:#a0a000">create_mutex_err</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#00a000">celix_logHelper_log</span>(logHelper, CELIX_LOG_LEVEL_ERROR, <span style="color:#b44">&#34;Error creating mutex&#34;</span>);
+</span></span><span style="display:flex;"><span>  <span style="color:#00a000">free</span>(foo); <span style="color:#080;font-style:italic">//mutex not created, do not use celix_foo_destroy to prevent mutex destroy
+</span></span></span><span style="display:flex;"><span><span style="color:#080;font-style:italic"></span>  <span style="color:#a2f;font-weight:bold">return</span> <span style="color:#a2f">NULL</span>;
+</span></span><span style="display:flex;"><span><span style="color:#a0a000">create_enomem_err</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#00a000">celix_logHelper_log</span>(logHelper, CELIX_LOG_LEVEL_ERROR, <span style="color:#b44">&#34;Error creating foo, out of memory&#34;</span>);
+</span></span><span style="display:flex;"><span>  <span style="color:#00a000">celix_foo_destroy</span>(foo); <span style="color:#080;font-style:italic">//note celix_foo_destroy can handle NULL
+</span></span></span><span style="display:flex;"><span><span style="color:#080;font-style:italic"></span>  <span style="color:#a2f;font-weight:bold">return</span> <span style="color:#a2f">NULL</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#0b0;font-weight:bold">void</span> <span style="color:#00a000">celix_foo_destroy</span>(<span style="color:#0b0;font-weight:bold">celix_foo_t</span><span style="color:#666">*</span> foo) {
+</span></span><span style="display:flex;"><span>    <span style="color:#a2f;font-weight:bold">if</span> (foo <span style="color:#666">!=</span> <span style="color:#a2f">NULL</span>) {
+</span></span><span style="display:flex;"><span>        <span style="color:#080;font-style:italic">//note reverse order of creation
+</span></span></span><span style="display:flex;"><span><span style="color:#080;font-style:italic"></span>        <span style="color:#00a000">celixThreadMutex_destroy</span>(<span style="color:#666">&amp;</span>foo<span style="color:#666">-&gt;</span>mutex);
+</span></span><span style="display:flex;"><span>        <span style="color:#00a000">celix_arrayList_destroy</span>(foo<span style="color:#666">-&gt;</span>list);
+</span></span><span style="display:flex;"><span>        <span style="color:#00a000">celix_longHashMap_destroy</span>(foo<span style="color:#666">-&gt;</span>map);
+</span></span><span style="display:flex;"><span>        <span style="color:#00a000">free</span>(foo);
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h2 id="error-injection">Error Injection</h2>
+<ul>
+<li>Use the Apache Celix error_injector libraries to inject errors in unit tests in a controlled way.</li>
+<li>Create a separate test suite for error injection tests and place them under a <code>EI_TESTS</code> cmake condition.</li>
+<li>Reset error injection setup on the <code>TearDown</code> function or destructor of the test fixture.</li>
+<li>If an - internal or external - function is missing error injection support, add it to the error_injector library.
+<ul>
+<li>Try to create small error injector libraries for specific functionality.</li>
+</ul>
+</li>
+</ul>
+<h2 id="unit-test-approach">Unit Test Approach</h2>
+<ul>
+<li>Use the Google Test framework for unit tests.</li>
+<li>Use the Google Mock framework for mocking.</li>
+<li>Use the Apache Celix error_injector libraries to inject errors in unit tests in a controlled way.</li>
+<li>Test bundles by installing them in a programmatically created framework.</li>
+<li>Test bundles by using their provided services and used services.</li>
+<li>In most cases, libraries can be tested using a white box approach and bundles can be tested using a black box approach.</li>
+<li>For libraries that are tested with the Apache Celix error_injector libraries or require access to private/hidden
+functions (white-box testing), a separate &ldquo;code under test&rdquo; static library should be created.
+This library should not hide its symbols and should have a <code>_cut</code> postfix.</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cmake" data-lang="cmake"><span style="display:flex;"><span><span style="color:#a2f">set</span>(<span style="color:#b44">MY_LIB_SOURCES</span> <span style="color:#b44">...</span>)<span style="">
+</span></span></span><span style="display:flex;"><span><span style=""></span><span style="color:#a2f">set</span>(<span style="color:#b44">MY_LIB_PUBLIC_LIBS</span> <span style="color:#b44">...</span>)<span style="">
+</span></span></span><span style="display:flex;"><span><span style=""></span><span style="color:#a2f">set</span>(<span style="color:#b44">MY_LIB_PRIVATE_LIBS</span> <span style="color:#b44">...</span>)<span style="">
+</span></span></span><span style="display:flex;"><span><span style=""></span><span style="color:#a2f">add_library</span>(<span style="color:#b44">my_lib</span> <span style="color:#b44">SHARED</span> <span style="color:#666">${</span><span style="color:#b8860b">MY_LIB_SOURCES</span><span style="color:#666">}</span>)<span style="">
+</span></span></span><span style="display:flex;"><span><span style=""></span><span style="color:#a2f">target_link_libraries</span>(<span style="color:#b44">my_lib</span> <span style="color:#b44">PUBLIC</span> <span style="color:#666">${</span><span style="color:#b8860b">MY_LIB_PUBLIC_LIBS</span><span style="color:#666">}</span> <span style="color:#b44">PRIVATE</span> <span style="color:#666">${</span><span style="color:#b8860b">MY_LIB_PRIVATE_LIBS</span><span style="color:#666">}</span>)<span style="">
+</span></span></span><span style="display:flex;"><span><span style=""></span><span style="color:#a2f">celix_target_hide_symbols</span>(<span style="color:#b44">my_lib</span>)<span style="">
+</span></span></span><span style="display:flex;"><span><span style="">...
+</span></span></span><span style="display:flex;"><span><span style="">
+</span></span></span><span style="display:flex;"><span><span style=""></span><span style="color:#a2f">if</span> (<span style="color:#b44">ENABLE_TESTING</span>)<span style="">
+</span></span></span><span style="display:flex;"><span><span style=""></span>    <span style="color:#a2f">add_library</span>(<span style="color:#b44">my_lib_cut</span> <span style="color:#b44">STATIC</span> <span style="color:#666">${</span><span style="color:#b8860b">MY_LIB_SOURCES</span><span style="color:#666">}</span>)<span style="">
+</span></span></span><span style="display:flex;"><span><span style=""></span>    <span style="color:#a2f">target_link_libraries</span>(<span style="color:#b44">my_lib_cut</span> <span style="color:#b44">PUBLIC</span> <span style="color:#666">${</span><span style="color:#b8860b">MY_LIB_PUBLIC_LIBS</span><span style="color:#666">}</span> <span style="color:#666">${</span><span style="color:#b8860b">MY_LIB_PRIVATE_LIBS</span><span style="color:#666">}</span>)<span style="">
+</span></span></span><span style="display:flex;"><span><span style=""></span>    <span style="color:#a2f">target_include_directories</span>(<span style="color:#b44">my_lib_cut</span> <span style="color:#b44">PUBLIC</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#666">${</span><span style="color:#b8860b">CMAKE_CURRENT_LIST_DIR</span><span style="color:#666">}</span><span style="color:#b44">/src</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#666">${</span><span style="color:#b8860b">CMAKE_CURRENT_LIST_DIR</span><span style="color:#666">}</span><span style="color:#b44">/include</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#666">${</span><span style="color:#b8860b">CMAKE_BINARY_DIR</span><span style="color:#666">}</span><span style="color:#b44">/celix/gen/includes/my_lib</span>
+</span></span><span style="display:flex;"><span>    )<span style="">
+</span></span></span><span style="display:flex;"><span><span style=""></span><span style="color:#a2f">endif</span> ()<span style="">
+</span></span></span></code></pre></div><h2 id="supported-c-and-c-standards">Supported C and C++ Standards</h2>
+<ul>
+<li>C libraries should support C99.</li>
+<li>C++ libraries should support C++14.
+<ul>
+<li>Exception are <code>celix::Promises</code> and <code>celix::PushStreams</code> which requires C++17.</li>
+</ul>
+</li>
+<li>C++ support for <code>celix::framework</code> and <code>celix::utils</code> must be header-only.</li>
+<li>Unit test code can be written in C++17.</li>
+</ul>
+<h2 id="library-target-properties">Library target properties</h2>
+<p>For C and C++ shared libraries, the following target properties should be set:</p>
+<ul>
+<li><code>VERSION</code> should be set to the library version.</li>
+<li><code>SOVERSION</code> should be set to the library major version.</li>
+<li><code>OUTPUT_NAME</code> should be set to the library name and should contain a <code>celix_</code> prefix.</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cmake" data-lang="cmake"><span style="display:flex;"><span><span style="color:#a2f">add_library</span>(<span style="color:#b44">my_lib</span> <span style="color:#b44">SHARED</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#b44">src/my_lib.c</span>)<span style="">
+</span></span></span><span style="display:flex;"><span><span style=""></span><span style="color:#a2f">set_target_properties</span>(<span style="color:#b44">my_lib</span> 
+</span></span><span style="display:flex;"><span>    <span style="color:#b44">PROPERTIES</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#b44">VERSION</span> <span style="color:#b44">1.0.0</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#b44">SOVERSION</span> <span style="color:#b44">1</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#b44">OUTPUT_NAME</span> <span style="color:#b44">celix_my_lib</span>)<span style="">
+</span></span></span></code></pre></div><p>For C and C++ static libraries, the following target properties should be set:</p>
+<ul>
+<li><code>POSITION_INDEPENDENT_CODE</code> should be set to <code>ON</code> for static libraries.</li>
+<li><code>OUTPUT_NAME</code> should be set to the library name and should contain a <code>celix_</code> prefix.</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cmake" data-lang="cmake"><span style="display:flex;"><span><span style="color:#a2f">add_library</span>(<span style="color:#b44">my_lib</span> <span style="color:#b44">STATIC</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#b44">src/my_lib.c</span>)<span style="">
+</span></span></span><span style="display:flex;"><span><span style=""></span><span style="color:#a2f">set_target_properties</span>(<span style="color:#b44">my_lib</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#b44">PROPERTIES</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#b44">POSITION_INDEPENDENT_CODE</span> <span style="color:#b44">ON</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#b44">OUTPUT_NAME</span> <span style="color:#b44">celix_my_lib</span>)<span style="">
+</span></span></span></code></pre></div><h2 id="symbol-visibility">Symbol Visibility</h2>
+<ul>
+<li>Header-only (INTERFACE) libraries should not configure symbol visibility.</li>
+<li>Shared and static libraries should configure symbol visibility.
+<ul>
+<li>Static library meant to be linked as PRIVATE should hide symbols.</li>
+</ul>
+</li>
+<li>Bundles should configure symbol visibility (this is done by default).</li>
+</ul>
+<h3 id="configuring-symbol-visibility-for-cc-libraries">Configuring Symbol Visibility for C/C++ Libraries</h3>
+<p>For Apache Celix shared libraries, symbol visibility should be configured using the CMake target
+properties <code>C_VISIBILITY_PRESET</code>, <code>CXX_VISIBILITY_PRESET</code> and <code>VISIBILITY_INLINES_HIDDEN</code> and a generated export
+header.</p>
+<p>The <code>C_VISIBILITY_PRESET</code> and <code>CXX_VISIBILITY_PRESET</code> target properties can be used to configure the default visibility
+of symbols in C and C++ code. The <code>VISIBILITY_INLINES_HIDDEN</code> property can be used to configure the visibility of
+inline functions. The <code>VISIBILITY_INLINES_HIDDEN</code> property is only supported for C++ code.</p>
+<p>The default visibility should be configured to hidden and symbols should be explicitly exported using the export
+marcos from a generated export header. The export header can be generated using the CMake function
+<code>generate_export_header</code>. Every library should have its own export header.</p>
+<p>For shared libraries, this can be done using the following CMake code:</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cmake" data-lang="cmake"><span style="display:flex;"><span><span style="color:#a2f">add_library</span>(<span style="color:#b44">my_lib</span> <span style="color:#b44">SHARED</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#b44">src/my_lib.c</span>)<span style="">
+</span></span></span><span style="display:flex;"><span><span style=""></span><span style="color:#a2f">set_target_properties</span>(<span style="color:#b44">my_lib</span> <span style="color:#b44">PROPERTIES</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#b44">C_VISIBILITY_PRESET</span> <span style="color:#b44">hidden</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#080;font-style:italic">#For C++ shared libraries also configure CXX_VISIBILITY_PRESET
+</span></span></span><span style="display:flex;"><span><span style="color:#080;font-style:italic"></span>        <span style="color:#b44">CXX_VISIBILITY_PRESET</span> <span style="color:#b44">hidden</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#b44">VISIBILITY_INLINES_HIDDEN</span> <span style="color:#b44">ON</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#b44">OUTPUT_NAME</span> <span style="color:#b44">celix_my_lib</span>)<span style="">
+</span></span></span><span style="display:flex;"><span><span style=""></span><span style="color:#a2f">target_include_directories</span>(<span style="color:#b44">my_lib</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#b44">PUBLIC</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#666">$&lt;</span><span style="color:#b8860b">BUILD_INTERFACE:${CMAKE_BINARY_DIR}/celix/gen/includes/my_lib</span><span style="color:#666">&gt;</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#b44">PRIVATE</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#b44">src</span>)<span style="">
+</span></span></span><span style="display:flex;"><span><span style="">
+</span></span></span><span style="display:flex;"><span><span style=""></span><span style="color:#080;font-style:italic">#generate export header
+</span></span></span><span style="display:flex;"><span><span style="color:#080;font-style:italic"></span><span style="color:#a2f">generate_export_header</span>(<span style="color:#b44">my_lib</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#b44">BASE_NAME</span> <span style="color:#b44">&#34;CELIX_MY_LIB&#34;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#b44">EXPORT_FILE_NAME</span> <span style="color:#b44">&#34;${CMAKE_BINARY_DIR}/celix/gen/includes/my_lib/celix_my_lib_export.h&#34;</span>)<span style="">
+</span></span></span><span style="display:flex;"><span><span style="">
+</span></span></span><span style="display:flex;"><span><span style=""></span><span style="color:#080;font-style:italic">#install
+</span></span></span><span style="display:flex;"><span><span style="color:#080;font-style:italic"></span><span style="color:#a2f">install</span>(<span style="color:#b44">TARGETS</span> <span style="color:#b44">my_lib</span> <span style="color:#b44">EXPORT</span> <span style="color:#b44">celix</span> <span style="color:#b44">LIBRARY</span> <span style="color:#b44">DESTINATION</span> <span style="color:#666">${</span><span style="color:#b8860b">CMAKE_INSTALL_LIBDIR</span><span style="color:#666">}</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#b44">INCLUDES</span> <span style="color:#b44">DESTINATION</span> <span style="color:#666">${</span><span style="color:#b8860b">CMAKE_INSTALL_INCLUDEDIR</span><span style="color:#666">}</span><span style="color:#b44">/celix_my_lib</span>)<span style="">
+</span></span></span><span style="display:flex;"><span><span style=""></span><span style="color:#a2f">install</span>(<span style="color:#b44">DIRECTORY</span> <span style="color:#b44">include/</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#b44">DESTINATION</span> <span style="color:#666">${</span><span style="color:#b8860b">CMAKE_INSTALL_INCLUDEDIR</span><span style="color:#666">}</span><span style="color:#b44">/celix_my_lib</span>)<span style="">
+</span></span></span><span style="display:flex;"><span><span style=""></span><span style="color:#a2f">install</span>(<span style="color:#b44">DIRECTORY</span> <span style="color:#666">${</span><span style="color:#b8860b">CMAKE_BINARY_DIR</span><span style="color:#666">}</span><span style="color:#b44">/celix/gen/includes/my_lib/</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#b44">DESTINATION</span> <span style="color:#666">${</span><span style="color:#b8860b">CMAKE_INSTALL_INCLUDEDIR</span><span style="color:#666">}</span><span style="color:#b44">/celix_my_lib</span>)<span style="">
+</span></span></span></code></pre></div><h3 id="configuring-symbol-visibility-for-cc-bundles">Configuring Symbol Visibility for C/C++ Bundles</h3>
+<p>For bundle, symbol visibility will default be configured to hidden. This can be default by providing
+the <code>DO_NOT_CONFIGURE_SYMBOL_VISIBILITY</code> option to the CMake <code>add_celix_bundle</code> function.</p>
+<p>If symbol visibility is not configured in the <code>add_celix_bundle</code>, symbol visibility should be configured the same
+way as a shared library.</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cmake" data-lang="cmake"><span style="display:flex;"><span><span style="color:#a2f">add_celix_bundle</span>(<span style="color:#b44">my_bundle</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#b44">SOURCES</span> <span style="color:#b44">src/my_bundle.c</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#b44">SYMBOLIC_NAME</span> <span style="color:#b44">&#34;apache_celix_my_bundle&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#b44">NAME</span> <span style="color:#b44">&#34;Apache Celix My Bundle&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#b44">FILENAME</span> <span style="color:#b44">&#34;celix_my_bundle&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#b44">VERSION</span> <span style="color:#b44">&#34;1.0.0&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#b44">GROUP</span> <span style="color:#b44">&#34;celix/my_bundle_group&#34;</span>
+</span></span><span style="display:flex;"><span>)<span style="">
+</span></span></span><span style="display:flex;"><span><span style=""></span><span style="color:#a2f">add_library</span>(<span style="color:#b44">celix::my_bundle</span> <span style="color:#b44">ALIAS</span> <span style="color:#b44">my_bundle</span>)<span style="">
+</span></span></span></code></pre></div><h2 id="branch-naming">Branch naming</h2>
+<ul>
+<li>Prefix feature branches with <code>feature/</code>, hotfix branches with <code>hotfix/</code>, bugfix branches with <code>bugfix/</code>
+and release branches with <code>release/</code>.</li>
+<li>If you are working on an issue, prefix the branch name with the issue number. E.g., <code>feature/1234-add-feature</code>.</li>
+<li>Hotfix branches are for urgent fixes that need to be applied as soon as possible.</li>
+<li>Use short and descriptive branch names.</li>
+</ul>
+<h2 id="commit-messages">Commit Messages</h2>
+<ul>
+<li>Utilize the imperative mood when writing commit messages (e.g., &ldquo;Add feature&rdquo; instead of &ldquo;Adds feature&rdquo;
+or &ldquo;Added feature&rdquo;). This style aligns with git&rsquo;s auto-generated messages for merge commits or revert actions.</li>
+<li>Ensure that commit messages are descriptive and provide meaningful context.</li>
+<li>Keep the first line of the commit message concise, ideally under 50 characters.
+This summary line serves as a quick overview of the change and should be easy to read in git logs.</li>
+<li>If more context is needed, separate the summary line from the body with a blank line.
+The body can provide additional details, explanations, or reasoning behind the changes.
+Aim to keep each line of the commit message body wrapped at around 72 characters for optimal readability.</li>
+<li>Use bullet points, numbered lists, or other formatting conventions when listing multiple changes or points in the
+commit message body to improve readability.</li>
+<li>When applicable, reference related issues, bug reports, or pull requests in the commit message body to
+provide additional context and establish connections between the commit and the larger project.
+<ul>
+<li>If your commit fixes, closes, or resolves an issue, use one of these keywords followed by the issue number
+(e.g., &ldquo;fixes #42&rdquo;, &ldquo;closes #42&rdquo;, or &ldquo;resolves #42&rdquo;).</li>
+<li>If you want to reference an issue without closing it, simply mention the issue number
+(e.g., &ldquo;related to #42&rdquo; or &ldquo;#42&rdquo;).</li>
+</ul>
+</li>
+</ul>
+<h2 id="benchmarking">Benchmarking</h2>
+<ul>
+<li>When needed, use benchmarking to measure performance.</li>
+<li>Use the Google Benchmark framework for benchmarking.</li>
+</ul>
+<h2 id="code-quality">Code Quality</h2>
+<ul>
+<li>New code should be reviewed through a pull request and no direct commits on the master branch are allowed.
+<ul>
+<li>At least 1 reviewer should review the code.</li>
+</ul>
+</li>
+<li>Hotfix pull request can be merged first and reviewed later, the rest is reviewed first and merged later.</li>
+<li>Unit tests should be written for all new code.</li>
+<li>Code coverage should be measured and strive for a minimum of 95% code coverage.</li>
+<li>For existing code, maintain or increase the code coverage.</li>
+<li>Code should be checked for memory leaks using AddressSanitizer.</li>
+<li>Coverity scan are done on the master on a regular basis. Ideally new coverity issues should be fixed as soon as
+possible.</li>
+</ul>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<footer class="py-3 bg-secondary">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8 text-center">
+                <p class="m-0 text-white">
+                    Copyright &copy; 2023 The Apache Software Foundation, Licensed under
+                    the <a href="https://www.apache.org/licenses/LICENSE-2.0">Apache License, Version 2.0</a>.
+                    <br>
+                    Apache Celix, Celix, Apache, the Apache feather logo and the Apache Celix logo are trademarks of The Apache Software Foundation.
+                </p>
+            </div>
+            <div class="col-md-4 text-center">
+                <a href="https://www.apache.org/events/current-event.html" target="_blank">
+                    <img src="https://www.apache.org/events/current-event-234x60.png" title="Apache Event" width="234" height="60" border="0">
+                </a>
+            </div>
+        </div>
+    </div>
+</footer>
+
+
+<script src="/assets/js/jquery.min.js"></script>
+<script src="/assets/js/bootstrap.bundle.min.js"></script>
+
+
+</body>
+</html>

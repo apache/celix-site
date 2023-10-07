@@ -1,0 +1,273 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Shell / Apache Celix</title>
+
+    
+    <link rel="icon" href="/assets/img/favicon.ico">
+
+    
+    <link href="/assets/css/bootstrap.min.css" rel="stylesheet">
+
+    
+    <link href="/assets/css/style.css" rel="stylesheet">
+
+    <style>
+         
+         
+        .card-body img {
+            max-width: 100%;
+            width: 100%;
+            height: auto;
+        }
+
+         
+        .card-body img + em {
+            text-decoration: underline;
+        }
+    </style>
+
+    
+<script>
+  var _paq = window._paq = window._paq || [];
+   
+  _paq.push(['disableCookies']);
+   
+  _paq.push(['trackPageView']);
+  _paq.push(['enableLinkTracking']);
+  (function() {
+    var u="https://analytics.apache.org/";
+    _paq.push(['setTrackerUrl', u+'matomo.php']);
+    _paq.push(['setSiteId', '9']);
+    var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+    g.async=true; g.src=u+'matomo.js'; s.parentNode.insertBefore(g,s);
+  })();
+</script>
+
+
+</head>
+<body class="light-grey">
+
+<a href="https://github.com/apache/celix" class="github-ribbon">
+    <img src="/assets/img/forkme_right_red_aa0000.png" alt="Fork me on GitHub">
+</a>
+
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top">
+    <div class="container">
+        <a class="navbar-brand" href="/">
+            <img src="/assets/img/celix-white.svg" height="40" class="d-inline-block align-top" alt="Celix Logo">
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="/">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/download.cgi">Download</a>
+                </li>
+                <li class="nav-item dropdown active">
+                    <a class="nav-link dropdown-toggle" href="#" id="ddDocs" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Docs
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="ddDocs">
+                        <a class="dropdown-item" href="/docs/2.4.0/docs.html">2.4.0 (latest)</a>
+                        <a class="dropdown-item" href="/docs/2.2.1/docs.html">2.2.1</a>
+                        <a class="dropdown-item" href="/docs/2.1.0/docs.html">2.1.0</a>
+                    </div>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="ddContributing" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Contributing
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="ddContributing">
+                        <a class="dropdown-item" href="/contributing/youatcelix.html">You at Celix</a>
+                        <a class="dropdown-item" href="/contributing/submitting-patches.html">Submitting patches</a>
+                        <a class="dropdown-item" href="/contributing/source-and-builds.html">Source code and builds</a>
+                        <hr>
+                        <a class="dropdown-item" href="/contributing/releasing.html">Releasing</a>
+                        <a class="dropdown-item" href="/contributing/volunteers.html">Volunteers</a>
+                        <a class="dropdown-item" href="https://whimsy.apache.org/board/minutes/Celix.html">Board Reports</a>
+                    </div>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="ddSupport" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Support
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="ddSupport">
+                        <a class="dropdown-item" href="/support/mailing-list.html">Mailing Lists</a>
+                        <a class="dropdown-item" href="/support/issue-tracking.html">Issue Tracking</a>
+                    </div>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="ddFoundation" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        ASF
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="ddFoundation">
+                        <a class="dropdown-item" href="https://www.apache.org/">ASF Home</a>
+                        <a class="dropdown-item" href="https://www.apache.org/foundation/how-it-works.html">How it works</a>
+                        <a class="dropdown-item" href="https://www.apache.org/licenses/">License</a>
+                        <a class="dropdown-item" href="https://www.apache.org/foundation/sponsorship.html">Sponsorship</a>
+                        <a class="dropdown-item" href="https://www.apache.org/foundation/thanks.html">Thanks</a>
+                        <a class="dropdown-item" href="https://www.apache.org/security/">Security</a>
+                        <a class="dropdown-item" href="https://www.apache.org/foundation/policies/conduct">Code of Conduct</a>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+
+<div class="section">
+    <div class="container">
+        <div class="row py-4">
+            <div class="col-sm-12 card">
+                <div class="card-body pt-5">
+                    
+                    
+                        
+                        
+                            <a class="edit-on-gh" href="https://github.com/apache/celix/edit/master/bundles/shell/README.md" title="Edit this page on GitHub">Edit on GitHub</a>
+                        
+                    
+
+                    
+                        
+                        <a href="/docs/2.4.0/docs.html" title="back to documentation">&lt;&lt; back to documentation</a>
+                    
+
+                    
+	<!--
+Licensed to the Apache Software Foundation (ASF) under one or more
+contributor license agreements.  See the NOTICE file distributed with
+this work for additional information regarding copyright ownership.
+The ASF licenses this file to You under the Apache License, Version 2.0
+(the "License"); you may not use this file except in compliance with
+the License.  You may obtain a copy of the License at
+   
+    http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+-->
+<h1 id="apache-celix-shell">Apache Celix Shell</h1>
+<h2 id="intro">Intro</h2>
+<p>The Celix Shell provides a service interface which can be used to interact with the Celix framework. It uses a modular
+approach to enable multiple frontends, e.g. textual or graphical.</p>
+<p>While the shell can be extended with additional commands by other bundles, it already offers some built in commands,
+for example:</p>
+<ul>
+<li><code>lb</code>: list bundles</li>
+<li><code>install</code>: install additional bundle</li>
+<li><code>uninstall</code>: uninstall bundles</li>
+<li><code>start</code>: start bundle</li>
+<li><code>stop</code>: stop bundle</li>
+<li><code>help</code>: displays available commands</li>
+</ul>
+<p>Further information about a command can be retrieved by using <code>help</code> combined with the command.</p>
+<h2 id="service-interfaces">Service interfaces</h2>
+<p>The Celix Shell functionality is achieved by 3 service interfaces. These interfaces are available through the
+<code>Celix::shel_api</code> CMake INTERFACE library target.</p>
+<ul>
+<li><code>celix_shell_t</code>: The shell service can be used to get an overview of the available shell commands and to execute
+shell commands.</li>
+<li><code>celix_shell_command_t</code>: A C service interface to provide an additional shell command to the shell.</li>
+<li><code>celix::IShellCommand</code>: A C++ service interface to provide an additional shell command to the shell.</li>
+</ul>
+<h2 id="bundles">Bundles</h2>
+<p>The complete Celix shell functionality is provided by serveral bundles:</p>
+<ul>
+<li><code>Celix::shell</code> : The core shell which offer a <code>celix_shell_t</code> service and uses <code>celix_shell_command_t</code> services.</li>
+<li><code>Celix::CxxShell</code> : The core C++ shell which offers a <code>celix_shell_t</code> service and uses both <code>celix_shell_command_t</code>
+and <code>celix::IShellCommand</code> services. Offers the same functionality as <code>Celix::shell</code>, but also supports C++
+<code>celix::IShellCommand</code> services.</li>
+<li><code>Celix::shell_tui</code> : Textual (terminal) user interface to the shell service.</li>
+<li><code>Celix::shell_wui</code> : Web user interface to the shell service.</li>
+<li><code>Celix::remote_shell</code> : Remote telnet interface to shell service</li>
+<li><code>Celix::bonjour_shell</code>: Chat interface to the shell service using bonjour. Warning not mature and still unstable. When used it should be possible to chat to a Celix shell using Linux&rsquo;s pidgin application or OSX&rsquo;s
+Messages application.</li>
+</ul>
+<h3 id="logical-design-celix-shell">Logical Design Celix Shell</h3>
+<p>|<img src="diagrams/celix_shell.png" alt="Celix Shell Logical Design"></p>
+<h3 id="logical-design-celix-shell-for-c">Logical Design Celix Shell for C++</h3>
+<p><img src="diagrams/celix_cxx_shell.png" alt="Celix C++ Shell Logical Design"></p>
+<h2 id="cmake-options">CMake options</h2>
+<ul>
+<li>BUILD_SHELL=ON</li>
+<li>BUILD_SHELL_TUI=ON</li>
+<li>BUILD_SHELL_WUI=ON</li>
+<li>BUILD_REMOTE_SHELL=ON</li>
+</ul>
+<h2 id="shell-config-options">Shell Config Options</h2>
+<ul>
+<li>SHELL_USE_ANSI_COLORS - Configures whether shell commands are allowed to use
+ANSI colors when printing info for <code>Celix::shell</code>. Default is true.</li>
+<li>SHELL_TUI_USE_ANSI_CONTROL_SEQUENCES - Configures whether to use ANSI control
+sequences to support backspace, left, up, etc key commands in the
+<code>Celix::shell_tui</code>. Default is true if a TERM environment is set else false.</li>
+<li>&ldquo;remote.shell.telnet.port&rdquo;: Configures port used in <code>Celix::remote_shell</code>. Default is 6666.</li>
+<li>&ldquo;remote.shell.telnet.maxconn&rdquo;: Configures max nr of concurrent connections in <code>Celix::remote_shell</code>. Default is 2.</li>
+</ul>
+<h2 id="using-info">Using info</h2>
+<p>If the Celix Shell is installed, <code>find_package(Celix)</code> will set:</p>
+<ul>
+<li>The <code>Celix::shell_api</code> interface (i.e. header only) library target</li>
+<li>The <code>Celix::shell</code> bundle target</li>
+</ul>
+<p>If the Celix Shell TUI is installed, <code>find_package(Celix)</code> will set:</p>
+<ul>
+<li>The <code>Celix::shell_tui</code> bundle target if the shell_tui is installed</li>
+</ul>
+<p>If the Celix Shell WUI is installed, <code>find_package(Celix)</code> will set:</p>
+<ul>
+<li>The <code>Celix::shell_wui</code> bundle target if the shell_wui is installed</li>
+</ul>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<footer class="py-3 bg-secondary">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8 text-center">
+                <p class="m-0 text-white">
+                    Copyright &copy; 2023 The Apache Software Foundation, Licensed under
+                    the <a href="https://www.apache.org/licenses/LICENSE-2.0">Apache License, Version 2.0</a>.
+                    <br>
+                    Apache Celix, Celix, Apache, the Apache feather logo and the Apache Celix logo are trademarks of The Apache Software Foundation.
+                </p>
+            </div>
+            <div class="col-md-4 text-center">
+                <a href="https://www.apache.org/events/current-event.html" target="_blank">
+                    <img src="https://www.apache.org/events/current-event-234x60.png" title="Apache Event" width="234" height="60" border="0">
+                </a>
+            </div>
+        </div>
+    </div>
+</footer>
+
+
+<script src="/assets/js/jquery.min.js"></script>
+<script src="/assets/js/bootstrap.bundle.min.js"></script>
+
+
+</body>
+</html>

@@ -1,0 +1,263 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Error Injector / Apache Celix</title>
+
+    
+    <link rel="icon" href="/assets/img/favicon.ico">
+
+    
+    <link href="/assets/css/bootstrap.min.css" rel="stylesheet">
+
+    
+    <link href="/assets/css/style.css" rel="stylesheet">
+
+    <style>
+         
+         
+        .card-body img {
+            max-width: 100%;
+            width: 100%;
+            height: auto;
+        }
+
+         
+        .card-body img + em {
+            text-decoration: underline;
+        }
+    </style>
+
+    
+<script>
+  var _paq = window._paq = window._paq || [];
+   
+  _paq.push(['disableCookies']);
+   
+  _paq.push(['trackPageView']);
+  _paq.push(['enableLinkTracking']);
+  (function() {
+    var u="https://analytics.apache.org/";
+    _paq.push(['setTrackerUrl', u+'matomo.php']);
+    _paq.push(['setSiteId', '9']);
+    var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+    g.async=true; g.src=u+'matomo.js'; s.parentNode.insertBefore(g,s);
+  })();
+</script>
+
+
+</head>
+<body class="light-grey">
+
+<a href="https://github.com/apache/celix" class="github-ribbon">
+    <img src="/assets/img/forkme_right_red_aa0000.png" alt="Fork me on GitHub">
+</a>
+
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top">
+    <div class="container">
+        <a class="navbar-brand" href="/">
+            <img src="/assets/img/celix-white.svg" height="40" class="d-inline-block align-top" alt="Celix Logo">
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="/">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/download.cgi">Download</a>
+                </li>
+                <li class="nav-item dropdown active">
+                    <a class="nav-link dropdown-toggle" href="#" id="ddDocs" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Docs
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="ddDocs">
+                        <a class="dropdown-item" href="/docs/2.4.0/docs.html">2.4.0 (latest)</a>
+                        <a class="dropdown-item" href="/docs/2.2.1/docs.html">2.2.1</a>
+                        <a class="dropdown-item" href="/docs/2.1.0/docs.html">2.1.0</a>
+                    </div>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="ddContributing" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Contributing
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="ddContributing">
+                        <a class="dropdown-item" href="/contributing/youatcelix.html">You at Celix</a>
+                        <a class="dropdown-item" href="/contributing/submitting-patches.html">Submitting patches</a>
+                        <a class="dropdown-item" href="/contributing/source-and-builds.html">Source code and builds</a>
+                        <hr>
+                        <a class="dropdown-item" href="/contributing/releasing.html">Releasing</a>
+                        <a class="dropdown-item" href="/contributing/volunteers.html">Volunteers</a>
+                        <a class="dropdown-item" href="https://whimsy.apache.org/board/minutes/Celix.html">Board Reports</a>
+                    </div>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="ddSupport" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Support
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="ddSupport">
+                        <a class="dropdown-item" href="/support/mailing-list.html">Mailing Lists</a>
+                        <a class="dropdown-item" href="/support/issue-tracking.html">Issue Tracking</a>
+                    </div>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="ddFoundation" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        ASF
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="ddFoundation">
+                        <a class="dropdown-item" href="https://www.apache.org/">ASF Home</a>
+                        <a class="dropdown-item" href="https://www.apache.org/foundation/how-it-works.html">How it works</a>
+                        <a class="dropdown-item" href="https://www.apache.org/licenses/">License</a>
+                        <a class="dropdown-item" href="https://www.apache.org/foundation/sponsorship.html">Sponsorship</a>
+                        <a class="dropdown-item" href="https://www.apache.org/foundation/thanks.html">Thanks</a>
+                        <a class="dropdown-item" href="https://www.apache.org/security/">Security</a>
+                        <a class="dropdown-item" href="https://www.apache.org/foundation/policies/conduct">Code of Conduct</a>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+
+<div class="section">
+    <div class="container">
+        <div class="row py-4">
+            <div class="col-sm-12 card">
+                <div class="card-body pt-5">
+                    
+                    
+                        
+                        
+                            <a class="edit-on-gh" href="https://github.com/apache/celix/edit/master/libs/error_injector/README.md" title="Edit this page on GitHub">Edit on GitHub</a>
+                        
+                    
+
+                    
+                        
+                        <a href="/docs/2.4.0/docs.html" title="back to documentation">&lt;&lt; back to documentation</a>
+                    
+
+                    
+	<!--
+Licensed to the Apache Software Foundation (ASF) under one or more
+contributor license agreements.  See the NOTICE file distributed with
+this work for additional information regarding copyright ownership.
+The ASF licenses this file to You under the Apache License, Version 2.0
+(the "License"); you may not use this file except in compliance with
+the License.  You may obtain a copy of the License at
+   
+    http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+-->
+<h1 id="celix-error-injector">Celix Error Injector</h1>
+<p>Error handling path is infamously difficult to test.
+To achieve high testing coverage, some extra mechanism is generally needed to emulate various error conditions in the testing environment.
+Such mechanism, as <a href="https://www.sqlite.org/src/doc/trunk/src/test_vfs.c">SQLite&rsquo;s test VFS</a>, tends to be heavy-weight and requires a lot of efforts to implement.</p>
+<p>Celix Error Injector provides a lightweight alternative way.
+As its name suggests, Celix Error Injector enables you to inject arbitrary errors into target function call very easily.
+You only have to:</p>
+<ol>
+<li>Implement a simple stub module for your target API under this folder.</li>
+<li>Link it into your test executable.</li>
+<li>Link the code under test into your test executable <strong>statically</strong>. Check <code>test_framework_with_ei</code> for a way of doing this with minimal CMake duplication.</li>
+<li>Specify the target function call you want to injector specific error into with a single function call before the code under test runs.</li>
+<li>Disable error injector during the TearDown phase of the test. Forgetting this step may interrupt other tests.</li>
+</ol>
+<p>We have implemented several injectors.</p>
+<ul>
+<li><code>malloc</code>/<code>realloc</code>/<code>calloc</code></li>
+<li><code>celix_properties_create</code></li>
+</ul>
+<p>Have a look at them before implementing your own.</p>
+<blockquote>
+<p>Celix Error injector only works properly in debug build.</p>
+</blockquote>
+<h2 id="example-usage">Example Usage</h2>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c++" data-lang="c++"><span style="display:flex;"><span><span style="color:#080">#include</span> <span style="color:#080">&lt;gtest/gtest.h&gt;</span><span style="color:#080">
+</span></span></span><span style="display:flex;"><span><span style="color:#080">#include</span> <span style="color:#080">&lt;iostream&gt;</span><span style="color:#080">
+</span></span></span><span style="display:flex;"><span><span style="color:#080">#include</span> <span style="color:#080">&lt;cstring&gt;</span><span style="color:#080">
+</span></span></span><span style="display:flex;"><span><span style="color:#080">#include</span> <span style="color:#080">&#34;malloc_ei.h&#34;</span><span style="color:#080">
+</span></span></span><span style="display:flex;"><span><span style="color:#080"></span>
+</span></span><span style="display:flex;"><span><span style="color:#080">#include</span> <span style="color:#080">&#34;pubsub_wire_protocol_common.h&#34;</span><span style="color:#080">
+</span></span></span><span style="display:flex;"><span><span style="color:#080"></span>
+</span></span><span style="display:flex;"><span><span style="color:#a2f;font-weight:bold">class</span> <span style="color:#00f">WireProtocolCommonEiTest</span> <span style="color:#666">:</span> <span style="color:#a2f;font-weight:bold">public</span> <span style="color:#666">::</span>testing<span style="color:#666">::</span>Test {
+</span></span><span style="display:flex;"><span><span style="color:#a2f;font-weight:bold">public</span><span style="color:#666">:</span>
+</span></span><span style="display:flex;"><span>    WireProtocolCommonEiTest() <span style="color:#666">=</span> <span style="color:#a2f;font-weight:bold">default</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#666">~</span>WireProtocolCommonEiTest() <span style="color:#a2f;font-weight:bold">override</span> {
+</span></span><span style="display:flex;"><span>        celix_ei_expect_calloc(<span style="color:#a2f;font-weight:bold">nullptr</span>, <span style="color:#666">0</span>, <span style="color:#a2f;font-weight:bold">nullptr</span>);
+</span></span><span style="display:flex;"><span>    };
+</span></span><span style="display:flex;"><span>};
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>TEST_F(WireProtocolCommonEiTest, WireProtocolCommonTest_NotEnoughMemoryForMultipleEntries) {
+</span></span><span style="display:flex;"><span>    pubsub_protocol_message_t message;
+</span></span><span style="display:flex;"><span>    message.header.convertEndianess <span style="color:#666">=</span> <span style="color:#666">1</span>;
+</span></span><span style="display:flex;"><span>    message.metadata.metadata <span style="color:#666">=</span> <span style="color:#a2f;font-weight:bold">nullptr</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#0b0;font-weight:bold">char</span><span style="color:#666">*</span> data <span style="color:#666">=</span> strdup(<span style="color:#b44">&#34;ABCD4:key1,6:value1,4:key2,6:value2,6:key111,8:value111,&#34;</span>); <span style="color:#080;font-style:italic">//note 3 entries
+</span></span></span><span style="display:flex;"><span><span style="color:#080;font-style:italic"></span>    <span style="color:#a2f;font-weight:bold">auto</span> len <span style="color:#666">=</span> strlen(data);
+</span></span><span style="display:flex;"><span>    pubsubProtocol_writeInt((<span style="color:#0b0;font-weight:bold">unsigned</span> <span style="color:#0b0;font-weight:bold">char</span><span style="color:#666">*</span>)data, <span style="color:#666">0</span>, message.header.convertEndianess, <span style="color:#666">3</span>);
+</span></span><span style="display:flex;"><span>    <span style="color:#a2f;font-weight:bold">for</span> (<span style="color:#0b0;font-weight:bold">int</span> i <span style="color:#666">=</span> <span style="color:#666">0</span>; i <span style="color:#666">&lt;</span> <span style="color:#666">6</span>; <span style="color:#666">++</span>i) {
+</span></span><span style="display:flex;"><span>        celix_ei_expect_calloc((<span style="color:#0b0;font-weight:bold">void</span> <span style="color:#666">*</span>)pubsubProtocol_decodeMetadata<span style="color:#080;font-style:italic">/* caller */</span>, <span style="color:#666">0</span>, <span style="color:#a2f;font-weight:bold">nullptr</span>, i<span style="color:#666">+</span><span style="color:#666">1</span><span style="color:#080;font-style:italic">/* ordinal */</span>);
+</span></span><span style="display:flex;"><span>        <span style="color:#a2f;font-weight:bold">auto</span> status <span style="color:#666">=</span> pubsubProtocol_decodeMetadata((<span style="color:#0b0;font-weight:bold">void</span><span style="color:#666">*</span>)data, len, <span style="color:#666">&amp;</span>message);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        EXPECT_EQ(status, CELIX_ENOMEM);
+</span></span><span style="display:flex;"><span>        EXPECT_EQ(<span style="color:#a2f;font-weight:bold">nullptr</span>, message.metadata.metadata);
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    free(data);
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>In the above test, <code>pubsubProtocol_decodeMetadata</code> makes six calls to <code>calloc</code>.
+Failure in any of the six calls should return <code>CELIX_ENOMEM</code>.
+<code>celix_ei_expect_calloc((void *)pubsubProtocol_decodeMetadata, 0, nullptr, i+1)</code> specifies only the (i+1)-th call made by <code>pubsubProtocol_decodeMetadata</code> should fail.</p>
+<p>Note that <code>caller</code> does not always work, especially if the caller is a static function (not visible outside the translation unit).
+In this case, you should specify <code>CELIX_EI_UNKNOWN_CALLER</code> for <code>caller</code>, and rely solely on the <code>ordinal</code> parameter to specify which call to injector error into.
+Note also that <code>celix_ei_expect_calloc(nullptr, 0, nullptr)</code> is called to disable error injector for <code>calloc</code> in the destructor.</p>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<footer class="py-3 bg-secondary">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8 text-center">
+                <p class="m-0 text-white">
+                    Copyright &copy; 2023 The Apache Software Foundation, Licensed under
+                    the <a href="https://www.apache.org/licenses/LICENSE-2.0">Apache License, Version 2.0</a>.
+                    <br>
+                    Apache Celix, Celix, Apache, the Apache feather logo and the Apache Celix logo are trademarks of The Apache Software Foundation.
+                </p>
+            </div>
+            <div class="col-md-4 text-center">
+                <a href="https://www.apache.org/events/current-event.html" target="_blank">
+                    <img src="https://www.apache.org/events/current-event-234x60.png" title="Apache Event" width="234" height="60" border="0">
+                </a>
+            </div>
+        </div>
+    </div>
+</footer>
+
+
+<script src="/assets/js/jquery.min.js"></script>
+<script src="/assets/js/bootstrap.bundle.min.js"></script>
+
+
+</body>
+</html>

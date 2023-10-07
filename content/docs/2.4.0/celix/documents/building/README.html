@@ -1,0 +1,379 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Building and Installing Apache Celix / Apache Celix</title>
+
+    
+    <link rel="icon" href="/assets/img/favicon.ico">
+
+    
+    <link href="/assets/css/bootstrap.min.css" rel="stylesheet">
+
+    
+    <link href="/assets/css/style.css" rel="stylesheet">
+
+    <style>
+         
+         
+        .card-body img {
+            max-width: 100%;
+            width: 100%;
+            height: auto;
+        }
+
+         
+        .card-body img + em {
+            text-decoration: underline;
+        }
+    </style>
+
+    
+<script>
+  var _paq = window._paq = window._paq || [];
+   
+  _paq.push(['disableCookies']);
+   
+  _paq.push(['trackPageView']);
+  _paq.push(['enableLinkTracking']);
+  (function() {
+    var u="https://analytics.apache.org/";
+    _paq.push(['setTrackerUrl', u+'matomo.php']);
+    _paq.push(['setSiteId', '9']);
+    var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+    g.async=true; g.src=u+'matomo.js'; s.parentNode.insertBefore(g,s);
+  })();
+</script>
+
+
+</head>
+<body class="light-grey">
+
+<a href="https://github.com/apache/celix" class="github-ribbon">
+    <img src="/assets/img/forkme_right_red_aa0000.png" alt="Fork me on GitHub">
+</a>
+
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top">
+    <div class="container">
+        <a class="navbar-brand" href="/">
+            <img src="/assets/img/celix-white.svg" height="40" class="d-inline-block align-top" alt="Celix Logo">
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="/">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/download.cgi">Download</a>
+                </li>
+                <li class="nav-item dropdown active">
+                    <a class="nav-link dropdown-toggle" href="#" id="ddDocs" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Docs
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="ddDocs">
+                        <a class="dropdown-item" href="/docs/2.4.0/docs.html">2.4.0 (latest)</a>
+                        <a class="dropdown-item" href="/docs/2.2.1/docs.html">2.2.1</a>
+                        <a class="dropdown-item" href="/docs/2.1.0/docs.html">2.1.0</a>
+                    </div>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="ddContributing" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Contributing
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="ddContributing">
+                        <a class="dropdown-item" href="/contributing/youatcelix.html">You at Celix</a>
+                        <a class="dropdown-item" href="/contributing/submitting-patches.html">Submitting patches</a>
+                        <a class="dropdown-item" href="/contributing/source-and-builds.html">Source code and builds</a>
+                        <hr>
+                        <a class="dropdown-item" href="/contributing/releasing.html">Releasing</a>
+                        <a class="dropdown-item" href="/contributing/volunteers.html">Volunteers</a>
+                        <a class="dropdown-item" href="https://whimsy.apache.org/board/minutes/Celix.html">Board Reports</a>
+                    </div>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="ddSupport" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Support
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="ddSupport">
+                        <a class="dropdown-item" href="/support/mailing-list.html">Mailing Lists</a>
+                        <a class="dropdown-item" href="/support/issue-tracking.html">Issue Tracking</a>
+                    </div>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="ddFoundation" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        ASF
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="ddFoundation">
+                        <a class="dropdown-item" href="https://www.apache.org/">ASF Home</a>
+                        <a class="dropdown-item" href="https://www.apache.org/foundation/how-it-works.html">How it works</a>
+                        <a class="dropdown-item" href="https://www.apache.org/licenses/">License</a>
+                        <a class="dropdown-item" href="https://www.apache.org/foundation/sponsorship.html">Sponsorship</a>
+                        <a class="dropdown-item" href="https://www.apache.org/foundation/thanks.html">Thanks</a>
+                        <a class="dropdown-item" href="https://www.apache.org/security/">Security</a>
+                        <a class="dropdown-item" href="https://www.apache.org/foundation/policies/conduct">Code of Conduct</a>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+
+<div class="section">
+    <div class="container">
+        <div class="row py-4">
+            <div class="col-sm-12 card">
+                <div class="card-body pt-5">
+                    
+                    
+                        
+                        
+                            <a class="edit-on-gh" href="https://github.com/apache/celix/edit/master/documents/building/README.md" title="Edit this page on GitHub">Edit on GitHub</a>
+                        
+                    
+
+                    
+                        
+                        <a href="/docs/2.4.0/docs.html" title="back to documentation">&lt;&lt; back to documentation</a>
+                    
+
+                    
+	<!--
+Licensed to the Apache Software Foundation (ASF) under one or more
+contributor license agreements.  See the NOTICE file distributed with
+this work for additional information regarding copyright ownership.
+The ASF licenses this file to You under the Apache License, Version 2.0
+(the "License"); you may not use this file except in compliance with
+the License.  You may obtain a copy of the License at
+   
+    http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+-->
+<h1 id="building-and-installing-apache-celix">Building and Installing Apache Celix</h1>
+<p>Apache Celix aims to be support a broad range of UNIX platforms.</p>
+<p>Currently, the [continuous integration build server] builds and tests Apache Celix for:</p>
+<ul>
+<li>Ubuntu Focal Fossa (20.04)
+<ul>
+<li>GCC</li>
+<li>CLang</li>
+</ul>
+</li>
+<li>Ubuntu Jammy Jellyfish (22.04)
+<ul>
+<li>GCC</li>
+<li>CLang</li>
+</ul>
+</li>
+<li>OSX
+<ul>
+<li>CLang</li>
+</ul>
+</li>
+</ul>
+<h3 id="download-the-apache-celix-sources">Download the Apache Celix sources</h3>
+<p>To get started you first have to download the Apache Celix sources. This can be done by cloning the Apache Celix git repository:</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#080;font-style:italic">#clone the repro</span>
+</span></span><span style="display:flex;"><span>git clone --single-branch --branch master https://github.com/apache/celix.git
+</span></span></code></pre></div><h2 id="building-and-installing">Building and installing</h2>
+<p>Apache Celix can be build using <a href="https://conan.io">Conan</a> as package manager/build system or by directly using
+<a href="https://cmake.org">CMake</a>.</p>
+<h3 id="building-apache-celix-using-conan">Building Apache Celix using Conan</h3>
+<p>The following packages (libraries + headers) should be installed on your system:</p>
+<ul>
+<li>Development Environment
+<ul>
+<li>build-essentials (gcc/g++ or clang/clang++)</li>
+<li>java or zip (for packaging bundles)</li>
+<li>make (3.14 or higher)</li>
+<li>git</li>
+<li>cmake (3.19 or higher)</li>
+<li>Conan (2 or higher)</li>
+</ul>
+</li>
+</ul>
+<p>For Ubuntu 22.04, use the following commands:</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>sudo apt-get install -yq --no-install-recommends <span style="color:#b62;font-weight:bold">\
+</span></span></span><span style="display:flex;"><span><span style="color:#b62;font-weight:bold"></span>    build-essential <span style="color:#b62;font-weight:bold">\
+</span></span></span><span style="display:flex;"><span><span style="color:#b62;font-weight:bold"></span>    cmake <span style="color:#b62;font-weight:bold">\
+</span></span></span><span style="display:flex;"><span><span style="color:#b62;font-weight:bold"></span>    git <span style="color:#b62;font-weight:bold">\
+</span></span></span><span style="display:flex;"><span><span style="color:#b62;font-weight:bold"></span>    default-jdk <span style="color:#b62;font-weight:bold">\
+</span></span></span><span style="display:flex;"><span><span style="color:#b62;font-weight:bold"></span>    python3 <span style="color:#b62;font-weight:bold">\
+</span></span></span><span style="display:flex;"><span><span style="color:#b62;font-weight:bold"></span>    python3-pip <span style="color:#b62;font-weight:bold">\
+</span></span></span><span style="display:flex;"><span><span style="color:#b62;font-weight:bold"></span>    ninja-build
+</span></span><span style="display:flex;"><span>        
+</span></span><span style="display:flex;"><span><span style="color:#080;font-style:italic">#Install conan</span>
+</span></span><span style="display:flex;"><span>pip3 install -U conan   
+</span></span></code></pre></div><p>Configure conan default profile using automatic detection of the system</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>conan profile detect
+</span></span></code></pre></div><p>Create Apache Celix package - and build the dependencies - in the Conan cache:</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#a2f">cd</span> &lt;celix_source_dir&gt;
+</span></span><span style="display:flex;"><span>conan create . --build missing -o <span style="color:#b8860b">build_all</span><span style="color:#666">=</span>True   
+</span></span><span style="display:flex;"><span><span style="color:#080;font-style:italic">#Optionally build with CMake-&gt;Ninja, instead of CMake-&gt;Make. Note this includes building dependencies with Ninja. </span>
+</span></span><span style="display:flex;"><span>conan create . --build missing -o <span style="color:#b8860b">build_all</span><span style="color:#666">=</span>True  -c tools.cmake.cmaketoolchain:generator<span style="color:#666">=</span>Ninja 
+</span></span></code></pre></div><p>Note installing Apache Celix is not required when using Conan, because Conan will install the Apache Celix package
+in the local Conan cache.</p>
+<p>It is also possible to only build a selection of the Apache Celix bundles and/or libs. This can be done by providing
+build options for the required parts instead of the <code>build_all=True</code> option. For example to only build the Apache Celix
+framework library and the Apache Celix utils library use the following command:</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>conan create . --build missing -o <span style="color:#b8860b">build_framework</span><span style="color:#666">=</span>True -o <span style="color:#b8860b">build_utils</span><span style="color:#666">=</span>True
+</span></span></code></pre></div><p>To see a complete overview of the available build options use the following command:</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>conan inspect . | grep build_
+</span></span></code></pre></div><h4 id="cmake-private-linking-workaround">CMake Private Linking Workaround</h4>
+<p>When using Celix via Conan, you may encounter an <a href="https://github.com/apache/celix/issues/642">issue</a> where libzip.so is not found by linker.
+This is due to a <a href="https://github.com/conan-io/conan/issues/7192">bug in Conan</a>.</p>
+<p>A workaround we adopt in Celix is adding the following to conanfile.py:</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>    <span style="color:#a2f;font-weight:bold">def</span> <span style="color:#00a000">generate</span>(self):
+</span></span><span style="display:flex;"><span>        deps <span style="color:#666">=</span> CMakeDeps(self)
+</span></span><span style="display:flex;"><span>        deps<span style="color:#666">.</span>generate()
+</span></span><span style="display:flex;"><span>        tc <span style="color:#666">=</span> CMakeToolchain(self)
+</span></span><span style="display:flex;"><span>        <span style="color:#080;font-style:italic"># the following is workaround for https://github.com/conan-io/conan/issues/7192</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#a2f;font-weight:bold">if</span> self<span style="color:#666">.</span>settings<span style="color:#666">.</span>os <span style="color:#666">==</span> <span style="color:#b44">&#34;Linux&#34;</span>:
+</span></span><span style="display:flex;"><span>            tc<span style="color:#666">.</span>cache_variables[<span style="color:#b44">&#34;CMAKE_EXE_LINKER_FLAGS&#34;</span>] <span style="color:#666">=</span> <span style="color:#b44">&#34;-Wl,--unresolved-symbols=ignore-in-shared-libs&#34;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#a2f;font-weight:bold">elif</span> self<span style="color:#666">.</span>settings<span style="color:#666">.</span>os <span style="color:#666">==</span> <span style="color:#b44">&#34;Macos&#34;</span>:
+</span></span><span style="display:flex;"><span>            tc<span style="color:#666">.</span>cache_variables[<span style="color:#b44">&#34;CMAKE_EXE_LINKER_FLAGS&#34;</span>] <span style="color:#666">=</span> <span style="color:#b44">&#34;-Wl,-undefined -Wl,dynamic_lookup&#34;</span>
+</span></span><span style="display:flex;"><span>        tc<span style="color:#666">.</span>generate()
+</span></span></code></pre></div><h3 id="building-apache-celix-directly-using-cmake">Building Apache Celix directly using CMake</h3>
+<p>The following packages (libraries + headers) should be installed on your system:</p>
+<ul>
+<li>Development Environment
+<ul>
+<li>build-essentials (gcc/g++ or clang/clang++)</li>
+<li>java or zip (for packaging bundles)</li>
+<li>make (3.19 or higher)</li>
+<li>git</li>
+</ul>
+</li>
+<li>Apache Celix Dependencies
+<ul>
+<li>libzip</li>
+<li>uuid</li>
+<li>zlib</li>
+<li>curl (only initialized in the Celix framework)</li>
+<li>jansson (for serialization in libdfi)</li>
+<li>libffi (for libdfi)</li>
+<li>libxml2 (for remote services and bonjour shell)</li>
+<li>rapidjson (for C++ remote service discovery)</li>
+<li>libczmq (for PubSubAdmin ZMQ)</li>
+</ul>
+</li>
+</ul>
+<p>For Ubuntu 22.04, use the following commands:</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#080;font-style:italic">#### get dependencies</span>
+</span></span><span style="display:flex;"><span>sudo apt-get install -yq --no-install-recommends <span style="color:#b62;font-weight:bold">\
+</span></span></span><span style="display:flex;"><span><span style="color:#b62;font-weight:bold"></span>    build-essential <span style="color:#b62;font-weight:bold">\
+</span></span></span><span style="display:flex;"><span><span style="color:#b62;font-weight:bold"></span>    cmake <span style="color:#b62;font-weight:bold">\
+</span></span></span><span style="display:flex;"><span><span style="color:#b62;font-weight:bold"></span>    git <span style="color:#b62;font-weight:bold">\
+</span></span></span><span style="display:flex;"><span><span style="color:#b62;font-weight:bold"></span>    curl <span style="color:#b62;font-weight:bold">\
+</span></span></span><span style="display:flex;"><span><span style="color:#b62;font-weight:bold"></span>    uuid-dev <span style="color:#b62;font-weight:bold">\
+</span></span></span><span style="display:flex;"><span><span style="color:#b62;font-weight:bold"></span>    libjansson-dev <span style="color:#b62;font-weight:bold">\
+</span></span></span><span style="display:flex;"><span><span style="color:#b62;font-weight:bold"></span>    libcurl4-openssl-dev <span style="color:#b62;font-weight:bold">\
+</span></span></span><span style="display:flex;"><span><span style="color:#b62;font-weight:bold"></span>    default-jdk <span style="color:#b62;font-weight:bold">\
+</span></span></span><span style="display:flex;"><span><span style="color:#b62;font-weight:bold"></span>    libffi-dev <span style="color:#b62;font-weight:bold">\
+</span></span></span><span style="display:flex;"><span><span style="color:#b62;font-weight:bold"></span>    libzip-dev <span style="color:#b62;font-weight:bold">\
+</span></span></span><span style="display:flex;"><span><span style="color:#b62;font-weight:bold"></span>    libxml2-dev <span style="color:#b62;font-weight:bold">\
+</span></span></span><span style="display:flex;"><span><span style="color:#b62;font-weight:bold"></span>    libczmq-dev <span style="color:#b62;font-weight:bold">\
+</span></span></span><span style="display:flex;"><span><span style="color:#b62;font-weight:bold"></span>    libcpputest-dev <span style="color:#b62;font-weight:bold">\
+</span></span></span><span style="display:flex;"><span><span style="color:#b62;font-weight:bold"></span>    rapidjson-dev
+</span></span></code></pre></div><p>For OSX systems with brew installed, use the following commands:</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>brew update <span style="color:#666">&amp;&amp;</span> <span style="color:#b62;font-weight:bold">\
+</span></span></span><span style="display:flex;"><span><span style="color:#b62;font-weight:bold"></span>brew install lcov libffi libzip czmq rapidjson libxml2 cmake jansson <span style="color:#666">&amp;&amp;</span> <span style="color:#b62;font-weight:bold">\
+</span></span></span><span style="display:flex;"><span><span style="color:#b62;font-weight:bold"></span>brew link --force libffi
+</span></span></code></pre></div><p>Use CMake and make to build Apache Celix</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#a2f">cd</span> celix
+</span></span><span style="display:flex;"><span>mkdir build
+</span></span><span style="display:flex;"><span><span style="color:#a2f">cd</span> build
+</span></span><span style="display:flex;"><span>cmake -DCMAKE_BUILD_TYPE<span style="color:#666">=</span>RelWithDebInfo .. 
+</span></span><span style="display:flex;"><span>make -j
+</span></span></code></pre></div><h2 id="editing-build-options">Editing Build options</h2>
+<p>With use of CMake, Apache Celix makes it possible to edit build options. This enabled users, among other options, to configure a install location and select additional bundles.
+To edit the options use ccmake or cmake-gui. For cmake-gui an additional package install can be necessary (Fedora: <code>dnf install cmake-gui</code>).</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#a2f">cd</span> celix/build
+</span></span><span style="display:flex;"><span>ccmake .
+</span></span><span style="display:flex;"><span><span style="color:#080;font-style:italic">#Edit options, e.g. enable BUILD_REMOTE_SHELL to build the remote (telnet) shell</span>
+</span></span><span style="display:flex;"><span><span style="color:#080;font-style:italic">#Edit the CMAKE_INSTALL_PREFIX config to set the install location</span>
+</span></span></code></pre></div><p>For this guide we assume the CMAKE_INSTALL_PREFIX is <code>/usr/local</code>.</p>
+<h2 id="installing-apache-celix">Installing Apache Celix</h2>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#a2f">cd</span> celix/build
+</span></span><span style="display:flex;"><span>make -j
+</span></span><span style="display:flex;"><span>sudo make install
+</span></span></code></pre></div><h2 id="running-apache-celix">Running Apache Celix</h2>
+<p>If Apache Celix is successfully installed running</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>celix
+</span></span></code></pre></div><p>should give the following output:
+&ldquo;Error: invalid or non-existing configuration file: &lsquo;config.properties&rsquo;.No such file or directory&rdquo;.</p>
+<p>For more info how to build your own projects and/or running the Apache Celix examples see <a href="../README.html">Celix Intro</a>.</p>
+<h1 id="building-etcdlib-library-standalone">Building etcdlib library standalone</h1>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#080;font-style:italic">#bash</span>
+</span></span><span style="display:flex;"><span>git clone git@github.com:apache/celix.git
+</span></span><span style="display:flex;"><span>mkdir celix/build
+</span></span><span style="display:flex;"><span><span style="color:#a2f">cd</span> celix/build
+</span></span><span style="display:flex;"><span>cmake -DCMAKE_BUILD_TYPE<span style="color:#666">=</span>RelWithDebInfo ../libs/etcdlib
+</span></span><span style="display:flex;"><span>make -j
+</span></span><span style="display:flex;"><span>sudo make install
+</span></span></code></pre></div><h1 id="building-celix-promises-library-standalone">Building Celix Promises library standalone</h1>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#080;font-style:italic">#bash</span>
+</span></span><span style="display:flex;"><span>git clone git@github.com:apache/celix.git
+</span></span><span style="display:flex;"><span>mkdir celix/build
+</span></span><span style="display:flex;"><span><span style="color:#a2f">cd</span> celix/build
+</span></span><span style="display:flex;"><span>cmake -DCMAKE_BUILD_TYPE<span style="color:#666">=</span>RelWithDebInfo ../libs/promises
+</span></span><span style="display:flex;"><span>make -j
+</span></span><span style="display:flex;"><span>sudo make install
+</span></span></code></pre></div><h1 id="building-celix-push-streams-library-standalone">Building Celix Push Streams library standalone</h1>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#080;font-style:italic">#bash</span>
+</span></span><span style="display:flex;"><span>git clone git@github.com:apache/celix.git
+</span></span><span style="display:flex;"><span>mkdir celix/build
+</span></span><span style="display:flex;"><span><span style="color:#a2f">cd</span> celix/build
+</span></span><span style="display:flex;"><span>cmake -DCMAKE_BUILD_TYPE<span style="color:#666">=</span>RelWithDebInfo ../libs/pushstreams
+</span></span><span style="display:flex;"><span>make -j
+</span></span><span style="display:flex;"><span>sudo make install
+</span></span></code></pre></div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<footer class="py-3 bg-secondary">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8 text-center">
+                <p class="m-0 text-white">
+                    Copyright &copy; 2023 The Apache Software Foundation, Licensed under
+                    the <a href="https://www.apache.org/licenses/LICENSE-2.0">Apache License, Version 2.0</a>.
+                    <br>
+                    Apache Celix, Celix, Apache, the Apache feather logo and the Apache Celix logo are trademarks of The Apache Software Foundation.
+                </p>
+            </div>
+            <div class="col-md-4 text-center">
+                <a href="https://www.apache.org/events/current-event.html" target="_blank">
+                    <img src="https://www.apache.org/events/current-event-234x60.png" title="Apache Event" width="234" height="60" border="0">
+                </a>
+            </div>
+        </div>
+    </div>
+</footer>
+
+
+<script src="/assets/js/jquery.min.js"></script>
+<script src="/assets/js/bootstrap.bundle.min.js"></script>
+
+
+</body>
+</html>
