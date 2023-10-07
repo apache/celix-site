@@ -87,6 +87,16 @@ if [[ ! -d "${RELEASE_DIR}" ]]; then
         # Replace markdown links with HTML links
         sed -i "s/.md)/.html)/" "${DEST_FILE}"
     done
+
+    for FILE_PATH in $(cd ${CELIX_SRC_DIR}; find . -name \*.png); do
+        # Retrieve file information
+        FILE_DIR="$(dirname ${FILE_PATH})"
+        FILE_NAME="$(basename ${FILE_PATH})"
+
+        # Copy png file to site destination
+        mkdir -p ${CELIX_DOCS_DIR}/${FILE_DIR}
+        cp -v ${CELIX_SRC_DIR}/${FILE_PATH} ${CELIX_DOCS_DIR}/${FILE_DIR}
+    done
 else
     echo "Not extracting docs, output directory already exists!"
     exit 1
