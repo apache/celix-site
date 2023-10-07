@@ -224,8 +224,9 @@ The vote has passed with the following result:
 +1 Name of Approvers (not binding)
 ...
 
-The released artifact will be moved to the release area for mirroring. The
-release branch will be merged with master and a 2.1.0 tag will be created.
+The released artifact will be moved to the release area for mirroring. 
+The X.Y.Z tag will be created on the release branch and 
+the release branch will be merged with the master branch.
 
 After the mirroring period the news & downloads of the website will be
 updated and the release will be announced.
@@ -254,7 +255,7 @@ A tag - named like rel/celix-X.Y.Z - needs to created and the release branch nee
 $ git config --global user.signingkey E43F742E
 
 # Create the tag
-$ git tag -s rel/celix-X.Y.Z -m 'Celix release X.Y.Z'
+$ git tag -s rel/celix-X.Y.Z -m 'Apache Celix Release X.Y.Z'
 
 # Next thing to do is pushing the tag to the remote
 $ git push origin rel/celix-X.Y.Z
@@ -263,6 +264,18 @@ $ git checkout master
 $ git merge release-X.Y.Z
 $ git push origin master
 ```
+
+### Move release artifacts from "dev" to "release" area
+
+First remove the previous release from the "release" area.
+
+Then use the following svn command to move the release artifacts from "dev" to "release":
+```bash
+svn move https://dist.apache.org/repos/dist/dev/celix/celix-X.Y.Z https://dist.apache.org/repos/dist/release/celix/
+```
+
+Note that a svn move ensures that the voted released artifacts are moved as-is.
+
 
 ### Roll out release artifacts
 
@@ -318,16 +331,18 @@ The following template must be used:
 To: announce@apache.org, dev@celix.apache.org
 Subject: [ANNOUNCE] Apache Celix X.Y.Z released
 
-The Apache Celix team is pleased to announce the release of Celix X.Y.Z.
 
-Celix is an implementation of the OSGi specification adapted to C. It will follow the API as close as possible, but since the OSGi specification is written primarily for Java, there will be differences. An important aspect of the implementation is interoperability between Java and C. This interoperability is achieved by porting and implementing the Remote Services specification in Celix.
+The Apache Celix team is pleased to announce the release of Apache Celix X.Y.Z.
+
+Apache Celix is an implementation of the OSGi specification adapted to C and C++. 
+It is a framework to develop (dynamic) modular software applications using component and service-oriented programming.
 
 This new release focuses on .... {add additional information for this release}
 
 The release is available here:
 https://celix.apache.org/download.cgi
 
-The full change log is available here:
+The full change log is available here: {add link to CHANGES.md}
 
 We welcome your help and feedback. For more information on how to report problems, and to get involved, visit the project website at https://celix.apache.org/
 
@@ -335,3 +350,4 @@ The Apache Celix Team
 ```
 
 <p class="alert alert-primary">Note: the email must be sent from an @apache.org address</p>
+
