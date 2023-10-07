@@ -2,3 +2,5 @@
     path = celix-src
     url = https://github.com/apache/celix.git
     ignore = all
+    branch = rel/celix-2.4.0
+
