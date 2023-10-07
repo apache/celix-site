@@ -138,6 +138,7 @@
     <li><a href="#vote-passed">Vote Passed</a>
       <ul>
         <li><a href="#create-git-tag-and-merge-to-master">Create Git tag and merge to master</a></li>
+        <li><a href="#move-release-artifacts-from-dev-to-release-area">Move release artifacts from &ldquo;dev&rdquo; to &ldquo;release&rdquo; area</a></li>
         <li><a href="#roll-out-release-artifacts">Roll out release artifacts</a></li>
         <li><a href="#publish-release-documentation">Publish release documentation</a></li>
         <li><a href="#update-the-website">Update the website</a></li>
@@ -320,8 +321,9 @@ of votes made, including whether a vote is binding or not. For a successful vote
 </span></span><span style="display:flex;"><span>+1 Name of Approvers (not binding)
 </span></span><span style="display:flex;"><span>...
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>The released artifact will be moved to the release area for mirroring. The
-</span></span><span style="display:flex;"><span>release branch will be merged with master and a 2.1.0 tag will be created.
+</span></span><span style="display:flex;"><span>The released artifact will be moved to the release area for mirroring. 
+</span></span><span style="display:flex;"><span>The X.Y.Z tag will be created on the release branch and 
+</span></span><span style="display:flex;"><span>the release branch will be merged with the master branch.
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>After the mirroring period the news &amp; downloads of the website will be
 </span></span><span style="display:flex;"><span>updated and the release will be announced.
@@ -342,7 +344,7 @@ A tag - named like rel/celix-X.Y.Z - needs to created and the release branch nee
 </span></span><span style="display:flex;"><span>$ git config --global user.signingkey E43F742E
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#080;font-style:italic"># Create the tag</span>
-</span></span><span style="display:flex;"><span>$ git tag -s rel/celix-X.Y.Z -m <span style="color:#b44">&#39;Celix release X.Y.Z&#39;</span>
+</span></span><span style="display:flex;"><span>$ git tag -s rel/celix-X.Y.Z -m <span style="color:#b44">&#39;Apache Celix Release X.Y.Z&#39;</span>
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#080;font-style:italic"># Next thing to do is pushing the tag to the remote</span>
 </span></span><span style="display:flex;"><span>$ git push origin rel/celix-X.Y.Z
@@ -350,7 +352,12 @@ A tag - named like rel/celix-X.Y.Z - needs to created and the release branch nee
 </span></span><span style="display:flex;"><span>$ git checkout master
 </span></span><span style="display:flex;"><span>$ git merge release-X.Y.Z
 </span></span><span style="display:flex;"><span>$ git push origin master
-</span></span></code></pre></div><h3 id="roll-out-release-artifacts">Roll out release artifacts</h3>
+</span></span></code></pre></div><h3 id="move-release-artifacts-from-dev-to-release-area">Move release artifacts from &ldquo;dev&rdquo; to &ldquo;release&rdquo; area</h3>
+<p>First remove the previous release from the &ldquo;release&rdquo; area.</p>
+<p>Then use the following svn command to move the release artifacts from &ldquo;dev&rdquo; to &ldquo;release&rdquo;:</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>svn move https://dist.apache.org/repos/dist/dev/celix/celix-X.Y.Z https://dist.apache.org/repos/dist/release/celix/
+</span></span></code></pre></div><p>Note that a svn move ensures that the voted released artifacts are moved as-is.</p>
+<h3 id="roll-out-release-artifacts">Roll out release artifacts</h3>
 <p>When a release is moved from the &ldquo;dev&rdquo; area to &ldquo;release&rdquo; area. The automated
 svnpubsub will move the artifact to the correct server for mirroring. Mirroring typically can take up to 24 hours.</p>
 <p>Besides uploading the new release, the old release should be archived. Since archiving is already automated,
@@ -394,16 +401,18 @@ substituted with the actual released version). This file can be copied and updat
 <div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>To: announce@apache.org, dev@celix.apache.org
 </span></span><span style="display:flex;"><span>Subject: [ANNOUNCE] Apache Celix X.Y.Z released
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>The Apache Celix team is pleased to announce the release of Celix X.Y.Z.
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>Celix is an implementation of the OSGi specification adapted to C. It will follow the API as close as possible, but since the OSGi specification is written primarily for Java, there will be differences. An important aspect of the implementation is interoperability between Java and C. This interoperability is achieved by porting and implementing the Remote Services specification in Celix.
+</span></span><span style="display:flex;"><span>The Apache Celix team is pleased to announce the release of Apache Celix X.Y.Z.
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>Apache Celix is an implementation of the OSGi specification adapted to C and C++. 
+</span></span><span style="display:flex;"><span>It is a framework to develop (dynamic) modular software applications using component and service-oriented programming.
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>This new release focuses on .... {add additional information for this release}
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>The release is available here:
 </span></span><span style="display:flex;"><span>https://celix.apache.org/download.cgi
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>The full change log is available here:
+</span></span><span style="display:flex;"><span>The full change log is available here: {add link to CHANGES.md}
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>We welcome your help and feedback. For more information on how to report problems, and to get involved, visit the project website at https://celix.apache.org/
 </span></span><span style="display:flex;"><span>
