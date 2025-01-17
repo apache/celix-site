@@ -153,6 +153,16 @@ a.edit-on-gh {
 .card {
   height: 100%;
 }
+.card-body img {
+  max-width: 100%;
+  width: 100%;
+  height: auto;
+}
+
+/* Allow defining captions for images (will be italic and underlined) */
+.card-body img + em {
+  text-decoration: underline;
+}
 
 /*
  * Media Queries

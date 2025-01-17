@@ -32,22 +32,7 @@ limitations under the License.
 
     <!-- Custom style -->
     <link href="/assets/css/style.css" rel="stylesheet">
-
-    <style>
-        /* TODO: Ideally the styling below will be moved to the style.css. That doesn't seem to work and needs investigating */
-        /* Redefine .img-fluid (bootstrap element) for all images, to allow defining images in markdown which do no 'escape' their card */
-        .card-body img {
-            max-width: 100%;
-            width: 100%;
-            height: auto;
-        }
-
-        /* Allow defining captions for images (will be italic and underlined) */
-        .card-body img + em {
-            text-decoration: underline;
-        }
-    </style>
-
+    
     {{ partial "matomo.html" . }}
 </head>
 <body class="light-grey">
